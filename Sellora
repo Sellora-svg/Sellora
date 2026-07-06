@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sellora</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #020617;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 60px 20px;
+}
+
+.highlight {
+  color: #facc15;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 10px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.primary {
+  background: #facc15;
+  color: black;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.box {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+}
+
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  max-width: 300px;
+  border-radius: 5px;
+  border: none;
+}
+
+.success {
+  background: #065f46;
+}
+
+.info {
+  background: #1e293b;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Sellora</h2>
+
+<h1>Monetize your <span class="highlight">audience</span></h1>
+
+<p>We build your courses, digital products & brand.</p>
+
+<button class="primary" onclick="openForm()">Book a Meet</button>
+<button class="secondary" onclick="showInfo()">See how it works</button>
+
+<!-- FORM -->
+<div id="formBox" class="box info">
+  <h3>Fill your details</h3>
+  <input type="text" placeholder="Your Name" required>
+  <input type="email" placeholder="Your Email" required>
+  <input type="text" placeholder="Your Goal">
+  <button class="primary" onclick="submitForm()">Submit</button>
+</div>
+
+<!-- SUCCESS -->
+<div id="successBox" class="box success">
+  <h2>🎉 Congratulations 🎉</h2>
+  <p>Your form has been submitted 😍🔥</p>
+  <p>We will contact you soon 🚀</p>
+</div>
+
+<!-- INFO -->
+<div id="infoBox" class="box info">
+  <h2>How it works 📄</h2>
+  <p>
+    Step 1: You apply <br>
+    Step 2: We analyze your audience <br>
+    Step 3: We build your system <br>
+    Step 4: You earn 💸
+  </p>
+</div>
+
+</div>
+
+<script>
+function openForm() {
+  document.getElementById("formBox").style.display = "block";
+  document.getElementById("infoBox").style.display = "none";
+  document.getElementById("successBox").style.display = "none";
+}
+
+function submitForm() {
+  document.getElementById("formBox").style.display = "none";
+  document.getElementById("successBox").style.display = "block";
+}
+
+function showInfo() {
+  document.getElementById("infoBox").style.display = "block";
+  document.getElementById("formBox").style.display = "none";
+  document.getElementById("successBox").style.display = "none";
+}
+</script>
+
+</body>
+</html>
