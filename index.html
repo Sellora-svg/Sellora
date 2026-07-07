@@ -3,173 +3,213 @@
 <head>
   <title>Sellora</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: black;
+      background: radial-gradient(circle at top, #1a1a1a, #000);
       color: white;
-      text-align: center;
     }
 
-    .box {
-      background: #111;
-      padding: 30px;
-      margin: 40px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255,255,0,0.3);
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .tag {
+      border: 1px solid rgba(255,255,0,0.4);
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 20px;
+      color: #ccc;
     }
 
     h1 {
-      font-family: 'Orbitron', sans-serif;
-      color: yellow;
-      text-shadow: 0 0 10px yellow;
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      margin: 0;
     }
 
-    .glow-text {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      font-size: 20px;
-      margin-top: 10px;
+    h1 span {
+      color: #f5c518;
+      font-style: italic;
     }
 
-    .glow-text span {
-      color: yellow;
-      text-shadow: 0 0 5px yellow, 0 0 15px gold;
+    .desc {
+      max-width: 500px;
+      margin: 20px 0;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .desc span {
+      color: #f5c518;
       font-weight: bold;
     }
 
     button {
-      padding: 12px 25px;
-      margin: 10px;
+      padding: 14px 35px;
+      border-radius: 30px;
       border: none;
-      background: yellow;
-      color: black;
       font-weight: bold;
-      border-radius: 8px;
       cursor: pointer;
+      margin-top: 15px;
     }
 
-    button:hover {
-      background: gold;
-      transform: scale(1.05);
+    .main-btn {
+      background: #f5c518;
+      color: black;
+      box-shadow: 0 0 20px rgba(245,197,24,0.6);
+    }
+
+    .sec-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
     input, textarea {
       padding: 10px;
-      margin: 8px;
       width: 85%;
+      margin: 8px;
       border-radius: 6px;
       border: none;
     }
 
-    #formBox, #successBox, #infoBox {
+    #formPage, #successPage, #infoPage {
       display: none;
-    }
-
-    .note {
-      font-size: 12px;
-      color: yellow;
     }
   </style>
 </head>
 
 <body>
 
-<!-- MAIN -->
-<div class="box" id="mainBox">
-  <h1>Monetize Your Audience</h1>
+<!-- MAIN PAGE -->
+<div class="container" id="mainPage">
 
-  <div class="glow-text">
-    <span>Welcome</span>
-    <span>to</span>
-    <span>Sellora</span>
+  <div class="tag">● Onboarding creators — Q2 2026</div>
+
+  <h1>
+    Monetize your <br>
+    <span>audience.</span>
+  </h1>
+
+  <div class="desc">
+    We build your courses, digital products & branded theme — end-to-end.
+    You keep <span>75%</span>. We only earn when you do.
   </div>
 
-  <p>Grow your channel with us 😎</p>
+  <button class="main-btn" onclick="openForm()">Book a meet →</button>
+  <button class="sec-btn" onclick="openInfo()">See how it works</button>
 
-  <button onclick="openForm()">Book Now</button>
-  <button onclick="showInfo()">See how it works</button>
 </div>
 
-<!-- FORM -->
-<div class="box" id="formBox">
+<!-- FORM PAGE -->
+<div class="container" id="formPage">
+
   <h2>Enter Your Details</h2>
 
-  <input type="text" id="name" placeholder="Your Name"><br>
-  <input type="text" id="channel" placeholder="Your Channel Name"><br>
-  <input type="email" id="email" placeholder="Your Gmail ID"><br>
-  <input type="number" id="subs" placeholder="Subscribers"><br>
-  <textarea id="goal" placeholder="Your Goal"></textarea><br>
+  <input type="text" id="name" placeholder="Your Name">
+  <input type="text" id="channel" placeholder="Your Channel Name">
+  <input type="email" id="email" placeholder="Your Gmail">
+  <input type="number" id="subs" placeholder="Subscribers">
+  <textarea id="goal" placeholder="Your Goal"></textarea>
 
-  <p class="note">We never ask for your password</p>
+  <button class="main-btn" onclick="submitForm()">Submit</button>
+  <button class="sec-btn" onclick="backHome()">⬅ Back</button>
 
-  <button onclick="submitForm()">Submit</button>
-  <button onclick="backToMain()">⬅ Back</button>
 </div>
 
-<!-- SUCCESS -->
-<div class="box" id="successBox">
-  <h1>CONGRATULATIONS 🎉</h1>
-  <p>Form submitted successfully 🚀</p>
+<!-- SUCCESS PAGE -->
+<div class="container" id="successPage">
 
-  <button onclick="backToMain()">⬅ Back Home</button>
+  <h1>🎉 Congratulations</h1>
+  <p>Your request has been submitted 🚀</p>
+
+  <button class="main-btn" onclick="backHome()">Back Home</button>
+
 </div>
 
-<!-- INFO -->
-<div class="box" id="infoBox">
+<!-- INFO PAGE -->
+<div class="container" id="infoPage">
+
   <h2>How it Works</h2>
 
-  <p>
-    Sellora ek platform hai jahan creators apna channel grow kar sakte hain.
-    Aap details submit karte ho aur hum aapko promote karte hain 😎
+  <p class="desc">
+    You submit your details.  
+    We analyze your channel and help you grow using promotions, strategy & audience targeting 🚀
   </p>
 
-  <button onclick="backToMain()">⬅ Back</button>
+  <button class="sec-btn" onclick="backHome()">⬅ Back</button>
+
 </div>
 
+<!-- EMAILJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
 <script>
-function openForm() {
-  hideAll();
-  document.getElementById("formBox").style.display = "block";
+(function(){
+  emailjs.init("YOUR_PUBLIC_KEY");
+})();
+
+function hideAll(){
+  document.getElementById("mainPage").style.display = "none";
+  document.getElementById("formPage").style.display = "none";
+  document.getElementById("successPage").style.display = "none";
+  document.getElementById("infoPage").style.display = "none";
 }
 
-function showInfo() {
+function openForm(){
   hideAll();
-  document.getElementById("infoBox").style.display = "block";
+  document.getElementById("formPage").style.display = "flex";
 }
 
-function submitForm() {
-  var name = document.getElementById("name").value;
-  var channel = document.getElementById("channel").value;
-  var email = document.getElementById("email").value;
-  var subs = document.getElementById("subs").value;
-  var goal = document.getElementById("goal").value;
+function openInfo(){
+  hideAll();
+  document.getElementById("infoPage").style.display = "flex";
+}
 
-  if(name && channel && email && subs && goal){
-    hideAll();
-    document.getElementById("successBox").style.display = "block";
+function backHome(){
+  hideAll();
+  document.getElementById("mainPage").style.display = "flex";
+}
+
+function submitForm(){
+
+  var params = {
+    name: document.getElementById("name").value,
+    channel: document.getElementById("channel").value,
+    email: document.getElementById("email").value,
+    subs: document.getElementById("subs").value,
+    goal: document.getElementById("goal").value
+  };
+
+  if(params.name && params.channel && params.email && params.subs && params.goal){
+
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+    .then(function(){
+      hideAll();
+      document.getElementById("successPage").style.display = "flex";
+    }, function(){
+      alert("Error sending email ❌");
+    });
+
   } else {
     alert("Fill all details!");
   }
 }
-
-function backToMain() {
-  hideAll();
-  document.getElementById("mainBox").style.display = "block";
-}
-
-function hideAll() {
-  document.getElementById("mainBox").style.display = "none";
-  document.getElementById("formBox").style.display = "none";
-  document.getElementById("successBox").style.display = "none";
-  document.getElementById("infoBox").style.display = "none";
-}
 </script>
 
 </body>
-</html>
+  </html>
+    
   
