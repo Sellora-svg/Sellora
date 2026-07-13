@@ -1,242 +1,194 @@
-</body>
-</html>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sellora</title>
+<meta charset="UTF-8">
+<title>Monetize Your Audience</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #1a1a1a, #000);
-      color: white;
-    }
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-    .container {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      flex-direction: column;
-      padding: 20px;
-    }
+<style>
 
-    .tag {
-      border: 1px solid rgba(255,255,0,0.4);
-      padding: 6px 15px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-bottom: 20px;
-      color: #ccc;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      margin: 0;
-    }
+body{
+  font-family:'Inter', sans-serif;
+  background: radial-gradient(circle at 50% 0%, #1a1a1a, #000 70%);
+  color:white;
+  height:100vh;
+}
 
-    h1 span {
-      color: #f5c518;
-      font-style: italic;
-    }
+/* GRID BACKGROUND */
+body::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity:0.2;
+}
 
-    .desc {
-      max-width: 500px;
-      margin: 20px 0;
-      color: #ccc;
-      line-height: 1.6;
-    }
+/* MAIN BOX */
+.container{
+  max-width:800px;
+  margin:auto;
+  padding-top:80px;
+  text-align:center;
+}
 
-    .desc span {
-      color: #f5c518;
-      font-weight: bold;
-    }
+/* TOP BADGE */
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 16px;
+  border-radius:20px;
+  border:1px solid rgba(255,180,0,0.5);
+  color:#ffb300;
+  font-size:14px;
+  margin-bottom:30px;
+  background:rgba(255,180,0,0.05);
+}
 
-    button {
-      padding: 14px 35px;
-      border-radius: 30px;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-    }
+/* HEADING */
+h1{
+  font-family:'Playfair Display', serif;
+  font-size:64px;
+  font-weight:500;
+  line-height:1.1;
+}
 
-    .main-btn {
-      background: #f5c518;
-      color: black;
-      box-shadow: 0 0 20px rgba(245,197,24,0.6);
-    }
+.highlight{
+  color:#ffb300;
+  font-style:italic;
+}
 
-    .sec-btn {
-      background: transparent;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-    }
+/* TEXT */
+.desc{
+  margin-top:25px;
+  font-size:18px;
+  color:#cfcfcf;
+  line-height:1.6;
+}
 
-    input, textarea {
-      padding: 10px;
-      width: 85%;
-      margin: 8px;
-      border-radius: 6px;
-      border: none;
-    }
+/* BUTTON */
+.btn{
+  margin-top:30px;
+  padding:16px 40px;
+  border-radius:40px;
+  border:none;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    #formPage, #successPage, #infoPage {
-      display: none;
-    }
-  </style>
+.primary{
+  background:#ffb300;
+  color:black;
+  box-shadow:0 0 20px rgba(255,179,0,0.5);
+}
+
+.primary:hover{
+  transform:scale(1.05);
+}
+
+.secondary{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.2);
+  color:white;
+}
+
+/* FORM */
+.form-box{
+  display:none;
+  margin-top:40px;
+}
+
+input{
+  display:block;
+  margin:10px auto;
+  padding:12px;
+  width:280px;
+  border-radius:10px;
+  border:none;
+}
+
+/* SUCCESS */
+#successMsg{
+  margin-top:20px;
+  color:#ffb300;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- MAIN PAGE -->
-<div class="container" id="mainPage">
+<div class="container">
 
-  <div class="tag">● Onboarding creators — Q2 2026</div>
+<div class="badge">● Onboarding creators — Q2 2026</div>
 
-  <h1>
-    Monetize your <br>
-    <span>audience.</span>
-  </h1>
+<h1>
+Monetize your <span class="highlight">audience.</span>
+</h1>
 
-  <div class="desc">
-    We build your courses, digital products & branded theme — end-to-end.
-    You keep <span>75%</span>. We only earn when you do.
-  </div>
+<p class="desc">
+We build your courses, digital products & branded theme — end-to-end.
+You keep <span style="color:#ffb300;">75%</span>. We only earn when you do.
+</p>
 
-  <button class="main-btn" onclick="openForm()">Book a meet →</button>
-  <button class="sec-btn" onclick="openInfo()">See how it works</button>
+<button class="btn primary">Book a meet →</button>
+<br>
+<button class="btn secondary" onclick="openForm()">See how it works</button>
 
+<!-- FORM -->
+<div class="form-box" id="formBox">
+  <h2>Enter Details</h2>
+  <input type="text" id="name" placeholder="Name">
+  <input type="email" id="email" placeholder="Email">
+  <input type="text" id="phone" placeholder="Phone">
+
+  <button class="btn primary" onclick="sendData()">Submit</button>
 </div>
 
-<!-- FORM PAGE -->
-<div class="container" id="formPage">
-
-  <h2>Enter Your Details</h2>
-
-  <input type="text" id="name" placeholder="Your Name">
-  <input type="text" id="channel" placeholder="Your Channel Name">
-  <input type="email" id="email" placeholder="Your Gmail">
-  <input type="number" id="subs" placeholder="Subscribers">
-  <textarea id="goal" placeholder="Your Goal"></text
-  <button class="sec-btn" onclick="backHome()">⬅ Back</button>
-<button type="submit" style="position:fixed; bottom:20px; left:20px; z-index:99999;">
-  Submit
-  </button>
-</div>
-
-<!-- SUCCESS PAGE -->
-<div class="container" id="successPage">
-
-  <h1>🎉 Congratulations</h1>
-  <p>Your request has been submitted 🚀</p>
-
-  <button class="main-btn" onclick="backHome()">Back Home</button>
+<h2 id="successMsg"></h2>
 
 </div>
-
-<!-- INFO PAGE -->
-<div class="container" id="infoPage">
-
-  <h2>How it Works</h2>
-
-  <p class="desc">
-    You submit your details.  
-    We analyze your channel and help you grow using promotions, strategy & audience targeting 🚀
-  </p>
-
-  <button class="sec-btn" onclick="backHome()">⬅ Back</button>
-
-</div>
-
-<!-- EMAILJS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
-(function(){
-  emailjs.init("YOUR_PUBLIC_KEY");
-})();
 
-function hideAll(){
-  document.getElementById("mainPage").style.display = "none";
-  document.getElementById("formPage").style.display = "none";
-  document.getElementById("successPage").style.display = "none";
-  document.getElementById("infoPage").style.display = "none";
-}
+(function(){
+emailjs.init("YOUR_PUBLIC_KEY");
+})();
 
 function openForm(){
-  hideAll();
-  document.getElementById("formPage").style.display = "flex";
+document.getElementById("formBox").style.display="block";
 }
 
-function openInfo(){
-  hideAll();
-  document.getElementById("infoPage").style.display = "flex";
+function sendData(){
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let phone=document.getElementById("phone").value;
+
+emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
+name:name,
+email:email,
+phone:phone
+}).then(function(){
+document.getElementById("successMsg").innerText="🎉 Congratulations!";
+document.getElementById("formBox").style.display="none";
+});
 }
 
-function backHome(){
-  hideAll();
-  document.getElementById("mainPage").style.display = "flex";
-}
-
-function submitForm(){
-
-  var params = {
-    name: document.getElementById("name").value,
-    channel: document.getElementById("channel").value,
-    email: document.getElementById("email").value,
-    subs: document.getElementById("subs").value,
-    goal: document.getElementById("goal").value
-  };
-
-  if(params.name && params.channel && params.email && params.subs && params.goal){
-
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
-    .then(function(){
-      hideAll();
-      document.getElementById("successPage").style.display = "flex";
-    }, function(){
-      alert (" Congratulations 🎉  Your Form Has been Submitted We will contact You Soon 🔜");
-    });
-
-  } else {
-    alert("Fill all details!");
-  }
-}
 </script>
 
 </body>
-  </html>
-<!-- YAHAN PASTE KAR -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-
-<script>
-(function(){
-  emailjs.init("YOUR_PUBLIC_KEY");
-})();
-
-function submitForm(){
-  var params = {
-    name: document.getElementById("name").value,
-    channel: document.getElementById("channel").value,
-    email: document.getElementById("email").value,
-    subs: document.getElementById("subs").value,
-    goal: document.getElementById("goal").value
-  };
-
-  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
-  .then(function(){
-    alert("✅ Done!");
-  });
-}
-</script>
-
-</body>
-</html>    
+</html>
   
