@@ -1,3 +1,5 @@
+</body>
+</html>
 <!DOCTYPE html>
 <html>
 <head>
@@ -211,5 +213,30 @@ function submitForm(){
 
 </body>
   </html>
-    
+<!-- YAHAN PASTE KAR -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("YOUR_PUBLIC_KEY");
+})();
+
+function submitForm(){
+  var params = {
+    name: document.getElementById("name").value,
+    channel: document.getElementById("channel").value,
+    email: document.getElementById("email").value,
+    subs: document.getElementById("subs").value,
+    goal: document.getElementById("goal").value
+  };
+
+  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+  .then(function(){
+    alert("✅ Done!");
+  });
+}
+</script>
+
+</body>
+</html>    
   
