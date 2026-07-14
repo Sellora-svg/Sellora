@@ -29,22 +29,19 @@ body{
   position:relative;
 }
 
-/* 🔥 FIX: overlay neeche rakha */
 .hero::after{
   content:"";
   position:absolute;
-  top:0;
-  left:0;
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.6);
   z-index:1;
 }
 
-/* CONTENT upar */
+/* CONTENT */
 .content{
   position:relative;
-  z-index:2; /* 🔥 important */
+  z-index:2;
   text-align:center;
   max-width:700px;
   padding:20px;
@@ -52,11 +49,11 @@ body{
 
 /* BADGE */
 .badge{
-  display:inline-block;
   padding:8px 16px;
   border-radius:20px;
   border:1px solid rgba(255,180,0,0.6);
   color:#ffb300;
+  display:inline-block;
   margin-bottom:20px;
 }
 
@@ -99,6 +96,28 @@ p{
   color:white;
 }
 
+/* FORM */
+.form-box{
+  display:none;
+  margin-top:30px;
+}
+
+input{
+  display:block;
+  margin:10px auto;
+  padding:12px;
+  width:260px;
+  border-radius:10px;
+  border:none;
+}
+
+/* DESCRIPTION */
+.desc-box{
+  display:none;
+  margin-top:20px;
+  color:#ccc;
+}
+
 </style>
 </head>
 
@@ -119,17 +138,59 @@ p{
       You keep <span style="color:#ffb300;">75%</span>. We only earn when you do.
     </p>
 
-    <button class="btn primary" onclick="alert('Book a meet clicked')">
+    <!-- BUTTONS -->
+    <button class="btn primary" onclick="openForm()">
       Book a meet →
     </button>
     <br>
-    <button class="btn secondary" onclick="alert('See how it works clicked')">
+    <button class="btn secondary" onclick="showDesc()">
       See how it works
     </button>
+
+    <!-- FORM -->
+    <div class="form-box" id="formBox">
+      <h3>Fill Details</h3>
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <input type="text" placeholder="Phone">
+
+      <button class="btn primary" onclick="submitForm()">Submit</button>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="desc-box" id="descBox">
+      <p>
+        👉 Step 1: We understand your audience<br>
+        👉 Step 2: We build your course/products<br>
+        👉 Step 3: Launch & marketing<br>
+        👉 Step 4: You earn, we grow together 🚀
+      </p>
+    </div>
+
+    <h2 id="successMsg"></h2>
 
   </div>
 
 </div>
+
+<script>
+
+function openForm(){
+  document.getElementById("formBox").style.display="block";
+  document.getElementById("descBox").style.display="none";
+}
+
+function showDesc(){
+  document.getElementById("descBox").style.display="block";
+  document.getElementById("formBox").style.display="none";
+}
+
+function submitForm(){
+  document.getElementById("successMsg").innerText="🎉 Congratulations!";
+  document.getElementById("formBox").style.display="none";
+}
+
+</script>
 
 </body>
 </html>
