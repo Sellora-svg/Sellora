@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Monetize Your Audience</title>
+<title>Monetize Page</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
@@ -18,51 +16,54 @@
 
 body{
   font-family:'Inter', sans-serif;
-  background: radial-gradient(circle at 50% 0%, #1a1a1a, #000 70%);
   color:white;
-  height:100vh;
 }
 
-/* GRID BACKGROUND */
-body::before{
+/* HERO */
+.hero{
+  height:100vh;
+  background: url('1000103086.jpg') no-repeat center center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+/* 🔥 FIX: overlay neeche rakha */
+.hero::after{
   content:"";
   position:absolute;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
-  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity:0.2;
+  background:rgba(0,0,0,0.6);
+  z-index:1;
 }
 
-/* MAIN BOX */
-.container{
-  max-width:800px;
-  margin:auto;
-  padding-top:80px;
+/* CONTENT upar */
+.content{
+  position:relative;
+  z-index:2; /* 🔥 important */
   text-align:center;
+  max-width:700px;
+  padding:20px;
 }
 
-/* TOP BADGE */
+/* BADGE */
 .badge{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
+  display:inline-block;
   padding:8px 16px;
   border-radius:20px;
-  border:1px solid rgba(255,180,0,0.5);
+  border:1px solid rgba(255,180,0,0.6);
   color:#ffb300;
-  font-size:14px;
-  margin-bottom:30px;
-  background:rgba(255,180,0,0.05);
+  margin-bottom:20px;
 }
 
 /* HEADING */
 h1{
   font-family:'Playfair Display', serif;
-  font-size:64px;
-  font-weight:500;
-  line-height:1.1;
+  font-size:60px;
 }
 
 .highlight{
@@ -71,59 +72,31 @@ h1{
 }
 
 /* TEXT */
-.desc{
-  margin-top:25px;
+p{
+  margin-top:20px;
+  color:#ddd;
   font-size:18px;
-  color:#cfcfcf;
-  line-height:1.6;
 }
 
 /* BUTTON */
 .btn{
-  margin-top:30px;
-  padding:16px 40px;
+  margin-top:25px;
+  padding:15px 35px;
   border-radius:40px;
   border:none;
   font-size:18px;
   cursor:pointer;
-  transition:0.3s;
 }
 
 .primary{
   background:#ffb300;
   color:black;
-  box-shadow:0 0 20px rgba(255,179,0,0.5);
-}
-
-.primary:hover{
-  transform:scale(1.05);
 }
 
 .secondary{
   background:transparent;
-  border:1px solid rgba(255,255,255,0.2);
+  border:1px solid rgba(255,255,255,0.3);
   color:white;
-}
-
-/* FORM */
-.form-box{
-  display:none;
-  margin-top:40px;
-}
-
-input{
-  display:block;
-  margin:10px auto;
-  padding:12px;
-  width:280px;
-  border-radius:10px;
-  border:none;
-}
-
-/* SUCCESS */
-#successMsg{
-  margin-top:20px;
-  color:#ffb300;
 }
 
 </style>
@@ -131,64 +104,34 @@ input{
 
 <body>
 
-<div class="container">
+<div class="hero">
 
-<div class="badge">● Onboarding creators — </div>
+  <div class="content">
 
-<h1>
-Monetize your <span class="highlight">audience.</span>
-</h1>
+    <div class="badge">Onboarding creators — Q2 2026</div>
 
-<p class="desc">
-We build your courses, digital products & branded theme — end-to-end.
-You keep <span style="color:#ffb300;">75%</span>. We only earn when you do.
-</p>
+    <h1>
+      Monetize your <span class="highlight">audience.</span>
+    </h1>
 
-<button class="btn primary">Book a meet →</button>
-<br>
-<button class="btn secondary" onclick="openForm()">See how it works</button>
+    <p>
+      We build your courses, digital products & branded theme — end-to-end.
+      You keep <span style="color:#ffb300;">75%</span>. We only earn when you do.
+    </p>
 
-<!-- FORM -->
-<div class="form-box" id="formBox">
-  <h2>Enter Details</h2>
-  <input type="text" id="name" placeholder="Name">
-  <input type="email" id="email" placeholder="Email">
-  <input type="text" id="phone" placeholder="Phone">
+    <button class="btn primary" onclick="alert('Book a meet clicked')">
+      Book a meet →
+    </button>
+    <br>
+    <button class="btn secondary" onclick="alert('See how it works clicked')">
+      See how it works
+    </button>
 
-  <button class="btn primary" onclick="sendData()">Submit</button>
-</div>
-
-<h2 id="successMsg"></h2>
+  </div>
 
 </div>
-
-<script>
-
-(function(){
-emailjs.init("YOUR_PUBLIC_KEY");
-})();
-
-function openForm(){
-document.getElementById("formBox").style.display="block";
-}
-
-function sendData(){
-let name=document.getElementById("name").value;
-let email=document.getElementById("email").value;
-let phone=document.getElementById("phone").value;
-
-emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",{
-name:name,
-email:email,
-phone:phone
-}).then(function(){
-document.getElementById("successMsg").innerText="🎉 Congratulations!";
-document.getElementById("formBox").style.display="none";
-});
-}
-
-</script>
 
 </body>
 </html>
+  
   
