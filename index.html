@@ -1,199 +1,238 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Monetize Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SELLORA</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
 body{
-  font-family:'Inter', sans-serif;
-  color:white;
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#000;
+  color:#fff;
 }
 
-/* HERO */
-.hero{
-  height:100vh;
-  background: url('1000103086.jpg') no-repeat center center/cover;
+header{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
+  justify-content:space-between;
+  padding:20px;
+  position:fixed;
+  width:100%;
+  z-index:1000;
+}
+.logo{
+  font-weight:800;
+}
+.logo span{
+  font-size:12px;
+  letter-spacing:3px;
 }
 
-.hero::after{
-  content:"";
-  position:absolute;
+.menu{
+  font-size:24px;
+}
+
+.hero{
+  background:#f5f500;
+  color:#000;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:60px;
+  margin:0;
+  font-weight:800;
+}
+
+.hero p{
+  letter-spacing:6px;
+  font-size:12px;
+  margin-top:20px;
+}
+
+.btns{
+  margin-top:50px;
+}
+
+.btn{
+  background:#000;
+  color:#fff;
+  padding:15px 25px;
+  border-radius:30px;
+  margin:10px;
+  border:none;
+}
+
+.dark{
+  background:#000;
+  padding:80px 20px;
+}
+
+.dark h2{
+  color:#f5f500;
+  font-size:32px;
+}
+
+.card{
+  background:#f5f500;
+  color:#000;
+  padding:20px;
+  border-radius:20px;
+  margin:20px 0;
+}
+
+.light{
+  background:#f5f500;
+  color:#000;
+  padding:80px 20px;
+  text-align:center;
+}
+
+.modal{
+  display:none;
+  position:fixed;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.6);
-  z-index:1;
+  background:rgba(0,0,0,0.8);
+  top:0;
 }
 
-/* CONTENT */
-.content{
-  position:relative;
-  z-index:2;
-  text-align:center;
-  max-width:700px;
+.modal-box{
+  background:#fff;
+  color:#000;
   padding:20px;
-}
-
-/* BADGE */
-.badge{
-  padding:8px 16px;
-  border-radius:20px;
-  border:1px solid rgba(255,180,0,0.6);
-  color:#ffb300;
-  display:inline-block;
-  margin-bottom:20px;
-}
-
-/* HEADING */
-h1{
-  font-family:'Playfair Display', serif;
-  font-size:60px;
-}
-
-.highlight{
-  color:#ffb300;
-  font-style:italic;
-}
-
-/* TEXT */
-p{
-  margin-top:20px;
-  color:#ddd;
-  font-size:18px;
-}
-
-/* BUTTON */
-.btn{
-  margin-top:25px;
-  padding:15px 35px;
-  border-radius:40px;
-  border:none;
-  font-size:18px;
-  cursor:pointer;
-}
-
-.primary{
-  background:#ffb300;
-  color:black;
-}
-
-.secondary{
-  background:transparent;
-  border:1px solid rgba(255,255,255,0.3);
-  color:white;
-}
-
-/* FORM */
-.form-box{
-  display:none;
-  margin-top:30px;
+  width:300px;
+  margin:20% auto;
 }
 
 input{
-  display:block;
-  margin:10px auto;
-  padding:12px;
-  width:260px;
-  border-radius:10px;
-  border:none;
+  width:100%;
+  padding:10px;
+  margin:10px 0;
 }
 
-/* DESCRIPTION */
-.desc-box{
+.success{
   display:none;
-  margin-top:20px;
-  color:#ccc;
+  text-align:center;
+  color:green;
+  font-weight:600;
 }
-
 </style>
 </head>
 
 <body>
 
-<div class="hero">
+<header>
+  <div class="logo">SELLORA<br><span>STUDIO</span></div>
+  <div class="menu">☰</div>
+</header>
 
-  <div class="content">
+<section class="hero">
+  <h1>SELLORA</h1>
+  <p>MONETIZE YOUR AUDIENCE</p>
 
-    <div class="badge">Onboarding creators — Q2 2026</div>
+  <div class="btns">
+    <button class="btn" onclick="openModal()">Book a meet →</button>
+    <button class="btn" onclick="scrollToSection('steps')">See how it works</button>
+  </div>
+</section>
 
-    <h1>
-      Monetize your <span class="highlight">audience.</span>
-    </h1>
+<section class="dark" id="steps">
+  <h2>We handle everything.<br><i>You keep creating.</i></h2>
 
-    <p>
-      We build your courses, digital products & branded theme — end-to-end.
-      You keep <span style="color:#ffb300;">75%</span>. We only earn when you do.
-    </p>
+  <div class="card"><h3>01 Audience Audit</h3><p>We dig into your followers.</p></div>
+  <div class="card"><h3>02 Build Course</h3><p>Courses, ebooks.</p></div>
+  <div class="card"><h3>03 Design Theme</h3><p>Branding UI.</p></div>
+  <div class="card"><h3>04 Launch</h3><p>Funnels.</p></div>
+  <div class="card"><h3>05 Consulting</h3><p>Scaling.</p></div>
+</section>
 
-    <!-- BUTTONS -->
-    <button class="btn primary" onclick="openForm()">
-      Book a meet →
-    </button>
-    <br>
-    <button class="btn secondary" onclick="showDesc()">
-      See how it works
-    </button>
+<section class="light">
+  <h2>We only win when you win.</h2>
+  <p>30% commission only on real sales</p>
 
-    <!-- FORM -->
-    <div class="form-box" id="formBox">
-      <h3>Fill Details</h3>
-      <input type="text" placeholder="Name">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Phone">
-      <input type="text" placeholder="Yotube Channel Id">
-      <input type="text" placeholder="Yotube Channel URL">
-      <button class="btn primary" onclick="submitForm()">Submit</button>
-    </div>
+  <div class="card"><h3>70% Creator</h3></div>
+  <div class="card"><h3>30% Sellora</h3></div>
+</section>
 
-    <!-- DESCRIPTION -->
-    <div class="desc-box" id="descBox">
-      <p>
-        👉 Step 1: We understand your audience<br>
-        👉 Step 2: We build your course/products<br>
-        👉 Step 3: Launch & marketing<br>
-        👉 Step 4: You earn, we grow together 🚀
-      </p>
-    </div>
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
 
-    <h2 id="successMsg"></h2>
+    <h3>Book a Meet</h3>
+
+    <!-- EMAIL ENABLED FORM -->
+    <form id="form" action="https://formsubmit.co/your@email.com" method="POST">
+
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="channel" placeholder="Channel" required>
+
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+
+      <button id="submitBtn">Submit</button>
+    </form>
+
+    <p class="success" id="successMsg">🎉 Congratulations! Submitted successfully.</p>
 
   </div>
-
 </div>
 
 <script>
-
-function openForm(){
-  document.getElementById("formBox").style.display="block";
-  document.getElementById("descBox").style.display="none";
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-function showDesc(){
-  document.getElementById("descBox").style.display="block";
-  document.getElementById("formBox").style.display="none";
+function openModal(){
+  document.getElementById("modal").style.display="block";
 }
 
-function submitForm(){
-  document.getElementById("successMsg").innerText="🎉 Congratulations!";
-  document.getElementById("formBox").style.display="none";
-}
+const form = document.getElementById("form");
+const btn = document.getElementById("submitBtn");
+const success = document.getElementById("successMsg");
 
+let submitted = false;
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  if(submitted) return;
+  submitted = true;
+
+  btn.disabled = true;
+
+  fetch(form.action, {
+    method: "POST",
+    body: new FormData(form)
+  })
+  .then(() => {
+    form.style.display = "none";
+    success.style.display = "block";
+  })
+  .catch(() => {
+    alert("Error! Try again.");
+    btn.disabled = false;
+    submitted = false;
+  });
+});
+
+window.onclick = function(e){
+  if(e.target == document.getElementById("modal")){
+    document.getElementById("modal").style.display="none";
+  }
+}
 </script>
 
 </body>
-</
+  </html>
   
   
