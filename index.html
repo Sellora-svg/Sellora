@@ -1,267 +1,229 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sellora Premium+</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>SELLORA PRO</title>
 
 <style>
-
 body{
   margin:0;
-  font-family:'Inter',sans-serif;
-  background:#0b0b0b;
+  font-family:'Segoe UI',sans-serif;
+  background:#f5f500;
   color:#fff;
+  text-align:center;
 }
 
-/* NAV */
-nav{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 40px;
-  position:fixed;
-  width:100%;
-  backdrop-filter:blur(10px);
-  background:rgba(0,0,0,0.4);
-}
-
-.logo{
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-/* HERO */
 .hero{
   height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  text-align:center;
-  animation:fadeIn 1s ease;
 }
 
-.hero h1{
-  font-size:64px;
-  margin:0;
-}
-
-.hero p{
-  color:#aaa;
-  margin-top:10px;
-}
-
-/* BUTTON */
-.btn{
-  margin-top:30px;
-  padding:14px 28px;
-  border-radius:30px;
-  border:1px solid #fff;
-  background:transparent;
+h1{
+  font-size:60px;
   color:#fff;
+}
+
+.tagline{
+  font-size:20px;
+}
+
+button{
+  padding:15px 28px;
+  border:none;
+  border-radius:30px;
+  margin:10px;
   cursor:pointer;
-  transition:0.3s;
+  font-weight:bold;
 }
 
-.btn:hover{
-  background:#fff;
-  color:#000;
-  box-shadow:0 0 20px rgba(255,255,255,0.4);
-  transform:scale(1.05);
-}
-
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(10px);
-  animation:fadeIn 0.3s;
-}
-
-.box{
-  width:340px;
-  margin:10% auto;
-  padding:30px;
-  border-radius:16px;
-  background:#111;
-  border:1px solid #222;
-  text-align:center;
-  animation:scaleUp 0.4s ease;
-}
-
-input{
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-  border-radius:8px;
-  border:1px solid #333;
+.yellow{
   background:#000;
   color:#fff;
 }
 
-/* CATEGORY */
-.category button{
-  margin:5px;
-  padding:10px 18px;
-  border-radius:20px;
-  border:1px solid #444;
-  background:transparent;
+.back{
+  background:#111;
   color:#fff;
-  cursor:pointer;
-  transition:0.3s;
 }
 
-.category button:hover{
-  background:#fff;
-  color:#000;
-}
-
-/* DASHBOARD */
-.dashboard{
+.box{
   display:none;
-  padding:80px 20px;
-  max-width:1000px;
-  margin:auto;
-  animation:fadeIn 1s ease;
+  padding:30px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+input{
+  display:block;
+  margin:12px auto;
+  padding:12px;
+  width:250px;
+  border-radius:12px;
+  border:none;
+  background:#000;
+  color:#fff;
 }
 
 .card{
-  background:#111;
-  padding:20px;
-  border-radius:12px;
-  border:1px solid #222;
-  transition:0.3s;
+  background:#000;
+  padding:30px;
+  margin:25px auto;
+  border-radius:20px;
+  max-width:850px;
+  line-height:2;
+  text-align:left;
+  font-size:16px;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  border-color:#555;
+.card h3{
+  margin-bottom:10px;
 }
 
-/* ANIMATIONS */
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
+.error{
+  color:red;
 }
-
-@keyframes scaleUp{
-  from{transform:scale(0.9); opacity:0;}
-  to{transform:scale(1); opacity:1;}
-}
-
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="logo">SELLORA</div>
-</nav>
-
-<section class="hero">
-  <h1>Sellora</h1>
-  <p>Build. Monetize. Scale.</p>
-  <button class="btn" onclick="openModal()">Login to Sellora</button>
-</section>
-
-<!-- MODAL -->
-<div class="modal" id="modal" onclick="outsideClick(event)">
-
-  <div class="box" id="step1">
-    <h3>Create Account</h3>
-    <input placeholder="Name">
-    <input placeholder="Email">
-    <button class="btn" onclick="next(1)">Continue</button>
-  </div>
-
-  <div class="box" id="step2" style="display:none;">
-    <h3>Login</h3>
-    <button class="btn" onclick="next(2)">Login</button>
-  </div>
-
-  <div class="box" id="step3" style="display:none;">
-    <h3>Welcome</h3>
-    <button class="btn" onclick="next(3)">Enter</button>
-  </div>
-
-  <div class="box" id="step4" style="display:none;">
-    <h3>Select Category</h3>
-    <div class="category">
-      <button onclick="enter('Business')">Business</button>
-      <button onclick="enter('Marketing')">Marketing</button>
-      <button onclick="enter('Investing')">Investing</button>
-    </div>
-  </div>
-
+<div class="hero" id="home">
+  <h1>SELLORA</h1>
+  <p class="tagline">Monetize Your Audience and Make Money 💰</p>
+  <button class="yellow" onclick="openLogin()">Login to Sellora</button>
 </div>
 
-<!-- DASHBOARD -->
-<div class="dashboard" id="dash">
+<div class="box" id="loginBox">
+  <button class="back" onclick="goHome()">⬅ Back</button>
+  <h2>Enter Details</h2>
 
-  <h1 id="title"></h1>
+  <input id="name" placeholder="Name">
+  <input id="email" placeholder="Email">
+  <input id="channel" placeholder="Channel Name (optional)">
+  <input id="password" placeholder="Password (optional)">
 
-  <div class="grid">
+  <p class="error" id="error"></p>
+  <button class="yellow" onclick="login()">Login</button>
+</div>
 
-    <div class="card">
-      <p id="text"></p>
-    </div>
+<div class="box" id="successBox">
+  <button class="back" onclick="goHome()">⬅ Back</button>
+  <h2>Welcome to Sellora</h2>
+  <button class="yellow" onclick="showCategory()">Continue</button>
+</div>
 
-    <div class="card">
-      <h3>Profile</h3>
-      <p>Founder: You</p>
-      <p>Platform: Sellora</p>
-    </div>
+<div class="box" id="categoryBox">
+  <button class="back" onclick="goHome()">⬅ Back</button>
+  <h2>Select Your Path</h2>
 
-    <div class="card">
-      <h3>Stats</h3>
-      <p>Growth: 🚀 Fast</p>
-      <p>Level: Premium</p>
-    </div>
+  <button onclick="selectCategory('Business')">Business</button>
+  <button onclick="selectCategory('Marketing')">Marketing</button>
+  <button onclick="selectCategory('Investing')">Investing</button>
+  <button onclick="selectCategory('Content Creating')">Content Creating</button>
+</div>
 
-  </div>
-
+<div class="box" id="resultBox">
+  <button class="back" onclick="backToCategory()">⬅ Back</button>
+  <h2 id="catTitle"></h2>
+  <div class="card" id="catText"></div>
 </div>
 
 <script>
 
-function openModal(){
-  modal.style.display="block";
+function hideAll(){
+  document.querySelectorAll('.box').forEach(el => el.style.display='none');
+  home.style.display='none';
 }
 
-function next(step){
-  document.getElementById("step"+step).style.display="none";
-  document.getElementById("step"+(step+1)).style.display="block";
+function openLogin(){
+  hideAll();
+  loginBox.style.display='block';
 }
 
-function enter(cat){
-  modal.style.display="none";
-  dash.style.display="block";
-
-  title.innerText = cat;
-
-  text.innerText =
-  "Welcome to Sellora "+cat+" system. This is your premium dashboard where strategy meets execution. Grow faster, build smarter, and monetize efficiently.";
+function goHome(){
+  hideAll();
+  home.style.display='flex';
 }
 
-// CLOSE ON OUTSIDE CLICK
-function outsideClick(e){
-  if(e.target.id === "modal"){
-    modal.style.display="none";
+function showCategory(){
+  hideAll();
+  categoryBox.style.display='block';
+}
+
+function backToCategory(){
+  hideAll();
+  categoryBox.style.display='block';
+}
+
+function login(){
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+
+  if(name==="" || email===""){
+    document.getElementById("error").innerText = "Please enter Name and Email!";
+    return;
   }
+
+  document.getElementById("error").innerText = "";
+  hideAll();
+  successBox.style.display='block';
+}
+
+function selectCategory(cat){
+  hideAll();
+  resultBox.style.display='block';
+  catTitle.innerHTML = "🔥 " + cat + " Mastery System";
+
+  let text = "";
+
+  if(cat==="Business"){
+    text = `
+    <h3>Business System</h3>
+    <p>Business is the art of identifying real-world problems and transforming them into profitable solutions. A successful business always begins with understanding what people truly need or struggle with. Once you identify a clear problem, the next step is to create a simple, effective solution in the form of a product, service, or digital offer. After that, validation becomes important — you must confirm that people are willing to pay for your solution. Branding plays a major role in business growth, as it builds trust and recognition. You then use platforms like social media, websites, and marketing systems to attract customers and generate revenue. Over time, by improving your offer, building systems, and scaling operations, your business evolves into a powerful machine that consistently produces income and long-term financial freedom.</p>
+    `;
+  }
+
+  else if(cat==="Marketing"){
+    text = `
+    <h3>Complete Marketing and Website System</h3>
+    <p>Marketing is the backbone of making money online, and it connects content, audience, and income into one powerful system. One of the most important parts of modern marketing is understanding how to build your own website and control your platform.</p>
+
+    <p><b>Step 1:</b> Start by opening a code editor such as Visual Studio Code or any simple editor available on your device.  
+    <b>Step 2:</b> Create a new file and name it <b>index.html</b>, which will act as the main structure of your website.  
+    <b>Step 3:</b> Write the basic HTML structure including the head and body sections to define your page.  
+    <b>Step 4:</b> Design your layout by creating sections like home page, login page, content area, and category sections.  
+    <b>Step 5:</b> Use CSS to style your website — apply colors (like yellow and black), spacing, fonts, and button styles to make it look professional.  
+    <b>Step 6:</b> Add JavaScript to make your website interactive, such as handling login buttons, navigation between pages, and displaying dynamic content.  
+    <b>Step 7:</b> Test your website in a browser, identify errors, and fix bugs until everything works smoothly.  
+    <b>Step 8:</b> Improve your design, make it more attractive, faster, and user-friendly over time.</p>
+
+    <p>Once your website is ready, marketing becomes a flow system where you create content on platforms like YouTube or social media, attract an audience, and then direct them to your website. On your website, you convert visitors into customers by offering value, products, or services. This entire system — content to audience to website to income — is how real online businesses generate money consistently. Mastering this process gives you full control over your earning potential.</p>
+    `;
+  }
+
+  else if(cat==="Content Creating"){
+    text = `
+    <h3>Content Creation System</h3>
+    <p>Content creation is one of the most powerful ways to build an audience and generate income online. It starts with selecting a niche that you are interested in and that people want to watch. Consistency is key — posting regularly helps you grow faster. High-quality content with strong hooks at the beginning captures attention, while good storytelling keeps viewers engaged. Learning editing, improving visuals, and understanding audience behavior are important steps in becoming a successful creator. Over time, as your audience grows, you can monetize through advertisements, sponsorships, brand deals, and selling your own products or services. A successful content creator is someone who keeps learning, improving, and adapting to trends while staying consistent.</p>
+    `;
+  }
+
+  else{
+    text = `
+    <h3>Investing System</h3>
+    <p>Investing is the process of growing your money over time by putting it into assets such as stocks, cryptocurrencies, or other financial instruments. The key to successful investing is patience and long-term thinking. You start by learning the basics, understanding risks, and investing small amounts initially. Instead of trying to get rich quickly, focus on steady growth and reinvest your profits. Avoid emotional decisions and always make calculated moves based on knowledge and research. Over time, investing can help you build wealth and achieve financial independence.</p>
+    `;
+  }
+
+  document.getElementById("catText").innerHTML = text;
 }
 
 </script>
 
 </body>
 </html>
+
+
+  
