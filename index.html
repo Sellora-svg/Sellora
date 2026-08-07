@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 
-<!-- ✅ GOOGLE VERIFICATION (TOP PE HEAD KE ANDAR) -->
 <meta name="google-site-verification" content="FR5SlhzT_UDNLhgFwmTQoHzzxTlwkpia5mPXZsWm300" />
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SELLORA PRO</title>
+
+<title>SELLORA</title>
 
 <style>
 body{
@@ -28,7 +28,6 @@ body{
 
 h1{
   font-size:60px;
-  color:#fff;
 }
 
 .tagline{
@@ -78,11 +77,7 @@ input{
   max-width:850px;
   line-height:2;
   text-align:left;
-  font-size:16px;
-}
-
-.card h3{
-  margin-bottom:10px;
+  font-size:15px;
 }
 
 .error{
@@ -95,8 +90,8 @@ input{
 
 <div class="hero" id="home">
   <h1>SELLORA</h1>
-  <p class="tagline">Monetize Your Audience and Make Money 💰</p>
-  <button class="yellow" onclick="openLogin()">Login to Sellora</button>
+  <p class="tagline">Monetize Your Audience 💰</p>
+  <button class="yellow" onclick="openLogin()">Login</button>
 </div>
 
 <div class="box" id="loginBox">
@@ -105,27 +100,18 @@ input{
 
   <input id="name" placeholder="Name">
   <input id="email" placeholder="Email">
-  <input id="channel" placeholder="Channel Name (optional)">
-  <input id="password" placeholder="Password (optional)">
 
   <p class="error" id="error"></p>
-  <button class="yellow" onclick="login()">Login</button>
-</div>
-
-<div class="box" id="successBox">
-  <button class="back" onclick="goHome()">⬅ Back</button>
-  <h2>Welcome to Sellora</h2>
-  <button class="yellow" onclick="showCategory()">Continue</button>
+  <button class="yellow" onclick="login()">Continue</button>
 </div>
 
 <div class="box" id="categoryBox">
   <button class="back" onclick="goHome()">⬅ Back</button>
-  <h2>Select Your Path</h2>
+  <h2>Select</h2>
 
   <button onclick="selectCategory('Business')">Business</button>
   <button onclick="selectCategory('Marketing')">Marketing</button>
-  <button onclick="selectCategory('Investing')">Investing</button>
-  <button onclick="selectCategory('Content Creating')">Content Creating</button>
+  <button onclick="selectCategory('Startup')">Startup Guide</button>
 </div>
 
 <div class="box" id="resultBox">
@@ -135,11 +121,12 @@ input{
 </div>
 
 <script>
-// (same JS as yours - unchanged)
 
 function hideAll(){
-  document.querySelectorAll('.box').forEach(el => el.style.display='none');
-  home.style.display='none';
+  document.getElementById("home").style.display="none";
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("categoryBox").style.display="none";
+  document.getElementById("resultBox").style.display="none";
 }
 
 function openLogin(){
@@ -152,7 +139,16 @@ function goHome(){
   home.style.display='flex';
 }
 
-function showCategory(){
+function login(){
+  let name = document.getElementById("name").value.trim();
+  let email = document.getElementById("email").value.trim();
+
+  if(name==="" || email===""){
+    document.getElementById("error").innerText = "Enter details";
+    return;
+  }
+
+  document.getElementById("error").innerText = "";
   hideAll();
   categoryBox.style.display='block';
 }
@@ -162,50 +158,57 @@ function backToCategory(){
   categoryBox.style.display='block';
 }
 
-function login(){
-  let name = document.getElementById("name").value.trim();
-  let email = document.getElementById("email").value.trim();
-
-  if(name==="" || email===""){
-    document.getElementById("error").innerText = "Please enter Name and Email!";
-    return;
-  }
-
-  document.getElementById("error").innerText = "";
-  hideAll();
-  successBox.style.display='block';
-}
-
 function selectCategory(cat){
   hideAll();
   resultBox.style.display='block';
-  catTitle.innerHTML = "🔥 " + cat + " Mastery System";
+  catTitle.innerHTML = cat;
 
-  let text = "";
+  let text="";
 
   if(cat==="Business"){
-    text = `<h3>Business System</h3><p>Business is the art of identifying real-world problems and transforming them into profitable solutions...</p>`;
-  }
-  else if(cat==="Marketing"){
-    text = >Content Creation</h3><<p>Once your website is ready, marketing becomes a flow system where you create content on platforms like YouTube or social media, attract an audience, and then direct them to your website. On your website, you convert visitors into customers by offering value, products, or services. This entire system — content to audience to website to income — is how real online businesses generate money consistently. Mastering this process gives you full control over your earning potential.</p>
-    `;
+    text = `<p>
+Starting a business is a journey that requires vision, patience, and consistent effort. The first step is identifying a real problem that people face in their daily lives. A successful business always focuses on solving a meaningful problem. Once you identify the problem, you need to think about how you can provide a solution in a simple and effective way.
+
+After identifying the idea, planning becomes important. You should decide your target audience, pricing strategy, and how you will deliver your product or service. At the early stage, do not try to build something perfect. Focus on creating a simple version that works.
+
+Hiring employees is another major step. In the beginning, you can start alone or with a small team. As your business grows, you can hire people through platforms like LinkedIn, referrals, or job portals. Always hire people who are passionate and ready to learn.
+
+Marketing plays a key role in growing your business. Use social media, websites, and content to reach people. Consistency is the most important factor in business success. Keep improving your product, listen to feedback, and stay focused on long-term growth.
+</p>`;
   }
 
-  else if(cat==="Content Creating"){
-    text = `
-    <h3>Content Creation System</h3>
-    <p>Content creation is one of the most powerful ways to build an audience and generate income online. It starts with selecting a niche that you are interested in and that people want to watch. Consistency is key — posting regularly helps you grow faster. High-quality content with strong hooks at the beginning captures attention, while good storytelling keeps viewers engaged. Learning editing, improving visuals, and understanding audience behavior are important steps in becoming a successful creator. Over time, as your audience grows, you can monetize through advertisements, sponsorships, brand deals, and selling your own products or services. A successful content creator is someone who keeps learning, improving, and adapting to trends while staying consistent.</p>
+  else if(cat==="Marketing"){
+    text = `<p>
+Marketing is the process of attracting and engaging your audience. It is not just about selling but about building trust. In today’s world, digital marketing is the most powerful tool. Social media platforms allow you to reach millions of people.
+
+Content marketing is very effective. By creating useful content, you can attract an audience that trusts you. SEO helps your website rank higher on search engines. Use proper keywords and valuable content.
+
+Trading is also a part of financial growth. It involves buying and selling assets like stocks or crypto. Beginners should focus on learning before investing money. Understand risk management and never invest blindly.
+
+Consistency and learning are key. Marketing is a long-term process. Focus on providing value and building relationships with your audience.
+</p>`;
   }
-  }
-  else if(cat==="Content Creating"){
-    text = `<h3>Content Creation</h3><p>Content creation builds audience and monetization over time...</p>`;
-  }
+
   else{
-    text = `<h3>Investing</h3><p>Investing grows money over time using smart strategies...</p>`;
+    text = `<p>
+Starting a startup requires courage and clarity. First, identify a problem worth solving. Do not copy others blindly. Focus on creating value.
+
+To build a website, you need to learn HTML, CSS, and JavaScript. These are basic tools for web development. GitHub is a platform where you can store your code and publish your website.
+
+Steps to create a website using GitHub:
+1. Create an account on GitHub
+2. Create a new repository
+3. Upload your code files
+4. Enable GitHub Pages
+5. Your website will be live online
+
+Keep improving your skills and learning new technologies. A startup grows through continuous effort and learning. Stay consistent and never give up.
+</p>`;
   }
 
   document.getElementById("catText").innerHTML = text;
 }
+
 </script>
 
 </body>
