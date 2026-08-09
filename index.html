@@ -3,32 +3,160 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sellora - Your journey to a million-dollar startup starts here. Learn business, startups and marketing.">
-<title>Sellora | Monetize Your Ideas</title>
+
+<meta name="description" content="Sellora - Business, Startup and Marketing guides. Independence Day Bumper Offer: 1 Guide = 1 Ebook FREEEE.">
+<title>Sellora | Independence Day Bumper Offer 🇮🇳</title>
 
 <style>
 :root{
+  --saffron:#ff9933;
+  --white:#ffffff;
+  --green:#138808;
+  --navy:#000080;
+
   --teal:#2c8e9e;
   --teal-dark:#197383;
   --teal-light:#e7f7f8;
   --ink:#101820;
   --muted:#5f6870;
   --line:#e6ecee;
-  --white:#fff;
   --shadow:0 14px 40px rgba(20,80,90,.12);
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Arial,Helvetica,sans-serif;
   color:var(--ink);
   background:#fff;
   line-height:1.55;
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* =========================
+   INDEPENDENCE DAY BAR
+========================= */
+
+.independence-bar{
+  background:linear-gradient(
+    to bottom,
+    var(--saffron) 0%,
+    var(--saffron) 33%,
+    #fff 33%,
+    #fff 66%,
+    var(--green) 66%,
+    var(--green) 100%
+  );
+  padding:1px;
+}
+
+.independence-inner{
+  background:#fff;
+  min-height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-weight:900;
+  color:#172026;
+  text-align:center;
+  padding:8px 15px;
+}
+
+.flag{
+  width:34px;
+  height:22px;
+  border:1px solid #ddd;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  overflow:hidden;
+  flex:none;
+}
+
+.flag .orange{
+  height:33.33%;
+  background:var(--saffron);
+}
+
+.flag .white{
+  height:33.33%;
+  background:#fff;
+  position:relative;
+}
+
+.flag .green{
+  height:33.33%;
+  background:var(--green);
+}
+
+.ashoka{
+  position:absolute;
+  width:12px;
+  height:12px;
+  border:1px solid var(--navy);
+  border-radius:50%;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
+/* =========================
+   OFFER
+========================= */
+
+.offer-banner{
+  background:linear-gradient(135deg,#fff7ee,#fff,#eef9ed);
+  border-top:3px solid var(--saffron);
+  border-bottom:3px solid var(--green);
+  padding:18px 6%;
+  text-align:center;
+}
+
+.offer-title{
+  font-size:25px;
+  font-weight:1000;
+  color:#111;
+}
+
+.offer-title .saffron{
+  color:#e87900;
+}
+
+.offer-title .green{
+  color:#087b04;
+}
+
+.offer-sub{
+  margin-top:4px;
+  font-size:14px;
+  font-weight:700;
+  color:#50585d;
+}
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar{
   height:76px;
@@ -42,6 +170,7 @@ a{text-decoration:none;color:inherit}
   top:0;
   z-index:100;
 }
+
 .logo{
   display:flex;
   align-items:center;
@@ -50,13 +179,18 @@ a{text-decoration:none;color:inherit}
   font-size:21px;
   letter-spacing:.5px;
 }
+
 .logo-mark{
-  width:24px;height:24px;border:3px solid var(--teal);
+  width:24px;
+  height:24px;
+  border:3px solid var(--teal);
   border-radius:8px 8px 8px 2px;
-  display:grid;place-items:center;
+  display:grid;
+  place-items:center;
   color:var(--teal);
   font-size:12px;
 }
+
 .nav-links{
   display:flex;
   align-items:center;
@@ -64,9 +198,21 @@ a{text-decoration:none;color:inherit}
   font-size:13px;
   font-weight:600;
 }
-.nav-links a{color:#252c31}
-.nav-links a:hover{color:var(--teal)}
-.nav-actions{display:flex;gap:10px;align-items:center}
+
+.nav-links a{
+  color:#252c31;
+}
+
+.nav-links a:hover{
+  color:var(--teal);
+}
+
+.nav-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
 .btn{
   border:0;
   border-radius:9px;
@@ -74,18 +220,45 @@ a{text-decoration:none;color:inherit}
   font-weight:700;
   font-size:13px;
 }
+
 .btn-outline{
   background:#fff;
   color:var(--teal-dark);
   border:1px solid #9acbd1;
 }
+
 .btn-primary{
   background:var(--teal);
   color:#fff;
   box-shadow:0 6px 16px rgba(44,142,158,.22);
 }
-.btn-primary:hover{background:var(--teal-dark)}
-.nav-toggle{display:none;background:none;border:0;font-size:24px}
+
+.btn-primary:hover{
+  background:var(--teal-dark);
+}
+
+.btn-india{
+  background:linear-gradient(
+    to bottom,
+    var(--saffron) 0 33%,
+    #fff 33% 66%,
+    var(--green) 66% 100%
+  );
+  color:#111;
+  border:1px solid #ddd;
+  font-weight:900;
+}
+
+.nav-toggle{
+  display:none;
+  background:none;
+  border:0;
+  font-size:24px;
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
   min-height:520px;
@@ -95,20 +268,49 @@ a{text-decoration:none;color:inherit}
   gap:35px;
   align-items:center;
 }
-.hero-copy{max-width:600px}
+
+.hero-copy{
+  max-width:600px;
+}
+
+.independence-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:8px 13px;
+  border-radius:30px;
+  border:1px solid #e2e2e2;
+  background:#fff;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
 .hero h1{
   font-size:52px;
   line-height:1.04;
   letter-spacing:-2px;
   margin-bottom:18px;
 }
-.hero h1 span{display:block}
+
+.hero h1 span{
+  display:block;
+}
+
 .hero p{
   color:#222a2f;
   max-width:510px;
   font-size:16px;
   margin-bottom:25px;
 }
+
+.hero-buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
 .hero-art{
   min-height:340px;
   position:relative;
@@ -116,6 +318,7 @@ a{text-decoration:none;color:inherit}
   align-items:center;
   justify-content:center;
 }
+
 .browser{
   width:min(500px,100%);
   height:285px;
@@ -126,58 +329,109 @@ a{text-decoration:none;color:inherit}
   position:relative;
   overflow:hidden;
 }
+
 .browser-top{
-  height:30px;background:#6e99c8;
-  display:flex;align-items:center;gap:5px;padding:0 10px;
+  height:30px;
+  background:#6e99c8;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:0 10px;
 }
-.browser-top i{width:6px;height:6px;border-radius:50%;background:#fff}
+
+.browser-top i{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#fff;
+}
+
 .chart-area{
   height:100%;
   background:linear-gradient(150deg,#eff9ff,#d5edf5);
-  position:relative;padding:35px 25px;
+  position:relative;
+  padding:35px 25px;
 }
+
 .chart{
   height:115px;
   border-bottom:2px solid #8bb8c5;
   position:relative;
 }
-.chart svg{width:100%;height:100%}
+
+.chart svg{
+  width:100%;
+  height:100%;
+}
+
 .person{
   position:absolute;
   font-size:58px;
   filter:drop-shadow(0 5px 4px rgba(0,0,0,.08));
 }
-.person.one{left:8%;bottom:-7px}
-.person.two{left:42%;bottom:-2px}
-.person.three{right:6%;bottom:-8px}
+
+.person.one{
+  left:8%;
+  bottom:-7px;
+}
+
+.person.two{
+  left:42%;
+  bottom:-2px;
+}
+
+.person.three{
+  right:6%;
+  bottom:-8px;
+}
+
 .hero-bubble{
   position:absolute;
   right:1%;
   top:18%;
-  width:46px;height:46px;border-radius:50%;
+  width:46px;
+  height:46px;
+  border-radius:50%;
   background:#fff;
   box-shadow:var(--shadow);
-  display:grid;place-items:center;
-  color:#e6ad38;font-size:23px;
+  display:grid;
+  place-items:center;
+  color:#e6ad38;
+  font-size:23px;
 }
+
+/* =========================
+   SECTIONS
+========================= */
 
 .section{
   padding:80px 8%;
 }
-.center{text-align:center}
+
+.center{
+  text-align:center;
+}
+
 .section-title{
   font-size:36px;
   line-height:1.1;
   margin-bottom:10px;
 }
+
 .section-subtitle{
   color:var(--muted);
   max-width:650px;
   margin:0 auto 40px;
 }
+
+/* =========================
+   FEATURES
+========================= */
+
 .unlock{
   background:#fbfdfd;
 }
+
 .unlock-grid{
   max-width:1050px;
   margin:auto;
@@ -186,23 +440,37 @@ a{text-decoration:none;color:inherit}
   gap:25px;
   align-items:center;
 }
+
 .info-list{
   display:flex;
   flex-direction:column;
   gap:25px;
 }
+
 .info-item{
   display:flex;
   gap:12px;
 }
+
 .dot{
-  width:9px;height:9px;border-radius:50%;
+  width:9px;
+  height:9px;
+  border-radius:50%;
   background:var(--teal);
   margin-top:8px;
   flex:none;
 }
-.info-item h3{font-size:14px;margin-bottom:3px}
-.info-item p{font-size:12px;color:var(--muted)}
+
+.info-item h3{
+  font-size:14px;
+  margin-bottom:3px;
+}
+
+.info-item p{
+  font-size:12px;
+  color:var(--muted);
+}
+
 .monetization-art{
   height:280px;
   border-radius:20px;
@@ -212,6 +480,7 @@ a{text-decoration:none;color:inherit}
   align-items:center;
   justify-content:center;
 }
+
 .ad-window{
   width:70%;
   height:150px;
@@ -221,29 +490,57 @@ a{text-decoration:none;color:inherit}
   border:5px solid #bfdbe5;
   position:relative;
 }
+
 .ad-window:before{
   content:"";
-  position:absolute;left:15px;right:15px;top:30px;
-  height:9px;background:#d6e6ed;border-radius:8px;
+  position:absolute;
+  left:15px;
+  right:15px;
+  top:30px;
+  height:9px;
+  background:#d6e6ed;
+  border-radius:8px;
   box-shadow:0 22px #d6e6ed,0 44px #d6e6ed;
 }
+
 .money{
-  position:absolute;right:8%;top:10%;
-  width:58px;height:58px;border-radius:50%;
-  background:#fff;color:#2ba26c;
-  display:grid;place-items:center;font-size:31px;
+  position:absolute;
+  right:8%;
+  top:10%;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#fff;
+  color:#2ba26c;
+  display:grid;
+  place-items:center;
+  font-size:31px;
   box-shadow:var(--shadow);
 }
+
 .rpm{
-  position:absolute;left:8%;bottom:8%;
-  background:#182337;color:#fff;
-  width:110px;height:75px;border-radius:10px;
-  padding:10px;font-size:11px;
+  position:absolute;
+  left:8%;
+  bottom:8%;
+  background:#182337;
+  color:#fff;
+  width:110px;
+  height:75px;
+  border-radius:10px;
+  padding:10px;
+  font-size:11px;
 }
-.rpm strong{display:block;font-size:17px;margin-top:8px}
-.categories{
-  background:#fff;
+
+.rpm strong{
+  display:block;
+  font-size:17px;
+  margin-top:8px;
 }
+
+/* =========================
+   CATEGORIES
+========================= */
+
 .category-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -251,6 +548,7 @@ a{text-decoration:none;color:inherit}
   max-width:1050px;
   margin:35px auto 0;
 }
+
 .category-card{
   border:1px solid var(--line);
   border-radius:16px;
@@ -260,22 +558,107 @@ a{text-decoration:none;color:inherit}
   transition:.2s;
   box-shadow:0 6px 25px rgba(20,60,70,.04);
 }
+
 .category-card:hover{
   transform:translateY(-5px);
   border-color:#9acbd1;
   box-shadow:var(--shadow);
 }
+
 .category-icon{
-  width:48px;height:48px;border-radius:13px;
+  width:48px;
+  height:48px;
+  border-radius:13px;
   background:var(--teal-light);
   color:var(--teal-dark);
-  display:grid;place-items:center;
+  display:grid;
+  place-items:center;
   font-size:23px;
   margin-bottom:18px;
 }
-.category-card h3{font-size:22px;margin-bottom:8px}
-.category-card p{color:var(--muted);font-size:14px;margin-bottom:18px}
-.read-more{color:var(--teal-dark);font-weight:800;font-size:13px}
+
+.category-card h3{
+  font-size:22px;
+  margin-bottom:8px;
+}
+
+.category-card p{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:18px;
+}
+
+.read-more{
+  color:var(--teal-dark);
+  font-weight:800;
+  font-size:13px;
+}
+
+/* =========================
+   BUMPER OFFER SECTION
+========================= */
+
+.bumper{
+  margin:20px auto;
+  max-width:1100px;
+  border-radius:22px;
+  overflow:hidden;
+  border:3px solid transparent;
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    linear-gradient(
+      to bottom,
+      var(--saffron) 0 33%,
+      #fff 33% 66%,
+      var(--green) 66% 100%
+    ) border-box;
+  box-shadow:var(--shadow);
+}
+
+.bumper-inner{
+  padding:40px 25px;
+  text-align:center;
+}
+
+.bumper h2{
+  font-size:42px;
+  line-height:1.05;
+  margin-bottom:10px;
+}
+
+.bumper h2 .orange{
+  color:#e87900;
+}
+
+.bumper h2 .green{
+  color:#078306;
+}
+
+.bumper p{
+  max-width:700px;
+  margin:0 auto 22px;
+  color:#555;
+}
+
+.bumper-points{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:22px;
+}
+
+.bumper-point{
+  padding:9px 13px;
+  border-radius:30px;
+  background:#f5f8f8;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
   background:#102329;
@@ -285,10 +668,19 @@ a{text-decoration:none;color:inherit}
   justify-content:space-between;
   gap:30px;
 }
-.footer p{color:#9db3b8;font-size:13px}
+
+.footer p{
+  color:#9db3b8;
+  font-size:13px;
+}
+
+/* =========================
+   MODALS
+========================= */
 
 .modal{
-  position:fixed;inset:0;
+  position:fixed;
+  inset:0;
   background:rgba(7,24,29,.64);
   display:none;
   align-items:center;
@@ -296,7 +688,11 @@ a{text-decoration:none;color:inherit}
   padding:20px;
   z-index:500;
 }
-.modal.show{display:flex}
+
+.modal.show{
+  display:flex;
+}
+
 .modal-card{
   width:min(620px,100%);
   max-height:90vh;
@@ -307,43 +703,85 @@ a{text-decoration:none;color:inherit}
   position:relative;
   box-shadow:0 30px 100px rgba(0,0,0,.3);
 }
+
 .close{
-  position:absolute;right:18px;top:12px;
-  border:0;background:none;font-size:30px;color:#6d7478;
+  position:absolute;
+  right:18px;
+  top:12px;
+  border:0;
+  background:none;
+  font-size:30px;
+  color:#6d7478;
 }
+
 .modal-step{
   color:var(--teal-dark);
-  font-size:11px;font-weight:900;
+  font-size:11px;
+  font-weight:900;
   letter-spacing:1.4px;
   margin-bottom:7px;
 }
-.modal-card h2{font-size:31px;margin-bottom:8px}
-.modal-card .intro{color:var(--muted);font-size:14px;margin-bottom:22px}
+
+.modal-card h2{
+  font-size:31px;
+  margin-bottom:8px;
+}
+
+.modal-card .intro{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:22px;
+}
+
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:15px;
 }
-.field{margin-bottom:15px}
-.field.full{grid-column:1/-1}
-.field label{
-  display:block;font-size:12px;font-weight:700;margin-bottom:6px;
+
+.field{
+  margin-bottom:15px;
 }
-.field input,.field textarea,.field select{
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field label{
+  display:block;
+  font-size:12px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.field input,
+.field textarea,
+.field select{
   width:100%;
   border:1px solid #d7e0e2;
   border-radius:9px;
   padding:12px;
   outline:none;
 }
-.field input:focus,.field textarea:focus{
+
+.field input:focus,
+.field textarea:focus{
   border-color:var(--teal);
   box-shadow:0 0 0 3px #e8f6f7;
 }
+
 .modal-footer{
-  display:flex;justify-content:flex-end;gap:10px;margin-top:8px;
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:8px;
 }
-.category-select-grid{display:grid;gap:12px}
+
+.category-select-grid{
+  display:grid;
+  gap:12px;
+}
+
 .select-card{
   border:1px solid #dfe7e9;
   background:#fff;
@@ -354,523 +792,2119 @@ a{text-decoration:none;color:inherit}
   gap:14px;
   align-items:center;
 }
+
 .select-card.selected{
   border-color:var(--teal);
   background:var(--teal-light);
 }
-.select-card .category-icon{margin:0;width:42px;height:42px}
-.select-card strong{display:block}
-.select-card small{color:var(--muted)}
+
+.select-card .category-icon{
+  margin:0;
+  width:42px;
+  height:42px;
+}
+
+.select-card strong{
+  display:block;
+}
+
+.select-card small{
+  color:var(--muted);
+}
+
+/* =========================
+   GUIDE
+========================= */
+
 .guide{
   width:min(900px,100%);
 }
+
 .guide-header{
   padding-right:30px;
   border-bottom:1px solid var(--line);
   padding-bottom:20px;
   margin-bottom:20px;
 }
+
 .guide-label{
   color:var(--teal-dark);
   font-size:11px;
   font-weight:900;
   letter-spacing:1.5px;
 }
-.guide h2{font-size:37px;margin:5px 0 10px}
-.guide p{color:#414b50;margin-bottom:17px}
+
+.guide h2{
+  font-size:37px;
+  margin:5px 0 10px;
+}
+
+.guide p{
+  color:#414b50;
+  margin-bottom:17px;
+}
+
 .guide h3{
   font-size:20px;
   margin:26px 0 7px;
   color:#17383e;
 }
-.guide ol,.guide ul{padding-left:23px;color:#414b50}
-.guide li{margin:9px 0}
-.code{
-  background:#101820;color:#dffbff;
-  border-radius:10px;padding:17px;
-  overflow:auto;font-family:monospace;font-size:13px;
+
+.guide ol,
+.guide ul{
+  padding-left:23px;
+  color:#414b50;
 }
+
+.guide li{
+  margin:9px 0;
+}
+
+.code{
+  background:#101820;
+  color:#dffbff;
+  border-radius:10px;
+  padding:17px;
+  overflow:auto;
+  font-family:monospace;
+  font-size:13px;
+}
+
 .success{
   background:#e9f8ef;
   border:1px solid #bfe4cd;
   color:#21613a;
-  padding:13px;border-radius:9px;
-  margin-top:15px;font-size:13px;
+  padding:13px;
+  border-radius:9px;
+  margin-top:15px;
+  font-size:13px;
 }
 
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding-top:50px}
-  .hero h1{font-size:44px}
-  .unlock-grid{grid-template-columns:1fr}
-  .category-grid{grid-template-columns:1fr}
+/* =========================
+   EBOOK DOWNLOAD BOX
+========================= */
+
+.ebook-box{
+  margin-top:28px;
+  border:3px solid transparent;
+  border-radius:18px;
+  padding:22px;
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    linear-gradient(
+      135deg,
+      var(--saffron),
+      #fff,
+      var(--green)
+    ) border-box;
 }
+
+.ebook-box h3{
+  margin-top:0;
+  font-size:24px;
+}
+
+.ebook-box p{
+  margin-bottom:14px;
+}
+
+.ebook-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.ebook-btn{
+  border:0;
+  padding:12px 16px;
+  border-radius:9px;
+  font-weight:900;
+  background:var(--teal);
+  color:#fff;
+}
+
+.ebook-btn:hover{
+  background:var(--teal-dark);
+}
+
+.ebook-btn.secondary{
+  background:#eef4f5;
+  color:#17383e;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:50px;
+  }
+
+  .hero h1{
+    font-size:44px;
+  }
+
+  .unlock-grid{
+    grid-template-columns:1fr;
+  }
+
+  .category-grid{
+    grid-template-columns:1fr;
+  }
+
+  .bumper h2{
+    font-size:34px;
+  }
+}
+
 @media(max-width:700px){
-  .navbar{height:68px}
-  .nav-links{display:none}
-  .nav-actions{margin-left:auto;margin-right:10px}
-  .nav-actions .btn-outline{display:none}
-  .nav-toggle{display:block}
-  .hero{padding:50px 6%}
-  .hero h1{font-size:39px}
-  .section{padding:60px 6%}
-  .section-title{font-size:30px}
-  .form-grid{grid-template-columns:1fr}
-  .field.full{grid-column:auto}
-  .footer{flex-direction:column}
+
+  .navbar{
+    height:68px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav-actions{
+    margin-left:auto;
+    margin-right:10px;
+  }
+
+  .nav-actions .btn-outline{
+    display:none;
+  }
+
+  .nav-toggle{
+    display:block;
+  }
+
+  .hero{
+    padding:50px 6%;
+  }
+
+  .hero h1{
+    font-size:39px;
+  }
+
+  .section{
+    padding:60px 6%;
+  }
+
+  .section-title{
+    font-size:30px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .footer{
+    flex-direction:column;
+  }
+
+  .offer-title{
+    font-size:19px;
+  }
+
+  .bumper h2{
+    font-size:28px;
+  }
+}
+
+/* =========================
+   PRINT EBOOK
+========================= */
+
+@media print{
+
+  body *{
+    visibility:hidden !important;
+  }
+
+  #ebookPrintArea,
+  #ebookPrintArea *{
+    visibility:visible !important;
+  }
+
+  #ebookPrintArea{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    background:#fff;
+    padding:35px;
+  }
+
+  .print-hide{
+    display:none !important;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     INDEPENDENCE DAY TOP BAR
+========================= -->
+
+<div class="independence-bar">
+  <div class="independence-inner">
+    <div class="flag">
+      <div class="orange"></div>
+      <div class="white"><div class="ashoka"></div></div>
+      <div class="green"></div>
+    </div>
+
+    🇮🇳
+    <span>15 AUGUST INDEPENDENCE DAY SPECIAL</span>
+    🇮🇳
+  </div>
+</div>
+
+<!-- =========================
+     BUMPER OFFER
+========================= -->
+
+<div class="offer-banner">
+  <div class="offer-title">
+    🎁 <span class="saffron">BUMPER OFFER</span> —
+    <span class="green">1 GUIDE = 1 EBOOK FREEEE</span> 🎁
+  </div>
+
+  <div class="offer-sub">
+    Complete any Sellora guide and unlock your FREE ebook 🇮🇳
+  </div>
+</div>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <header class="navbar">
+
   <a href="#" class="logo" onclick="goHome();return false;">
-    <span class="logo-mark">S</span> SELLORA
+    <span class="logo-mark">S</span>
+    SELLORA
   </a>
 
   <nav class="nav-links">
+
     <a href="#home">Home</a>
     <a href="#how-it-works">How It Works</a>
     <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
+    <a href="#offer">Offer</a>
     <a href="#about">About Us</a>
+
   </nav>
 
   <div class="nav-actions">
-    <button class="btn btn-outline" onclick="openLogin()">Log In</button>
-    <button class="btn btn-primary" onclick="openSignup()">Create Account</button>
+
+    <button
+      class="btn btn-outline"
+      onclick="openLogin()">
+      Log In
+    </button>
+
+    <button
+      class="btn btn-primary"
+      onclick="openSignup()">
+      Create Account
+    </button>
+
   </div>
-  <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+
+  <button
+    class="nav-toggle"
+    onclick="toggleMobileNav()">
+    ☰
+  </button>
+
 </header>
+
+<!-- =========================
+     MAIN
+========================= -->
 
 <main>
 
+<!-- HERO -->
+
 <section class="hero" id="home">
+
   <div class="hero-copy">
-    <h1>Your Journey to a <span>Million-Dollar Startup</span> Starts Here</h1>
-    <p>Helps you make money, monetize ideas, build startups, and open businesses with practical step-by-step guidance.</p>
-    <button class="btn btn-primary" onclick="openSignup()">Start for Free</button>
+
+    <div class="independence-badge">
+      🇮🇳 Independence Day Special • FREE EBOOK
+    </div>
+
+    <h1>
+      Your Journey to a
+      <span>Million-Dollar Startup</span>
+      Starts Here
+    </h1>
+
+    <p>
+      Learn business, startups, marketing and online monetization
+      through practical step-by-step guides created for people
+      who want to build something of their own.
+    </p>
+
+    <div class="hero-buttons">
+
+      <button
+        class="btn btn-primary"
+        onclick="openSignup()">
+        Start for Free 🚀
+      </button>
+
+      <button
+        class="btn btn-india"
+        onclick="document.getElementById('offer').scrollIntoView({behavior:'smooth'})">
+        🇮🇳 Bumper Offer
+      </button>
+
+    </div>
+
   </div>
 
-  <div class="hero-art" aria-label="Sellora startup illustration">
+  <div class="hero-art">
+
     <div class="browser">
-      <div class="browser-top"><i></i><i></i><i></i></div>
+
+      <div class="browser-top">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+
       <div class="chart-area">
+
         <div class="chart">
-          <svg viewBox="0 0 500 120" preserveAspectRatio="none">
-            <polyline points="0,105 75,95 135,100 200,75 260,88 325,48 390,55 455,18 500,25"
-              fill="none" stroke="#4b91a0" stroke-width="5"/>
+
+          <svg
+            viewBox="0 0 500 120"
+            preserveAspectRatio="none">
+
+            <polyline
+              points="0,105 75,95 135,100 200,75 260,88 325,48 390,55 455,18 500,25"
+              fill="none"
+              stroke="#4b91a0"
+              stroke-width="5"/>
+
           </svg>
+
         </div>
+
         <div class="person one">🧑🏻‍💻</div>
         <div class="person two">👩🏻‍💼</div>
         <div class="person three">🧑🏻‍💼</div>
+
       </div>
+
     </div>
-    <div class="hero-bubble">💡</div>
+
+    <div class="hero-bubble">
+      💡
+    </div>
+
   </div>
+
 </section>
 
+<!-- FEATURES -->
+
 <section class="section unlock" id="features">
+
   <div class="center">
-    <h2 class="section-title">UNLOCK YOUR AD POTENTIAL</h2>
-    <p class="section-subtitle">Maximize your revenue with AI-powered monetization, proven strategy and growth guidance for startups.</p>
+
+    <h2 class="section-title">
+      UNLOCK YOUR POTENTIAL
+    </h2>
+
+    <p class="section-subtitle">
+      Learn how to build ideas, start businesses,
+      market products and discover online monetization
+      opportunities.
+    </p>
+
   </div>
 
   <div class="unlock-grid">
+
     <div class="info-list">
+
       <div class="info-item">
+
         <span class="dot"></span>
+
         <div>
+
           <h3>AI-powered monetization</h3>
-          <p>Use AI to understand opportunities, improve your offer and find ways to monetize your audience.</p>
+
+          <p>
+            Learn how technology and AI can help you
+            identify opportunities and improve your offer.
+          </p>
+
         </div>
+
       </div>
+
       <div class="info-item">
+
         <span class="dot"></span>
+
         <div>
+
           <h3>Business strategy</h3>
-          <p>Learn how to turn an idea into a useful product and a repeatable business model.</p>
+
+          <p>
+            Turn an idea into a practical business model
+            and start testing it with real customers.
+          </p>
+
         </div>
+
       </div>
+
     </div>
 
     <div class="monetization-art">
+
       <div class="ad-window"></div>
-      <div class="money">$</div>
-      <div class="rpm"><span>RPM</span><strong>+27%</strong></div>
+
+      <div class="money">
+        $
+      </div>
+
+      <div class="rpm">
+        <span>RPM</span>
+        <strong>+27%</strong>
+      </div>
+
     </div>
 
     <div class="info-list">
+
       <div class="info-item">
+
         <span class="dot"></span>
+
         <div>
-          <h3>Investor-ready thinking</h3>
-          <p>Understand customers, revenue, costs and metrics before looking for outside capital.</p>
+
+          <h3>Startup thinking</h3>
+
+          <p>
+            Learn how to validate ideas, build MVPs
+            and launch products.
+          </p>
+
         </div>
+
       </div>
+
       <div class="info-item">
+
         <span class="dot"></span>
+
         <div>
-          <h3>RPM analytics</h3>
-          <p>Learn how to read monetization metrics and make decisions based on performance.</p>
+
+          <h3>Marketing growth</h3>
+
+          <p>
+            Learn content, social media, SEO,
+            conversion and monetization basics.
+          </p>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section class="section categories" id="how-it-works">
+<!-- BUMPER OFFER -->
+
+<section class="section" id="offer">
+
+  <div class="bumper">
+
+    <div class="bumper-inner">
+
+      <div class="independence-badge">
+        🇮🇳 15 AUGUST SPECIAL OFFER 🇮🇳
+      </div>
+
+      <h2>
+        <span class="orange">BUMPER OFFER</span>
+        <br>
+        1 GUIDE =
+        <span class="green">1 EBOOK FREEEE</span>
+      </h2>
+
+      <p>
+        Complete any Business, Startup or Marketing guide
+        and Sellora will unlock a free ebook for you.
+        You can open the ebook and save it as a PDF.
+      </p>
+
+      <div class="bumper-points">
+
+        <div class="bumper-point">
+          🎁 FREE EBOOK
+        </div>
+
+        <div class="bumper-point">
+          📚 1 GUIDE = 1 EBOOK
+        </div>
+
+        <div class="bumper-point">
+          🇮🇳 INDEPENDENCE DAY
+        </div>
+
+        <div class="bumper-point">
+          💯 FREE
+        </div>
+
+      </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="openSignup()">
+        Claim My Free Ebook 🚀
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section
+  class="section categories"
+  id="how-it-works">
+
   <div class="center">
-    <h2 class="section-title">Choose What You Want to Learn</h2>
-    <p class="section-subtitle">Create your free Sellora account and select the learning paths that match your goals.</p>
+
+    <h2 class="section-title">
+      Choose What You Want to Learn
+    </h2>
+
+    <p class="section-subtitle">
+      Create your free Sellora account,
+      select a learning path and complete your guide
+      to unlock your free ebook.
+    </p>
+
   </div>
 
   <div class="category-grid">
-    <button class="category-card" onclick="openGuide('business')">
-      <div class="category-icon">🏢</div>
+
+    <button
+      class="category-card"
+      onclick="openGuide('business')">
+
+      <div class="category-icon">
+        🏢
+      </div>
+
       <h3>Business</h3>
-      <p>Learn how to choose an idea, register and organize a business, find customers, price your offer and grow.</p>
-      <span class="read-more">Open Business Guide →</span>
+
+      <p>
+        Learn how to choose an idea,
+        find customers, price your offer,
+        open a business and grow.
+      </p>
+
+      <span class="read-more">
+        Open Business Guide →
+      </span>
+
     </button>
 
-    <button class="category-card" onclick="openGuide('startup')">
-      <div class="category-icon">🚀</div>
+    <button
+      class="category-card"
+      onclick="openGuide('startup')">
+
+      <div class="category-icon">
+        🚀
+      </div>
+
       <h3>Startup Guide</h3>
-      <p>Learn how to validate an idea, build an MVP, create a website, publish it through GitHub and launch.</p>
-      <span class="read-more">Open Startup Guide →</span>
+
+      <p>
+        Learn how to validate an idea,
+        build an MVP, create a website
+        and publish it through GitHub.
+      </p>
+
+      <span class="read-more">
+        Open Startup Guide →
+      </span>
+
     </button>
 
-    <button class="category-card" onclick="openGuide('marketing')">
-      <div class="category-icon">📈</div>
+    <button
+      class="category-card"
+      onclick="openGuide('marketing')">
+
+      <div class="category-icon">
+        📈
+      </div>
+
       <h3>Marketing</h3>
-      <p>Learn how to attract customers, build an audience, create content, sell products and make money online.</p>
-      <span class="read-more">Open Marketing Guide →</span>
+
+      <p>
+        Learn how to attract customers,
+        build an audience, create content
+        and make money online.
+      </p>
+
+      <span class="read-more">
+        Open Marketing Guide →
+      </span>
+
     </button>
+
   </div>
+
 </section>
 
-<section class="section center" id="pricing">
-  <h2 class="section-title">Start Free. Learn. Build. Grow.</h2>
-  <p class="section-subtitle">Create your Sellora account and begin exploring the guides at no cost.</p>
-  <button class="btn btn-primary" onclick="openSignup()">Create My Free Account</button>
+<!-- CTA -->
+
+<section class="section center">
+
+  <h2 class="section-title">
+    Start Free. Learn. Build. Grow.
+  </h2>
+
+  <p class="section-subtitle">
+    Complete one Sellora guide and unlock
+    your Independence Day free ebook.
+  </p>
+
+  <button
+    class="btn btn-primary"
+    onclick="openSignup()">
+    Create My Free Account 🎁
+  </button>
+
 </section>
 
-<section class="section center" id="about">
-  <h2 class="section-title">Built for People Who Want to Build</h2>
-  <p class="section-subtitle">Sellora brings business, startup and marketing knowledge into one simple learning experience.</p>
+<!-- ABOUT -->
+
+<section
+  class="section center"
+  id="about">
+
+  <h2 class="section-title">
+    Built for People Who Want to Build
+  </h2>
+
+  <p class="section-subtitle">
+    Sellora brings business, startup and marketing
+    knowledge into one simple learning experience.
+  </p>
+
 </section>
 
 </main>
 
+<!-- FOOTER -->
+
 <footer class="footer">
+
   <div>
-    <div class="logo"><span class="logo-mark">S</span> SELLORA</div>
-    <p style="margin-top:8px">Monetize ideas. Build businesses. Grow startups.</p>
+
+    <div class="logo">
+      <span class="logo-mark">S</span>
+      SELLORA
+    </div>
+
+    <p style="margin-top:8px">
+      Monetize ideas. Build businesses. Grow startups.
+    </p>
+
+    <p style="margin-top:8px">
+      🇮🇳 Independence Day Special
+    </p>
+
   </div>
-  <p>© 2026 Sellora. All rights reserved.</p>
+
+  <p>
+    © 2026 Sellora. All rights reserved.
+  </p>
+
 </footer>
 
-<!-- SIGNUP MODAL -->
-<div class="modal" id="signupModal">
+
+<!-- =====================================================
+     SIGNUP MODAL
+===================================================== -->
+
+<div
+  class="modal"
+  id="signupModal">
+
   <div class="modal-card">
-    <button class="close" onclick="closeModal('signupModal')">×</button>
+
+    <button
+      class="close"
+      onclick="closeModal('signupModal')">
+      ×
+    </button>
+
     <div id="signupContent"></div>
+
   </div>
+
 </div>
 
-<!-- LOGIN MODAL -->
-<div class="modal" id="loginModal">
+
+<!-- =====================================================
+     LOGIN MODAL
+===================================================== -->
+
+<div
+  class="modal"
+  id="loginModal">
+
   <div class="modal-card">
-    <button class="close" onclick="closeModal('loginModal')">×</button>
-    <div class="modal-step">SELLORA ACCOUNT</div>
-    <h2>Welcome back</h2>
-    <p class="intro">Log in to your Sellora account.</p>
+
+    <button
+      class="close"
+      onclick="closeModal('loginModal')">
+      ×
+    </button>
+
+    <div class="modal-step">
+      SELLORA ACCOUNT
+    </div>
+
+    <h2>
+      Welcome back
+    </h2>
+
+    <p class="intro">
+      Log in to your Sellora account.
+    </p>
+
     <form onsubmit="loginDemo(event)">
+
       <div class="field">
+
         <label>Email</label>
-        <input id="loginEmail" type="email" required placeholder="you@example.com">
+
+        <input
+          id="loginEmail"
+          type="email"
+          required
+          placeholder="you@example.com">
+
       </div>
+
       <div class="field">
+
         <label>Password</label>
-        <input id="loginPassword" type="password" required placeholder="Your password">
+
+        <input
+          id="loginPassword"
+          type="password"
+          required
+          placeholder="Your password">
+
       </div>
+
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Log In</button>
+
+        <button
+          type="submit"
+          class="btn btn-primary">
+
+          Log In
+
+        </button>
+
       </div>
+
     </form>
+
   </div>
+
 </div>
 
-<!-- GUIDE MODAL -->
-<div class="modal" id="guideModal">
+
+<!-- =====================================================
+     GUIDE MODAL
+===================================================== -->
+
+<div
+  class="modal"
+  id="guideModal">
+
   <div class="modal-card guide">
-    <button class="close" onclick="closeModal('guideModal')">×</button>
+
+    <button
+      class="close"
+      onclick="closeModal('guideModal')">
+      ×
+    </button>
+
     <div id="guideContent"></div>
+
   </div>
+
 </div>
+
+
+<!-- =====================================================
+     EBOOK MODAL
+===================================================== -->
+
+<div
+  class="modal"
+  id="ebookModal">
+
+  <div class="modal-card guide">
+
+    <button
+      class="close print-hide"
+      onclick="closeModal('ebookModal')">
+      ×
+    </button>
+
+    <div id="ebookPrintArea"></div>
+
+  </div>
+
+</div>
+
 
 <script>
+
+/* =====================================================
+   GUIDES
+===================================================== */
+
 const guides = {
-  business: {
-    title: "How to Open a Business",
-    intro: "Opening a business starts with a problem, a customer and a clear offer. You do not need to begin with a huge office, a large team or a complicated product. Start by understanding who you want to serve and what valuable result you can provide. Then turn that idea into a simple business model, validate demand, set up the appropriate legal and financial structure for your location, launch and improve the business using customer feedback.",
-    sections: [
-      ["1. Choose a business idea", "Start with a real customer problem. Write down who has the problem, how they currently solve it, what their current solution costs and why your solution could be better. A good business idea should have a customer who is willing to pay for the outcome."],
-      ["2. Research your market", "Talk to potential customers and study competitors. Look for patterns: what customers complain about, what features they value, what prices are common and where competitors are weak. Do not copy another company; use research to understand the market."],
-      ["3. Create your business model", "Decide what you sell, who pays, how much they pay and how you deliver the product or service. Common models include one-time purchases, subscriptions, commissions, services, licensing and advertising."],
-      ["4. Set up the business", "Choose an appropriate legal structure for your country or region, register the business where required, understand applicable taxes and obtain any licenses or permits your specific activity requires. Keep business finances separate from personal finances where appropriate."],
-      ["5. Build your first offer", "Create a simple version of the product or service. Your first version should solve one important problem exceptionally well. Ask early customers for feedback and improve the offer before investing heavily."],
-      ["6. Find your first customers", "Use direct outreach, referrals, communities, partnerships, content and other suitable channels. Speak directly to early customers so you can learn which messages and offers actually convert."],
-      ["7. Price for value", "Consider the value of the result, your costs, competitor alternatives and the willingness of your target customers to pay. Test pricing instead of assuming the perfect price on day one."],
-      ["8. Track the numbers", "Track revenue, costs, gross margin, cash flow, customer acquisition cost, conversion rate and retention. These metrics tell you whether the business is actually becoming healthier."],
-      ["9. Grow carefully", "When a sales or delivery process works repeatedly, document it and automate or delegate parts of it. Scale what works rather than multiplying problems."]
-    ]
-  },
 
-  startup: {
-    title: "Complete Startup Guide",
-    intro: "A startup is not simply a website or an app. A startup begins when you identify a meaningful problem, create a solution and find evidence that people want it. The fastest path is usually to validate the problem, build the smallest useful version, put it in front of real users, learn from their behavior and improve it. Once people repeatedly use and pay for the solution, you can focus on distribution, hiring, systems and growth.",
-    sections: [
-      ["1. Find a problem", "Choose a problem that is painful, frequent or valuable enough that customers will spend money or time to solve it. Talk to potential customers before building too much."],
-      ["2. Validate the idea", "Create a landing page, prototype, waitlist, manual service or other small experiment. Measure real actions such as signups, replies, calls, trials and purchases instead of relying only on compliments."],
-      ["3. Build an MVP", "An MVP is the smallest product that can deliver your core promise. Avoid building ten features when one feature can prove whether the main idea works."],
-      ["4. Create your website", "For a simple startup website, you can begin with an HTML file, a CSS file and a JavaScript file. The HTML provides the page structure, CSS handles the design and JavaScript adds interactive behavior."],
-      ["5. Recommended website structure", "", "sellora-project/\n├── index.html\n├── styles.css\n├── app.js\n└── README.md"],
-      ["6. Publish your website through GitHub Pages", "First create a GitHub account if you do not already have one. Create a new repository for your website. Upload index.html and your CSS/JavaScript files. Commit the changes. Open the repository's Settings, find Pages, choose deployment from a branch, select your main branch and the root folder, then save. GitHub Pages will build and publish the static site. The exact interface can change over time, so follow GitHub's current Pages instructions if a menu is different."],
-      ["7. Publish with Git from your computer", "If Git is installed, you can clone your repository, edit the files, commit the changes and push them to GitHub. A typical workflow is shown below.", "", "git clone YOUR_REPOSITORY_URL\ncd YOUR_REPOSITORY\n# edit your files\ngit add .\ngit commit -m \"Update Sellora website\"\ngit push"],
-      ["8. Add a custom domain", "After your website works on GitHub Pages, you can purchase a domain from a domain registrar and configure the domain's DNS records according to GitHub's current custom-domain documentation. Enable HTTPS when available."],
-      ["9. Get users", "Launch to a small group first. Ask users what they expected, where they got confused and what would make them return. Use this feedback to improve onboarding, product value and marketing."],
-      ["10. Make money", "Choose a monetization model that fits the product. You can use subscriptions, one-time sales, commissions, transaction fees, services, licensing or advertising. Test willingness to pay early and communicate exactly what customers receive for their money."],
-      ["11. Measure startup growth", "Track activation, retention, conversion, revenue, customer acquisition cost and customer lifetime value. A large number of visitors means little if users do not activate, return or pay."]
-    ]
-  },
+business:{
 
-  marketing: {
-    title: "Marketing & How to Make Money",
-    intro: "Marketing is the process of getting the right people to discover your offer, understand its value, trust your brand and take action. Making money online usually requires a valuable offer, a defined audience and a repeatable distribution channel. You can monetize products, services, subscriptions, digital products, memberships, affiliate relationships, advertising or software depending on your skills and market.",
-    sections: [
-      ["1. Choose what you will sell", "You can make money by selling a physical product, digital product, software, service, subscription, course, membership or advertising placement. Start with something that solves a specific problem."],
-      ["2. Choose your audience", "Do not try to sell to everyone. Define the customer by their problem, goals, industry, interests or situation. The more clearly you understand the audience, the easier it becomes to create useful marketing."],
-      ["3. Create a strong offer", "Your offer should explain the problem, the promised outcome, what the customer gets, why your solution is different and what action they should take."],
-      ["4. Build a website", "Create a homepage that explains your value proposition quickly. Include a clear call to action, product or service information, proof where available, FAQs and contact information."],
-      ["5. Use content marketing", "Create tutorials, educational articles, videos, comparisons, case studies and demonstrations. Useful content can attract people who are already searching for solutions."],
-      ["6. Use social media", "Choose platforms where your target customers already spend time. Instead of posting randomly, create recurring content themes around customer problems, lessons, results and product demonstrations."],
-      ["7. Email marketing", "Offer something useful in exchange for an email address, then send helpful content and relevant offers. Always respect applicable privacy, consent and marketing laws."],
-      ["8. Search engine optimization", "Create pages that answer specific questions your customers search for. Use clear titles, useful information, descriptive headings and a site structure that is easy to understand."],
-      ["9. Paid advertising", "Start with a small budget and a measurable objective. Test multiple messages and landing pages. Never assume an ad is profitable until you calculate the revenue generated against the advertising and fulfillment costs."],
-      ["10. Ways to make money", "Common online monetization methods include selling products, subscriptions, services, courses, memberships, software, affiliate commissions, sponsorships, transaction fees and advertising. Choose the model based on customer behavior and the value you provide."],
-      ["11. Improve conversion", "If people visit but do not buy, improve your offer, messaging, proof, pricing explanation, page speed, checkout experience and call to action. Small improvements across the funnel can significantly affect revenue."],
-      ["12. Keep customers", "Repeat customers can be more valuable than constantly finding new customers. Provide a strong product, good onboarding, useful support and reasons for customers to return."]
-    ]
-  }
+title:"How to Open a Business",
+
+intro:
+"Opening a business starts with a problem, a customer and a clear offer. You do not need to begin with a huge office, a large team or a complicated product. Start by understanding who you want to serve and what valuable result you can provide. Then turn that idea into a simple business model, validate demand, set up the appropriate legal and financial structure for your location, launch and improve the business using customer feedback.",
+
+sections:[
+
+[
+"1. Choose a business idea",
+"Start with a real customer problem. Write down who has the problem, how they currently solve it, what their current solution costs and why your solution could be better."
+],
+
+[
+"2. Research your market",
+"Talk to potential customers and study competitors. Look for patterns in customer complaints, pricing, features and existing solutions."
+],
+
+[
+"3. Create your business model",
+"Decide what you sell, who pays, how much they pay and how you deliver the product or service."
+],
+
+[
+"4. Set up the business",
+"Choose the appropriate legal structure for your location, register the business where required, understand applicable taxes and obtain any required licenses."
+],
+
+[
+"5. Build your first offer",
+"Create a simple version of your product or service. Your first version should solve one important problem very well."
+],
+
+[
+"6. Find your first customers",
+"Use direct outreach, referrals, communities, partnerships and useful content to find your first customers."
+],
+
+[
+"7. Price your offer",
+"Consider customer value, your costs, competitor alternatives and willingness to pay. Test pricing instead of assuming the perfect price immediately."
+],
+
+[
+"8. Track your numbers",
+"Track revenue, costs, profit margin, cash flow, conversion rate, customer acquisition cost and retention."
+],
+
+[
+"9. Grow carefully",
+"When a sales or delivery process works repeatedly, document it and improve or automate it."
+]
+
+]
+
+},
+
+startup:{
+
+title:"Complete Startup Guide",
+
+intro:
+"A startup begins when you identify a meaningful problem, create a solution and find evidence that people want it. The fastest path is usually to validate the problem, build the smallest useful version, put it in front of real users, learn from their behavior and improve it.",
+
+sections:[
+
+[
+"1. Find a problem",
+"Choose a problem that is painful, frequent or valuable enough that customers will spend money or time solving it."
+],
+
+[
+"2. Validate your idea",
+"Create a landing page, prototype, waitlist or manual service. Measure real actions such as signups, replies, trials and purchases."
+],
+
+[
+"3. Build an MVP",
+"An MVP is the smallest product that can deliver your core promise. Avoid building unnecessary features."
+],
+
+[
+"4. Create your website",
+"Start with HTML for structure, CSS for design and JavaScript for interactive behavior."
+],
+
+[
+"5. Website structure",
+"Keep your project organized so it is easy to update.",
+"sellora-project/\n├── index.html\n├── styles.css\n├── app.js\n└── README.md"
+],
+
+[
+"6. Create a GitHub repository",
+"Create a GitHub account, create a new repository and upload your website files."
+],
+
+[
+"7. Publish through GitHub Pages",
+"Open your repository Settings, find Pages, select deployment from your main branch and root folder, then save. GitHub Pages will publish the static website."
+],
+
+[
+"8. Git workflow",
+"Use Git to update your website from your computer.",
+"git clone YOUR_REPOSITORY_URL\ncd YOUR_REPOSITORY\ngit add .\ngit commit -m \"Update Sellora website\"\ngit push"
+],
+
+[
+"9. Add a domain",
+"After your GitHub Pages site works, connect a custom domain by following GitHub's current domain and DNS instructions."
+],
+
+[
+"10. Get users",
+"Launch to a small audience. Ask users where they were confused and what they want next. Improve your product using real feedback."
+],
+
+[
+"11. Monetize",
+"Possible models include subscriptions, digital products, services, commissions, licensing, transaction fees and advertising."
+]
+
+]
+
+},
+
+marketing:{
+
+title:"Marketing & How to Make Money Online",
+
+intro:
+"Marketing is the process of getting the right people to discover your offer, understand its value, trust your brand and take action. Making money online usually requires a valuable offer, a defined audience and a repeatable distribution channel.",
+
+sections:[
+
+[
+"1. Choose what you will sell",
+"You can sell physical products, digital products, software, services, subscriptions, memberships or other valuable offers."
+],
+
+[
+"2. Choose your audience",
+"Do not try to sell to everyone. Define a specific audience and understand its problems, goals and needs."
+],
+
+[
+"3. Create a strong offer",
+"Explain the problem, promised outcome, what the customer receives, why your solution is different and what action they should take."
+],
+
+[
+"4. Build a website",
+"Create a homepage that explains your value proposition quickly. Add a clear call to action, product information, proof, FAQs and contact information."
+],
+
+[
+"5. Create content",
+"Make tutorials, educational videos, case studies, demonstrations, comparisons and useful posts."
+],
+
+[
+"6. Use social media",
+"Choose platforms where your target customers already spend time. Create recurring content around their problems and goals."
+],
+
+[
+"7. Build an email audience",
+"Offer something useful in exchange for an email address and send helpful content and relevant offers while respecting applicable privacy and marketing rules."
+],
+
+[
+"8. SEO",
+"Create pages that answer specific questions your customers search for. Use useful titles, headings and well-organized content."
+],
+
+[
+"9. Paid advertising",
+"Start with a small measurable budget. Test different messages and landing pages before increasing spending."
+],
+
+[
+"10. Ways to make money online",
+"Common methods include selling products, services, subscriptions, software, memberships, courses, affiliate commissions, sponsorships and advertising."
+],
+
+[
+"11. Improve conversions",
+"If people visit but do not buy, improve your offer, messaging, proof, pricing explanation, page speed and checkout process."
+],
+
+[
+"12. Retain customers",
+"Provide strong onboarding, useful support and reasons for customers to return."
+]
+
+]
+
+}
+
 };
 
-let signupStep = 1;
-let signupData = {};
-let selectedCategories = [];
+
+/* =====================================================
+   STATE
+===================================================== */
+
+let signupStep=1;
+
+let signupData={};
+
+let selectedCategories=[];
+
+let completedGuides=[];
+
+
+/* =====================================================
+   SIGNUP
+===================================================== */
 
 function openSignup(){
+
   signupStep=1;
+
   signupData={};
+
   selectedCategories=[];
+
   renderSignup();
-  document.getElementById("signupModal").classList.add("show");
+
+  document
+    .getElementById("signupModal")
+    .classList.add("show");
+
 }
-function openLogin(){
-  document.getElementById("loginModal").classList.add("show");
-}
-function closeModal(id){
-  document.getElementById(id).classList.remove("show");
-}
+
+
 function renderSignup(){
-  const box=document.getElementById("signupContent");
+
+  const box=
+    document.getElementById("signupContent");
+
 
   if(signupStep===1){
+
     box.innerHTML=`
-      <div class="modal-step">STEP 1 OF 2</div>
-      <h2>Create your Sellora account</h2>
-      <p class="intro">Fill in your details. Your selected information is used to personalize your Sellora experience.</p>
-      <form onsubmit="continueSignup(event)">
-        <div class="form-grid">
-          <div class="field">
-            <label>Full Name *</label>
-            <input id="fullName" required placeholder="Your full name">
-          </div>
-          <div class="field">
-            <label>Email *</label>
-            <input id="email" type="email" required placeholder="you@example.com">
-          </div>
-          <div class="field">
-            <label>Password *</label>
-            <input id="password" type="password" minlength="6" required placeholder="Minimum 6 characters">
-          </div>
-          <div class="field">
-            <label>Business / Startup Name *</label>
-            <input id="company" required placeholder="Your company">
-          </div>
-          <div class="field full">
-            <label>What are you trying to build?</label>
-            <textarea id="goal" rows="3" placeholder="Tell us briefly about your idea or goal"></textarea>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" type="submit">Continue →</button>
-        </div>
-      </form>`;
-  }else{
-    box.innerHTML=`
-      <div class="modal-step">STEP 2 OF 2</div>
-      <h2>Choose your learning categories</h2>
-      <p class="intro">Select one or more topics. After you continue, Sellora will open your selected guide.</p>
 
-      <div class="category-select-grid">
-        <button class="select-card ${selectedCategories.includes("business")?"selected":""}" onclick="toggleCategory('business')">
-          <div class="category-icon">🏢</div>
-          <div><strong>Business</strong><small>How to open, operate and grow a business.</small></div>
-        </button>
-
-        <button class="select-card ${selectedCategories.includes("startup")?"selected":""}" onclick="toggleCategory('startup')">
-          <div class="category-icon">🚀</div>
-          <div><strong>Startup Guide</strong><small>How to start, build and publish your startup website.</small></div>
-        </button>
-
-        <button class="select-card ${selectedCategories.includes("marketing")?"selected":""}" onclick="toggleCategory('marketing')">
-          <div class="category-icon">📈</div>
-          <div><strong>Marketing</strong><small>How to attract customers and make money.</small></div>
-        </button>
+      <div class="modal-step">
+        STEP 1 OF 2
       </div>
 
-      <div class="modal-footer">
-        <button class="btn btn-outline" onclick="signupStep=1;renderSignup()">← Back</button>
-        <button class="btn btn-primary" onclick="finishSignup()">Continue →</button>
-      </div>`;
+      <h2>
+        Create your Sellora account
+      </h2>
+
+      <p class="intro">
+        🇮🇳 Independence Day Bumper Offer:
+        1 Guide = 1 Ebook FREEEE.
+      </p>
+
+      <form onsubmit="continueSignup(event)">
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>
+              Full Name *
+            </label>
+
+            <input
+              id="fullName"
+              required
+              placeholder="Your full name">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Email *
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              required
+              placeholder="you@example.com">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Password *
+            </label>
+
+            <input
+              id="password"
+              type="password"
+              minlength="6"
+              required
+              placeholder="Minimum 6 characters">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Business / Startup Name *
+            </label>
+
+            <input
+              id="company"
+              required
+              placeholder="Your company">
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>
+              What are you trying to build?
+            </label>
+
+            <textarea
+              id="goal"
+              rows="3"
+              placeholder="Tell us briefly about your idea or goal"></textarea>
+
+          </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+          <button
+            class="btn btn-primary"
+            type="submit">
+
+            Continue →
+
+          </button>
+
+        </div>
+
+      </form>
+
+    `;
+
   }
+
+  else{
+
+    box.innerHTML=`
+
+      <div class="modal-step">
+        STEP 2 OF 2
+      </div>
+
+      <h2>
+        Choose your learning categories
+      </h2>
+
+      <p class="intro">
+        Select one or more topics.
+        Complete a guide to unlock your free ebook.
+      </p>
+
+
+      <div class="category-select-grid">
+
+
+        <button
+          class="select-card ${
+            selectedCategories.includes("business")
+            ?"selected":""
+          }"
+          onclick="toggleCategory('business')">
+
+          <div class="category-icon">
+            🏢
+          </div>
+
+          <div>
+
+            <strong>
+              Business
+            </strong>
+
+            <small>
+              How to open, operate and grow a business.
+            </small>
+
+          </div>
+
+        </button>
+
+
+        <button
+          class="select-card ${
+            selectedCategories.includes("startup")
+            ?"selected":""
+          }"
+          onclick="toggleCategory('startup')">
+
+          <div class="category-icon">
+            🚀
+          </div>
+
+          <div>
+
+            <strong>
+              Startup Guide
+            </strong>
+
+            <small>
+              How to start, build and publish your website.
+            </small>
+
+          </div>
+
+        </button>
+
+
+        <button
+          class="select-card ${
+            selectedCategories.includes("marketing")
+            ?"selected":""
+          }"
+          onclick="toggleCategory('marketing')">
+
+          <div class="category-icon">
+            📈
+          </div>
+
+          <div>
+
+            <strong>
+              Marketing
+            </strong>
+
+            <small>
+              How to attract customers and make money online.
+            </small>
+
+          </div>
+
+        </button>
+
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <button
+          class="btn btn-outline"
+          onclick="
+            signupStep=1;
+            renderSignup();
+          ">
+
+          ← Back
+
+        </button>
+
+
+        <button
+          class="btn btn-primary"
+          onclick="finishSignup()">
+
+          Continue →
+
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
 }
+
+
+/* =====================================================
+   SIGNUP CONTINUE
+===================================================== */
 
 function continueSignup(e){
+
   e.preventDefault();
+
+
   signupData={
-    name:document.getElementById("fullName").value.trim(),
-    email:document.getElementById("email").value.trim(),
-    company:document.getElementById("company").value.trim(),
-    goal:document.getElementById("goal").value.trim(),
-    password:document.getElementById("password").value
+
+    name:
+      document.getElementById("fullName")
+      .value.trim(),
+
+    email:
+      document.getElementById("email")
+      .value.trim(),
+
+    company:
+      document.getElementById("company")
+      .value.trim(),
+
+    goal:
+      document.getElementById("goal")
+      .value.trim(),
+
+    password:
+      document.getElementById("password")
+      .value
+
   };
+
+
   signupStep=2;
+
   renderSignup();
+
 }
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
 
 function toggleCategory(category){
-  if(selectedCategories.includes(category)){
-    selectedCategories=selectedCategories.filter(x=>x!==category);
-  }else{
-    selectedCategories.push(category);
+
+  if(
+    selectedCategories.includes(category)
+  ){
+
+    selectedCategories=
+      selectedCategories.filter(
+        x=>x!==category
+      );
+
   }
+
+  else{
+
+    selectedCategories.push(category);
+
+  }
+
   renderSignup();
+
 }
 
+
+/* =====================================================
+   FINISH SIGNUP
+===================================================== */
+
 function finishSignup(){
+
   if(!selectedCategories.length){
-    alert("Please select at least one category.");
+
+    alert(
+      "Please select at least one category."
+    );
+
     return;
+
   }
 
-  // DEMO DATABASE:
-  // This saves non-sensitive profile data in the browser.
-  // For a real production website, replace this with Supabase/Firebase/your backend.
+
   const profile={
+
     name:signupData.name,
+
     email:signupData.email,
+
     company:signupData.company,
+
     goal:signupData.goal,
+
     categories:selectedCategories,
+
     createdAt:new Date().toISOString()
+
   };
-  localStorage.setItem("selloraProfile",JSON.stringify(profile));
+
+
+  localStorage.setItem(
+    "selloraProfile",
+    JSON.stringify(profile)
+  );
+
+
+  localStorage.setItem(
+    "selloraCompletedGuides",
+    JSON.stringify([])
+  );
+
+
+  completedGuides=[];
+
 
   closeModal("signupModal");
 
-  // Open the first selected guide.
-  openGuide(selectedCategories[0]);
+
+  openGuide(
+    selectedCategories[0]
+  );
+
 }
+
+
+/* =====================================================
+   GUIDE
+===================================================== */
 
 function openGuide(type){
+
   const g=guides[type];
+
   if(!g)return;
 
+
   let content=`
+
     <div class="guide-header">
-      <div class="guide-label">SELLORA LEARNING GUIDE</div>
-      <h2>${g.title}</h2>
-      <p>${g.intro}</p>
+
+      <div class="guide-label">
+        SELLORA LEARNING GUIDE
+      </div>
+
+      <h2>
+        ${g.title}
+      </h2>
+
+      <p>
+        ${g.intro}
+      </p>
+
     </div>
+
   `;
+
 
   g.sections.forEach(section=>{
-    const [heading,body,code]=section;
-    content+=`<h3>${heading}</h3>`;
-    if(body)content+=`<p>${body}</p>`;
-    if(code)content+=`<pre class="code">${escapeHtml(code)}</pre>`;
+
+    const heading=section[0];
+
+    const body=section[1];
+
+    const code=section[2];
+
+
+    content+=`
+
+      <h3>
+        ${heading}
+      </h3>
+
+    `;
+
+
+    if(body){
+
+      content+=`
+
+        <p>
+          ${body}
+        </p>
+
+      `;
+
+    }
+
+
+    if(code){
+
+      content+=`
+
+        <pre class="code">
+${escapeHtml(code)}
+        </pre>
+
+      `;
+
+    }
+
   });
+
 
   content+=`
+
     <div class="success">
-      <strong>Sellora tip:</strong> Learn one concept, take one real action, measure the result, and then improve. Progress comes from execution.
+
+      <strong>
+        🇮🇳 Independence Day Bumper Offer:
+      </strong>
+
+      You completed the guide.
+
+      Your free ebook is now unlocked!
+
     </div>
+
+
+    <div class="ebook-box">
+
+      <h3>
+        🎁 1 GUIDE = 1 EBOOK FREEEE
+      </h3>
+
+      <p>
+        Congratulations! Open your free
+        Sellora ebook and save it as a PDF.
+      </p>
+
+
+      <div class="ebook-actions">
+
+        <button
+          class="ebook-btn"
+          onclick="finishGuide('${type}')">
+
+          📚 Open FREE Ebook
+
+        </button>
+
+        <button
+          class="ebook-btn secondary"
+          onclick="downloadEbook('${type}')">
+
+          ⬇️ Download Ebook PDF
+
+        </button>
+
+      </div>
+
+    </div>
+
+
     <div class="modal-footer">
-      <button class="btn btn-primary" onclick="closeModal('guideModal')">Finish Guide</button>
+
+      <button
+        class="btn btn-primary"
+        onclick="closeModal('guideModal')">
+
+        Finish Guide ✓
+
+      </button>
+
     </div>
+
   `;
 
-  document.getElementById("guideContent").innerHTML=content;
-  document.getElementById("guideModal").classList.add("show");
+
+  document
+    .getElementById("guideContent")
+    .innerHTML=content;
+
+
+  document
+    .getElementById("guideModal")
+    .classList.add("show");
+
 }
+
+
+/* =====================================================
+   FINISH GUIDE
+===================================================== */
+
+function finishGuide(type){
+
+  markGuideCompleted(type);
+
+  closeModal("guideModal");
+
+  openEbook(type);
+
+}
+
+
+/* =====================================================
+   COMPLETION
+===================================================== */
+
+function markGuideCompleted(type){
+
+  completedGuides=
+    JSON.parse(
+      localStorage.getItem(
+        "selloraCompletedGuides"
+      ) || "[]"
+    );
+
+
+  if(
+    !completedGuides.includes(type)
+  ){
+
+    completedGuides.push(type);
+
+  }
+
+
+  localStorage.setItem(
+    "selloraCompletedGuides",
+    JSON.stringify(completedGuides)
+  );
+
+}
+
+
+/* =====================================================
+   EBOOK
+===================================================== */
+
+function createEbook(type){
+
+  const g=guides[type];
+
+
+  let sections="";
+
+
+  g.sections.forEach(section=>{
+
+    sections+=`
+
+      <h3>
+        ${section[0]}
+      </h3>
+
+      <p>
+        ${section[1]}
+      </p>
+
+    `;
+
+    if(section[2]){
+
+      sections+=`
+
+        <pre style="
+          background:#111;
+          color:#fff;
+          padding:15px;
+          border-radius:8px;
+          overflow:auto;
+        ">
+${escapeHtml(section[2])}
+        </pre>
+
+      `;
+
+    }
+
+  });
+
+
+  return `
+
+    <div style="text-align:center;border-bottom:8px solid #138808;padding-bottom:25px;">
+
+      <div style="font-size:50px;">
+        🇮🇳
+      </div>
+
+      <h1 style="font-size:38px;">
+        SELLORA
+      </h1>
+
+      <h2 style="color:#e87900;">
+        Independence Day Special Ebook
+      </h2>
+
+      <p style="font-weight:900;">
+        1 GUIDE = 1 EBOOK FREEEE
+      </p>
+
+      <p>
+        ${g.title}
+      </p>
+
+    </div>
+
+
+    <div style="padding-top:25px;">
+
+      <h2>
+        Your Free Sellora Ebook
+      </h2>
+
+      <p>
+        This ebook is provided as part of
+        Sellora's Independence Day Bumper Offer.
+      </p>
+
+      ${sections}
+
+      <div style="
+        margin-top:30px;
+        padding:20px;
+        border:2px solid #ff9933;
+        border-radius:12px;
+        text-align:center;
+      ">
+
+        <h2>
+          🇮🇳 Happy Independence Day 🇮🇳
+        </h2>
+
+        <p>
+          Keep learning. Keep building.
+          Keep growing.
+        </p>
+
+        <strong>
+          SELLORA — Monetize Ideas. Build Businesses. Grow Startups.
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="print-hide"
+      style="
+        margin-top:25px;
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+      ">
+
+      <button
+        class="ebook-btn"
+        onclick="printEbook()">
+
+        📥 Save / Download PDF
+
+      </button>
+
+      <button
+        class="ebook-btn secondary"
+        onclick="closeModal('ebookModal')">
+
+        Close Ebook
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   OPEN EBOOK
+===================================================== */
+
+function openEbook(type){
+
+  markGuideCompleted(type);
+
+
+  document
+    .getElementById("ebookPrintArea")
+    .innerHTML=createEbook(type);
+
+
+  document
+    .getElementById("ebookModal")
+    .classList.add("show");
+
+}
+
+
+/* =====================================================
+   DOWNLOAD PDF
+===================================================== */
+
+function downloadEbook(type){
+
+  markGuideCompleted(type);
+
+  openEbook(type);
+
+}
+
+
+/* =====================================================
+   PRINT / SAVE AS PDF
+===================================================== */
+
+function printEbook(){
+
+  window.print();
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
 function escapeHtml(str){
-  return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+  return str
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+
 }
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function openLogin(){
+
+  document
+    .getElementById("loginModal")
+    .classList.add("show");
+
+}
+
 
 function loginDemo(e){
-  e.preventDefault();
-  const profile=JSON.parse(localStorage.getItem("selloraProfile")||"null");
-  const email=document.getElementById("loginEmail").value;
 
-  if(profile && profile.email===email){
+  e.preventDefault();
+
+
+  const profile=
+    JSON.parse(
+      localStorage.getItem(
+        "selloraProfile"
+      ) || "null"
+    );
+
+
+  const email=
+    document
+      .getElementById("loginEmail")
+      .value;
+
+
+  if(
+    profile &&
+    profile.email===email
+  ){
+
     closeModal("loginModal");
-    alert("Welcome back, "+profile.name+"!");
-    if(profile.categories && profile.categories.length){
-      openGuide(profile.categories[0]);
+
+    alert(
+      "Welcome back, "
+      +profile.name+
+      "!"
+    );
+
+
+    if(
+      profile.categories &&
+      profile.categories.length
+    ){
+
+      openGuide(
+        profile.categories[0]
+      );
+
     }
-  }else{
-    alert("No demo account was found for this email. Create an account first.");
+
   }
+
+  else{
+
+    alert(
+      "No demo account was found for this email. Create an account first."
+    );
+
+  }
+
 }
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function closeModal(id){
+
+  document
+    .getElementById(id)
+    .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
 
 function goHome(){
-  window.scrollTo({top:0,behavior:"smooth"});
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
 }
+
+
+/* =====================================================
+   MOBILE NAV
+===================================================== */
 
 function toggleMobileNav(){
-  const nav=document.querySelector(".nav-links");
-  nav.style.display=nav.style.display==="flex"?"none":"flex";
+
+  const nav=
+    document.querySelector(".nav-links");
+
+
+  nav.style.display=
+    nav.style.display==="flex"
+      ?"none"
+      :"flex";
+
+
   nav.style.position="absolute";
+
   nav.style.top="68px";
+
   nav.style.left="0";
+
   nav.style.right="0";
+
   nav.style.background="#fff";
+
   nav.style.padding="20px 6%";
+
   nav.style.flexDirection="column";
+
   nav.style.alignItems="flex-start";
+
 }
 
-window.addEventListener("click",e=>{
-  document.querySelectorAll(".modal").forEach(modal=>{
-    if(e.target===modal)modal.classList.remove("show");
-  });
-});
+
+/* =====================================================
+   CLOSE MODAL WHEN CLICK OUTSIDE
+===================================================== */
+
+window.addEventListener(
+  "click",
+  e=>{
+
+    document
+      .querySelectorAll(".modal")
+      .forEach(modal=>{
+
+        if(e.target===modal){
+
+          modal.classList.remove("show");
+
+        }
+
+      });
+
+  }
+);
+
+
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
+
+window.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="Escape"){
+
+      document
+        .querySelectorAll(".modal")
+        .forEach(modal=>{
+          modal.classList.remove("show");
+        });
+
+    }
+
+  }
+);
+
 </script>
 
 </body>
 </html>
-
