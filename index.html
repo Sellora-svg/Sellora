@@ -406,6 +406,9 @@ a{text-decoration:none;color:inherit}
   .category-grid{grid-template-columns:1fr}
 }
 @media(max-width:700px){
+  .nav-actions{gap:5px}
+  .nav-actions .btn{padding:9px 10px;font-size:11px}
+  .nav-actions .btn-outline:first-child{display:none}
   .navbar{height:68px}
   .nav-links{display:none}
   .nav-actions{margin-left:auto;margin-right:10px}
@@ -457,6 +460,7 @@ a{text-decoration:none;color:inherit}
   </nav>
 
   <div class="nav-actions">
+    <button class="btn btn-outline" onclick="openFreeTrial()">🎁 Free Trial</button>
     <button class="btn btn-outline" onclick="openLogin()">Log In</button>
     <button class="btn btn-primary" onclick="openSignup()">Create Account</button>
   </div>
@@ -480,7 +484,10 @@ a{text-decoration:none;color:inherit}
   <div class="hero-copy">
     <h1>Your Journey to a <span>Million-Dollar Startup</span> Starts Here</h1>
     <p>Helps you make money, monetize ideas, build startups, and open businesses with practical step-by-step guidance.</p>
-    <button class="btn btn-primary" onclick="openSignup()">Start for Free</button>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="openSignup()">Start for Free</button>
+      <button class="btn btn-outline" onclick="openFreeTrial()">🎁 Try Free Ebook</button>
+    </div>
   </div>
 
   <div class="hero-art" aria-label="Sellora startup illustration">
@@ -591,7 +598,11 @@ a{text-decoration:none;color:inherit}
 <section class="section center" id="pricing">
   <h2 class="section-title">Start Free. Learn. Build. Grow.</h2>
   <p class="section-subtitle">Create your Sellora account and begin exploring the guides at no cost.</p>
-  <button class="btn btn-primary" onclick="openSignup()">Create My Free Account</button>
+  <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap">
+    <button class="btn btn-primary" onclick="openSignup()">Create My Free Account</button>
+    <button class="btn btn-outline" onclick="openFreeTrial()">🎁 Start Free Trial — No Account</button>
+  </div>
+  <p style="margin-top:14px;font-weight:800;color:#d97706">🇮🇳 BUMPER OFFER: 1 GUIDE = 1 EBOOK FREEEE</p>
 </section>
 
 <section class="section center" id="about">
@@ -635,6 +646,50 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Log In</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FREE TRIAL EBOOK MODAL -->
+<div class="modal" id="trialModal">
+  <div class="modal-card">
+    <button class="close" onclick="closeModal('trialModal')">×</button>
+    <div class="modal-step">SELLORA FREE TRIAL</div>
+    <h2>Make Your Free Ebook 🎁</h2>
+    <p class="intro">No account needed. Tell us what your ebook should be about and Sellora will create a 15-page sample ebook after a 5-second countdown.</p>
+
+    <form onsubmit="startFreeTrial(event)">
+      <div class="field">
+        <label>Your Name *</label>
+        <input id="trialName" required placeholder="Your name">
+      </div>
+
+      <div class="field">
+        <label>Ebook Topic / Goal *</label>
+        <input id="trialTopic" required placeholder="Example: How to Make Money Online">
+      </div>
+
+      <div class="field">
+        <label>What should the ebook teach? *</label>
+        <textarea id="trialGoal" rows="4" required placeholder="Example: freelancing, digital products, marketing, online business..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Choose a category</label>
+        <select id="trialCategory">
+          <option value="marketing">Marketing & Making Money</option>
+          <option value="startup">Startup</option>
+          <option value="business">Business</option>
+        </select>
+      </div>
+
+      <div class="success">
+        🇮🇳 <strong>15 August Bumper Offer:</strong> Free trial gives you a 15-page ebook preview.
+      </div>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">🚀 Create My Free Ebook</button>
       </div>
     </form>
   </div>
@@ -707,6 +762,31 @@ const guides = {
 let signupStep = 1;
 let signupData = {};
 let selectedCategories = [];
+
+
+function openFreeTrial(){
+  document.getElementById("trialModal").classList.add("show");
+}
+
+function startFreeTrial(e){
+  e.preventDefault();
+
+  const trialProfile = {
+    name: document.getElementById("trialName").value.trim(),
+    email: "free-trial@sellora.local",
+    company: "Sellora Free Trial",
+    goal: document.getElementById("trialGoal").value.trim(),
+    ebookTopic: document.getElementById("trialTopic").value.trim(),
+    createdAt: new Date().toISOString()
+  };
+
+  // Temporary browser-only trial profile. It does not create a real account.
+  localStorage.setItem("selloraTrialProfile", JSON.stringify(trialProfile));
+
+  const type = document.getElementById("trialCategory").value;
+  closeModal("trialModal");
+  startEbookCountdown(type, true);
+}
 
 function openSignup(){
   signupStep=1;
@@ -879,7 +959,7 @@ function finishGuideAndGenerate(type){
   startEbookCountdown(type);
 }
 
-function startEbookCountdown(type){
+function startEbookCountdown(type, isTrial=false){
   const modal=document.getElementById("guideModal");
   // Re-use the guide modal so no extra HTML is required.
   modal.classList.add("show");
@@ -898,22 +978,25 @@ function startEbookCountdown(type){
     if(n>0){el.textContent=n;}
     else{
       clearInterval(timer);
-      generateSelloraEbook(type);
+      generateSelloraEbook(type, isTrial);
     }
   },1000);
 }
 
-function generateSelloraEbook(type){
+function generateSelloraEbook(type, isTrial=false){
   if(!window.jspdf){
     document.getElementById("guideContent").innerHTML=`<h2>PDF library failed to load</h2><p class="intro">Refresh the page and try again.</p>`;
     return;
   }
   const {jsPDF}=window.jspdf;
   const doc=new jsPDF({unit:"mm",format:"a4"});
-  const profile=JSON.parse(localStorage.getItem("selloraProfile")||"null")||{};
+  const accountProfile=JSON.parse(localStorage.getItem("selloraProfile")||"null")||{};
+  const trialProfile=JSON.parse(localStorage.getItem("selloraTrialProfile")||"null")||{};
+  const profile=isTrial ? trialProfile : accountProfile;
   const g=guides[type]||guides.startup;
+  const customTopic=(isTrial && trialProfile.ebookTopic) ? trialProfile.ebookTopic : "HOW TO MAKE MONEY ONLINE";
   const pages=[
-    ["SELLORA","HOW TO MAKE MONEY ONLINE","A practical guide to building skills, finding customers, creating online businesses and turning ideas into income."],
+    ["SELLORA",customTopic,"A practical 15-page learning ebook created by Sellora. Use the ideas inside as a starting point, take action, measure results and keep improving."],
     ["CONTENTS","15-PAGE ROADMAP","1. Truth about online income\n2. Choosing a path\n3. Freelancing\n4. Digital products\n5. Content creation\n6. Online services\n7. Websites & startups\n8. Marketing\n9. Monetization\n10. Customers\n11. Metrics\n12. 30-day plan\n13. Mistakes\n14. Sellora mindset\n15. Next step"],
     ["1. THE TRUTH","VALUE FIRST","The internet is a distribution system. Sustainable income normally comes from creating something useful for a specific person and making it easy for that person to discover and pay for it. Avoid guaranteed-income or instant-riches promises."],
     ["2. CHOOSE ONE PATH","FOCUS BEATS SCATTERING","Beginner-friendly paths include freelancing, digital products, content creation, online services and building a website or startup. Pick ONE path for the next 30 days instead of trying everything at once."],
@@ -945,12 +1028,12 @@ function generateSelloraEbook(type){
   const blob=doc.output("blob");
   const url=URL.createObjectURL(blob);
   document.getElementById("guideContent").innerHTML=`
-    <div class="modal-step">🎁 EBOOK READY</div>
+    <div class="modal-step">${isTrial ? "🎁 FREE TRIAL EBOOK READY" : "🎁 EBOOK READY"}</div>
     <h2>Your 15-page ebook is ready!</h2>
     <p class="intro">The PDF was generated successfully. You can open it in a new tab or download it.</p>
     <div class="ebook-unlocked"><h3>🇮🇳 BUMPER OFFER</h3><p><strong>1 GUIDE = 1 EBOOK FREEEE</strong></p>
       <div class="ebook-actions">
-        <a class="btn btn-primary" href="${url}" download="Sellora-How-to-Make-Money-Online-15-Pages.pdf">⬇ Download 15-Page PDF</a>
+        <a class="btn btn-primary" href="${url}" download="Sellora-15-Page-Ebook.pdf">⬇ Download 15-Page PDF</a>
         <a class="btn btn-outline" href="${url}" target="_blank" rel="noopener">📖 Open PDF</a>
       </div>
     </div>
