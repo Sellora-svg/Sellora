@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
-content="Sellora - Learn business, startups, marketing and create your own ebook. Independence Day Bumper Offer: 1 Guide = 1 Ebook FREEEE.">
+content="Sellora - Learn business, startups and marketing. Get a FREE ebook after completing every guide.">
 
 <title>Sellora | Monetize Your Ideas</title>
 
@@ -15,26 +13,16 @@ content="Sellora - Learn business, startups, marketing and create your own ebook
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-
-/* =========================================================
-   SELLORA GLOBAL STYLES
-========================================================= */
-
 :root{
   --teal:#2c8e9e;
   --teal-dark:#197383;
   --teal-light:#e7f7f8;
-
   --ink:#101820;
   --muted:#5f6870;
   --line:#e6ecee;
-
-  --white:#ffffff;
-
-  --saffron:#FF9933;
+  --white:#fff;
+  --orange:#ff9933;
   --green:#138808;
-  --chakra:#000080;
-
   --shadow:0 14px 40px rgba(20,80,90,.12);
 }
 
@@ -55,10 +43,7 @@ body{
   line-height:1.55;
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -71,135 +56,66 @@ a{
   color:inherit;
 }
 
+/* =========================
+   INDEPENDENCE DAY BAR
+========================= */
 
-/* =========================================================
-   🇮🇳 INDIA / INDEPENDENCE DAY TOP FLAG
-========================================================= */
-
-.india-topbar{
-  width:100%;
-  height:42px;
+.tricolor-bar{
+  height:6px;
   display:flex;
-  flex-direction:column;
   position:relative;
-  z-index:1000;
+  z-index:300;
 }
 
-.india-topbar .saffron{
-  height:14px;
-  background:var(--saffron);
+.tricolor-bar span{
+  flex:1;
 }
 
-.india-topbar .white{
-  height:14px;
+.tricolor-bar .orange{
+  background:#ff9933;
+}
+
+.tricolor-bar .white{
   background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
 }
 
-.india-topbar .green{
-  height:14px;
-  background:var(--green);
+.tricolor-bar .green{
+  background:#138808;
 }
 
-.ashoka-chakra{
-  width:14px;
-  height:14px;
-  border:2px solid var(--chakra);
-  border-radius:50%;
-  position:absolute;
-  top:0;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-.ashoka-chakra::before,
-.ashoka-chakra::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width:1.5px;
-  height:11px;
-  background:var(--chakra);
-  transform-origin:center;
-}
-
-.ashoka-chakra::before{
-  transform:translate(-50%,-50%) rotate(45deg);
-}
-
-.ashoka-chakra::after{
-  transform:translate(-50%,-50%) rotate(-45deg);
-}
-
-.india-offer-text{
-  position:absolute;
-  right:20px;
-  top:-1px;
-  font-size:11px;
-  font-weight:900;
-  color:#17383e;
-  letter-spacing:.4px;
-}
-
-
-/* =========================================================
-   BUMPER OFFER BAR
-========================================================= */
-
-.offer-bar{
+.independence-banner{
   background:linear-gradient(
     90deg,
-    #fff4e8,
-    #ffffff,
-    #eef9ec
+    rgba(255,153,51,.12),
+    rgba(255,255,255,.95),
+    rgba(19,136,8,.12)
   );
-
   border-bottom:1px solid #e7e7e7;
-
-  padding:9px 15px;
-
+  padding:8px 15px;
   text-align:center;
-
-  font-size:13px;
-  font-weight:800;
-
-  color:#17383e;
+  font-weight:900;
+  font-size:12px;
+  color:#263238;
 }
 
-.offer-bar strong{
-  color:var(--teal-dark);
+.independence-banner span{
+  margin:0 4px;
 }
 
-.offer-bar .free-word{
-  color:#138808;
-  font-size:14px;
-}
-
-
-/* =========================================================
+/* =========================
    NAVBAR
-========================================================= */
+========================= */
 
 .navbar{
-  min-height:76px;
-
+  height:76px;
   padding:0 6%;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   border-bottom:1px solid #eef2f3;
-
   background:#fff;
-
   position:sticky;
   top:0;
-
   z-index:100;
 }
 
@@ -207,26 +123,19 @@ a{
   display:flex;
   align-items:center;
   gap:8px;
-
   font-weight:800;
   font-size:21px;
-
   letter-spacing:.5px;
 }
 
 .logo-mark{
   width:24px;
   height:24px;
-
   border:3px solid var(--teal);
-
   border-radius:8px 8px 8px 2px;
-
   display:grid;
   place-items:center;
-
   color:var(--teal);
-
   font-size:12px;
 }
 
@@ -234,7 +143,6 @@ a{
   display:flex;
   align-items:center;
   gap:28px;
-
   font-size:13px;
   font-weight:600;
 }
@@ -256,32 +164,20 @@ a{
 .btn{
   border:0;
   border-radius:9px;
-
   padding:11px 18px;
-
   font-weight:700;
   font-size:13px;
-
-  transition:.2s;
-}
-
-.btn:hover{
-  transform:translateY(-1px);
 }
 
 .btn-outline{
   background:#fff;
-
   color:var(--teal-dark);
-
   border:1px solid #9acbd1;
 }
 
 .btn-primary{
   background:var(--teal);
-
   color:#fff;
-
   box-shadow:0 6px 16px rgba(44,142,158,.22);
 }
 
@@ -289,75 +185,82 @@ a{
   background:var(--teal-dark);
 }
 
-.btn-green{
-  background:#138808;
-  color:white;
+.btn-orange{
+  background:var(--orange);
+  color:#111;
+  box-shadow:0 6px 16px rgba(255,153,51,.25);
 }
 
-.btn-orange{
-  background:#FF9933;
-  color:#111;
+.btn-orange:hover{
+  background:#f18717;
 }
 
 .nav-toggle{
   display:none;
-
   background:none;
   border:0;
-
   font-size:24px;
 }
 
+/* =========================
+   OFFER
+========================= */
 
-/* =========================================================
+.offer-box{
+  margin:25px auto 0;
+  width:min(900px,92%);
+  border:2px dashed var(--orange);
+  background:linear-gradient(
+    135deg,
+    #fff7ed,
+    #ffffff,
+    #effff0
+  );
+  border-radius:18px;
+  padding:18px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.offer-box .flag{
+  font-size:25px;
+}
+
+.offer-box h2{
+  margin:5px 0;
+  font-size:25px;
+}
+
+.offer-box strong{
+  color:#e87500;
+}
+
+.offer-box p{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* =========================
    HERO
-========================================================= */
+========================= */
 
 .hero{
-  min-height:540px;
-
+  min-height:520px;
   padding:70px 8% 55px;
-
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:35px;
-
   align-items:center;
 }
 
 .hero-copy{
-  max-width:620px;
-}
-
-.independence-badge{
-  display:inline-block;
-
-  padding:8px 13px;
-
-  border-radius:50px;
-
-  background:#fff5e9;
-
-  border:1px solid #ffd4a7;
-
-  color:#a54f00;
-
-  font-size:12px;
-
-  font-weight:900;
-
-  margin-bottom:15px;
+  max-width:600px;
 }
 
 .hero h1{
   font-size:52px;
-
   line-height:1.04;
-
   letter-spacing:-2px;
-
   margin-bottom:18px;
 }
 
@@ -367,11 +270,8 @@ a{
 
 .hero p{
   color:#222a2f;
-
-  max-width:530px;
-
+  max-width:510px;
   font-size:16px;
-
   margin-bottom:25px;
 }
 
@@ -383,76 +283,49 @@ a{
 
 .hero-art{
   min-height:340px;
-
   position:relative;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 }
 
 .browser{
   width:min(500px,100%);
-
   height:285px;
-
   border-radius:12px;
-
   background:#dcecf4;
-
   border:8px solid #e9f4fa;
-
   box-shadow:var(--shadow);
-
   position:relative;
-
   overflow:hidden;
 }
 
 .browser-top{
   height:30px;
-
   background:#6e99c8;
-
   display:flex;
-
   align-items:center;
-
   gap:5px;
-
   padding:0 10px;
 }
 
 .browser-top i{
   width:6px;
   height:6px;
-
   border-radius:50%;
-
   background:#fff;
 }
 
 .chart-area{
   height:100%;
-
-  background:linear-gradient(
-    150deg,
-    #eff9ff,
-    #d5edf5
-  );
-
+  background:linear-gradient(150deg,#eff9ff,#d5edf5);
   position:relative;
-
   padding:35px 25px;
 }
 
 .chart{
   height:115px;
-
   border-bottom:2px solid #8bb8c5;
-
   position:relative;
 }
 
@@ -463,12 +336,8 @@ a{
 
 .person{
   position:absolute;
-
   font-size:58px;
-
-  filter:drop-shadow(
-    0 5px 4px rgba(0,0,0,.08)
-  );
+  filter:drop-shadow(0 5px 4px rgba(0,0,0,.08));
 }
 
 .person.one{
@@ -488,31 +357,22 @@ a{
 
 .hero-bubble{
   position:absolute;
-
   right:1%;
   top:18%;
-
   width:46px;
   height:46px;
-
   border-radius:50%;
-
   background:#fff;
-
   box-shadow:var(--shadow);
-
   display:grid;
   place-items:center;
-
   color:#e6ad38;
-
   font-size:23px;
 }
 
-
-/* =========================================================
+/* =========================
    SECTIONS
-========================================================= */
+========================= */
 
 .section{
   padding:80px 8%;
@@ -524,24 +384,15 @@ a{
 
 .section-title{
   font-size:36px;
-
   line-height:1.1;
-
   margin-bottom:10px;
 }
 
 .section-subtitle{
   color:var(--muted);
-
   max-width:650px;
-
   margin:0 auto 40px;
 }
-
-
-/* =========================================================
-   UNLOCK SECTION
-========================================================= */
 
 .unlock{
   background:#fbfdfd;
@@ -549,539 +400,196 @@ a{
 
 .unlock-grid{
   max-width:1050px;
-
   margin:auto;
-
   display:grid;
-
   grid-template-columns:1fr 1.3fr 1fr;
-
   gap:25px;
-
   align-items:center;
 }
 
 .info-list{
   display:flex;
-
   flex-direction:column;
-
   gap:25px;
 }
 
 .info-item{
   display:flex;
-
   gap:12px;
 }
 
 .dot{
   width:9px;
   height:9px;
-
   border-radius:50%;
-
   background:var(--teal);
-
   margin-top:8px;
-
   flex:none;
 }
 
 .info-item h3{
   font-size:14px;
-
   margin-bottom:3px;
 }
 
 .info-item p{
   font-size:12px;
-
   color:var(--muted);
 }
 
 .monetization-art{
   height:280px;
-
   border-radius:20px;
-
-  background:linear-gradient(
-    145deg,
-    #e7f5f8,
-    #d6ebf1
-  );
-
+  background:linear-gradient(145deg,#e7f5f8,#d6ebf1);
   position:relative;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 }
 
 .ad-window{
   width:70%;
-
   height:150px;
-
   background:#f9fcff;
-
   border-radius:8px;
-
   box-shadow:var(--shadow);
-
   border:5px solid #bfdbe5;
-
   position:relative;
 }
 
 .ad-window:before{
   content:"";
-
   position:absolute;
-
   left:15px;
   right:15px;
   top:30px;
-
   height:9px;
-
   background:#d6e6ed;
-
   border-radius:8px;
-
-  box-shadow:
-    0 22px #d6e6ed,
-    0 44px #d6e6ed;
+  box-shadow:0 22px #d6e6ed,0 44px #d6e6ed;
 }
 
 .money{
   position:absolute;
-
   right:8%;
   top:10%;
-
   width:58px;
   height:58px;
-
   border-radius:50%;
-
   background:#fff;
-
   color:#2ba26c;
-
   display:grid;
   place-items:center;
-
   font-size:31px;
-
   box-shadow:var(--shadow);
 }
 
 .rpm{
   position:absolute;
-
   left:8%;
   bottom:8%;
-
   background:#182337;
-
   color:#fff;
-
   width:110px;
   height:75px;
-
   border-radius:10px;
-
   padding:10px;
-
   font-size:11px;
 }
 
 .rpm strong{
   display:block;
-
   font-size:17px;
-
   margin-top:8px;
 }
 
-
-/* =========================================================
-   BUMPER OFFER CARD
-========================================================= */
-
-.bumper-section{
-  padding:70px 8%;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff5ea,
-      #ffffff 45%,
-      #eef9ec
-    );
-}
-
-.bumper-card{
-  max-width:1050px;
-
-  margin:auto;
-
-  border:2px solid #e8e8e8;
-
-  border-radius:22px;
-
-  padding:40px;
-
-  text-align:center;
-
-  background:#fff;
-
-  box-shadow:var(--shadow);
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.bumper-card:before{
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:0;
-  right:0;
-
-  height:7px;
-
-  background:linear-gradient(
-    90deg,
-    #FF9933 33.33%,
-    #ffffff 33.33%,
-    #ffffff 66.66%,
-    #138808 66.66%
-  );
-}
-
-.bumper-flag{
-  font-size:42px;
-
-  margin-bottom:8px;
-}
-
-.bumper-card h2{
-  font-size:38px;
-
-  margin-bottom:8px;
-}
-
-.bumper-card h2 span{
-  color:#138808;
-}
-
-.bumper-card p{
-  color:var(--muted);
-
-  max-width:650px;
-
-  margin:0 auto 20px;
-}
-
-.offer-points{
-  display:flex;
-
-  justify-content:center;
-
-  gap:12px;
-
-  flex-wrap:wrap;
-
-  margin-bottom:22px;
-}
-
-.offer-pill{
-  padding:8px 13px;
-
-  background:#f3faf4;
-
-  border:1px solid #cfe7d2;
-
-  border-radius:30px;
-
-  font-size:12px;
-
-  font-weight:800;
-
-  color:#226a2b;
-}
-
-
-/* =========================================================
-   CATEGORIES
-========================================================= */
-
-.categories{
-  background:#fff;
-}
+/* =========================
+   CATEGORY
+========================= */
 
 .category-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:20px;
-
   max-width:1050px;
-
   margin:35px auto 0;
 }
 
 .category-card{
   border:1px solid var(--line);
-
   border-radius:16px;
-
   padding:28px;
-
   text-align:left;
-
   background:#fff;
-
   transition:.2s;
-
-  box-shadow:
-    0 6px 25px rgba(20,60,70,.04);
-
-  cursor:pointer;
+  box-shadow:0 6px 25px rgba(20,60,70,.04);
 }
 
 .category-card:hover{
   transform:translateY(-5px);
-
   border-color:#9acbd1;
-
   box-shadow:var(--shadow);
 }
 
 .category-icon{
   width:48px;
   height:48px;
-
   border-radius:13px;
-
   background:var(--teal-light);
-
   color:var(--teal-dark);
-
   display:grid;
-
   place-items:center;
-
   font-size:23px;
-
   margin-bottom:18px;
 }
 
 .category-card h3{
   font-size:22px;
-
   margin-bottom:8px;
 }
 
 .category-card p{
   color:var(--muted);
-
   font-size:14px;
-
   margin-bottom:18px;
 }
 
 .read-more{
   color:var(--teal-dark);
-
   font-weight:800;
-
   font-size:13px;
 }
 
-
-/* =========================================================
-   CREATE EBOOK SECTION
-========================================================= */
-
-.ebook-section{
-  background:#f8fcfc;
-}
-
-.ebook-box{
-  max-width:1050px;
-
-  margin:auto;
-
-  display:grid;
-
-  grid-template-columns:1.2fr .8fr;
-
-  gap:30px;
-
-  align-items:center;
-}
-
-.ebook-copy h2{
-  font-size:40px;
-
-  line-height:1.1;
-
-  margin-bottom:14px;
-}
-
-.ebook-copy p{
-  color:var(--muted);
-
-  margin-bottom:20px;
-}
-
-.ebook-benefits{
-  display:grid;
-
-  gap:10px;
-
-  margin-bottom:22px;
-}
-
-.ebook-benefits div{
-  font-size:14px;
-
-  font-weight:700;
-}
-
-.ebook-preview-card{
-  min-height:330px;
-
-  border-radius:18px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #17383e,
-      #2c8e9e
-    );
-
-  color:#fff;
-
-  padding:35px;
-
-  box-shadow:var(--shadow);
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.ebook-preview-card:after{
-  content:"";
-
-  position:absolute;
-
-  width:180px;
-  height:180px;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.08);
-
-  right:-50px;
-  bottom:-50px;
-}
-
-.ebook-preview-card .mini-label{
-  font-size:11px;
-
-  font-weight:900;
-
-  letter-spacing:2px;
-
-  margin-bottom:15px;
-}
-
-.ebook-preview-card h3{
-  font-size:31px;
-
-  line-height:1.1;
-
-  margin-bottom:15px;
-}
-
-.ebook-preview-card p{
-  color:#d9f3f5;
-
-  font-size:13px;
-}
-
-
-/* =========================================================
-   PRICING
-========================================================= */
-
-.pricing-section{
-  background:#fff;
-}
-
-
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 .footer{
   background:#102329;
-
   color:#d8e7e9;
-
   padding:45px 8%;
-
   display:flex;
-
   justify-content:space-between;
-
   gap:30px;
 }
 
 .footer p{
   color:#9db3b8;
-
   font-size:13px;
 }
 
-
-/* =========================================================
+/* =========================
    MODALS
-========================================================= */
+========================= */
 
 .modal{
   position:fixed;
-
   inset:0;
-
   background:rgba(7,24,29,.64);
-
   display:none;
-
   align-items:center;
-
   justify-content:center;
-
   padding:20px;
-
   z-index:500;
 }
 
@@ -1091,74 +599,47 @@ a{
 
 .modal-card{
   width:min(620px,100%);
-
   max-height:90vh;
-
   overflow:auto;
-
   background:#fff;
-
   border-radius:20px;
-
   padding:32px;
-
   position:relative;
-
-  box-shadow:
-    0 30px 100px rgba(0,0,0,.3);
+  box-shadow:0 30px 100px rgba(0,0,0,.3);
 }
 
 .close{
   position:absolute;
-
   right:18px;
   top:12px;
-
   border:0;
-
   background:none;
-
   font-size:30px;
-
   color:#6d7478;
 }
 
 .modal-step{
   color:var(--teal-dark);
-
   font-size:11px;
-
   font-weight:900;
-
   letter-spacing:1.4px;
-
   margin-bottom:7px;
 }
 
 .modal-card h2{
   font-size:31px;
-
   margin-bottom:8px;
 }
 
 .modal-card .intro{
   color:var(--muted);
-
   font-size:14px;
-
   margin-bottom:22px;
 }
 
-
-/* =========================================================
-   FORM
-========================================================= */
-
 .form-grid{
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:15px;
 }
 
@@ -1172,11 +653,8 @@ a{
 
 .field label{
   display:block;
-
   font-size:12px;
-
   font-weight:700;
-
   margin-bottom:6px;
 }
 
@@ -1184,81 +662,49 @@ a{
 .field textarea,
 .field select{
   width:100%;
-
   border:1px solid #d7e0e2;
-
   border-radius:9px;
-
   padding:12px;
-
   outline:none;
 }
 
-.field textarea{
-  resize:vertical;
-}
-
 .field input:focus,
-.field textarea:focus,
-.field select:focus{
+.field textarea:focus{
   border-color:var(--teal);
-
-  box-shadow:
-    0 0 0 3px #e8f6f7;
+  box-shadow:0 0 0 3px #e8f6f7;
 }
 
 .modal-footer{
   display:flex;
-
   justify-content:flex-end;
-
   gap:10px;
-
-  margin-top:8px;
+  margin-top:15px;
 }
-
-
-/* =========================================================
-   CATEGORY SELECT
-========================================================= */
 
 .category-select-grid{
   display:grid;
-
   gap:12px;
 }
 
 .select-card{
   border:1px solid #dfe7e9;
-
   background:#fff;
-
   border-radius:12px;
-
   padding:16px;
-
   text-align:left;
-
   display:flex;
-
   gap:14px;
-
   align-items:center;
-
-  width:100%;
 }
 
 .select-card.selected{
   border-color:var(--teal);
-
   background:var(--teal-light);
 }
 
 .select-card .category-icon{
   margin:0;
-
   width:42px;
-
   height:42px;
 }
 
@@ -1270,10 +716,9 @@ a{
   color:var(--muted);
 }
 
-
-/* =========================================================
+/* =========================
    GUIDE
-========================================================= */
+========================= */
 
 .guide{
   width:min(900px,100%);
@@ -1281,48 +726,37 @@ a{
 
 .guide-header{
   padding-right:30px;
-
   border-bottom:1px solid var(--line);
-
   padding-bottom:20px;
-
   margin-bottom:20px;
 }
 
 .guide-label{
   color:var(--teal-dark);
-
   font-size:11px;
-
   font-weight:900;
-
   letter-spacing:1.5px;
 }
 
 .guide h2{
   font-size:37px;
-
   margin:5px 0 10px;
 }
 
 .guide p{
   color:#414b50;
-
   margin-bottom:17px;
 }
 
 .guide h3{
   font-size:20px;
-
   margin:26px 0 7px;
-
   color:#17383e;
 }
 
 .guide ol,
 .guide ul{
   padding-left:23px;
-
   color:#414b50;
 }
 
@@ -1332,331 +766,152 @@ a{
 
 .code{
   background:#101820;
-
   color:#dffbff;
-
   border-radius:10px;
-
   padding:17px;
-
   overflow:auto;
-
   font-family:monospace;
-
   font-size:13px;
 }
 
 .success{
   background:#e9f8ef;
-
   border:1px solid #bfe4cd;
-
   color:#21613a;
-
   padding:13px;
-
   border-radius:9px;
-
   margin-top:15px;
-
   font-size:13px;
 }
 
-
-/* =========================================================
-   EBOOK CREATOR
-========================================================= */
-
-.creator-card{
-  width:min(760px,100%);
-}
-
-.creator-header{
-  background:
-    linear-gradient(
-      135deg,
-      #f1fbfb,
-      #fff
-    );
-
-  border:1px solid #dceff1;
-
-  border-radius:14px;
-
-  padding:20px;
-
-  margin-bottom:22px;
-}
-
-.creator-header h3{
-  font-size:22px;
-
-  margin-bottom:5px;
-}
-
-.creator-header p{
-  color:var(--muted);
-
-  font-size:13px;
-}
-
-.creator-offer{
-  display:inline-block;
-
-  margin-top:10px;
-
-  padding:7px 10px;
-
-  border-radius:30px;
-
-  background:#fff3e3;
-
-  color:#a74e00;
-
-  font-size:11px;
-
-  font-weight:900;
-}
-
-
-/* =========================================================
+/* =========================
    COUNTDOWN
-========================================================= */
+========================= */
 
-.countdown-screen{
+.countdown-card{
   text-align:center;
-
-  padding:35px 10px;
+  padding:45px 25px;
 }
 
-.countdown-screen h2{
-  font-size:31px;
-
-  margin-bottom:8px;
-}
-
-.countdown-screen p{
-  color:var(--muted);
-
-  margin-bottom:20px;
+.countdown-circle{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  margin:25px auto;
+  background:linear-gradient(
+    135deg,
+    #ff9933,
+    #fff,
+    #138808
+  );
+  display:grid;
+  place-items:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.14);
 }
 
 .countdown-number{
-  width:110px;
-  height:110px;
-
+  width:95px;
+  height:95px;
   border-radius:50%;
-
-  margin:20px auto;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--teal),
-      var(--teal-dark)
-    );
-
-  color:#fff;
-
+  background:#fff;
   display:grid;
   place-items:center;
-
-  font-size:50px;
-
+  font-size:43px;
   font-weight:900;
-
-  box-shadow:
-    0 15px 35px rgba(44,142,158,.3);
+  color:var(--teal-dark);
 }
 
-
-/* =========================================================
-   EBOOK RESULT
-========================================================= */
-
-.ebook-result{
-  width:min(850px,100%);
+.loading-bar{
+  width:100%;
+  height:9px;
+  background:#e7eeee;
+  border-radius:20px;
+  overflow:hidden;
 }
 
-.ebook-result-header{
+.loading-progress{
+  height:100%;
+  width:0%;
+  background:linear-gradient(
+    90deg,
+    #ff9933,
+    #fff,
+    #138808
+  );
+  transition:width 1s linear;
+}
+
+/* =========================
+   EBOOK READY
+========================= */
+
+.ebook-ready{
   text-align:center;
-
-  padding-bottom:20px;
-
-  border-bottom:1px solid var(--line);
-
-  margin-bottom:20px;
 }
 
-.ebook-result-header .free-badge{
-  display:inline-block;
+.ebook-icon{
+  font-size:65px;
+  margin:10px;
+}
 
-  background:#e9f8ef;
-
-  border:1px solid #bfe4cd;
-
-  color:#21613a;
-
-  border-radius:30px;
-
-  padding:7px 12px;
-
-  font-size:11px;
-
-  font-weight:900;
-
+.ebook-ready h2{
   margin-bottom:10px;
 }
 
-.ebook-result-header h2{
-  font-size:34px;
-
-  margin-bottom:7px;
+.ebook-ready p{
+  color:var(--muted);
 }
 
-.ebook-paper{
-  background:#fff;
+.ebook-actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
 
-  border:1px solid #e2e7e8;
-
+.ebook-preview{
+  margin-top:25px;
+  border:1px solid #dfe7e9;
   border-radius:12px;
-
-  padding:35px;
-
-  box-shadow:
-    0 10px 35px rgba(20,60,70,.08);
-
-  max-height:420px;
-
+  padding:20px;
+  text-align:left;
+  background:#fafcfc;
+  max-height:300px;
   overflow:auto;
 }
 
-.ebook-paper h1{
-  font-size:31px;
-
-  margin-bottom:8px;
-
-  color:#17383e;
-}
-
-.ebook-paper .ebook-author{
+.ebook-preview h3{
+  margin-bottom:10px;
   color:var(--teal-dark);
-
-  font-weight:800;
-
-  margin-bottom:25px;
 }
 
-.ebook-paper h3{
-  font-size:18px;
-
-  margin:20px 0 7px;
-}
-
-.ebook-paper p{
-  color:#414b50;
-
-  white-space:pre-wrap;
-}
-
-.download-area{
-  display:flex;
-
-  justify-content:center;
-
-  gap:10px;
-
-  flex-wrap:wrap;
-
-  margin-top:20px;
-}
-
-
-/* =========================================================
-   ACCOUNT STATUS
-========================================================= */
-
-.account-chip{
-  display:none;
-
-  align-items:center;
-
-  gap:8px;
-
-  padding:8px 11px;
-
-  border-radius:30px;
-
-  background:#eaf7f8;
-
-  color:var(--teal-dark);
-
-  font-size:12px;
-
-  font-weight:800;
-}
-
-.account-chip.show{
-  display:flex;
-}
-
-.account-dot{
-  width:8px;
-  height:8px;
-
-  border-radius:50%;
-
-  background:#138808;
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-  position:fixed;
-
-  left:50%;
-  bottom:25px;
-
-  transform:
-    translate(-50%,120px);
-
-  background:#102329;
-
-  color:white;
-
-  padding:13px 18px;
-
-  border-radius:10px;
-
+.ebook-preview p{
   font-size:13px;
-
-  font-weight:700;
-
-  z-index:1000;
-
-  transition:.3s;
-
-  box-shadow:var(--shadow);
+  margin-bottom:10px;
 }
 
-.toast.show{
-  transform:
-    translate(-50%,0);
+/* =========================
+   EBOOK MAKER
+========================= */
+
+.maker-note{
+  background:#fff7ed;
+  border:1px solid #ffd7a8;
+  padding:13px;
+  border-radius:10px;
+  margin-bottom:18px;
+  font-size:13px;
 }
 
-
-/* =========================================================
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
 @media(max-width:900px){
 
   .hero{
     grid-template-columns:1fr;
-
     padding-top:50px;
   }
 
@@ -1671,34 +926,12 @@ a{
   .category-grid{
     grid-template-columns:1fr;
   }
-
-  .ebook-box{
-    grid-template-columns:1fr;
-  }
-
 }
 
 @media(max-width:700px){
 
-  .india-topbar{
-    height:30px;
-  }
-
-  .india-topbar .saffron,
-  .india-topbar .green{
-    height:9px;
-  }
-
-  .india-topbar .white{
-    height:12px;
-  }
-
-  .india-offer-text{
-    display:none;
-  }
-
   .navbar{
-    min-height:68px;
+    height:68px;
   }
 
   .nav-links{
@@ -1707,7 +940,6 @@ a{
 
   .nav-actions{
     margin-left:auto;
-
     margin-right:10px;
   }
 
@@ -1746,123 +978,37 @@ a{
   .footer{
     flex-direction:column;
   }
-
-  .bumper-card{
-    padding:28px 20px;
-  }
-
-  .bumper-card h2{
-    font-size:30px;
-  }
-
-  .ebook-copy h2{
-    font-size:31px;
-  }
-
-  .ebook-paper{
-    padding:22px;
-  }
-
 }
-
-
-/* =========================================================
-   PRINT
-========================================================= */
-
-@media print{
-
-  body *{
-    visibility:hidden;
-  }
-
-  #printEbook,
-  #printEbook *{
-    visibility:visible;
-  }
-
-  #printEbook{
-    position:absolute;
-
-    left:0;
-    top:0;
-
-    width:100%;
-  }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =======================================================
-     🇮🇳 TOP TIRANGA
-======================================================= -->
-
-<div class="india-topbar">
-
-  <div class="saffron"></div>
-
-  <div class="white">
-
-    <div class="ashoka-chakra"></div>
-
-    <div class="india-offer-text">
-      🇮🇳 INDEPENDENCE DAY • BUMPER OFFER
-    </div>
-
-  </div>
-
-  <div class="green"></div>
-
+<!-- TRICOLOR -->
+<div class="tricolor-bar">
+  <span class="orange"></span>
+  <span class="white"></span>
+  <span class="green"></span>
 </div>
 
-
-<!-- =======================================================
-     BUMPER OFFER
-======================================================= -->
-
-<div class="offer-bar">
-
-  🇮🇳 <strong>15 AUGUST INDEPENDENCE DAY BUMPER OFFER</strong>
+<!-- INDEPENDENCE DAY -->
+<div class="independence-banner">
+  🇮🇳 <span>BUMPER INDEPENDENCE DAY OFFER</span>
   🇮🇳
-
-  &nbsp; • &nbsp;
-
-  1 GUIDE = 1 EBOOK
-  <span class="free-word">FREEEE 🎁</span>
-
+  <strong>1 GUIDE = 1 EBOOK FREEEE</strong>
+  🇮🇳
 </div>
-
-
-<!-- =======================================================
-     NAVBAR
-======================================================= -->
 
 <header class="navbar">
 
-  <a
-    href="#"
-    class="logo"
-    onclick="goHome();return false;"
-  >
-
+  <a href="#" class="logo" onclick="goHome();return false;">
     <span class="logo-mark">S</span>
-
     SELLORA
-
   </a>
-
 
   <nav class="nav-links">
 
-    <a href="#home">
-      Home
-    </a>
+    <a href="#home">Home</a>
 
     <a href="#how-it-works">
       How It Works
@@ -1870,10 +1016,6 @@ a{
 
     <a href="#features">
       Features
-    </a>
-
-    <a href="#ebook">
-      Make Ebook
     </a>
 
     <a href="#pricing">
@@ -1886,55 +1028,25 @@ a{
 
   </nav>
 
-
   <div class="nav-actions">
-
-    <div
-      class="account-chip"
-      id="accountChip"
-    >
-      <span class="account-dot"></span>
-
-      <span id="accountName">
-        Account
-      </span>
-    </div>
-
 
     <button
       class="btn btn-outline"
-      id="loginButton"
-      onclick="openLogin()"
-    >
+      onclick="openLogin()">
       Log In
     </button>
 
-
     <button
       class="btn btn-primary"
-      id="signupButton"
-      onclick="openSignup()"
-    >
+      onclick="openSignup()">
       Create Account
-    </button>
-
-
-    <button
-      class="btn btn-green"
-      id="navEbookButton"
-      onclick="openEbookCreator()"
-      style="display:none"
-    >
-      Make Ebook
     </button>
 
   </div>
 
-
   <button
     class="nav-toggle"
-    onclick="toggleMobileNav()"
-  >
+    onclick="toggleMobileNav()">
     ☰
   </button>
 
@@ -1943,86 +1055,68 @@ a{
 
 <main>
 
-
-<!-- =======================================================
+<!-- =========================
      HERO
-======================================================= -->
+========================= -->
 
-<section
-  class="hero"
-  id="home"
->
+<section class="hero" id="home">
 
   <div class="hero-copy">
 
-    <div class="independence-badge">
-
-      🇮🇳 15 AUGUST SPECIAL • BUMPER OFFER
-
-    </div>
-
-
     <h1>
-
       Your Journey to a
-
-      <span>
-        Million-Dollar Startup
-      </span>
-
+      <span>Million-Dollar Startup</span>
       Starts Here
-
     </h1>
 
-
     <p>
-
-      Learn how to make money,
-      monetize ideas, build startups,
-      open businesses and create
-      digital products with practical
-      step-by-step guidance.
-
+      Learn business, startups, marketing and online monetization
+      with practical step-by-step guides.
     </p>
-
 
     <div class="hero-buttons">
 
       <button
         class="btn btn-primary"
-        onclick="openSignupOrEbook()"
-      >
-        Start Free Trial
+        onclick="openSignup()">
+        Start for Free
       </button>
-
 
       <button
-        class="btn btn-outline"
-        onclick="openEbookCreator()"
-      >
-        ✍️ Make Your Own Ebook
+        class="btn btn-orange"
+        onclick="openEbookMaker()">
+        📚 Free Trial — Make Your Ebook
       </button>
+
+    </div>
+
+    <div class="offer-box">
+
+      <div class="flag">🇮🇳</div>
+
+      <h2>
+        BUMPER OFFER —
+        <strong>1 GUIDE = 1 EBOOK FREEEE</strong>
+      </h2>
+
+      <p>
+        Complete any Sellora guide and unlock your FREE downloadable ebook.
+      </p>
 
     </div>
 
   </div>
 
 
-  <div
-    class="hero-art"
-    aria-label="Sellora startup illustration"
-  >
+  <div class="hero-art">
 
     <div class="browser">
 
       <div class="browser-top">
-
         <i></i>
         <i></i>
         <i></i>
-
       </div>
-
 
       <div class="chart-area">
 
@@ -2030,30 +1124,17 @@ a{
 
           <svg
             viewBox="0 0 500 120"
-            preserveAspectRatio="none"
-          >
+            preserveAspectRatio="none">
 
             <polyline
-              points="
-                0,105
-                75,95
-                135,100
-                200,75
-                260,88
-                325,48
-                390,55
-                455,18
-                500,25
-              "
+              points="0,105 75,95 135,100 200,75 260,88 325,48 390,55 455,18 500,25"
               fill="none"
               stroke="#4b91a0"
-              stroke-width="5"
-            />
+              stroke-width="5"/>
 
           </svg>
 
         </div>
-
 
         <div class="person one">
           🧑🏻‍💻
@@ -2071,7 +1152,6 @@ a{
 
     </div>
 
-
     <div class="hero-bubble">
       💡
     </div>
@@ -2081,92 +1161,23 @@ a{
 </section>
 
 
-<!-- =======================================================
-     BUMPER OFFER SECTION
-======================================================= -->
-
-<section class="bumper-section">
-
-  <div class="bumper-card">
-
-    <div class="bumper-flag">
-      🇮🇳
-    </div>
-
-    <h2>
-
-      Independence Day
-      <span>Bumper Offer!</span>
-
-    </h2>
-
-    <p>
-
-      Celebrate India's Independence Day
-      with Sellora. Learn something useful
-      and get a FREE ebook with your guide.
-
-    </p>
-
-
-    <div class="offer-points">
-
-      <div class="offer-pill">
-        📚 1 Guide
-      </div>
-
-      <div class="offer-pill">
-        +
-      </div>
-
-      <div class="offer-pill">
-        📕 1 Ebook
-      </div>
-
-      <div class="offer-pill">
-        = FREEEE 🎁
-      </div>
-
-    </div>
-
-
-    <button
-      class="btn btn-primary"
-      onclick="openSignupOrEbook()"
-    >
-      Claim Bumper Offer →
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     UNLOCK YOUR AD POTENTIAL
-======================================================= -->
+<!-- =========================
+     FEATURES
+========================= -->
 
 <section
   class="section unlock"
-  id="features"
->
+  id="features">
 
   <div class="center">
 
     <h2 class="section-title">
-
       UNLOCK YOUR AD POTENTIAL
-
     </h2>
 
-
     <p class="section-subtitle">
-
-      Maximize your revenue with
-      AI-powered monetization,
-      proven strategy and growth
-      guidance for startups.
-
+      Maximize your revenue with practical monetization,
+      business and growth guidance.
     </p>
 
   </div>
@@ -2174,9 +1185,7 @@ a{
 
   <div class="unlock-grid">
 
-
     <div class="info-list">
-
 
       <div class="info-item">
 
@@ -2189,10 +1198,8 @@ a{
           </h3>
 
           <p>
-            Use AI to understand
-            opportunities, improve your
-            offer and find ways to
-            monetize your audience.
+            Discover opportunities and ways to monetize
+            your audience.
           </p>
 
         </div>
@@ -2211,15 +1218,13 @@ a{
           </h3>
 
           <p>
-            Learn how to turn an idea
-            into a useful product and
-            a repeatable business model.
+            Learn how to turn an idea into a useful
+            product and business model.
           </p>
 
         </div>
 
       </div>
-
 
     </div>
 
@@ -2249,7 +1254,6 @@ a{
 
     <div class="info-list">
 
-
       <div class="info-item">
 
         <span class="dot"></span>
@@ -2261,10 +1265,8 @@ a{
           </h3>
 
           <p>
-            Understand customers,
-            revenue, costs and metrics
-            before looking for outside
-            capital.
+            Understand customers, revenue, costs
+            and important business metrics.
           </p>
 
         </div>
@@ -2279,20 +1281,17 @@ a{
         <div>
 
           <h3>
-            RPM analytics
+            Monetization analytics
           </h3>
 
           <p>
-            Learn how to read
-            monetization metrics and
-            make decisions based
-            on performance.
+            Learn how to understand performance
+            and improve your strategy.
           </p>
 
         </div>
 
       </div>
-
 
     </div>
 
@@ -2301,30 +1300,22 @@ a{
 </section>
 
 
-<!-- =======================================================
+<!-- =========================
      CATEGORIES
-======================================================= -->
+========================= -->
 
 <section
   class="section categories"
-  id="how-it-works"
->
+  id="how-it-works">
 
   <div class="center">
 
     <h2 class="section-title">
-
       Choose What You Want to Learn
-
     </h2>
 
-
     <p class="section-subtitle">
-
-      Create your free Sellora account
-      and select the learning paths
-      that match your goals.
-
+      Complete a guide and unlock your FREE ebook.
     </p>
 
   </div>
@@ -2335,8 +1326,7 @@ a{
 
     <button
       class="category-card"
-      onclick="openGuide('business')"
-    >
+      onclick="openGuide('business')">
 
       <div class="category-icon">
         🏢
@@ -2348,8 +1338,7 @@ a{
 
       <p>
         Learn how to choose an idea,
-        organize a business, find
-        customers, price your offer
+        find customers, price your offer
         and grow.
       </p>
 
@@ -2362,8 +1351,7 @@ a{
 
     <button
       class="category-card"
-      onclick="openGuide('startup')"
-    >
+      onclick="openGuide('startup')">
 
       <div class="category-icon">
         🚀
@@ -2375,9 +1363,8 @@ a{
 
       <p>
         Learn how to validate an idea,
-        build an MVP, create a website,
-        publish it through GitHub
-        and launch.
+        build an MVP, create a website
+        and publish it through GitHub.
       </p>
 
       <span class="read-more">
@@ -2389,8 +1376,7 @@ a{
 
     <button
       class="category-card"
-      onclick="openGuide('marketing')"
-    >
+      onclick="openGuide('marketing')">
 
       <div class="category-icon">
         📈
@@ -2402,9 +1388,8 @@ a{
 
       <p>
         Learn how to attract customers,
-        build an audience, create
-        content, sell products
-        and make money online.
+        build an audience and make money
+        online.
       </p>
 
       <span class="read-more">
@@ -2419,164 +1404,49 @@ a{
 </section>
 
 
-<!-- =======================================================
-     CREATE YOUR OWN EBOOK
-======================================================= -->
-
-<section
-  class="section ebook-section"
-  id="ebook"
->
-
-  <div class="ebook-box">
-
-
-    <div class="ebook-copy">
-
-      <div class="independence-badge">
-        🇮🇳 SPECIAL OFFER
-      </div>
-
-
-      <h2>
-        Make Your Own Ebook
-        & Sell It
-      </h2>
-
-
-      <p>
-
-        Have an idea that you want to
-        turn into a digital product?
-        Tell Sellora what your ebook
-        is about and create your first
-        ebook concept.
-
-      </p>
-
-
-      <div class="ebook-benefits">
-
-        <div>
-          ✅ Choose your ebook goal
-        </div>
-
-        <div>
-          ✅ Describe what your ebook contains
-        </div>
-
-        <div>
-          ✅ Add your target audience
-        </div>
-
-        <div>
-          ✅ Generate an ebook preview
-        </div>
-
-        <div>
-          ✅ Download your ebook as PDF
-        </div>
-
-      </div>
-
-
-      <button
-        class="btn btn-primary"
-        onclick="openEbookCreator()"
-      >
-        ✍️ Make My Ebook
-      </button>
-
-    </div>
-
-
-    <div class="ebook-preview-card">
-
-      <div class="mini-label">
-        SELLORA DIGITAL PRODUCT
-      </div>
-
-      <h3>
-        Your Idea.
-        Your Ebook.
-        Your Brand.
-      </h3>
-
-      <p>
-        Create useful digital products,
-        build an audience and explore
-        ways to monetize your knowledge.
-      </p>
-
-      <br>
-
-      <strong>
-        1 GUIDE = 1 EBOOK FREEEE 🎁
-      </strong>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
+<!-- =========================
      PRICING
-======================================================= -->
+========================= -->
 
 <section
-  class="section center pricing-section"
-  id="pricing"
->
+  class="section center"
+  id="pricing">
 
   <h2 class="section-title">
     Start Free. Learn. Build. Grow.
   </h2>
 
-
   <p class="section-subtitle">
-
-    Create your Sellora account and
-    begin exploring the guides at no cost.
-
+    No complicated setup. Start learning and
+    unlock your free ebook after completing a guide.
   </p>
-
 
   <button
     class="btn btn-primary"
-    onclick="openSignupOrEbook()"
-  >
-    Start Free Trial
+    onclick="openSignup()">
+
+    Create My Free Account
+
   </button>
 
 </section>
 
 
-<!-- =======================================================
+<!-- =========================
      ABOUT
-======================================================= -->
+========================= -->
 
 <section
   class="section center"
-  id="about"
->
+  id="about">
 
   <h2 class="section-title">
-
     Built for People Who Want to Build
-
   </h2>
 
-
   <p class="section-subtitle">
-
-    Sellora brings business, startup,
-    marketing and digital-product
-    knowledge into one simple
-    learning experience.
-
+    Sellora brings business, startup and marketing
+    knowledge into one simple learning experience.
   </p>
 
 </section>
@@ -2584,10 +1454,6 @@ a{
 
 </main>
 
-
-<!-- =======================================================
-     FOOTER
-======================================================= -->
 
 <footer class="footer">
 
@@ -2603,46 +1469,34 @@ a{
 
     </div>
 
-
     <p style="margin-top:8px">
-
-      Monetize ideas.
-      Build businesses.
-      Grow startups.
-
+      Monetize ideas. Build businesses. Grow startups.
     </p>
 
   </div>
 
-
   <p>
-
-    🇮🇳 Independence Day Offer
-    • © 2026 Sellora
-
+    © 2026 Sellora. All rights reserved.
   </p>
 
 </footer>
 
 
-<!-- =======================================================
+<!-- =========================
      SIGNUP MODAL
-======================================================= -->
+========================= -->
 
 <div
   class="modal"
-  id="signupModal"
->
+  id="signupModal">
 
   <div class="modal-card">
 
     <button
       class="close"
-      onclick="closeModal('signupModal')"
-    >
+      onclick="closeModal('signupModal')">
       ×
     </button>
-
 
     <div id="signupContent"></div>
 
@@ -2651,42 +1505,35 @@ a{
 </div>
 
 
-<!-- =======================================================
+<!-- =========================
      LOGIN MODAL
-======================================================= -->
+========================= -->
 
 <div
   class="modal"
-  id="loginModal"
->
+  id="loginModal">
 
   <div class="modal-card">
 
     <button
       class="close"
-      onclick="closeModal('loginModal')"
-    >
+      onclick="closeModal('loginModal')">
       ×
     </button>
-
 
     <div class="modal-step">
       SELLORA ACCOUNT
     </div>
 
-
     <h2>
       Welcome back
     </h2>
-
 
     <p class="intro">
       Log in to your Sellora account.
     </p>
 
-
     <form onsubmit="loginDemo(event)">
-
 
       <div class="field">
 
@@ -2698,8 +1545,7 @@ a{
           id="loginEmail"
           type="email"
           required
-          placeholder="you@example.com"
-        >
+          placeholder="you@example.com">
 
       </div>
 
@@ -2714,8 +1560,7 @@ a{
           id="loginPassword"
           type="password"
           required
-          placeholder="Your password"
-        >
+          placeholder="Your password">
 
       </div>
 
@@ -2724,13 +1569,13 @@ a{
 
         <button
           type="submit"
-          class="btn btn-primary"
-        >
+          class="btn btn-primary">
+
           Log In
+
         </button>
 
       </div>
-
 
     </form>
 
@@ -2739,24 +1584,21 @@ a{
 </div>
 
 
-<!-- =======================================================
+<!-- =========================
      GUIDE MODAL
-======================================================= -->
+========================= -->
 
 <div
   class="modal"
-  id="guideModal"
->
+  id="guideModal">
 
   <div class="modal-card guide">
 
     <button
       class="close"
-      onclick="closeModal('guideModal')"
-    >
+      onclick="closeModal('guideModal')">
       ×
     </button>
-
 
     <div id="guideContent"></div>
 
@@ -2765,145 +1607,300 @@ a{
 </div>
 
 
-<!-- =======================================================
-     EBOOK CREATOR MODAL
-======================================================= -->
+<!-- =========================
+     COUNTDOWN MODAL
+========================= -->
 
 <div
   class="modal"
-  id="ebookCreatorModal"
->
+  id="countdownModal">
 
-  <div class="modal-card creator-card">
+  <div class="modal-card countdown-card">
 
-    <button
-      class="close"
-      onclick="closeModal('ebookCreatorModal')"
-    >
-      ×
-    </button>
+    <div class="guide-label">
+      SELLORA FREE EBOOK
+    </div>
 
+    <h2>
+      Preparing Your Ebook 🎁
+    </h2>
 
-    <div id="ebookCreatorContent"></div>
+    <p class="intro">
+      Your free ebook is being prepared.
+      Please wait a few seconds...
+    </p>
+
+    <div class="countdown-circle">
+
+      <div
+        class="countdown-number"
+        id="countdownNumber">
+        5
+      </div>
+
+    </div>
+
+    <div class="loading-bar">
+
+      <div
+        class="loading-progress"
+        id="loadingProgress">
+      </div>
+
+    </div>
+
+    <p style="margin-top:15px;color:#777;font-size:13px">
+      🇮🇳 Independence Day Bumper Offer
+    </p>
 
   </div>
 
 </div>
 
 
-<!-- =======================================================
-     EBOOK RESULT MODAL
-======================================================= -->
+<!-- =========================
+     EBOOK READY MODAL
+========================= -->
 
 <div
   class="modal"
-  id="ebookResultModal"
->
+  id="ebookReadyModal">
 
-  <div class="modal-card ebook-result">
+  <div class="modal-card ebook-ready">
 
     <button
       class="close"
-      onclick="closeModal('ebookResultModal')"
-    >
+      onclick="closeModal('ebookReadyModal')">
       ×
     </button>
 
+    <div class="ebook-icon">
+      📚
+    </div>
 
-    <div id="ebookResultContent"></div>
+    <div class="guide-label">
+      BUMPER OFFER
+    </div>
+
+    <h2>
+      Your FREE Ebook is Ready! 🎉
+    </h2>
+
+    <p>
+      You completed the guide.
+      Your ebook is absolutely FREE.
+    </p>
+
+    <div class="offer-box">
+
+      🇮🇳
+
+      <strong>
+        1 GUIDE = 1 EBOOK FREEEE
+      </strong>
+
+      🇮🇳
+
+    </div>
+
+    <div class="ebook-actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="viewEbook()">
+
+        👀 View Ebook
+
+      </button>
+
+      <button
+        class="btn btn-orange"
+        onclick="downloadEbook()">
+
+        ⬇ Download PDF
+
+      </button>
+
+    </div>
+
+    <div
+      class="ebook-preview"
+      id="ebookPreview">
+
+      <h3>
+        Ebook Preview
+      </h3>
+
+      <p>
+        Click "View Ebook" to preview your free ebook.
+      </p>
+
+    </div>
 
   </div>
 
 </div>
 
 
-<!-- =======================================================
-     TOAST
-======================================================= -->
+<!-- =========================
+     EBOOK MAKER MODAL
+========================= -->
 
 <div
-  class="toast"
-  id="toast"
->
-  Done!
+  class="modal"
+  id="ebookMakerModal">
+
+  <div class="modal-card">
+
+    <button
+      class="close"
+      onclick="closeModal('ebookMakerModal')">
+      ×
+    </button>
+
+    <div class="modal-step">
+      FREE EBOOK TRIAL
+    </div>
+
+    <h2>
+      Make Your Own Ebook
+    </h2>
+
+    <p class="intro">
+      Tell Sellora about your ebook idea and create
+      a simple downloadable PDF.
+    </p>
+
+    <div class="maker-note">
+      🎁 <strong>Free Trial:</strong>
+      Create your ebook concept and download it as a PDF.
+    </div>
+
+    <form onsubmit="createCustomEbook(event)">
+
+      <div class="field">
+
+        <label>
+          Ebook Title *
+        </label>
+
+        <input
+          id="customTitle"
+          required
+          placeholder="Example: How to Make Money Online">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          What is the goal of your ebook? *
+        </label>
+
+        <textarea
+          id="customGoal"
+          rows="4"
+          required
+          placeholder="Explain what your ebook should help readers achieve..."></textarea>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          What will your ebook contain? *
+        </label>
+
+        <textarea
+          id="customContent"
+          rows="6"
+          required
+          placeholder="Write the main topics, lessons, tips or ideas..."></textarea>
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <button
+          class="btn btn-primary"
+          type="submit">
+
+          Continue →
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
 </div>
 
-
-<!-- =======================================================
-     JAVASCRIPT
-======================================================= -->
 
 <script>
 
-
-/* =========================================================
+/* =====================================================
    GUIDE DATA
-========================================================= */
+===================================================== */
 
 const guides = {
-
 
   business: {
 
     title:"How to Open a Business",
 
     intro:
-    "Opening a business starts with a problem, a customer and a clear offer. You do not need to begin with a huge office, a large team or a complicated product. Start by understanding who you want to serve and what valuable result you can provide.",
+    "Opening a business starts with a problem, a customer and a clear offer. You do not need to begin with a huge office, a large team or a complicated product. Start by understanding who you want to serve and what valuable result you can provide. Then turn that idea into a simple business model, validate demand, set up the appropriate legal and financial structure for your location, launch and improve the business using customer feedback.",
 
     sections:[
 
       [
         "1. Choose a business idea",
-
-        "Start with a real customer problem. Write down who has the problem, how they currently solve it, what their current solution costs and why your solution could be better."
+        "Start with a real customer problem. Write down who has the problem, how they currently solve it, what their current solution costs and why your solution could be better. A good business idea should have a customer who is willing to pay for the outcome."
       ],
 
       [
         "2. Research your market",
-
-        "Talk to potential customers and study competitors. Look for patterns in customer complaints, prices, features and weaknesses."
+        "Talk to potential customers and study competitors. Look for patterns: what customers complain about, what features they value, what prices are common and where competitors are weak. Do not copy another company; use research to understand the market."
       ],
 
       [
         "3. Create your business model",
-
-        "Decide what you sell, who pays, how much they pay and how you deliver the product or service."
+        "Decide what you sell, who pays, how much they pay and how you deliver the product or service. Common models include one-time purchases, subscriptions, commissions, services, licensing and advertising."
       ],
 
       [
         "4. Set up the business",
-
-        "Choose an appropriate legal structure for your country or region, register the business where required and understand applicable taxes and licenses."
+        "Choose an appropriate legal structure for your country or region, register the business where required, understand applicable taxes and obtain any licenses or permits your specific activity requires."
       ],
 
       [
         "5. Build your first offer",
-
-        "Create a simple version of the product or service. Your first version should solve one important problem well."
+        "Create a simple version of the product or service. Your first version should solve one important problem exceptionally well. Ask early customers for feedback and improve the offer before investing heavily."
       ],
 
       [
         "6. Find your first customers",
-
-        "Use direct outreach, referrals, communities, partnerships and content to find your first customers."
+        "Use direct outreach, referrals, communities, partnerships, content and other suitable channels. Speak directly to early customers so you can learn which messages and offers actually convert."
       ],
 
       [
         "7. Price for value",
-
-        "Consider customer value, your costs, alternatives and willingness to pay. Test pricing rather than assuming the perfect price immediately."
+        "Consider the value of the result, your costs, competitor alternatives and the willingness of your target customers to pay. Test pricing instead of assuming the perfect price on day one."
       ],
 
       [
         "8. Track the numbers",
-
         "Track revenue, costs, gross margin, cash flow, customer acquisition cost, conversion rate and retention."
       ],
 
       [
         "9. Grow carefully",
-
-        "When a sales or delivery process works repeatedly, document it and automate or delegate parts of it."
+        "When a sales or delivery process works repeatedly, document it and automate or delegate parts of it. Scale what works rather than multiplying problems."
       ]
 
     ]
@@ -2916,77 +1913,64 @@ const guides = {
     title:"Complete Startup Guide",
 
     intro:
-    "A startup is not simply a website or an app. A startup begins when you identify a meaningful problem, create a solution and find evidence that people want it.",
+    "A startup is not simply a website or an app. A startup begins when you identify a meaningful problem, create a solution and find evidence that people want it. The fastest path is usually to validate the problem, build the smallest useful version, put it in front of real users, learn from their behavior and improve it.",
 
     sections:[
 
       [
         "1. Find a problem",
-
-        "Choose a problem that is painful, frequent or valuable enough that customers will spend money or time to solve it."
+        "Choose a problem that is painful, frequent or valuable enough that customers will spend money or time to solve it. Talk to potential customers before building too much."
       ],
 
       [
         "2. Validate the idea",
-
-        "Create a landing page, prototype, waitlist or manual service. Measure real actions such as signups, replies, trials and purchases."
+        "Create a landing page, prototype, waitlist, manual service or other small experiment. Measure real actions such as signups, replies, calls, trials and purchases."
       ],
 
       [
         "3. Build an MVP",
-
-        "An MVP is the smallest product that can deliver your core promise. Avoid building too many features before proving the main idea."
+        "An MVP is the smallest product that can deliver your core promise. Avoid building ten features when one feature can prove whether the main idea works."
       ],
 
       [
         "4. Create your website",
-
-        "For a simple startup website, you can begin with an HTML file, CSS and JavaScript."
+        "For a simple startup website, you can begin with an HTML file, a CSS file and a JavaScript file. HTML provides structure, CSS handles design and JavaScript adds interactive behavior."
       ],
 
       [
         "5. Recommended website structure",
-
         "",
-
         "sellora-project/\n├── index.html\n├── styles.css\n├── app.js\n└── README.md"
       ],
 
       [
-        "6. Publish through GitHub Pages",
-
-        "Create a GitHub account, create a repository, upload your website files, commit your changes, open Settings, find Pages, select deployment from a branch and choose the main branch and root folder."
+        "6. Publish your website through GitHub Pages",
+        "Create a GitHub repository, upload your website files, commit the changes, open Settings, find Pages, choose deployment from a branch, select your main branch and root folder, then save. GitHub Pages will publish your static website."
       ],
 
       [
         "7. Publish with Git",
-
-        "A typical Git workflow is:",
-
+        "If Git is installed, you can clone your repository, edit your files, commit changes and push them to GitHub.",
         "git clone YOUR_REPOSITORY_URL\ncd YOUR_REPOSITORY\n# edit your files\ngit add .\ngit commit -m \"Update Sellora website\"\ngit push"
       ],
 
       [
         "8. Add a custom domain",
-
-        "After your website works on GitHub Pages, you can configure a custom domain using the DNS instructions provided by GitHub."
+        "After your website works on GitHub Pages, you can purchase a domain and configure the DNS records according to GitHub's current documentation."
       ],
 
       [
         "9. Get users",
-
         "Launch to a small group first. Ask users what they expected, where they got confused and what would make them return."
       ],
 
       [
         "10. Make money",
-
-        "Choose a monetization model such as subscriptions, one-time sales, commissions, services, licensing or advertising."
+        "Choose a monetization model that fits the product. Options can include subscriptions, one-time sales, commissions, transaction fees, services, licensing or advertising."
       ],
 
       [
         "11. Measure growth",
-
         "Track activation, retention, conversion, revenue, customer acquisition cost and customer lifetime value."
       ]
 
@@ -3006,74 +1990,62 @@ const guides = {
 
       [
         "1. Choose what you will sell",
-
-        "You can sell physical products, digital products, software, services, subscriptions, courses or memberships."
+        "You can make money by selling a physical product, digital product, software, service, subscription, course, membership or advertising placement."
       ],
 
       [
         "2. Choose your audience",
-
         "Do not try to sell to everyone. Define the customer by their problem, goals, industry, interests or situation."
       ],
 
       [
         "3. Create a strong offer",
-
-        "Explain the problem, promised outcome, what the customer gets, why your solution is different and what action they should take."
+        "Your offer should explain the problem, promised outcome, what the customer gets and why your solution is different."
       ],
 
       [
         "4. Build a website",
-
-        "Create a homepage that quickly explains your value proposition and includes a clear call to action."
+        "Create a homepage that explains your value proposition quickly. Include a clear call to action, product information, proof where available, FAQs and contact information."
       ],
 
       [
         "5. Use content marketing",
-
-        "Create tutorials, educational videos, articles, comparisons, case studies and demonstrations."
+        "Create tutorials, educational articles, videos, comparisons, case studies and demonstrations."
       ],
 
       [
         "6. Use social media",
-
-        "Choose platforms where your target customers already spend time and create recurring content themes."
+        "Choose platforms where your target customers already spend time. Create recurring content around customer problems, lessons, results and product demonstrations."
       ],
 
       [
         "7. Email marketing",
-
-        "Offer something useful in exchange for an email address and send helpful content and relevant offers."
+        "Offer something useful in exchange for an email address, then send helpful content and relevant offers. Always respect applicable privacy and marketing laws."
       ],
 
       [
         "8. Search engine optimization",
-
-        "Create useful pages that answer specific questions your customers search for."
+        "Create pages that answer specific questions your customers search for. Use clear titles, useful information and descriptive headings."
       ],
 
       [
         "9. Paid advertising",
-
-        "Start with a small budget and measure whether your advertising generates profitable results."
+        "Start with a small budget and a measurable objective. Test multiple messages and landing pages."
       ],
 
       [
         "10. Ways to make money",
-
-        "Common online monetization methods include products, subscriptions, services, courses, memberships, affiliate commissions, sponsorships and advertising."
+        "Common online monetization methods include selling products, subscriptions, services, courses, memberships, software, affiliate commissions, sponsorships, transaction fees and advertising."
       ],
 
       [
         "11. Improve conversion",
-
-        "If people visit but do not buy, improve your offer, messaging, proof, pricing explanation, page speed and checkout experience."
+        "If people visit but do not buy, improve your offer, messaging, proof, pricing explanation, page speed, checkout experience and call to action."
       ],
 
       [
         "12. Keep customers",
-
-        "Strong products, onboarding, support and customer experience can encourage repeat business."
+        "Repeat customers can be more valuable than constantly finding new customers. Provide a strong product, good onboarding and useful support."
       ]
 
     ]
@@ -3083,115 +2055,24 @@ const guides = {
 };
 
 
-/* =========================================================
-   VARIABLES
-========================================================= */
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
 
-let signupStep = 1;
+let signupStep=1;
 
-let signupData = {};
+let signupData={};
 
-let selectedCategories = [];
+let selectedCategories=[];
 
-let currentGuideType = null;
+let currentGuideType=null;
 
-let countdownTimer = null;
-
-
-/* =========================================================
-   ACCOUNT CHECK
-========================================================= */
-
-function getProfile(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem("selloraProfile") || "null"
-    );
-
-  }catch(error){
-
-    return null;
-
-  }
-
-}
+let countdownTimer=null;
 
 
-/* =========================================================
-   UPDATE NAVIGATION
-========================================================= */
-
-function updateAccountUI(){
-
-  const profile = getProfile();
-
-  const signupButton =
-    document.getElementById("signupButton");
-
-  const loginButton =
-    document.getElementById("loginButton");
-
-  const accountChip =
-    document.getElementById("accountChip");
-
-  const accountName =
-    document.getElementById("accountName");
-
-  const navEbookButton =
-    document.getElementById("navEbookButton");
-
-
-  if(profile){
-
-    if(signupButton)
-      signupButton.style.display="none";
-
-    if(loginButton)
-      loginButton.style.display="none";
-
-    if(accountChip){
-
-      accountChip.classList.add("show");
-
-    }
-
-    if(accountName){
-
-      accountName.textContent =
-        profile.name || "My Account";
-
-    }
-
-    if(navEbookButton){
-
-      navEbookButton.style.display="inline-block";
-
-    }
-
-  }else{
-
-    if(signupButton)
-      signupButton.style.display="inline-block";
-
-    if(loginButton)
-      loginButton.style.display="inline-block";
-
-    if(accountChip)
-      accountChip.classList.remove("show");
-
-    if(navEbookButton)
-      navEbookButton.style.display="none";
-
-  }
-
-}
-
-
-/* =========================================================
+/* =====================================================
    SIGNUP
-========================================================= */
+===================================================== */
 
 function openSignup(){
 
@@ -3210,26 +2091,9 @@ function openSignup(){
 }
 
 
-function openSignupOrEbook(){
-
-  const profile=getProfile();
-
-  if(profile){
-
-    openEbookCreator();
-
-  }else{
-
-    openSignup();
-
-  }
-
-}
-
-
 function renderSignup(){
 
-  const box =
+  const box=
     document.getElementById("signupContent");
 
 
@@ -3246,18 +2110,12 @@ function renderSignup(){
       </h2>
 
       <p class="intro">
-
-        Fill in your details and
-        start your free Sellora journey.
-
+        Fill in your details and personalize your Sellora experience.
       </p>
-
 
       <form onsubmit="continueSignup(event)">
 
-
         <div class="form-grid">
-
 
           <div class="field">
 
@@ -3268,8 +2126,7 @@ function renderSignup(){
             <input
               id="fullName"
               required
-              placeholder="Your full name"
-            >
+              placeholder="Your full name">
 
           </div>
 
@@ -3284,8 +2141,7 @@ function renderSignup(){
               id="email"
               type="email"
               required
-              placeholder="you@example.com"
-            >
+              placeholder="you@example.com">
 
           </div>
 
@@ -3301,8 +2157,7 @@ function renderSignup(){
               type="password"
               minlength="6"
               required
-              placeholder="Minimum 6 characters"
-            >
+              placeholder="Minimum 6 characters">
 
           </div>
 
@@ -3316,8 +2171,7 @@ function renderSignup(){
             <input
               id="company"
               required
-              placeholder="Your company"
-            >
+              placeholder="Your company">
 
           </div>
 
@@ -3331,11 +2185,9 @@ function renderSignup(){
             <textarea
               id="goal"
               rows="3"
-              placeholder="Tell us briefly about your idea or goal"
-            ></textarea>
+              placeholder="Tell us briefly about your idea or goal"></textarea>
 
           </div>
-
 
         </div>
 
@@ -3344,20 +2196,21 @@ function renderSignup(){
 
           <button
             class="btn btn-primary"
-            type="submit"
-          >
+            type="submit">
+
             Continue →
+
           </button>
 
         </div>
-
 
       </form>
 
     `;
 
-  }else{
+  }
 
+  else{
 
     box.innerHTML=`
 
@@ -3370,23 +2223,15 @@ function renderSignup(){
       </h2>
 
       <p class="intro">
-
-        Select one or more topics.
-
-        Your first selected guide
-        will open after account creation.
-
+        Select one or more topics and unlock your FREE ebook after completion.
       </p>
 
 
       <div class="category-select-grid">
 
-
         <button
-          class="select-card
-          ${selectedCategories.includes("business")?"selected":""}"
-          onclick="toggleCategory('business')"
-        >
+          class="select-card ${selectedCategories.includes("business")?"selected":""}"
+          onclick="toggleCategory('business')">
 
           <div class="category-icon">
             🏢
@@ -3408,10 +2253,8 @@ function renderSignup(){
 
 
         <button
-          class="select-card
-          ${selectedCategories.includes("startup")?"selected":""}"
-          onclick="toggleCategory('startup')"
-        >
+          class="select-card ${selectedCategories.includes("startup")?"selected":""}"
+          onclick="toggleCategory('startup')">
 
           <div class="category-icon">
             🚀
@@ -3424,7 +2267,7 @@ function renderSignup(){
             </strong>
 
             <small>
-              How to start, build and publish your startup.
+              How to start, build and publish your startup website.
             </small>
 
           </div>
@@ -3433,10 +2276,8 @@ function renderSignup(){
 
 
         <button
-          class="select-card
-          ${selectedCategories.includes("marketing")?"selected":""}"
-          onclick="toggleCategory('marketing')"
-        >
+          class="select-card ${selectedCategories.includes("marketing")?"selected":""}"
+          onclick="toggleCategory('marketing')">
 
           <div class="category-icon">
             📈
@@ -3456,7 +2297,6 @@ function renderSignup(){
 
         </button>
 
-
       </div>
 
 
@@ -3464,17 +2304,19 @@ function renderSignup(){
 
         <button
           class="btn btn-outline"
-          onclick="signupStep=1;renderSignup()"
-        >
+          onclick="signupStep=1;renderSignup()">
+
           ← Back
+
         </button>
 
 
         <button
           class="btn btn-primary"
-          onclick="finishSignup()"
-        >
+          onclick="finishSignup()">
+
           Continue →
+
         </button>
 
       </div>
@@ -3486,39 +2328,28 @@ function renderSignup(){
 }
 
 
-/* =========================================================
-   CONTINUE SIGNUP
-========================================================= */
-
 function continueSignup(e){
 
   e.preventDefault();
 
-
   signupData={
 
     name:
-      document.getElementById("fullName")
-      .value.trim(),
+      document.getElementById("fullName").value.trim(),
 
     email:
-      document.getElementById("email")
-      .value.trim(),
+      document.getElementById("email").value.trim(),
 
     company:
-      document.getElementById("company")
-      .value.trim(),
+      document.getElementById("company").value.trim(),
 
     goal:
-      document.getElementById("goal")
-      .value.trim(),
+      document.getElementById("goal").value.trim(),
 
     password:
-      document.getElementById("password")
-      .value
+      document.getElementById("password").value
 
   };
-
 
   signupStep=2;
 
@@ -3527,36 +2358,27 @@ function continueSignup(e){
 }
 
 
-/* =========================================================
-   CATEGORY
-========================================================= */
-
 function toggleCategory(category){
 
-  if(
-    selectedCategories.includes(category)
-  ){
+  if(selectedCategories.includes(category)){
 
-    selectedCategories =
+    selectedCategories=
       selectedCategories.filter(
         x=>x!==category
       );
 
-  }else{
+  }
+
+  else{
 
     selectedCategories.push(category);
 
   }
 
-
   renderSignup();
 
 }
 
-
-/* =========================================================
-   FINISH SIGNUP
-========================================================= */
 
 function finishSignup(){
 
@@ -3594,31 +2416,19 @@ function finishSignup(){
   );
 
 
-  updateAccountUI();
-
-
   closeModal("signupModal");
 
 
-  showToast(
-    "Account created successfully! 🎉"
+  openGuide(
+    selectedCategories[0]
   );
-
-
-  setTimeout(()=>{
-
-    openGuide(
-      selectedCategories[0]
-    );
-
-  },500);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    LOGIN
-========================================================= */
+===================================================== */
 
 function openLogin(){
 
@@ -3633,44 +2443,44 @@ function loginDemo(e){
 
   e.preventDefault();
 
-
-  const profile=getProfile();
-
+  const profile=
+    JSON.parse(
+      localStorage.getItem("selloraProfile") || "null"
+    );
 
   const email=
     document
       .getElementById("loginEmail")
-      .value.trim();
+      .value
+      .trim();
 
 
-  if(
-    profile &&
-    profile.email.toLowerCase() ===
-    email.toLowerCase()
-  ){
+  if(profile && profile.email===email){
 
     closeModal("loginModal");
 
-
-    updateAccountUI();
-
-
-    showToast(
-      "Welcome back, "+profile.name+"! 👋"
+    alert(
+      "Welcome back, "+profile.name+"!"
     );
 
 
-    setTimeout(()=>{
+    if(
+      profile.categories &&
+      profile.categories.length
+    ){
 
-      openEbookCreator();
+      openGuide(
+        profile.categories[0]
+      );
 
-    },500);
+    }
 
+  }
 
-  }else{
+  else{
 
     alert(
-      "No demo account was found for this email. Please create an account first."
+      "No demo account was found for this email. Create an account first."
     );
 
   }
@@ -3678,9 +2488,9 @@ function loginDemo(e){
 }
 
 
-/* =========================================================
+/* =====================================================
    GUIDE
-========================================================= */
+===================================================== */
 
 function openGuide(type){
 
@@ -3688,9 +2498,7 @@ function openGuide(type){
 
   if(!g)return;
 
-
   currentGuideType=type;
-
 
   let content=`
 
@@ -3713,50 +2521,52 @@ function openGuide(type){
   `;
 
 
-  g.sections.forEach(section=>{
+  g.sections.forEach(
+    section=>{
 
-    const heading=section[0];
+      const [
+        heading,
+        body,
+        code
+      ]=section;
 
-    const body=section[1];
-
-    const code=section[2];
-
-
-    content+=`
-
-      <h3>
-        ${heading}
-      </h3>
-
-    `;
-
-
-    if(body){
 
       content+=`
 
-        <p>
-          ${body}
-        </p>
+        <h3>
+          ${heading}
+        </h3>
 
       `;
 
-    }
+
+      if(body){
+
+        content+=`
+
+          <p>
+            ${body}
+          </p>
+
+        `;
+
+      }
 
 
-    if(code){
+      if(code){
 
-      content+=`
+        content+=`
 
-        <pre class="code">
+          <pre class="code">
 ${escapeHtml(code)}
-        </pre>
+          </pre>
 
-      `;
+        `;
+
+      }
 
     }
-
-  });
+  );
 
 
   content+=`
@@ -3764,11 +2574,16 @@ ${escapeHtml(code)}
     <div class="success">
 
       <strong>
-        🇮🇳 BUMPER OFFER:
+        🎁 Bumper Offer:
       </strong>
 
-      Finish this guide and get
-      your ebook FREEEE 🎁
+      You completed this guide!
+
+      <br>
+
+      <strong>
+        1 GUIDE = 1 EBOOK FREEEE
+      </strong>
 
     </div>
 
@@ -3777,9 +2592,10 @@ ${escapeHtml(code)}
 
       <button
         class="btn btn-primary"
-        onclick="finishGuideAndGetEbook('${type}')"
-      >
-        Finish Guide →
+        onclick="finishGuideAndPrepareEbook()">
+
+        🎁 Finish Guide & Get FREE Ebook
+
       </button>
 
     </div>
@@ -3799,87 +2615,241 @@ ${escapeHtml(code)}
 }
 
 
-/* =========================================================
-   FINISH GUIDE
-========================================================= */
+/* =====================================================
+   FINISH GUIDE → COUNTDOWN
+===================================================== */
 
-function finishGuideAndGetEbook(type){
+function finishGuideAndPrepareEbook(){
+
+  if(!currentGuideType)return;
+
 
   closeModal("guideModal");
 
 
-  showToast(
-    "Guide completed! Your FREE ebook is ready 🎁"
+  startEbookCountdown();
+
+}
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+function startEbookCountdown(){
+
+  const modal=
+    document.getElementById(
+      "countdownModal"
+    );
+
+  const number=
+    document.getElementById(
+      "countdownNumber"
+    );
+
+  const progress=
+    document.getElementById(
+      "loadingProgress"
+    );
+
+
+  let seconds=5;
+
+
+  number.textContent=seconds;
+
+  progress.style.width="0%";
+
+
+  modal.classList.add("show");
+
+
+  clearInterval(countdownTimer);
+
+
+  countdownTimer=
+    setInterval(()=>{
+
+      seconds--;
+
+      number.textContent=
+        seconds;
+
+
+      const percent=
+        ((5-seconds)/5)*100;
+
+      progress.style.width=
+        percent+"%";
+
+
+      if(seconds<=0){
+
+        clearInterval(
+          countdownTimer
+        );
+
+        setTimeout(
+          ()=>{
+            closeModal(
+              "countdownModal"
+            );
+
+            showEbookReady();
+
+          },
+          300
+        );
+
+      }
+
+    },1000);
+
+}
+
+
+/* =====================================================
+   EBOOK READY
+===================================================== */
+
+function showEbookReady(){
+
+  document
+    .getElementById(
+      "ebookReadyModal"
+    )
+    .classList.add("show");
+
+
+  document
+    .getElementById(
+      "ebookPreview"
+    ).innerHTML=`
+
+      <h3>
+        📚 ${guides[currentGuideType].title}
+      </h3>
+
+      <p>
+        Your complete Sellora ebook is ready.
+      </p>
+
+      <p>
+        Click <strong>View Ebook</strong>
+        to see a preview or
+        <strong>Download PDF</strong>
+        to save it.
+      </p>
+
+    `;
+
+}
+
+
+/* =====================================================
+   VIEW EBOOK
+===================================================== */
+
+function viewEbook(){
+
+  const g=
+    guides[currentGuideType];
+
+
+  if(!g)return;
+
+
+  let html=`
+
+    <h3>
+      🇮🇳 ${g.title}
+    </h3>
+
+    <p>
+      <strong>
+        SELLORA — FREE EBOOK
+      </strong>
+    </p>
+
+    <p>
+      ${g.intro}
+    </p>
+
+  `;
+
+
+  g.sections.forEach(
+    section=>{
+
+      html+=`
+
+        <p>
+          <strong>
+            ${section[0]}
+          </strong>
+        </p>
+
+      `;
+
+
+      if(section[1]){
+
+        html+=`
+
+          <p>
+            ${section[1]}
+          </p>
+
+        `;
+
+      }
+
+    }
   );
 
 
-  setTimeout(()=>{
+  html+=`
 
-    createGuideEbook(type);
+    <hr style="margin:15px 0">
 
-  },500);
+    <p>
+      🎁
+      <strong>
+        1 GUIDE = 1 EBOOK FREEEE
+      </strong>
+    </p>
 
-}
+    <p>
+      🇮🇳 Sellora Independence Day Offer
+    </p>
 
-
-/* =========================================================
-   GUIDE EBOOK
-========================================================= */
-
-function createGuideEbook(type){
-
-  const profile=getProfile();
-
-  const guide=guides[type];
-
-  if(!guide)return;
+  `;
 
 
-  const ebookData={
-
-    title:
-      guide.title+" — Sellora Ebook",
-
-    author:
-      profile
-      ? profile.name
-      : "Sellora Learner",
-
-    goal:
-      "Learn practical steps from the Sellora "+type+" guide and take action.",
-
-    content:
-      guide.sections
-        .map(
-          section =>
-            section[0]+"\n\n"+
-            section[1]
-        )
-        .join("\n\n")
-
-  };
-
-
-  showEbookResult(ebookData);
+  document
+    .getElementById(
+      "ebookPreview"
+    )
+    .innerHTML=html;
 
 }
 
 
-/* =========================================================
-   EBOOK CREATOR
-========================================================= */
+/* =====================================================
+   DOWNLOAD PDF
+===================================================== */
 
-function openEbookCreator(){
+function downloadEbook(){
 
-  const profile=getProfile();
+  const g=
+    guides[currentGuideType];
 
 
-  if(!profile){
+  if(!g){
 
-    openSignup();
-
-    showToast(
-      "Create a free account first to make your ebook."
+    alert(
+      "Please complete a guide first."
     );
 
     return;
@@ -3887,583 +2857,7 @@ function openEbookCreator(){
   }
 
 
-  renderEbookCreator();
-
-
-  document
-    .getElementById("ebookCreatorModal")
-    .classList.add("show");
-
-}
-
-
-/* =========================================================
-   RENDER EBOOK CREATOR
-========================================================= */
-
-function renderEbookCreator(){
-
-  const profile=getProfile();
-
-
-  document
-    .getElementById("ebookCreatorContent")
-    .innerHTML=`
-
-
-    <div class="modal-step">
-      SELLORA EBOOK CREATOR
-    </div>
-
-
-    <h2>
-      Make Your Own Ebook
-    </h2>
-
-
-    <p class="intro">
-
-      Tell us about your ebook.
-      After you continue, Sellora
-      will prepare your ebook preview.
-
-    </p>
-
-
-    <div class="creator-header">
-
-      <h3>
-        🎁 Independence Day Bumper Offer
-      </h3>
-
-      <p>
-        Your first ebook concept is
-        part of the Sellora Independence
-        Day experience.
-      </p>
-
-      <span class="creator-offer">
-        1 GUIDE = 1 EBOOK FREEEE
-      </span>
-
-    </div>
-
-
-    <form onsubmit="startEbookCreation(event)">
-
-
-      <div class="field">
-
-        <label>
-          Ebook Title *
-        </label>
-
-        <input
-          id="ebookTitle"
-          required
-          placeholder="Example: How to Make Money Online"
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          What is the goal of your ebook? *
-        </label>
-
-        <textarea
-          id="ebookGoal"
-          rows="4"
-          required
-          placeholder="Example: Teach beginners how to start making money online."
-        ></textarea>
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          What will be inside your ebook? *
-        </label>
-
-        <textarea
-          id="ebookContents"
-          rows="5"
-          required
-          placeholder="Example: Online business ideas, freelancing, digital products, marketing, social media and monetization."
-        ></textarea>
-
-      </div>
-
-
-      <div class="form-grid">
-
-
-        <div class="field">
-
-          <label>
-            Target Audience
-          </label>
-
-          <input
-            id="ebookAudience"
-            placeholder="Students, beginners, creators..."
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Ebook Category
-          </label>
-
-          <select id="ebookCategory">
-
-            <option>
-              Making Money Online
-            </option>
-
-            <option>
-              Business
-            </option>
-
-            <option>
-              Startup
-            </option>
-
-            <option>
-              Marketing
-            </option>
-
-            <option>
-              Personal Brand
-            </option>
-
-            <option>
-              Other
-            </option>
-
-          </select>
-
-        </div>
-
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          What should readers learn?
-        </label>
-
-        <textarea
-          id="ebookLearning"
-          rows="4"
-          placeholder="Write the main lessons you want readers to learn."
-        ></textarea>
-
-      </div>
-
-
-      <div class="modal-footer">
-
-        <button
-          type="button"
-          class="btn btn-outline"
-          onclick="closeModal('ebookCreatorModal')"
-        >
-          Cancel
-        </button>
-
-
-        <button
-          type="submit"
-          class="btn btn-primary"
-        >
-          Continue →
-        </button>
-
-      </div>
-
-
-    </form>
-
-  `;
-
-}
-
-
-/* =========================================================
-   START EBOOK CREATION
-========================================================= */
-
-function startEbookCreation(e){
-
-  e.preventDefault();
-
-
-  const profile=getProfile();
-
-
-  const ebook={
-
-    title:
-      document
-        .getElementById("ebookTitle")
-        .value.trim(),
-
-    goal:
-      document
-        .getElementById("ebookGoal")
-        .value.trim(),
-
-    contents:
-      document
-        .getElementById("ebookContents")
-        .value.trim(),
-
-    audience:
-      document
-        .getElementById("ebookAudience")
-        .value.trim(),
-
-    category:
-      document
-        .getElementById("ebookCategory")
-        .value,
-
-    learning:
-      document
-        .getElementById("ebookLearning")
-        .value.trim(),
-
-    author:
-      profile
-      ? profile.name
-      : "Sellora Creator"
-
-  };
-
-
-  closeModal("ebookCreatorModal");
-
-
-  runCountdown(ebook);
-
-}
-
-
-/* =========================================================
-   COUNTDOWN
-========================================================= */
-
-function runCountdown(ebook){
-
-  const modal=
-    document.getElementById(
-      "ebookResultModal"
-    );
-
-
-  const content=
-    document.getElementById(
-      "ebookResultContent"
-    );
-
-
-  let seconds=5;
-
-
-  content.innerHTML=`
-
-
-    <div class="countdown-screen">
-
-      <div class="modal-step">
-        SELLORA EBOOK CREATOR
-      </div>
-
-      <h2>
-        Creating Your Ebook 🚀
-      </h2>
-
-      <p>
-        Your ebook preview will be ready in...
-      </p>
-
-
-      <div
-        class="countdown-number"
-        id="countdownNumber"
-      >
-        5
-      </div>
-
-
-      <strong>
-        Please wait...
-      </strong>
-
-    </div>
-
-  `;
-
-
-  modal.classList.add("show");
-
-
-  if(countdownTimer){
-
-    clearInterval(countdownTimer);
-
-  }
-
-
-  countdownTimer=setInterval(()=>{
-
-    seconds--;
-
-
-    const number=
-      document.getElementById(
-        "countdownNumber"
-      );
-
-
-    if(number){
-
-      number.textContent=seconds;
-
-    }
-
-
-    if(seconds<=0){
-
-      clearInterval(countdownTimer);
-
-      showEbookPreview(ebook);
-
-    }
-
-  },1000);
-
-}
-
-
-/* =========================================================
-   SHOW EBOOK PREVIEW
-========================================================= */
-
-function showEbookPreview(ebook){
-
-  const content=
-    document.getElementById(
-      "ebookResultContent"
-    );
-
-
-  content.innerHTML=`
-
-
-    <div class="ebook-result-header">
-
-      <div class="free-badge">
-        🎁 FREE EBOOK • BUMPER OFFER
-      </div>
-
-      <h2>
-        Your Ebook Is Ready!
-      </h2>
-
-      <p>
-        Preview it below and download
-        your PDF.
-      </p>
-
-    </div>
-
-
-    <div
-      class="ebook-paper"
-      id="printEbook"
-    >
-
-      <div
-        style="
-          text-align:center;
-          border-bottom:1px solid #ddd;
-          padding-bottom:20px;
-          margin-bottom:20px;
-        "
-      >
-
-        <div
-          style="
-            font-size:11px;
-            font-weight:900;
-            letter-spacing:2px;
-            color:#2c8e9e;
-            margin-bottom:10px;
-          "
-        >
-          SELLORA
-        </div>
-
-
-        <h1>
-          ${escapeHtml(ebook.title)}
-        </h1>
-
-
-        <div class="ebook-author">
-
-          By ${escapeHtml(ebook.author)}
-
-        </div>
-
-      </div>
-
-
-      <h3>
-        🎯 Ebook Goal
-      </h3>
-
-      <p>
-        ${escapeHtml(ebook.goal)}
-      </p>
-
-
-      <h3>
-        👥 Target Audience
-      </h3>
-
-      <p>
-        ${escapeHtml(
-          ebook.audience ||
-          "People interested in this topic."
-        )}
-      </p>
-
-
-      <h3>
-        📚 What This Ebook Contains
-      </h3>
-
-      <p>
-        ${escapeHtml(ebook.contents)}
-      </p>
-
-
-      <h3>
-        🧠 What Readers Will Learn
-      </h3>
-
-      <p>
-        ${escapeHtml(
-          ebook.learning ||
-          "Readers will learn practical concepts and actionable steps related to the ebook topic."
-        )}
-      </p>
-
-
-      <h3>
-        💰 Monetization Idea
-      </h3>
-
-      <p>
-        A digital ebook can be monetized through
-        direct sales, bundles, memberships,
-        lead generation, partnerships or other
-        suitable business models. Always focus
-        on providing genuine value to readers.
-      </p>
-
-
-      <h3>
-        🚀 Your Next Step
-      </h3>
-
-      <p>
-        Take one useful idea from this ebook,
-        turn it into an action and measure
-        the result. Keep improving your idea,
-        offer and marketing.
-      </p>
-
-
-      <div
-        style="
-          margin-top:30px;
-          padding:15px;
-          border-radius:10px;
-          background:#f1faf3;
-          border:1px solid #cce5d0;
-          color:#21613a;
-          font-size:13px;
-        "
-      >
-
-        🇮🇳
-
-        <strong>
-          Sellora Independence Day Bumper Offer
-        </strong>
-
-        <br>
-
-        1 Guide = 1 Ebook FREEEE 🎁
-
-      </div>
-
-
-    </div>
-
-
-    <div class="download-area">
-
-
-      <button
-        class="btn btn-primary"
-        onclick='downloadEbookPDF(${JSON.stringify(ebook)})'
-      >
-        📥 Download PDF
-      </button>
-
-
-      <button
-        class="btn btn-outline"
-        onclick="window.print()"
-      >
-        🖨️ Print / Save PDF
-      </button>
-
-
-      <button
-        class="btn btn-green"
-        onclick="closeModal('ebookResultModal')"
-      >
-        Done ✓
-      </button>
-
-
-    </div>
-
-  `;
-
-}
-
-
-/* =========================================================
-   DOWNLOAD PDF
-========================================================= */
-
-function downloadEbookPDF(ebook){
+  /* Check if jsPDF loaded */
 
   if(
     !window.jspdf ||
@@ -4471,7 +2865,7 @@ function downloadEbookPDF(ebook){
   ){
 
     alert(
-      "PDF generator is loading. Please try again."
+      "PDF generator could not load. Please check your internet connection and try again."
     );
 
     return;
@@ -4479,68 +2873,99 @@ function downloadEbookPDF(ebook){
   }
 
 
-  const {jsPDF}=window.jspdf;
+  const {
+    jsPDF
+  }=window.jspdf;
 
 
-  const doc=new jsPDF({
-
-    unit:"mm",
-
-    format:"a4"
-
-  });
+  const doc=
+    new jsPDF({
+      unit:"mm",
+      format:"a4"
+    });
 
 
-  const pageWidth=210;
+  const pageWidth=
+    doc.internal.pageSize.getWidth();
+
+  const pageHeight=
+    doc.internal.pageSize.getHeight();
+
 
   const margin=18;
 
   const usableWidth=
     pageWidth-(margin*2);
 
+  let y=25;
 
-  let y=22;
+
+  /* TRICOLOR TOP */
+
+  doc.setFillColor(
+    255,
+    153,
+    51
+  );
+
+  doc.rect(
+    0,
+    0,
+    pageWidth,
+    4,
+    "F"
+  );
 
 
-  /* HEADER */
+  doc.setFillColor(
+    255,
+    255,
+    255
+  );
+
+  doc.rect(
+    0,
+    4,
+    pageWidth,
+    4,
+    "F"
+  );
+
+
+  doc.setFillColor(
+    19,
+    136,
+    8
+  );
+
+  doc.rect(
+    0,
+    8,
+    pageWidth,
+    4,
+    "F"
+  );
+
+
+  /* TITLE */
 
   doc.setFont(
     "helvetica",
     "bold"
   );
 
-  doc.setFontSize(10);
+  doc.setFontSize(24);
 
   doc.setTextColor(
-    44,
-    142,
-    158
-  );
-
-  doc.text(
-    "SELLORA",
-    margin,
-    y
-  );
-
-
-  y+=12;
-
-
-  /* TITLE */
-
-  doc.setFontSize(22);
-
-  doc.setTextColor(
-    16,
-    24,
-    32
+    25,
+    115,
+    131
   );
 
 
   const titleLines=
     doc.splitTextToSize(
-      ebook.title,
+      g.title,
       usableWidth
     );
 
@@ -4552,11 +2977,561 @@ function downloadEbookPDF(ebook){
   );
 
 
-  y +=
-    titleLines.length*9;
+  y+=
+    (titleLines.length*10)+8;
+
+
+  /* BRAND */
+
+  doc.setFontSize(11);
+
+  doc.setTextColor(
+    40,
+    40,
+    40
+  );
+
+  doc.text(
+    "SELLORA — MONETIZE YOUR IDEAS",
+    margin,
+    y
+  );
+
+
+  y+=10;
+
+
+  /* OFFER */
+
+  doc.setFontSize(13);
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setTextColor(
+    230,
+    117,
+    0
+  );
+
+
+  doc.text(
+    "BUMPER OFFER: 1 GUIDE = 1 EBOOK FREEEE",
+    margin,
+    y
+  );
+
+
+  y+=12;
+
+
+  /* INTRO */
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+  doc.setFontSize(11);
+
+  doc.setTextColor(
+    45,
+    45,
+    45
+  );
+
+
+  const introLines=
+    doc.splitTextToSize(
+      g.intro,
+      usableWidth
+    );
+
+
+  doc.text(
+    introLines,
+    margin,
+    y
+  );
+
+
+  y+=
+    (introLines.length*6)+8;
+
+
+  /* SECTIONS */
+
+  g.sections.forEach(
+    section=>{
+
+      const heading=
+        section[0];
+
+      const body=
+        section[1];
+
+
+      if(
+        y>pageHeight-35
+      ){
+
+        doc.addPage();
+
+        y=20;
+
+      }
+
+
+      doc.setFont(
+        "helvetica",
+        "bold"
+      );
+
+      doc.setFontSize(14);
+
+      doc.setTextColor(
+        25,
+        115,
+        131
+      );
+
+
+      const headingLines=
+        doc.splitTextToSize(
+          heading,
+          usableWidth
+        );
+
+
+      doc.text(
+        headingLines,
+        margin,
+        y
+      );
+
+
+      y+=
+        (headingLines.length*6)+4;
+
+
+      doc.setFont(
+        "helvetica",
+        "normal"
+      );
+
+      doc.setFontSize(10.5);
+
+      doc.setTextColor(
+        55,
+        55,
+        55
+      );
+
+
+      const bodyLines=
+        doc.splitTextToSize(
+          body || "",
+          usableWidth
+        );
+
+
+      bodyLines.forEach(
+        line=>{
+
+          if(
+            y>pageHeight-25
+          ){
+
+            doc.addPage();
+
+            y=20;
+
+          }
+
+
+          doc.text(
+            line,
+            margin,
+            y
+          );
+
+
+          y+=5.5;
+
+        }
+      );
+
+
+      y+=5;
+
+    }
+  );
+
+
+  /* FINAL PAGE MESSAGE */
+
+  if(
+    y>pageHeight-45
+  ){
+
+    doc.addPage();
+
+    y=25;
+
+  }
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(14);
+
+  doc.setTextColor(
+    19,
+    136,
+    8
+  );
+
+
+  doc.text(
+    "Congratulations! You completed your Sellora guide.",
+    margin,
+    y
+  );
+
+
+  y+=9;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+  doc.setFontSize(10);
+
+  doc.setTextColor(
+    50,
+    50,
+    50
+  );
+
+
+  doc.text(
+    "Keep learning. Take action. Build. Grow.",
+    margin,
+    y
+  );
+
+
+  y+=10;
+
+
+  doc.setFontSize(9);
+
+  doc.text(
+    "© 2026 Sellora",
+    margin,
+    y
+  );
+
+
+  /* FOOTER ON EVERY PAGE */
+
+  const totalPages=
+    doc.getNumberOfPages();
+
+
+  for(
+    let page=1;
+    page<=totalPages;
+    page++
+  ){
+
+    doc.setPage(page);
+
+    doc.setFontSize(8);
+
+    doc.setTextColor(
+      120,
+      120,
+      120
+    );
+
+    doc.text(
+      "Sellora • Independence Day Free Ebook",
+      margin,
+      pageHeight-10
+    );
+
+    doc.text(
+      "Page "+page+" / "+totalPages,
+      pageWidth-margin,
+      pageHeight-10,
+      {
+        align:"right"
+      }
+    );
+
+  }
+
+
+  /* DOWNLOAD */
+
+  const safeName=
+    g.title
+      .replace(
+        /[^a-z0-9]+/gi,
+        "-"
+      )
+      .replace(
+        /-+/g,
+        "-"
+      )
+      .replace(
+        /^-|-$|/g,
+        ""
+      )
+      .toLowerCase();
+
+
+  doc.save(
+    "Sellora-"+safeName+".pdf"
+  );
+
+}
+
+
+/* =====================================================
+   CUSTOM EBOOK MAKER
+===================================================== */
+
+function openEbookMaker(){
+
+  document
+    .getElementById(
+      "ebookMakerModal"
+    )
+    .classList.add("show");
+
+}
+
+
+function createCustomEbook(e){
+
+  e.preventDefault();
+
+
+  const title=
+    document
+      .getElementById(
+        "customTitle"
+      )
+      .value
+      .trim();
+
+
+  const goal=
+    document
+      .getElementById(
+        "customGoal"
+      )
+      .value
+      .trim();
+
+
+  const content=
+    document
+      .getElementById(
+        "customContent"
+      )
+      .value
+      .trim();
+
+
+  if(
+    !title ||
+    !goal ||
+    !content
+  ){
+
+    alert(
+      "Please fill all fields."
+    );
+
+    return;
+
+  }
+
+
+  closeModal(
+    "ebookMakerModal"
+  );
+
+
+  /* Save custom ebook information */
+
+  localStorage.setItem(
+    "selloraCustomEbook",
+    JSON.stringify({
+      title,
+      goal,
+      content,
+      createdAt:new Date().toISOString()
+    })
+  );
+
+
+  /* Create custom PDF */
+
+  if(
+    !window.jspdf ||
+    !window.jspdf.jsPDF
+  ){
+
+    alert(
+      "PDF generator could not load. Please try again."
+    );
+
+    return;
+
+  }
+
+
+  const {
+    jsPDF
+  }=window.jspdf;
+
+
+  const doc=
+    new jsPDF({
+      unit:"mm",
+      format:"a4"
+    });
+
+
+  const pageWidth=
+    doc.internal.pageSize.getWidth();
+
+  const pageHeight=
+    doc.internal.pageSize.getHeight();
+
+  const margin=18;
+
+  const usableWidth=
+    pageWidth-margin*2;
+
+  let y=25;
+
+
+  /* TRICOLOR */
+
+  doc.setFillColor(
+    255,
+    153,
+    51
+  );
+
+  doc.rect(
+    0,
+    0,
+    pageWidth,
+    4,
+    "F"
+  );
+
+
+  doc.setFillColor(
+    255,
+    255,
+    255
+  );
+
+  doc.rect(
+    0,
+    4,
+    pageWidth,
+    4,
+    "F"
+  );
+
+
+  doc.setFillColor(
+    19,
+    136,
+    8
+  );
+
+  doc.rect(
+    0,
+    8,
+    pageWidth,
+    4,
+    "F"
+  );
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(25);
+
+  doc.setTextColor(
+    25,
+    115,
+    131
+  );
+
+
+  const titleLines=
+    doc.splitTextToSize(
+      title,
+      usableWidth
+    );
+
+
+  doc.text(
+    titleLines,
+    margin,
+    y
+  );
+
+
+  y+=
+    titleLines.length*10+10;
 
 
   doc.setFontSize(11);
+
+  doc.setTextColor(
+    50,
+    50,
+    50
+  );
+
+
+  doc.text(
+    "Created with Sellora Free Ebook Trial",
+    margin,
+    y
+  );
+
+
+  y+=12;
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(14);
 
   doc.setTextColor(
     25,
@@ -4566,334 +3541,263 @@ function downloadEbookPDF(ebook){
 
 
   doc.text(
-    "By "+ebook.author,
+    "Ebook Goal",
     margin,
-    y+2
+    y
   );
 
 
-  y+=15;
+  y+=7;
 
 
-  /* OFFER */
-
-  doc.setFillColor(
-    239,
-    249,
-    240
+  doc.setFont(
+    "helvetica",
+    "normal"
   );
 
-  doc.roundedRect(
-    margin,
-    y,
-    usableWidth,
-    18,
-    3,
-    3,
-    "F"
-  );
-
+  doc.setFontSize(10.5);
 
   doc.setTextColor(
-    33,
-    97,
-    58
+    50,
+    50,
+    50
   );
 
-  doc.setFontSize(10);
+
+  const goalLines=
+    doc.splitTextToSize(
+      goal,
+      usableWidth
+    );
+
+
+  goalLines.forEach(
+    line=>{
+
+      if(
+        y>pageHeight-25
+      ){
+
+        doc.addPage();
+
+        y=20;
+
+      }
+
+
+      doc.text(
+        line,
+        margin,
+        y
+      );
+
+      y+=5.5;
+
+    }
+  );
+
+
+  y+=8;
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(14);
+
+  doc.setTextColor(
+    25,
+    115,
+    131
+  );
+
 
   doc.text(
-    "INDEPENDENCE DAY BUMPER OFFER",
-    margin+5,
-    y+7
+    "Ebook Content",
+    margin,
+    y
+  );
+
+
+  y+=8;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
+  );
+
+  doc.setFontSize(10.5);
+
+  doc.setTextColor(
+    50,
+    50,
+    50
+  );
+
+
+  const contentLines=
+    doc.splitTextToSize(
+      content,
+      usableWidth
+    );
+
+
+  contentLines.forEach(
+    line=>{
+
+      if(
+        y>pageHeight-25
+      ){
+
+        doc.addPage();
+
+        y=20;
+
+      }
+
+
+      doc.text(
+        line,
+        margin,
+        y
+      );
+
+      y+=5.5;
+
+    }
+  );
+
+
+  if(
+    y>pageHeight-35
+  ){
+
+    doc.addPage();
+
+    y=25;
+
+  }
+
+
+  y+=10;
+
+
+  doc.setFont(
+    "helvetica",
+    "bold"
+  );
+
+  doc.setFontSize(13);
+
+  doc.setTextColor(
+    230,
+    117,
+    0
+  );
+
+
+  doc.text(
+    "1 GUIDE = 1 EBOOK FREEEE",
+    margin,
+    y
+  );
+
+
+  y+=8;
+
+
+  doc.setFont(
+    "helvetica",
+    "normal"
   );
 
   doc.setFontSize(9);
 
+  doc.setTextColor(
+    80,
+    80,
+    80
+  );
+
+
   doc.text(
-    "1 GUIDE = 1 EBOOK FREEEE",
-    margin+5,
-    y+13
+    "© 2026 Sellora",
+    margin,
+    y
   );
-
-
-  y+=27;
-
-
-  function addHeading(text){
-
-    if(y>270){
-
-      doc.addPage();
-
-      y=22;
-
-    }
-
-
-    doc.setFont(
-      "helvetica",
-      "bold"
-    );
-
-    doc.setFontSize(14);
-
-    doc.setTextColor(
-      23,
-      56,
-      62
-    );
-
-
-    doc.text(
-      text,
-      margin,
-      y
-    );
-
-
-    y+=8;
-
-  }
-
-
-  function addParagraph(text){
-
-    const lines=
-      doc.splitTextToSize(
-        text,
-        usableWidth
-      );
-
-
-    if(
-      y+(lines.length*5.5)>275
-    ){
-
-      doc.addPage();
-
-      y=22;
-
-    }
-
-
-    doc.setFont(
-      "helvetica",
-      "normal"
-    );
-
-    doc.setFontSize(10);
-
-    doc.setTextColor(
-      65,
-      75,
-      80
-    );
-
-
-    doc.text(
-      lines,
-      margin,
-      y
-    );
-
-
-    y +=
-      lines.length*5.5+7;
-
-  }
-
-
-  addHeading(
-    "Ebook Goal"
-  );
-
-  addParagraph(
-    ebook.goal
-  );
-
-
-  addHeading(
-    "Target Audience"
-  );
-
-  addParagraph(
-    ebook.audience ||
-    "People interested in this topic."
-  );
-
-
-  addHeading(
-    "What This Ebook Contains"
-  );
-
-  addParagraph(
-    ebook.contents
-  );
-
-
-  addHeading(
-    "What Readers Will Learn"
-  );
-
-  addParagraph(
-    ebook.learning ||
-    "Readers will learn practical concepts and actionable steps."
-  );
-
-
-  addHeading(
-    "Monetization Idea"
-  );
-
-  addParagraph(
-    "A digital ebook can be monetized through direct sales, bundles, memberships, lead generation, partnerships or other suitable business models. Focus on providing genuine value to readers."
-  );
-
-
-  addHeading(
-    "Your Next Step"
-  );
-
-  addParagraph(
-    "Take one useful idea from this ebook, turn it into an action and measure the result. Keep improving your idea, offer and marketing."
-  );
-
-
-  /* FOOTER */
-
-  const pageCount=
-    doc.internal.getNumberOfPages();
-
-
-  for(
-    let i=1;
-    i<=pageCount;
-    i++
-  ){
-
-    doc.setPage(i);
-
-
-    doc.setFontSize(8);
-
-    doc.setTextColor(
-      120,
-      130,
-      135
-    );
-
-
-    doc.text(
-      "Sellora • Monetize Your Ideas • Page "+i+" of "+pageCount,
-      margin,
-      290
-    );
-
-  }
 
 
   const safeName=
-    ebook.title
+    title
       .replace(
         /[^a-z0-9]+/gi,
         "-"
       )
       .replace(
-        /^-|-$/g,
-        ""
+        /-+/g,
+        "-"
       )
       .toLowerCase();
 
 
   doc.save(
-    (safeName || "sellora-ebook")+
-    ".pdf"
-  );
-
-
-  showToast(
-    "PDF downloaded successfully! 📕"
+    "Sellora-"+safeName+".pdf"
   );
 
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
+/* =====================================================
+   HELPERS
+===================================================== */
 
 function escapeHtml(str){
 
-  return String(str || "")
-
+  return str
     .replace(
       /&/g,
       "&amp;"
     )
-
     .replace(
       /</g,
       "&lt;"
     )
-
     .replace(
       />/g,
       "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
     );
 
 }
 
-
-/* =========================================================
-   MODAL
-========================================================= */
 
 function closeModal(id){
 
   const modal=
     document.getElementById(id);
 
-
   if(modal){
 
-    modal.classList.remove("show");
+    modal.classList.remove(
+      "show"
+    );
 
   }
 
 }
 
 
-/* =========================================================
-   HOME
-========================================================= */
-
 function goHome(){
 
   window.scrollTo({
-
     top:0,
-
     behavior:"smooth"
-
   });
 
 }
 
-
-/* =========================================================
-   MOBILE NAV
-========================================================= */
 
 function toggleMobileNav(){
 
@@ -4903,91 +3807,60 @@ function toggleMobileNav(){
     );
 
 
-  nav.style.display =
-    nav.style.display==="flex"
-    ? "none"
-    : "flex";
+  if(nav.style.display==="flex"){
 
+    nav.style.display="none";
 
-  nav.style.position="absolute";
+  }
 
-  nav.style.top="68px";
+  else{
 
-  nav.style.left="0";
+    nav.style.display="flex";
 
-  nav.style.right="0";
+    nav.style.position="absolute";
 
-  nav.style.background="#fff";
+    nav.style.top="68px";
 
-  nav.style.padding="20px 6%";
+    nav.style.left="0";
 
-  nav.style.flexDirection="column";
+    nav.style.right="0";
 
-  nav.style.alignItems="flex-start";
+    nav.style.background="#fff";
 
-}
+    nav.style.padding="20px 6%";
 
+    nav.style.flexDirection="column";
 
-/* =========================================================
-   TOAST
-========================================================= */
+    nav.style.alignItems="flex-start";
 
-function showToast(message){
-
-  const toast=
-    document.getElementById("toast");
-
-
-  toast.textContent=message;
-
-
-  toast.classList.add("show");
-
-
-  setTimeout(()=>{
-
-    toast.classList.remove("show");
-
-  },3000);
+  }
 
 }
 
 
-/* =========================================================
-   MODAL OUTSIDE CLICK
-========================================================= */
+/* =====================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+===================================================== */
 
 window.addEventListener(
   "click",
-  function(e){
+  e=>{
 
     document
       .querySelectorAll(".modal")
-      .forEach(modal=>{
+      .forEach(
+        modal=>{
 
-        if(e.target===modal){
+          if(e.target===modal){
 
-          modal.classList.remove(
-            "show"
-          );
+            modal.classList.remove(
+              "show"
+            );
+
+          }
 
         }
-
-      });
-
-  }
-);
-
-
-/* =========================================================
-   PAGE LOAD
-========================================================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function(){
-
-    updateAccountUI();
+      );
 
   }
 );
