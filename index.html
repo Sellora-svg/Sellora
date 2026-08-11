@@ -57,7 +57,14 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoratio
 @media(max-width:700px){.navbar{height:68px}.nav-links{display:none}.nav-actions{margin-left:auto}.nav-actions .btn{padding:9px 10px;font-size:11px}.nav-actions .trial-nav{display:none}.nav-toggle{display:block}.hero{padding:50px 6%}.hero h1{font-size:39px}.section{padding:60px 6%}.section-title{font-size:30px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.footer{flex-direction:column}.tri-white{font-size:10px}.pdf-frame{height:430px}.dashboard-grid{grid-template-columns:1fr}}
 
 .account-chip{display:flex;align-items:center;gap:8px;background:#e7f7f8;color:#197383;border:1px solid #b8dde1;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800}.account-chip button{border:0;background:transparent;color:#197383;font-weight:800;cursor:pointer;padding:0 2px}.nav-actions{min-width:190px;justify-content:flex-end}
+
+.account-counter{margin:8px auto 0;text-align:center;font-size:13px;font-weight:800;color:#17383e}.account-counter strong{color:#d97706;font-size:17px}
 </style>
+
+<script>
+const INITIAL_SELLORA_COUNT = 52;
+</script>
+
 </head>
 <body>
 
@@ -78,6 +85,7 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoratio
 <div class="india-tricolor">
   <div class="tri-saffron"></div>
   <div class="tri-white"><span class="chakra">☸</span><strong>🇮🇳 15 AUGUST INDEPENDENCE DAY — BUMPER OFFER 🇮🇳</strong><span class="offer-mini">1 GUIDE = 1 EBOOK FREEEE 🎁</span></div>
+  <div id="accountCounter" class="account-counter" aria-live="polite"><span id="selloraCounterNumber">52</span> + people joined</span> people have created a Sellora account so far</div>
   <div class="tri-green"></div>
 </div>
 
@@ -191,7 +199,107 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoratio
 <!-- GUIDE / COUNTDOWN / PDF -->
 <div class="modal" id="guideModal"><div class="modal-card guide"><button class="close" onclick="closeModal('guideModal')">×</button><div id="guideContent"></div></div></div>
 
+
+<!-- SELLORA FIREBASE -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import {
+    getAuth, onAuthStateChanged, createUserWithEmailAndPassword,
+    signInWithEmailAndPassword, updateProfile, signOut
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  import {
+    getFirestore, doc, setDoc, getDoc, runTransaction, onSnapshot, serverTimestamp, getCountFromServer, collection
+  } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCIRpKN64oGyvRJ2h4_-aaQ5jfOGwI4KVI",
+    authDomain: "sellora-f0d09.firebaseapp.com",
+    projectId: "sellora-f0d09",
+    storageBucket: "sellora-f0d09.firebasestorage.app",
+    messagingSenderId: "424342988274",
+    appId: "1:424342988274:web:1ec272ffe72032e8d0376b",
+    measurementId: "G-G5NTDF922V"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  window.selloraFirebase = {
+    app, auth, db, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    updateProfile, signOut, doc, setDoc, getDoc, runTransaction, onSnapshot, serverTimestamp
+  };
+
+  // Live public account counter. The number is stored in Firestore so it
+  // survives refreshes, different devices and returning visitors.
+  function showAccountCount(count){
+    const el = document.getElementById("accountCounterNumber");
+    const n = Number(count);
+    if (el) el.textContent = (Number.isFinite(n) ? Math.max(0, Math.floor(n)) : 0).toLocaleString("en-IN");
+  }
+
+  const counterRef = doc(db, "stats", "accounts");
+  onSnapshot(counterRef, (snap) => {
+    showAccountCount(snap.exists() ? snap.data().count : 0);
+  }, (err) => {
+    console.warn("Sellora account counter unavailable:", err);
+  });
+
+  // If the counter document does not exist yet, try to recover the number
+  // from existing Sellora profile documents. This only works for old accounts
+  // whose profile was already saved in Firestore.
+  (async () => {
+    try {
+      const snap = await getDoc(counterRef);
+      if (!snap.exists()) {
+        const usersCount = await getCountFromServer(collection(db, "users"));
+        const recovered = Number(usersCount.data().count || 0);
+        if (recovered > 0) {
+          await setDoc(counterRef, { count: recovered, updatedAt: serverTimestamp() }, { merge: true });
+          showAccountCount(recovered);
+        }
+      }
+    } catch (err) {
+      console.warn("Counter recovery skipped. Check Firestore rules:", err);
+    }
+  })();
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      localStorage.removeItem("selloraProfile");
+      localStorage.removeItem("selloraLoggedIn");
+      if (typeof updateAccountUI === "function") updateAccountUI();
+      return;
+    }
+
+    try {
+      const snap = await getDoc(doc(db, "users", user.uid));
+      let profile = snap.exists() ? snap.data() : {};
+      profile = {
+        ...profile,
+        uid: user.uid,
+        name: profile.name || user.displayName || "Sellora Creator",
+        email: user.email || profile.email || "",
+        categories: Array.isArray(profile.categories) ? profile.categories : [],
+        company: profile.company || "Sellora creator",
+        goal: profile.goal || ""
+      };
+      localStorage.setItem("selloraProfile", JSON.stringify(profile));
+      localStorage.setItem("selloraLoggedIn", "true");
+    } catch (err) {
+      console.error("Could not load Sellora profile:", err);
+    }
+
+    if (typeof updateAccountUI === "function") updateAccountUI();
+  });
+</script>
+
 <script>
+function updateSelloraAccountCounter(){
+  const el=document.getElementById("accountCounterNumber");
+  if(el && !el.textContent) el.textContent="0";
+}
+
 const guides={
 business:{title:"How to Open a Business",intro:"Opening a business starts with a problem, a customer and a clear offer. Start small, validate demand, set up the appropriate legal and financial structure for your location, launch and improve using customer feedback.",sections:[
 ["1. Choose a business idea","Start with a real customer problem. Identify who has it, how they currently solve it and why they might pay for a better solution."],
@@ -257,7 +365,15 @@ function updateAccountUI(){
    if(guest) guest.style.display="block";
  }
 }
-function logout(){localStorage.removeItem("selloraProfile");updateAccountUI();alert("You have been logged out.");}
+async function logout(){
+  try{
+    if(window.selloraFirebase) await window.selloraFirebase.signOut(window.selloraFirebase.auth);
+  }catch(err){ console.error(err); }
+  localStorage.removeItem("selloraProfile");
+  localStorage.removeItem("selloraLoggedIn");
+  updateAccountUI();
+  alert("You have been logged out.");
+}
 /* ================= SELLORA WORKING ACCOUNT + EBOOK SYSTEM ================= */
 
 const SELLORA_ACCOUNT_KEY = "selloraProfile";
@@ -557,19 +673,72 @@ ${categorySelect("marketing","📈","Marketing","How to attract customers and ma
 function categorySelect(id,icon,title,desc){return `<button type="button" class="select-card ${selectedCategories.includes(id)?"selected":""}" onclick="toggleCategory('${id}')"><div class="category-icon">${icon}</div><div><strong>${title}</strong><small>${desc}</small></div></button>`}
 function continueSignup(e){e.preventDefault();signupData={name:document.getElementById("fullName").value.trim(),email:document.getElementById("email").value.trim(),password:document.getElementById("password").value,company:document.getElementById("company").value.trim(),goal:document.getElementById("goal").value.trim()};signupStep=2;renderSignup()}
 function toggleCategory(c){selectedCategories=selectedCategories.includes(c)?selectedCategories.filter(x=>x!==c):[...selectedCategories,c];renderSignup()}
-function finishSignup(){
+async function finishSignup(){
  if(!selectedCategories.length){alert("Please select at least one category.");return}
- const profile={name:signupData.name,email:signupData.email,password:signupData.password,company:signupData.company,goal:signupData.goal,categories:selectedCategories,createdAt:new Date().toISOString()};
- localStorage.setItem("selloraProfile",JSON.stringify(profile));
- localStorage.setItem("selloraLoggedIn","true");
- closeModal("signupModal");updateAccountUI();
- alert("Account created successfully! Welcome, "+profile.name+" 🎉");
- openGuide(selectedCategories[0]);
+ if(!window.selloraFirebase){alert("Firebase is still loading. Please wait a moment and try again.");return}
+
+ const fb=window.selloraFirebase;
+ const name=signupData.name.trim(), email=signupData.email.trim().toLowerCase();
+ try{
+   const cred=await fb.createUserWithEmailAndPassword(fb.auth,email,signupData.password);
+   await fb.updateProfile(cred.user,{displayName:name});
+
+   const profile={
+     uid:cred.user.uid,
+     name, email, company:signupData.company.trim(), goal:signupData.goal.trim(),
+     categories:selectedCategories, createdAt:new Date().toISOString()
+   };
+
+   await fb.setDoc(fb.doc(fb.db,"users",cred.user.uid),{...profile,createdAt:fb.serverTimestamp()},{merge:true});
+
+   // Persistent account counter: one increment for each newly-created Firebase account.
+   // The transaction keeps concurrent signups from overwriting each other.
+   try{
+     const counterRef=fb.doc(fb.db,"stats","accounts");
+     await fb.runTransaction(fb.db, async (tx)=>{
+       const snap=await tx.get(counterRef);
+       const current=snap.exists()?Number(snap.data().count||0):0;
+       tx.set(counterRef,{count:Math.max(0,Math.floor(current))+1,updatedAt:fb.serverTimestamp()},{merge:true});
+     });
+   }catch(counterErr){
+     console.warn("Account created, but counter update failed:",counterErr);
+   }
+
+   localStorage.setItem("selloraProfile",JSON.stringify(profile));
+   localStorage.setItem("selloraLoggedIn","true");
+   closeModal("signupModal");
+   updateAccountUI();
+   alert("Account created successfully! Welcome, "+profile.name+" 🎉");
+   openGuide(selectedCategories[0]);
+ }catch(err){
+   console.error(err);
+   const msg=err && err.code ? err.code.replace("auth/","").replaceAll("-"," ") : "Could not create the account";
+   alert("Account creation failed: "+msg+"\n\nIf this is your first Firebase setup, enable Email/Password in Firebase Authentication.");
+ }
 }
-function loginDemo(e){
- e.preventDefault();const p=currentUser();const email=document.getElementById("loginEmail").value.trim().toLowerCase(),pass=document.getElementById("loginPassword").value;
- if(p && p.email.toLowerCase()===email && p.password===pass){localStorage.setItem("selloraLoggedIn","true");closeModal("loginModal");updateAccountUI();alert("Welcome back, "+p.name+"!");document.getElementById("creator").scrollIntoView({behavior:"smooth"});}
- else alert("Account not found or password is incorrect on this browser. Create the account first.");
+
+async function loginDemo(e){
+ e.preventDefault();
+ if(!window.selloraFirebase){alert("Firebase is still loading. Please wait a moment and try again.");return}
+ const fb=window.selloraFirebase;
+ const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+ const pass=document.getElementById("loginPassword").value;
+ try{
+   const cred=await fb.signInWithEmailAndPassword(fb.auth,email,pass);
+   const snap=await fb.getDoc(fb.doc(fb.db,"users",cred.user.uid));
+   let p=snap.exists()?snap.data():{};
+   p={...p,uid:cred.user.uid,name:p.name||cred.user.displayName||"Sellora Creator",email:cred.user.email||email};
+   localStorage.setItem("selloraProfile",JSON.stringify(p));
+   localStorage.setItem("selloraLoggedIn","true");
+   closeModal("loginModal");
+   updateAccountUI();
+   alert("Welcome back, "+p.name+"! 👋");
+   document.getElementById("creator").scrollIntoView({behavior:"smooth"});
+ }catch(err){
+   console.error(err);
+   const msg=err && err.code ? err.code.replace("auth/","").replaceAll("-"," ") : "Account not found";
+   alert("Login failed: "+msg);
+ }
 }
 function openGuide(type){
  const g=guides[type];if(!g)return;let c=`<div class="guide-header"><div class="guide-label">SELLORA LEARNING GUIDE</div><h2>${g.title}</h2><p>${g.intro}</p></div>`;
@@ -624,8 +793,9 @@ function generateSelloraEbook(type,isTrial=false,isCreator=false){
 function escapeHtml(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function toggleMobileNav(){const n=document.querySelector(".nav-links");n.style.display=n.style.display==="flex"?"none":"flex";n.style.position="absolute";n.style.top="68px";n.style.left="0";n.style.right="0";n.style.background="#fff";n.style.padding="20px 6%";n.style.flexDirection="column"}
 window.addEventListener("click",e=>{document.querySelectorAll(".modal").forEach(m=>{if(e.target===m)m.classList.remove("show")})});
-window.addEventListener("DOMContentLoaded",()=>{updateAccountUI()});
+window.addEventListener("DOMContentLoaded",()=>{updateAccountUI();updateSelloraAccountCounter()});
 
 </script>
 </body>
 </html>
+<script>window.addEventListener("DOMContentLoaded",updateSelloraAccountCounter);</script>
