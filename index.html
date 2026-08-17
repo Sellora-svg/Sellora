@@ -43,6 +43,13 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoratio
 .ad-window{width:70%;height:150px;background:#f9fcff;border-radius:8px;box-shadow:var(--shadow);border:5px solid #bfdbe5;position:relative}.ad-window:before{content:"";position:absolute;left:15px;right:15px;top:30px;height:9px;background:#d6e6ed;border-radius:8px;box-shadow:0 22px #d6e6ed,0 44px #d6e6ed}.money{position:absolute;right:8%;top:10%;width:58px;height:58px;border-radius:50%;background:#fff;color:#2ba26c;display:grid;place-items:center;font-size:31px;box-shadow:var(--shadow)}.rpm{position:absolute;left:8%;bottom:8%;background:#182337;color:#fff;width:110px;height:75px;border-radius:10px;padding:10px;font-size:11px}.rpm strong{display:block;font-size:17px;margin-top:8px}
 .category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1050px;margin:35px auto 0}.category-card{border:1px solid var(--line);border-radius:16px;padding:28px;text-align:left;background:#fff;transition:.2s;box-shadow:0 6px 25px rgba(20,60,70,.04)}.category-card:hover{transform:translateY(-5px);border-color:#9acbd1;box-shadow:var(--shadow)}.category-icon{width:48px;height:48px;border-radius:13px;background:var(--light);color:var(--dark);display:grid;place-items:center;font-size:23px;margin-bottom:18px}.category-card h3{font-size:22px;margin-bottom:8px}.category-card p{color:var(--muted);font-size:14px;margin-bottom:18px}.read-more{color:var(--dark);font-weight:900;font-size:13px}
 .offer-banner{max-width:1050px;margin:25px auto 0;border:2px dashed #ff9933;border-radius:16px;background:linear-gradient(90deg,#fff5e8,#fff,#effbea);padding:18px;text-align:center}.offer-banner strong{font-size:20px;color:#c86c00}
+
+.raksha-wrap{max-width:1050px;margin:18px auto 0;padding:0 8%;}
+.raksha-banner{position:relative;overflow:hidden;border:2px solid #e8a0b6;border-radius:22px;background:linear-gradient(135deg,#fff0f5,#fff,#fff3e8);box-shadow:0 16px 40px rgba(180,70,100,.12);padding:28px;text-align:center;}
+.raksha-banner:before,.raksha-banner:after{content:"🎀";position:absolute;font-size:48px;top:12px;opacity:.85}.raksha-banner:before{left:18px}.raksha-banner:after{right:18px}
+.raksha-kicker{font-size:11px;font-weight:900;letter-spacing:1.6px;color:#b13b62}.raksha-banner h2{font-size:30px;margin:5px 0 8px}.raksha-banner p{color:#59636a;max-width:700px;margin:0 auto 16px}.raksha-offers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.raksha-card{background:#fff;border:1px solid #f0d3dc;border-radius:16px;padding:20px 15px;box-shadow:0 8px 24px rgba(100,40,60,.06)}.raksha-card .raksha-icon{font-size:38px;margin-bottom:8px}.raksha-card h3{font-size:17px;margin-bottom:5px}.raksha-card p{font-size:12px;color:#667078;margin:0}.raksha-card strong{display:block;color:#b13b62;margin-top:8px;font-size:13px}.raksha-strip{margin-top:16px;background:#b13b62;color:#fff;border-radius:12px;padding:11px;font-weight:900;font-size:13px}
+@media(max-width:700px){.raksha-wrap{padding:0 6%}.raksha-offers{grid-template-columns:1fr}.raksha-banner:before,.raksha-banner:after{font-size:32px}.raksha-banner h2{font-size:25px}}
+
 .footer{background:#102329;color:#d8e7e9;padding:45px 8%;display:flex;justify-content:space-between;gap:30px}.footer p{color:#9db3b8;font-size:13px}
 .modal{position:fixed;inset:0;background:rgba(7,24,29,.64);display:none;align-items:center;justify-content:center;padding:20px;z-index:500}.modal.show{display:flex}.modal-card{width:min(650px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:20px;padding:32px;position:relative;box-shadow:0 30px 100px rgba(0,0,0,.3)}.close{position:absolute;right:18px;top:12px;border:0;background:none;font-size:30px;color:#6d7478}.modal-step{color:var(--dark);font-size:11px;font-weight:900;letter-spacing:1.4px;margin-bottom:7px}.modal-card h2{font-size:31px;margin-bottom:8px}.intro{color:var(--muted);font-size:14px;margin-bottom:22px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{margin-bottom:15px}.field.full{grid-column:1/-1}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;border:1px solid #d7e0e2;border-radius:9px;padding:12px;outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--teal);box-shadow:0 0 0 3px #e8f6f7}.modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:8px}
@@ -61,8 +68,85 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoratio
 .account-counter{margin:8px auto 0;text-align:center;font-size:13px;font-weight:800;color:#17383e}.account-counter strong{color:#d97706;font-size:17px}
 </style>
 
-<script>
-const INITIAL_SELLORA_COUNT = 52;
+<script id="SELLORA30DayAutoLogin">
+/* SELLORA 30-DAY AUTO LOGIN
+   Keeps a created account/profile active on this browser for 30 days.
+   No password is stored in this browser.
+*/
+const SELLORA_SESSION_KEY = "sellora30DaySession";
+const SELLORA_PROFILE_KEY = "selloraProfile";
+
+function saveSelloraSession(profile){
+  const session = {
+    profile: profile,
+    expiresAt: Date.now() + (30 * 24 * 60 * 60 * 1000)
+  };
+  localStorage.setItem(SELLORA_SESSION_KEY, JSON.stringify(session));
+  localStorage.setItem(SELLORA_PROFILE_KEY, JSON.stringify(profile));
+}
+
+function getSelloraSession(){
+  try{
+    const raw = localStorage.getItem(SELLORA_SESSION_KEY);
+    if(!raw) return null;
+    const session = JSON.parse(raw);
+    if(!session || !session.profile || !session.expiresAt) return null;
+
+    if(Date.now() >= session.expiresAt){
+      localStorage.removeItem(SELLORA_SESSION_KEY);
+      return null;
+    }
+    return session.profile;
+  }catch(e){
+    return null;
+  }
+}
+
+function restoreSelloraAccount(){
+  const profile = getSelloraSession();
+  if(!profile) return;
+
+  // Keep the existing profile available to the rest of the website.
+  window.selloraCurrentProfile = profile;
+
+  // Update common welcome/account elements if they exist.
+  const name = profile.name || "Sellora User";
+  const welcome = document.getElementById("welcomeName");
+  if(welcome) welcome.textContent = "Welcome, " + name + "!";
+
+  const summary = document.getElementById("accountSummary");
+  if(summary){
+    summary.textContent =
+      name + (profile.email ? " • " + profile.email : "");
+  }
+
+  // Hide guest/create-account prompts when already signed in.
+  [
+    "creatorGuest",
+    "signupPrompt",
+    "guestActions"
+  ].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.style.display = "none";
+  });
+
+  // Update buttons/labels if the page has them.
+  document.querySelectorAll("[data-create-account]").forEach(el=>{
+    el.style.display = "none";
+  });
+
+  document.querySelectorAll("[data-login-button]").forEach(el=>{
+    el.style.display = "none";
+  });
+
+  const accountStatus = document.getElementById("accountStatus");
+  if(accountStatus){
+    accountStatus.style.display = "block";
+    accountStatus.textContent = "👋 Welcome back, " + name;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", restoreSelloraAccount);
 </script>
 
 </head>
@@ -84,10 +168,24 @@ const INITIAL_SELLORA_COUNT = 52;
 
 <div class="india-tricolor">
   <div class="tri-saffron"></div>
-  <div class="tri-white"><span class="chakra">☸</span><strong>🇮🇳 15 AUGUST INDEPENDENCE DAY — BUMPER OFFER 🇮🇳</strong><span class="offer-mini">1 GUIDE = 1 EBOOK FREEEE 🎁</span></div>
-  <div id="accountCounter" class="account-counter" aria-live="polite"><span id="selloraCounterNumber">97</span> + people joined</div>
+  <div class="tri-white"><span class="chakra">☸</span><strong>🎀 RAKSHA BANDHAN SPECIAL — BUMPER OFFER 🎀</strong><span class="offer-mini">1 GUIDE = 1 EBOOK FREEEE 🎁</span></div>
+  <div id="accountCounter" class="account-counter" aria-live="polite"><span id="accountCounterNumber">106</span> + people joined</div>
   <div class="tri-green"></div>
 </div>
+
+<section class="raksha-wrap" aria-label="Raksha Bandhan special offers">
+  <div class="raksha-banner">
+    <div class="raksha-kicker">🎀 SELLORA FESTIVE SPECIAL 🎀</div>
+    <h2>Raksha Bandhan Bumper Offer</h2>
+    <p>Celebrate the bond of ideas and growth with special FREE creator benefits on Sellora.</p>
+    <div class="raksha-offers">
+      <div class="raksha-card"><div class="raksha-icon">🪢</div><h3>Finish Any Guide</h3><p>Complete a Business, Startup or Marketing guide.</p><strong>1 GUIDE = 1 EBOOK FREE</strong></div>
+      <div class="raksha-card"><div class="raksha-icon">🎁</div><h3>15-Page Ebook</h3><p>Unlock your complete ebook after finishing a guide.</p><strong>FREE PDF + DOWNLOAD</strong></div>
+      <div class="raksha-card"><div class="raksha-icon">💝</div><h3>Create Your Own</h3><p>Use Sellora's ebook studio to turn your idea into a digital product.</p><strong>TRY IT FREE</strong></div>
+    </div>
+    <div class="raksha-strip">🎀 RAKSHA BANDHAN SPECIAL • 106+ PEOPLE JOINED • FREE EBOOK BENEFITS 🎀</div>
+  </div>
+</section>
 
 <main>
 <section class="hero" id="home">
@@ -128,7 +226,7 @@ const INITIAL_SELLORA_COUNT = 52;
     <button class="category-card" onclick="openGuide('startup')"><div class="category-icon">🚀</div><h3>Startup Guide</h3><p>Learn how to validate an idea, build an MVP, create a website and publish it through GitHub.</p><span class="read-more">Open Startup Guide →</span></button>
     <button class="category-card" onclick="openGuide('marketing')"><div class="category-icon">📈</div><h3>Marketing</h3><p>Learn how to attract customers, create content, sell products and make money online.</p><span class="read-more">Open Marketing Guide →</span></button>
   </div>
-  <div class="offer-banner"><div>🇮🇳 <strong>15 AUGUST BUMPER OFFER</strong> 🇮🇳</div><div style="margin-top:4px;font-weight:900">1 GUIDE = 1 EBOOK FREEEE — Finish a guide and unlock your free 15-page PDF.</div></div>
+  <div class="offer-banner"><div>🇮🇳 <strong>RAKSHA BANDHAN BUMPER OFFER</strong> 🇮🇳</div><div style="margin-top:4px;font-weight:900">1 GUIDE = 1 EBOOK FREEEE — Finish a guide and unlock your free 15-page PDF.</div></div>
 </section>
 
 <section class="section" id="creator">
@@ -140,9 +238,10 @@ const INITIAL_SELLORA_COUNT = 52;
     </div>
     <div class="dashboard-grid" style="margin-top:18px">
       <div class="dash-card"><h3>👤 Your account</h3><p id="accountSummary"></p></div>
-      <div class="dash-card"><h3>🎁 Independence Day Offer</h3><p>Finish any guide and get 1 full 15-page ebook FREEEE.</p></div>
+      <div class="dash-card"><h3>🎁 Raksha Bandhan Offer</h3><p>Finish any guide and get 1 full 15-page ebook FREEEE during the Raksha Bandhan special.</p></div>
     </div>
   </div>
+  <div id="accountStatus" style="display:none;text-align:center;margin:0 auto 18px;font-weight:900;color:#197383;font-size:18px"></div>
   <div class="center" id="creatorGuest">
     <button class="btn btn-primary" onclick="openFreeTrial()">🎁 Try Free Ebook Without Account</button>
     <button class="btn btn-outline" onclick="openSignup()">Create Account & Make Ebook</button>
@@ -167,7 +266,7 @@ const INITIAL_SELLORA_COUNT = 52;
 
 <section class="section center" id="pricing">
   <h2 class="section-title">Start Free. Learn. Build. Grow.</h2>
-  <p class="section-subtitle">Explore Sellora free and use the Independence Day offer to unlock a 15-page ebook.</p>
+  <p class="section-subtitle">Explore Sellora free and use the Raksha Bandhan offer to unlock a 15-page ebook.</p>
   <button class="btn btn-primary" onclick="openFreeTrial()">🎁 Start Free Trial — No Account</button>
 </section>
 
@@ -189,7 +288,7 @@ const INITIAL_SELLORA_COUNT = 52;
 <div class="field"><label>Ebook Topic / Goal *</label><input id="trialTopic" required placeholder="Example: How to Make Money Online"></div>
 <div class="field"><label>What should the ebook contain? *</label><textarea id="trialGoal" rows="4" required placeholder="Tell Sellora what your ebook should teach..."></textarea></div>
 <div class="field"><label>Category</label><select id="trialCategory"><option value="marketing">Marketing & Making Money</option><option value="startup">Startup</option><option value="business">Business</option></select></div>
-<div class="success">🇮🇳 <strong>15 August Bumper Offer:</strong> Create your free 15-page ebook.</div>
+<div class="success">🇮🇳 <strong>Raksha Bandhan Bumper Offer:</strong> Create your free 15-page ebook.</div>
 <div class="modal-footer"><button class="btn btn-primary" type="submit">🚀 Create My Free Ebook</button></div>
 </form></div></div>
 
@@ -199,212 +298,25 @@ const INITIAL_SELLORA_COUNT = 52;
 <!-- GUIDE / COUNTDOWN / PDF -->
 <div class="modal" id="guideModal"><div class="modal-card guide"><button class="close" onclick="closeModal('guideModal')">×</button><div id="guideContent"></div></div></div>
 
-
-<!-- SELLORA FIREBASE - GitHub Pages friendly setup + safe local fallback -->
-<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore-compat.js"></script>
 <script>
-(function(){
-  const firebaseConfig = {
-    apiKey: "AIzaSyCIRpKN64oGyvRJ2h4_-aaQ5jfOGwI4KVI",
-    authDomain: "sellora-f0d09.firebaseapp.com",
-    projectId: "sellora-f0d09",
-    storageBucket: "sellora-f0d09.firebasestorage.app",
-    messagingSenderId: "424342988274",
-    appId: "1:424342988274:web:1ec272ffe72032e8d0376b",
-    measurementId: "G-G5NTDF922V"
-  };
-  const BASE_COUNT = 97;
-
-  function showAccountCount(count){
-    const el=document.getElementById('selloraCounterNumber');
-    const n=Number(count);
-    if(el) el.textContent=(Number.isFinite(n)?Math.max(BASE_COUNT,Math.floor(n)):BASE_COUNT).toLocaleString('en-IN');
-  }
-  function localCount(){
-    const n=Number(localStorage.getItem('selloraLocalCount'));
-    return Number.isFinite(n) && n >= BASE_COUNT ? Math.floor(n) : BASE_COUNT;
-  }
-  function setLocalCount(n){
-    const value=Math.max(BASE_COUNT,Math.floor(Number(n)||BASE_COUNT));
-    localStorage.setItem('selloraLocalCount',String(value));
-    showAccountCount(value);
-    return value;
-  }
-  showAccountCount(localCount());
-
-  try {
-    if (!window.firebase) throw new Error('Firebase SDK did not load');
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-    const auth=firebase.auth();
-    const db=firebase.firestore();
-    const usersRef=db.collection('users');
-    const counterRef=db.collection('stats').doc('accounts');
-    window.selloraFirebase={
-      auth,db,
-      createUserWithEmailAndPassword:(a,email,password)=>a.createUserWithEmailAndPassword(email,password),
-      signInWithEmailAndPassword:(a,email,password)=>a.signInWithEmailAndPassword(email,password),
-      updateProfile:(user,data)=>user.updateProfile(data),
-      signOut:(a)=>a.signOut(),
-      doc:(db,collectionName,id)=>db.collection(collectionName).doc(id),
-      setDoc:(ref,data,options)=>options?ref.set(data,options):ref.set(data),
-      getDoc:(ref)=>ref.get(),
-      runTransaction:(db,callback)=>db.runTransaction(callback),
-      onSnapshot:(ref,next,error)=>ref.onSnapshot(next,error),
-      serverTimestamp:()=>firebase.firestore.FieldValue.serverTimestamp(),
-      usersRef,counterRef
-    };
-
-    // Firestore is used when its rules permit it. The local value remains the safe display fallback.
-    counterRef.get().then(function(snap){
-      if(!snap.exists){
-        return counterRef.set({count:BASE_COUNT,updatedAt:firebase.firestore.FieldValue.serverTimestamp()}).then(()=>showAccountCount(BASE_COUNT));
-      }
-      const count=Number(snap.data().count);
-      if(Number.isFinite(count) && count>=BASE_COUNT){
-        localStorage.setItem('selloraLocalCount',String(Math.floor(count)));
-        showAccountCount(count);
-      } else showAccountCount(localCount());
-    }).catch(function(err){
-      console.warn('Firebase counter unavailable; using local counter.',err);
-      showAccountCount(localCount());
-    });
-
-    counterRef.onSnapshot(function(snap){
-      if(snap.exists){
-        const count=Number(snap.data().count);
-        if(Number.isFinite(count) && count>=BASE_COUNT){
-          localStorage.setItem('selloraLocalCount',String(Math.floor(count)));
-          showAccountCount(count);
-        }
-      }
-    },function(err){ console.warn('Counter listener unavailable; local counter remains active.',err); });
-
-    auth.onAuthStateChanged(async function(user){
-      if(!user){
-        if(!localStorage.getItem('selloraLocalSession')){
-          localStorage.removeItem('selloraProfile');
-          localStorage.removeItem('selloraLoggedIn');
-        }
-        if(typeof updateAccountUI==='function') updateAccountUI();
-        return;
-      }
-      try{
-        const snap=await usersRef.doc(user.uid).get();
-        let profile=snap.exists?snap.data():{};
-        profile={...profile,uid:user.uid,name:profile.name||user.displayName||'Sellora Creator',email:user.email||profile.email||'',categories:Array.isArray(profile.categories)?profile.categories:[],company:profile.company||'Sellora creator',goal:profile.goal||''};
-        localStorage.setItem('selloraProfile',JSON.stringify(profile));
-        localStorage.setItem('selloraLoggedIn','true');
-      }catch(err){console.warn('Could not load Firebase profile:',err);}
-      if(typeof updateAccountUI==='function') updateAccountUI();
-    });
-    console.log('Sellora Firebase initialized.');
-  } catch(err) {
-    console.warn('Firebase unavailable; Sellora local account mode is active.',err);
-    window.selloraFirebase=null;
-  }
-
-  window.selloraBaseCount=BASE_COUNT;
-  window.selloraShowCount=showAccountCount;
-  window.selloraGetLocalCount=localCount;
-  window.selloraSetLocalCount=setLocalCount;
-})();
-</script>
-<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore-compat.js"></script>
-<script>
-(function(){
-  const firebaseConfig = {
-    apiKey: "AIzaSyCIRpKN64oGyvRJ2h4_-aaQ5jfOGwI4KVI",
-    authDomain: "sellora-f0d09.firebaseapp.com",
-    projectId: "sellora-f0d09",
-    storageBucket: "sellora-f0d09.firebasestorage.app",
-    messagingSenderId: "424342988274",
-    appId: "1:424342988274:web:1ec272ffe72032e8d0376b",
-    measurementId: "G-G5NTDF922V"
-  };
-
-  try {
-    if (!window.firebase) throw new Error('Firebase SDK did not load. Check internet/CDN access.');
-    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-    const usersRef = db.collection('users');
-    const counterRef = db.collection('stats').doc('accounts');
-
-    window.selloraFirebase = {
-      auth, db,
-      createUserWithEmailAndPassword: (a,email,password) => a.createUserWithEmailAndPassword(email,password),
-      signInWithEmailAndPassword: (a,email,password) => a.signInWithEmailAndPassword(email,password),
-      updateProfile: (user,data) => user.updateProfile(data),
-      signOut: (a) => a.signOut(),
-      doc: (db, collectionName, id) => db.collection(collectionName).doc(id),
-      setDoc: (ref,data,options) => options ? ref.set(data, options) : ref.set(data),
-      getDoc: (ref) => ref.get(),
-      runTransaction: (db, callback) => db.runTransaction(callback),
-      onSnapshot: (ref, next, error) => ref.onSnapshot(next,error),
-      serverTimestamp: () => firebase.firestore.FieldValue.serverTimestamp(),
-      usersRef,
-      counterRef
-    };
-
-    function showAccountCount(count){
-      const el=document.getElementById('accountCounterNumber');
-      const n=Number(count);
-      if(el) el.textContent=(Number.isFinite(n)?Math.max(0,Math.floor(n)):52).toLocaleString('en-IN');
-    }
-
-    // Start the public counter at 52 if it has never been created.
-    counterRef.get().then(function(snap){
-      if(!snap.exists){
-        return counterRef.set({count:52,updatedAt:firebase.firestore.FieldValue.serverTimestamp()}).then(()=>showAccountCount(52));
-      }
-      const count=Number(snap.data().count);
-      showAccountCount(Number.isFinite(count)?count:52);
-    }).catch(function(err){
-      console.warn('Counter read failed:',err);
-      showAccountCount(52);
-    });
-
-    counterRef.onSnapshot(function(snap){
-      if(snap.exists){
-        const count=Number(snap.data().count);
-        showAccountCount(Number.isFinite(count)?count:52);
-      } else showAccountCount(52);
-    }, function(err){ console.warn('Counter listener failed:',err); });
-
-    auth.onAuthStateChanged(async function(user){
-      if(!user){
-        localStorage.removeItem('selloraProfile');
-        localStorage.removeItem('selloraLoggedIn');
-        if(typeof updateAccountUI==='function') updateAccountUI();
-        return;
-      }
-      try{
-        const snap=await usersRef.doc(user.uid).get();
-        let profile=snap.exists?snap.data():{};
-        profile={...profile,uid:user.uid,name:profile.name||user.displayName||'Sellora Creator',email:user.email||profile.email||'',categories:Array.isArray(profile.categories)?profile.categories:[],company:profile.company||'Sellora creator',goal:profile.goal||''};
-        localStorage.setItem('selloraProfile',JSON.stringify(profile));
-        localStorage.setItem('selloraLoggedIn','true');
-      }catch(err){console.error('Could not load Sellora profile:',err);}
-      if(typeof updateAccountUI==='function') updateAccountUI();
-    });
-
-    console.log('Sellora Firebase connected successfully.');
-  } catch(err) {
-    console.error('Sellora Firebase initialization failed:',err);
-    window.selloraFirebaseError=err;
-    window.selloraFirebase=null;
-  }
-})();
-</script>
-
-<script>
+function getSelloraAccountCount(){
+  const stored=Number(localStorage.getItem("selloraAccountCount"));
+  if(!Number.isFinite(stored)||stored<106){localStorage.setItem("selloraAccountCount","106");}
+  const n=Number(localStorage.getItem("selloraAccountCount")||"106");
+  return Number.isFinite(n)&&n>=0?Math.floor(n):0;
+}
 function updateSelloraAccountCounter(){
   const el=document.getElementById("accountCounterNumber");
-  if(el && !el.textContent) el.textContent="52";
+  if(el) el.textContent=getSelloraAccountCount().toLocaleString("en-IN");
+}
+function registerNewSelloraAccount(email){
+  const key="selloraCountedEmail";
+  const previous=localStorage.getItem(key);
+  if(previous===email){updateSelloraAccountCounter();return;}
+  const next=getSelloraAccountCount()+1;
+  localStorage.setItem("selloraAccountCount",String(next));
+  localStorage.setItem(key,email);
+  updateSelloraAccountCounter();
 }
 
 const guides={
@@ -472,16 +384,7 @@ function updateAccountUI(){
    if(guest) guest.style.display="block";
  }
 }
-async function logout(){
-  try{
-    if(window.selloraFirebase) await window.selloraFirebase.signOut(window.selloraFirebase.auth);
-  }catch(err){ console.error(err); }
-  localStorage.removeItem("selloraProfile");
-  localStorage.removeItem("selloraLoggedIn");
- localStorage.removeItem("selloraLocalSession");
-  updateAccountUI();
-  alert("You have been logged out.");
-}
+function logout(){localStorage.removeItem("selloraProfile");updateAccountUI();alert("You have been logged out.");}
 /* ================= SELLORA WORKING ACCOUNT + EBOOK SYSTEM ================= */
 
 const SELLORA_ACCOUNT_KEY = "selloraProfile";
@@ -781,104 +684,28 @@ ${categorySelect("marketing","📈","Marketing","How to attract customers and ma
 function categorySelect(id,icon,title,desc){return `<button type="button" class="select-card ${selectedCategories.includes(id)?"selected":""}" onclick="toggleCategory('${id}')"><div class="category-icon">${icon}</div><div><strong>${title}</strong><small>${desc}</small></div></button>`}
 function continueSignup(e){e.preventDefault();signupData={name:document.getElementById("fullName").value.trim(),email:document.getElementById("email").value.trim(),password:document.getElementById("password").value,company:document.getElementById("company").value.trim(),goal:document.getElementById("goal").value.trim()};signupStep=2;renderSignup()}
 function toggleCategory(c){selectedCategories=selectedCategories.includes(c)?selectedCategories.filter(x=>x!==c):[...selectedCategories,c];renderSignup()}
-async function finishSignup(){
+function finishSignup(){
  if(!selectedCategories.length){alert("Please select at least one category.");return}
- const name=signupData.name.trim(), email=signupData.email.trim().toLowerCase();
- const fb=window.selloraFirebase;
- try{
-   if(fb){
-     try{
-       const cred=await fb.createUserWithEmailAndPassword(fb.auth,email,signupData.password);
-       await fb.updateProfile(cred.user,{displayName:name});
-       const profile={uid:cred.user.uid,name,email,company:signupData.company.trim(),goal:signupData.goal.trim(),categories:selectedCategories,createdAt:new Date().toISOString()};
-       try{ await fb.setDoc(fb.doc(fb.db,"users",cred.user.uid),{...profile,createdAt:fb.serverTimestamp()},{merge:true}); }catch(profileErr){ console.warn("Profile save skipped:",profileErr); }
-       try{
-         const counterRef=fb.doc(fb.db,"stats","accounts");
-         await fb.runTransaction(fb.db,async(tx)=>{
-           const snap=await tx.get(counterRef);
-           const current=snap.exists()?Number(snap.data().count||window.selloraBaseCount):window.selloraBaseCount;
-           tx.set(counterRef,{count:Math.max(window.selloraBaseCount,Math.floor(current))+1,updatedAt:fb.serverTimestamp()},{merge:true});
-         });
-       }catch(counterErr){ console.warn("Firebase counter update skipped; local counter will be updated.",counterErr); window.selloraSetLocalCount(window.selloraGetLocalCount()+1); }
-       localStorage.setItem("selloraProfile",JSON.stringify(profile));
-       localStorage.setItem("selloraLoggedIn","true");
-       localStorage.setItem("selloraLocalSession","true");
-       closeModal("signupModal"); updateAccountUI();
-       alert("Account created successfully! Welcome, "+profile.name+" 🎉");
-       openGuide(selectedCategories[0]);
-       return;
-     }catch(firebaseErr){
-       // This specifically handles Firebase Auth's common "configuration-not-found" case.
-       if(firebaseErr && !['auth/configuration-not-found','auth/operation-not-allowed'].includes(firebaseErr.code) && !String(firebaseErr.message||'').toLowerCase().includes('configuration')) throw firebaseErr;
-       console.warn("Firebase Authentication is not enabled yet. Switching to local account mode.",firebaseErr);
-     }
-   }
-
-   // Local fallback: keeps the site usable on GitHub Pages even before Firebase Auth is enabled.
-   const key="selloraLocalAccounts";
-   const accounts=JSON.parse(localStorage.getItem(key)||"[]");
-   if(accounts.some(a=>a.email===email)){alert("An account with this email already exists. Please log in.");openLogin();return;}
-   const profile={uid:"local_"+Date.now(),name,email,company:signupData.company.trim(),goal:signupData.goal.trim(),categories:selectedCategories,createdAt:new Date().toISOString()};
-   accounts.push({email,password:signupData.password,profile});
-   localStorage.setItem(key,JSON.stringify(accounts));
-   localStorage.setItem("selloraProfile",JSON.stringify(profile));
-   localStorage.setItem("selloraLoggedIn","true");
-   localStorage.setItem("selloraLocalSession","true");
-   window.selloraSetLocalCount(window.selloraGetLocalCount()+1);
-   closeModal("signupModal"); updateAccountUI();
-   alert("Account created successfully! Welcome, "+profile.name+" 🎉");
-   openGuide(selectedCategories[0]);
- }catch(err){
-   console.error(err);
-   const msg=err && err.code ? err.code.replace("auth/","").replaceAll("-"," ") : (err && err.message ? err.message : "Could not create the account");
-   alert("Account creation failed: "+msg);
- }
+ const profile={name:signupData.name,email:signupData.email,password:signupData.password,company:signupData.company,goal:signupData.goal,categories:selectedCategories,createdAt:new Date().toISOString()};
+ const oldProfile=currentUser();
+ saveSelloraSession(profile);
+ localStorage.setItem("selloraLoggedIn","true");
+ if(!oldProfile || oldProfile.email!==profile.email){ registerNewSelloraAccount(profile.email.toLowerCase()); }
+ else { updateSelloraAccountCounter(); }
+ closeModal("signupModal");updateAccountUI();
+ alert("Account created successfully! Welcome, "+profile.name+" 🎉");
+ openGuide(selectedCategories[0]);
 }
-
-async function loginDemo(e){
- e.preventDefault();
- const email=document.getElementById("loginEmail").value.trim().toLowerCase();
- const pass=document.getElementById("loginPassword").value;
- const fb=window.selloraFirebase;
- try{
-   if(fb){
-     try{
-       const cred=await fb.signInWithEmailAndPassword(fb.auth,email,pass);
-       const snap=await fb.getDoc(fb.doc(fb.db,"users",cred.user.uid));
-       let p=snap.exists()?snap.data():{};
-       p={...p,uid:cred.user.uid,name:p.name||cred.user.displayName||"Sellora Creator",email:cred.user.email||email};
-       localStorage.setItem("selloraProfile",JSON.stringify(p));
-       localStorage.setItem("selloraLoggedIn","true");
-       localStorage.setItem("selloraLocalSession","true");
-       closeModal("loginModal"); updateAccountUI();
-       alert("Welcome back, "+p.name+"! 👋");
-       document.getElementById("creator").scrollIntoView({behavior:"smooth"});
-       return;
-     }catch(firebaseErr){
-       if(firebaseErr && !['auth/configuration-not-found','auth/operation-not-allowed','auth/user-not-found','auth/invalid-credential','auth/invalid-login-credentials'].includes(firebaseErr.code) && !String(firebaseErr.message||'').toLowerCase().includes('configuration')) throw firebaseErr;
-       console.warn("Firebase login unavailable; checking local accounts.",firebaseErr);
-     }
-   }
-   const accounts=JSON.parse(localStorage.getItem("selloraLocalAccounts")||"[]");
-   const found=accounts.find(a=>a.email===email && a.password===pass);
-   if(!found){alert("Login failed: email or password is incorrect.");return}
-   localStorage.setItem("selloraProfile",JSON.stringify(found.profile));
-   localStorage.setItem("selloraLoggedIn","true");
-   localStorage.setItem("selloraLocalSession","true");
-   closeModal("loginModal"); updateAccountUI();
-   alert("Welcome back, "+found.profile.name+"! 👋");
-   document.getElementById("creator").scrollIntoView({behavior:"smooth"});
- }catch(err){
-   console.error(err);
-   const msg=err && err.code ? err.code.replace("auth/","").replaceAll("-"," ") : "Account not found";
-   alert("Login failed: "+msg);
- }
+function loginDemo(e){
+ e.preventDefault();const p=currentUser();const email=document.getElementById("loginEmail").value.trim().toLowerCase(),pass=document.getElementById("loginPassword").value;
+ if(p && p.email.toLowerCase()===email && p.password===pass){localStorage.setItem("selloraLoggedIn","true");closeModal("loginModal");updateAccountUI();alert("Welcome back, "+p.name+"!");document.getElementById("creator").scrollIntoView({behavior:"smooth"});}
+ else alert("Account not found or password is incorrect on this browser. Create the account first.");
 }
 function openGuide(type){
  const g=guides[type];if(!g)return;let c=`<div class="guide-header"><div class="guide-label">SELLORA LEARNING GUIDE</div><h2>${g.title}</h2><p>${g.intro}</p></div>`;
  g.sections.forEach(s=>{c+=`<h3>${s[0]}</h3>`;if(s[1])c+=`<p>${s[1]}</p>`;if(s[2])c+=`<pre class="code">${escapeHtml(s[2])}</pre>`});
  c+=`<div class="success"><strong>Sellora tip:</strong> Learn one concept, take one real action, measure the result, then improve.</div>
- <div class="ebook-unlocked"><h3>🎁 BUMPER OFFER UNLOCKED!</h3><p><strong>1 GUIDE = 1 EBOOK FREEEE.</strong><br>You finished this guide. Generate your FREE 15-page ebook now.</p><div class="ebook-actions"><button class="btn btn-primary" onclick="finishGuideAndGenerate('${type}')">🎁 Generate FREE 15-Page Ebook</button><button class="btn btn-outline" onclick="closeModal('guideModal')">Close</button></div><div class="guide-finish-note">🇮🇳 15 AUGUST OFFER — 1 GUIDE = 1 EBOOK FREEEE!</div></div>`;
+ <div class="ebook-unlocked"><h3>🎁 BUMPER OFFER UNLOCKED!</h3><p><strong>1 GUIDE = 1 EBOOK FREEEE.</strong><br>You finished this guide. Generate your FREE 15-page ebook now.</p><div class="ebook-actions"><button class="btn btn-primary" onclick="finishGuideAndGenerate('${type}')">🎁 Generate FREE 15-Page Ebook</button><button class="btn btn-outline" onclick="closeModal('guideModal')">Close</button></div><div class="guide-finish-note">🇮🇳 RAKSHA BANDHAN OFFER — 1 GUIDE = 1 EBOOK FREEEE!</div></div>`;
  document.getElementById("guideContent").innerHTML=c;document.getElementById("guideModal").classList.add("show");
 }
 function finishGuideAndGenerate(type){if(!currentUser()){alert("Please create an account first to claim the guide ebook.");closeModal("guideModal");openSignup();return}closeModal("guideModal");startEbookCountdown(type,false)}
@@ -918,49 +745,16 @@ function generateSelloraEbook(type,isTrial=false,isCreator=false){
  ["12. LAUNCH PLAN","30-DAY ACTION","Week 1: prepare the offer. Week 2: publish useful content. Week 3: reach out to potential customers. Week 4: review results and improve the offer."],
  ["13. MISTAKES TO AVOID","KEEP IT REAL","Avoid copying competitors, building without validation, spending heavily before proving demand, making unrealistic claims and ignoring customer feedback."],
  ["14. GROWTH","BUILD A SYSTEM","When something works repeatedly, document it, improve it and automate or delegate suitable tasks. Scale reliable processes instead of chaos."],
- ["15. NEXT STEP","TAKE ACTION","Choose one action you can complete today. Small consistent execution is more useful than waiting for the perfect plan.\n\nCreated for: "+name+"\nEbook topic: "+topic+"\n\n🇮🇳 15 AUGUST BUMPER OFFER\n1 GUIDE = 1 EBOOK FREEEE 🎁"]
+ ["15. NEXT STEP","TAKE ACTION","Choose one action you can complete today. Small consistent execution is more useful than waiting for the perfect plan.\n\nCreated for: "+name+"\nEbook topic: "+topic+"\n\n🇮🇳 RAKSHA BANDHAN BUMPER OFFER\n1 GUIDE = 1 EBOOK FREEEE 🎁"]
  ];
- const makeTwentyLines=(text,title,index)=>{
-   const raw=String(text||"").replace(/\r/g,"").split("\n").filter(Boolean);
-   let lines=[];
-   raw.forEach(part=>{lines.push(...doc.splitTextToSize(part,168));});
-   const fillers=[
-     "Key action: turn this idea into one small practical step today.",
-     "Write down one example that matches your own goal and audience.",
-     "Keep the process simple, measurable and focused on useful results.",
-     "Review what you learn and improve the next version from real feedback.",
-     "Use clear language and avoid promises that cannot be supported.",
-     "A good plan becomes valuable when you actually test and apply it.",
-     "Note the next step you will complete after reading this page.",
-     "Keep your notes so you can compare progress over time."
-   ];
-   let f=0;
-   while(lines.length<20){lines.push(...doc.splitTextToSize(fillers[f%fillers.length],168));f++;}
-   return lines.slice(0,20);
- };
- pages.forEach((pg,i)=>{
-   if(i>0)doc.addPage();
-   doc.setFont("helvetica","bold");
-   doc.setFontSize(i===0?27:20);
-   doc.text(pg[0],20,28);
-   doc.setFontSize(i===0?20:15);
-   doc.text(doc.splitTextToSize(pg[1],170),20,45);
-   doc.setFont("helvetica","normal");
-   doc.setFontSize(12);
-   const lines=makeTwentyLines(pg[2],pg[0],i);
-   let y=i===0?75:72;
-   lines.forEach(line=>{doc.text(line,20,y);y+=8.5});
-   doc.setFontSize(9);
-   doc.text("Sellora • sellora",20,287);
-   doc.text(String(i+1)+"/15",180,287);
- });
+ pages.forEach((pg,i)=>{if(i>0)doc.addPage();doc.setFont("helvetica","bold");doc.setFontSize(i===0?27:20);doc.text(pg[0],20,28);doc.setFontSize(i===0?20:15);doc.text(doc.splitTextToSize(pg[1],170),20,45);doc.setFont("helvetica","normal");doc.setFontSize(12);let lines=doc.splitTextToSize(pg[2],168);let y=i===0?75:72;lines.forEach(line=>{if(y>270){doc.addPage();y=25}doc.text(line,20,y);y+=7});doc.setFontSize(9);doc.text("Sellora • sellora",20,287);doc.text(String(i+1)+"/15",180,287)});
  const blob=doc.output("blob"),url=URL.createObjectURL(blob);
  document.getElementById("guideContent").innerHTML=`<div class="ebook-ready"><div class="modal-step">🎁 EBOOK READY</div><h2>Your 15-page ebook is ready!</h2><p class="intro">Created for <strong>${escapeHtml(name)}</strong>. You can preview it and download it.</p><iframe class="pdf-frame" src="${url}"></iframe><div class="ebook-ready-actions"><a class="btn btn-primary" href="${url}" download="Sellora-15-Page-Ebook.pdf">⬇ Download 15-Page PDF</a><a class="btn btn-outline" href="${url}" target="_blank" rel="noopener">↗ Open PDF</a><button class="btn btn-outline" onclick="closeModal('guideModal')">Done</button></div><div class="success">🇮🇳 BUMPER OFFER: 1 GUIDE = 1 EBOOK FREEEE 🎁</div></div>`;
 }
 function escapeHtml(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function toggleMobileNav(){const n=document.querySelector(".nav-links");n.style.display=n.style.display==="flex"?"none":"flex";n.style.position="absolute";n.style.top="68px";n.style.left="0";n.style.right="0";n.style.background="#fff";n.style.padding="20px 6%";n.style.flexDirection="column"}
 window.addEventListener("click",e=>{document.querySelectorAll(".modal").forEach(m=>{if(e.target===m)m.classList.remove("show")})});
-window.addEventListener("DOMContentLoaded",()=>{updateAccountUI();updateSelloraAccountCounter()});
+window.addEventListener("DOMContentLoaded",()=>{updateAccountUI()});
 
 </script>
 </body>
