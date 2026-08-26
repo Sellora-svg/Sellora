@@ -190,7 +190,7 @@ for(let i=0;i<23;i++){const c=chapters[i];pages.push({type:'chapter',title:c[0]+
 pages.push({type:'checklist',title:'Final Product Checklist',body:'[ ] The audience is clearly defined.\n[ ] The problem and desired outcome are specific.\n[ ] The offer and deliverables are easy to understand.\n[ ] The product has examples, exercises and useful actions.\n[ ] The product page has a clear next step.\n[ ] Pricing reflects value, costs and alternatives.\n[ ] Distribution channels are chosen deliberately.\n[ ] Customer feedback is collected and reviewed.\n[ ] The next 30-day goal has a measurable target.',callout:'Quality check: remove anything that feels like filler. Every page should help the reader decide, learn or act.'});
 pages.push({type:'action',title:'Your Next 30 Days',body:'Week 1 · Clarify the audience, problem, offer and success metric.\nWeek 2 · Build or improve the smallest useful product and product page.\nWeek 3 · Launch to a focused audience, publish useful content and collect feedback.\nWeek 4 · Review conversion, revenue, retention and feedback; improve the strongest bottleneck.\n\nNext three actions:\n1. ______________________________________________\n2. ______________________________________________\n3. ______________________________________________',callout:'Sellora principle: learn one concept, take one real action, measure the result, then improve.'});
 return pages.slice(0,50)}
-function showEbookPreview(){closeModal('guideModal');const content=document.getElementById('previewContent');if(!content){toast('Ebook preview area is missing.');return}const pages=Array.isArray(ebookPages)?ebookPages:[];if(!pages.length){content.innerHTML='<div class="notice">This ebook could not be loaded from the Library. Please generate it again.</div>';document.getElementById('previewModal').classList.add('show');return}content.innerHTML='<div class="kicker">EBOOK READY · 50 PAGES</div><div class="festive-ribbon festive-pulse" style="margin:8px 0 12px">Raksha Bandhan Bumper Offer</div><h2>'+escape(ebookTitle)+'</h2><p class="intro">Open and read all 50 pages directly in Sellora. You can also download the complete ebook file or open a print view and save it as PDF.</p><div class="library-view"><div class="library-viewer">'+pages.map((x,i)=>'<article class="library-viewer-page"><div class="page-num">PAGE '+(i+1)+' OF 50</div><h3>'+escape(x.title)+'</h3><p>'+escape(x.body)+'</p>'+(x.callout?'<div style="margin-top:14px;padding:12px;border:1px solid #ead58a;border-radius:10px;background:#fff9dd;color:#5d4a0e;font-weight:700">'+escape(x.callout)+'</div>':'')+'</article>').join('')+'</div></div><div class="library-download-row"><button class="btn gold-btn" onclick="openPrintEbook()">Open print view</button><button class="btn btn-primary" onclick="downloadEbookHtml()">Download ebook</button><button class="btn" onclick="closeModal(\'previewModal\')">Close</button></div><div class="notice" style="margin-top:15px">Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE · This ebook is stored in the Sellora Library on this browser.</div>';document.getElementById('previewModal').classList.add('show')}
+function showEbookPreview(){closeModal('guideModal');const content=document.getElementById('previewContent');if(!content){toast('Ebook preview area is missing.');return}const pages=Array.isArray(ebookPages)?ebookPages:[];if(!pages.length){content.innerHTML='<div class="notice">This ebook could not be loaded from the Library. Please generate it again.</div>';document.getElementById('previewModal').classList.add('show');return}content.innerHTML='<div class="kicker">EBOOK READY · 50 PAGES</div><div class="festive-ribbon festive-pulse" style="margin:8px 0 12px">Raksha Bandhan Bumper Offer</div><h2>'+escape(ebookTitle)+'</h2><p class="intro">Open and read all 50 pages directly in Sellora — no Library is required. Download the complete ebook or open print view to save it as PDF.</p><div class="library-view"><div class="library-viewer">'+pages.map((x,i)=>'<article class="library-viewer-page"><div class="page-num">PAGE '+(i+1)+' OF 50</div><h3>'+escape(x.title)+'</h3><p>'+escape(x.body)+'</p>'+(x.callout?'<div style="margin-top:14px;padding:12px;border:1px solid #ead58a;border-radius:10px;background:#fff9dd;color:#5d4a0e;font-weight:700">'+escape(x.callout)+'</div>':'')+'</article>').join('')+'</div></div><div class="library-download-row"><button class="btn gold-btn" onclick="downloadEbookPdf()">⬇ Download PDF</button><button class="btn btn-primary" onclick="downloadEbookHtml()">Download ebook</button><button class="btn" onclick="openPrintEbook()">Open print view</button><button class="btn" onclick="closeModal(\'previewModal\')">Close</button></div><div class="notice" style="margin-top:15px">Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE · This ebook opens directly and can be downloaded without using the Library.</div>';document.getElementById('previewModal').classList.add('show')}
 
 function ebookDocument(){
   const pages = Array.isArray(ebookPages) ? ebookPages : [];
@@ -217,6 +217,71 @@ function ebookDocument(){
   '</style></head><body>'+pageHtml+'<scr'+'ipt>window.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="p"){e.preventDefault();window.print()}});<\\/script></body></html>';
 }
 
+function pdfAscii(text){
+  return String(text||'').normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/[^\x20-\x7E]/g,'?');
+}
+function pdfEscape(text){return pdfAscii(text).replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)').replace(/\r?\n/g,' ')}
+function wrapPdfText(text,maxChars){
+  const words=pdfAscii(text).split(/\s+/).filter(Boolean), lines=[]; let line='';
+  for(const word of words){
+    if(!line){line=word;continue}
+    if((line+' '+word).length<=maxChars) line+=' '+word;
+    else {lines.push(line);line=word;}
+  }
+  if(line) lines.push(line);
+  return lines;
+}
+function buildPdf(){
+  const pages=Array.isArray(ebookPages)?ebookPages:[];
+  if(pages.length!==50) throw new Error('Ebook must contain exactly 50 pages.');
+  const objects=[]; const offsets=[]; let pdf='%PDF-1.4\n%\\xE2\\xE3\\xCF\\xD3\n';
+  function addObj(body){objects.push(body);return objects.length;}
+  const fontRegular=addObj('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
+  const fontBold=addObj('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>');
+  const pageIds=[];
+  for(let i=0;i<pages.length;i++) pageIds.push(null);
+  const pagesTreeId=addObj('');
+  const catalogId=addObj(`<< /Type /Catalog /Pages ${pagesTreeId} 0 R >>`);
+  for(let i=0;i<pages.length;i++){
+    const p=pages[i]||{}; const lines=[];
+    lines.push({text:'SELLORA',size:9,bold:true,y:770});
+    lines.push({text:'RAKSHA BANDHAN BUMPER OFFER - 1 GUIDE = 1 EBOOK FREEEE',size:8,bold:true,y:752});
+    lines.push({text:`PAGE ${i+1} OF 50`,size:8,bold:true,y:738});
+    let y=700;
+    const titleLines=wrapPdfText(p.title||`Page ${i+1}`,34);
+    for(const t of titleLines){lines.push({text:t,size:i===0?26:20,bold:true,y});y-=28}
+    if(p.subtitle){for(const t of wrapPdfText(p.subtitle,72)){lines.push({text:t,size:11,bold:false,y});y-=16}}
+    y-=8;
+    for(const t of wrapPdfText(p.body||'',88)){if(y<105) break;lines.push({text:t,size:10.5,bold:false,y});y-=15}
+    if(p.callout && y>130){
+      y-=8; lines.push({text:'ACTION / CALLOUT',size:9,bold:true,y});y-=15;
+      for(const t of wrapPdfText(p.callout,82)){if(y<100) break;lines.push({text:t,size:10,bold:false,y});y-=14}
+    }
+    lines.push({text:`Sellora - ${i+1} / 50`,size:8,bold:false,y:58});
+    const streamParts=['q'];
+    for(const l of lines){const font=l.bold?fontBold:fontRegular; streamParts.push(`BT /F${l.bold?'2':'1'} ${l.size} Tf 50 ${l.y} Td (${pdfEscape(l.text)}) Tj ET`)}
+    streamParts.push('Q');
+    const stream=streamParts.join('\n');
+    const contentId=addObj(`<< /Length ${stream.length} >>\nstream\n${stream}\nendstream`);
+    const pageId=addObj(`<< /Type /Page /Parent ${pagesTreeId} 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 ${fontRegular} 0 R /F2 ${fontBold} 0 R >> >> /Contents ${contentId} 0 R >>`);
+    pageIds[i]=pageId;
+  }
+  objects[pagesTreeId-1]=`<< /Type /Pages /Kids [${pageIds.map(id=>id+' 0 R').join(' ')}] /Count ${pageIds.length} >>`;
+  for(let i=0;i<objects.length;i++){offsets[i+1]=pdf.length;pdf+=`${i+1} 0 obj\n${objects[i]}\nendobj\n`}
+  const xref=pdf.length; pdf+=`xref\n0 ${objects.length+1}\n0000000000 65535 f \n`;
+  for(let i=1;i<=objects.length;i++) pdf+=String(offsets[i]).padStart(10,'0')+' 00000 n \n';
+  pdf+=`trailer\n<< /Size ${objects.length+1} /Root ${catalogId} 0 R >>\nstartxref\n${xref}\n%%EOF`;
+  return new Blob([pdf],{type:'application/pdf'});
+}
+function downloadEbookPdf(){
+  try{
+    const blob=buildPdf();
+    const filename=(ebookTitle.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'')||'Sellora-Ebook')+'-50-pages.pdf';
+    if(!downloadBlob(filename,blob)) throw new Error('Browser blocked the PDF download.');
+    toast('Your 50-page PDF download has started.');
+  }catch(err){toast('PDF download failed. Please use Open print view → Save as PDF.');console.error(err)}
+}
+window.downloadEbookPdf=downloadEbookPdf;
 function openPrintEbook(){
   try{
     const html=ebookDocument();
@@ -241,7 +306,7 @@ function downloadEbookHtml(){
 }
 function openGuide(type){const g=guides[type];if(!g)return;document.getElementById('guideContent').innerHTML='<div class=\"kicker\">SELLORA LEARNING GUIDE</div><h2>'+escape(g.title)+'</h2><p class=\"intro\">'+escape(g.intro)+'</p><div class=\"guide-sections\">'+g.sections.map(s=>`<article class=\"guide-block\"><h3>${escape(s[0])}</h3><p>${escape(s[1])}</p></article>`).join('')+'</div><div class=\"notice\" style=\"margin-top:16px\"><b>Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE</b><br>Finish the guide, then generate your 50-page ebook.</div><div class=\"modal-actions\"><button class=\"btn\" onclick=\"closeModal(\'guideModal\')\">Close</button><button class=\"btn btn-primary\" onclick=\"closeModal(\'guideModal\');openEbookCreator()\">Create my ebook →</button></div>';document.getElementById('guideModal').classList.add('show')}
 window.openGuide=openGuide;
-function renderMarketplace(){const q=(document.getElementById('searchProducts').value||'').toLowerCase();const cat=document.getElementById('categoryFilter').value;const all=products().filter(p=>{const hay=(p.title+' '+p.description+' '+p.creator+' '+p.category).toLowerCase();return(!q||hay.includes(q))&&(cat==='all'||p.category===cat)});const grid=document.getElementById('productGrid');if(!all.length){grid.innerHTML='<div class="empty"><h3>No products found.</h3><p>Try another search or publish your first FREE digital product from the creator dashboard.</p></div>';return}grid.innerHTML=all.map(p=>{const grad=p.coverData?`background-image:url('${p.coverData}')`:'';return `<article class="card product-card"><div class="product-cover" style="${grad}"><div class="cover-inner"><span class="cover-badge">${escape((p.category||'digital').toUpperCase())}</span><span class="cover-title">${escape(p.title)}</span><span class="tag">${escape(p.creator||'Creator')}</span></div></div><div class="product-meta"><div class="festive-note" style="margin-bottom:5px">Raksha Bandhan Bumper Offer</div><h3>${escape(p.title)}</h3><p>${escape(p.description)}</p><div class="product-foot"><span class="price">FREE</span><button class="btn btn-primary" onclick="getProduct('${escapeAttr(p.id)}')">Get free</button></div></div></article>`}).join('')}
+function renderMarketplace(){const q=(document.getElementById('searchProducts').value||'').toLowerCase();const cat=document.getElementById('categoryFilter').value;const all=products().filter(p=>{const hay=(p.title+' '+p.description+' '+p.creator+' '+p.category).toLowerCase();return(!q||hay.includes(q))&&(cat==='all'||p.category===cat)});const grid=document.getElementById('productGrid');if(!all.length){grid.innerHTML='<div class="empty"><h3>No products found.</h3><p>Try another search or publish your first FREE digital product from the creator dashboard.</p></div>';return}grid.innerHTML=all.map(p=>{const grad=p.coverData?`background-image:url('${p.coverData}')`:'';const isEbook=(p.category||'').toLowerCase()==='ebooks'||p.type==='ebook';return `<article class="card product-card"><div class="product-cover" style="${grad}"><div class="cover-inner"><span class="cover-badge">${escape((p.category||'digital').toUpperCase())}</span><span class="cover-title">${escape(p.title)}</span><span class="tag">${escape(p.creator||'Creator')}</span></div></div><div class="product-meta"><div class="festive-note" style="margin-bottom:5px">Raksha Bandhan Bumper Offer</div><h3>${escape(p.title)}</h3><p>${escape(p.description)}</p><div class="product-foot"><span class="price">FREE</span>${isEbook?`<button class="btn btn-primary" onclick="openEbookProduct('${escapeAttr(p.id)}')">Open ebook</button>`:`<button class="btn btn-primary" onclick="getProduct('${escapeAttr(p.id)}')">Get free</button>`}</div></div></article>`}).join('')}
 window.renderMarketplace=renderMarketplace;
 function library(){return safeJSON(localStorage.getItem(KEY.library),[])}
 function saveLibrary(a){try{localStorage.setItem(KEY.library,JSON.stringify(a));return true}catch(e){toast('Could not save your Sellora Library item. Browser storage may be full.');return false}}
@@ -287,6 +352,21 @@ function downloadLibraryItem(i){
 window.openLibraryItem=openLibraryItem;window.downloadLibraryItem=downloadLibraryItem;
 function getProduct(id){const p=products().find(x=>x.id===id);if(!p)return;let sales=Number(localStorage.getItem(KEY.sales)||0)+1;localStorage.setItem(KEY.sales,String(sales));addToLibrary({key:'product-'+p.id,title:p.title,description:p.description,category:p.category,creator:p.creator,type:'product',fileData:p.fileData||'',fileName:p.fileName||p.title,createdAt:new Date().toISOString()});toast('Added to your Sellora Library: '+p.title);if(p.fileData){const a=document.createElement('a');a.href=p.fileData;a.download=p.fileName||p.title;a.click()}updateUI()}
 window.getProduct=getProduct;
+function openEbookProduct(id){
+  const p=products().find(x=>x.id===id); if(!p)return;
+  try{
+    if(p.fileData && /(^|[;,])(?:application\/xhtml\+xml|text\/html)/i.test(p.fileData)){
+      const html=atob(String(p.fileData).split(',')[1]||'');
+      ebookTitle=p.title; ebookPages=[];
+      const w=window.open('about:blank','_blank');
+      if(!w){toast('Please allow popups to open the ebook.');return}
+      w.document.open(); w.document.write(html); w.document.close();
+      return;
+    }
+    const pages=Array.isArray(p.pages)&&p.pages.length===50?p.pages:build50Pages(p.title,p.description||'Useful practical guidance, examples, exercises and action steps.',p.category||'Ebooks',p.creator||'Sellora Creator');
+    ebookTitle=p.title; ebookPages=pages; showEbookPreview();
+  }catch(err){toast('This ebook could not be opened. Try Download ebook from the viewer.')}}
+window.openEbookProduct=openEbookProduct;
 async function publishProduct(e){e.preventDefault();const user=profile();if(!user){toast('Create a Sellora account before publishing.');return}const file=document.getElementById('productFile').files[0];const cover=document.getElementById('productCover').files[0];if(!file){toast('Choose a product file.');return}const reader=new FileReader();reader.onload=()=>{const saveCover=()=>{const add=pCover=>{const p={id:'p-'+Date.now(),title:document.getElementById('productTitle').value.trim(),description:document.getElementById('productDescription').value.trim(),category:document.getElementById('productCategory').value,price:0,creator:user.name,fileData:reader.result,fileName:file.name,coverData:pCover||'',createdAt:new Date().toISOString()};const arr=products();arr.unshift(p);if(saveProducts(arr)){e.target.reset();renderMarketplace();renderMyProducts();toast('Product published to your Sellora marketplace.')}};if(cover){const cr=new FileReader();cr.onload=()=>add(cr.result);cr.onerror=()=>add('');cr.readAsDataURL(cover)}else add('')};saveCover()};reader.onerror=()=>toast('Could not read the selected file.');reader.readAsDataURL(file)}
 window.publishProduct=publishProduct;
 function renderMyProducts(){const user=profile();const box=document.getElementById('myProducts');if(!box||!user)return;const mine=products().filter(p=>p.creator===user.name&&!p.id.startsWith('demo-'));document.getElementById('statProducts').textContent=mine.length;document.getElementById('statPublished').textContent=mine.length;document.getElementById('statSales').textContent=Number(localStorage.getItem(KEY.sales)||0);box.innerHTML=mine.length?mine.map(p=>`<div class="list-row"><div><b>${escape(p.title)}</b><br><small style="color:var(--muted)">${escape(p.category)} · FREE</small></div><button class="btn" onclick="deleteProduct('${escapeAttr(p.id)}')">Delete</button></div>`).join(''):'<div class="empty" style="padding:25px"><p>No published products yet.</p></div>'}
