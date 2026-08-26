@@ -1,762 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sellora - Learn business, startups and marketing, then create and monetize your ideas.">
-<title>Sellora | Monetize Your Ideas</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sellora — an ultra-premium digital products marketplace, creator storefront and ebook studio.">
+<title>Sellora — Sell your knowledge. Build your digital business.</title>
 <style>
-:root{--teal:#2c8e9e;--dark:#197383;--light:#e7f7f8;--ink:#101820;--muted:#657077;--line:#e4ebed;--white:#fff;--shadow:0 14px 40px rgba(20,80,90,.12)}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.55;background:#fff}
-button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
-.navbar{height:76px;padding:0 6%;display:flex;align-items:center;gap:22px;justify-content:space-between;border-bottom:1px solid #eef2f3;background:#fff;position:sticky;top:0;z-index:100}
-.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:21px;letter-spacing:.5px;white-space:nowrap}
-.logo-mark{width:24px;height:24px;border:3px solid var(--teal);border-radius:8px 8px 8px 2px;display:grid;place-items:center;color:var(--teal);font-size:12px}
-.nav-links{display:flex;gap:25px;font-size:13px;font-weight:700}
-.nav-links a:hover{color:var(--teal)}
-.nav-actions{display:flex;gap:8px;align-items:center}
-.btn{border:0;border-radius:9px;padding:11px 17px;font-weight:800;font-size:13px}
-.btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 16px rgba(44,142,158,.22)}
-.btn-primary:hover{background:var(--dark)}
-.btn-outline{background:#fff;color:var(--dark);border:1px solid #9acbd1}
-.nav-toggle{display:none;border:0;background:none;font-size:25px}
-.india-tricolor{box-shadow:0 4px 14px rgba(0,0,0,.08)}
-.tri-saffron{height:8px;background:#ff9933}.tri-green{height:8px;background:#138808}
-.tri-white{min-height:40px;display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:7px 15px;text-align:center;font-size:12px;font-weight:900}
-.chakra{font-size:22px;color:#000080}.offer-mini{color:#d97706}
-.hero{min-height:520px;padding:70px 8% 55px;display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
-.hero-copy{max-width:620px}.hero h1{font-size:52px;line-height:1.04;letter-spacing:-2px;margin-bottom:18px}.hero h1 span{display:block}
-.hero p{max-width:530px;font-size:16px;margin-bottom:25px}.hero-buttons{display:flex;gap:10px;flex-wrap:wrap}
-.hero-art{min-height:340px;display:flex;align-items:center;justify-content:center;position:relative}
-.browser{width:min(500px,100%);height:285px;border-radius:12px;background:#dcecf4;border:8px solid #e9f4fa;box-shadow:var(--shadow);overflow:hidden}
-.browser-top{height:30px;background:#6e99c8;display:flex;gap:5px;align-items:center;padding:0 10px}.browser-top i{width:6px;height:6px;border-radius:50%;background:#fff}
-.chart-area{height:100%;background:linear-gradient(150deg,#eff9ff,#d5edf5);padding:35px 25px;position:relative}.chart{height:115px;border-bottom:2px solid #8bb8c5}.chart svg{width:100%;height:100%}
-.person{position:absolute;font-size:58px}.person.one{left:8%;bottom:-7px}.person.two{left:42%;bottom:-2px}.person.three{right:6%;bottom:-8px}
-.hero-bubble{position:absolute;right:1%;top:18%;width:46px;height:46px;border-radius:50%;background:#fff;box-shadow:var(--shadow);display:grid;place-items:center;font-size:23px}
-.section{padding:80px 8%}.center{text-align:center}.section-title{font-size:36px;line-height:1.1;margin-bottom:10px}.section-subtitle{color:var(--muted);max-width:680px;margin:0 auto 40px}
-.unlock{background:#fbfdfd}.unlock-grid{max-width:1050px;margin:auto;display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:25px;align-items:center}
-.info-list{display:flex;flex-direction:column;gap:25px}.info-item{display:flex;gap:12px}.dot{width:9px;height:9px;border-radius:50%;background:var(--teal);margin-top:8px;flex:none}.info-item h3{font-size:14px;margin-bottom:3px}.info-item p{font-size:12px;color:var(--muted)}
-.monetization-art{height:280px;border-radius:20px;background:linear-gradient(145deg,#e7f5f8,#d6ebf1);position:relative;display:flex;align-items:center;justify-content:center}
-.ad-window{width:70%;height:150px;background:#f9fcff;border-radius:8px;box-shadow:var(--shadow);border:5px solid #bfdbe5;position:relative}.ad-window:before{content:"";position:absolute;left:15px;right:15px;top:30px;height:9px;background:#d6e6ed;border-radius:8px;box-shadow:0 22px #d6e6ed,0 44px #d6e6ed}.money{position:absolute;right:8%;top:10%;width:58px;height:58px;border-radius:50%;background:#fff;color:#2ba26c;display:grid;place-items:center;font-size:31px;box-shadow:var(--shadow)}.rpm{position:absolute;left:8%;bottom:8%;background:#182337;color:#fff;width:110px;height:75px;border-radius:10px;padding:10px;font-size:11px}.rpm strong{display:block;font-size:17px;margin-top:8px}
-.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1050px;margin:35px auto 0}.category-card{border:1px solid var(--line);border-radius:16px;padding:28px;text-align:left;background:#fff;transition:.2s;box-shadow:0 6px 25px rgba(20,60,70,.04)}.category-card:hover{transform:translateY(-5px);border-color:#9acbd1;box-shadow:var(--shadow)}.category-icon{width:48px;height:48px;border-radius:13px;background:var(--light);color:var(--dark);display:grid;place-items:center;font-size:23px;margin-bottom:18px}.category-card h3{font-size:22px;margin-bottom:8px}.category-card p{color:var(--muted);font-size:14px;margin-bottom:18px}.read-more{color:var(--dark);font-weight:900;font-size:13px}
-.offer-banner{max-width:1050px;margin:25px auto 0;border:2px dashed #ff9933;border-radius:16px;background:linear-gradient(90deg,#fff5e8,#fff,#effbea);padding:18px;text-align:center}.offer-banner strong{font-size:20px;color:#c86c00}
+:root{--bg:#071014;--bg2:#0b171c;--panel:rgba(16,29,35,.78);--panel2:#0e2027;--ink:#ecfbfd;--muted:#91a9b0;--line:rgba(166,236,245,.12);--teal:#f4c84a;--cyan:#ffe58a;--violet:#fff4c7;--gold:#f4c84a;--gold2:#ffe38a;--gold-soft:rgba(244,200,74,.14);--shadow:0 24px 80px rgba(0,0,0,.34);--radius:22px;--max:1180px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 20% 0%,rgba(244,200,74,.14),transparent 32%),radial-gradient(circle at 90% 15%,rgba(255,255,255,.08),transparent 28%),radial-gradient(circle at 50% 62%,rgba(244,200,74,.07),transparent 24%),var(--bg);line-height:1.55;overflow-x:hidden}body:before{content:"";position:fixed;inset:-30%;z-index:-2;background:conic-gradient(from 180deg,transparent,rgba(244,200,74,.07),transparent 28%,rgba(255,255,255,.05),transparent 52%,rgba(244,200,74,.055),transparent);filter:blur(50px);animation:drift 18s linear infinite}@keyframes drift{to{transform:rotate(360deg)}}
 
-.raksha-wrap{max-width:1050px;margin:18px auto 0;padding:0 8%;}
-.raksha-banner{position:relative;overflow:hidden;border:2px solid #e8a0b6;border-radius:22px;background:linear-gradient(135deg,#fff0f5,#fff,#fff3e8);box-shadow:0 16px 40px rgba(180,70,100,.12);padding:28px;text-align:center;}
-.raksha-banner:before,.raksha-banner:after{content:"🎀";position:absolute;font-size:48px;top:12px;opacity:.85}.raksha-banner:before{left:18px}.raksha-banner:after{right:18px}
-.raksha-kicker{font-size:11px;font-weight:900;letter-spacing:1.6px;color:#b13b62}.raksha-banner h2{font-size:30px;margin:5px 0 8px}.raksha-banner p{color:#59636a;max-width:700px;margin:0 auto 16px}.raksha-offers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.raksha-card{background:#fff;border:1px solid #f0d3dc;border-radius:16px;padding:20px 15px;box-shadow:0 8px 24px rgba(100,40,60,.06)}.raksha-card .raksha-icon{font-size:38px;margin-bottom:8px}.raksha-card h3{font-size:17px;margin-bottom:5px}.raksha-card p{font-size:12px;color:#667078;margin:0}.raksha-card strong{display:block;color:#b13b62;margin-top:8px;font-size:13px}.raksha-strip{margin-top:16px;background:#b13b62;color:#fff;border-radius:12px;padding:11px;font-weight:900;font-size:13px}
-@media(max-width:700px){.raksha-wrap{padding:0 6%}.raksha-offers{grid-template-columns:1fr}.raksha-banner:before,.raksha-banner:after{font-size:32px}.raksha-banner h2{font-size:25px}}
-
-.footer{background:#102329;color:#d8e7e9;padding:45px 8%;display:flex;justify-content:space-between;gap:30px}.footer p{color:#9db3b8;font-size:13px}
-.modal{position:fixed;inset:0;background:rgba(7,24,29,.64);display:none;align-items:center;justify-content:center;padding:20px;z-index:500}.modal.show{display:flex}.modal-card{width:min(650px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:20px;padding:32px;position:relative;box-shadow:0 30px 100px rgba(0,0,0,.3)}.close{position:absolute;right:18px;top:12px;border:0;background:none;font-size:30px;color:#6d7478}.modal-step{color:var(--dark);font-size:11px;font-weight:900;letter-spacing:1.4px;margin-bottom:7px}.modal-card h2{font-size:31px;margin-bottom:8px}.intro{color:var(--muted);font-size:14px;margin-bottom:22px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{margin-bottom:15px}.field.full{grid-column:1/-1}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;border:1px solid #d7e0e2;border-radius:9px;padding:12px;outline:none}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--teal);box-shadow:0 0 0 3px #e8f6f7}.modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:8px}
-.category-select-grid{display:grid;gap:12px}.select-card{width:100%;border:1px solid #dfe7e9;background:#fff;border-radius:12px;padding:16px;text-align:left;display:flex;gap:14px;align-items:center}.select-card.selected{border-color:var(--teal);background:var(--light)}.select-card .category-icon{margin:0;width:42px;height:42px}.select-card strong{display:block}.select-card small{color:var(--muted)}
-.guide{width:min(900px,100%)}.guide-header{padding-right:30px;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:20px}.guide-label{color:var(--dark);font-size:11px;font-weight:900;letter-spacing:1.5px}.guide h2{font-size:37px;margin:5px 0 10px}.guide p{color:#414b50;margin-bottom:17px}.guide h3{font-size:20px;margin:26px 0 7px;color:#17383e}.guide ol,.guide ul{padding-left:23px;color:#414b50}.guide li{margin:9px 0}.code{background:#101820;color:#dffbff;border-radius:10px;padding:17px;overflow:auto;font-family:monospace;font-size:13px}.success{background:#e9f8ef;border:1px solid #bfe4cd;color:#21613a;padding:13px;border-radius:9px;margin-top:15px;font-size:13px}
-.ebook-unlocked{margin-top:24px;padding:20px;border-radius:15px;border:2px dashed #ff9933;background:linear-gradient(135deg,#fff8ee,#effbf1)}.ebook-unlocked h3{margin-top:0;color:#c86c00}.ebook-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.guide-finish-note{font-size:12px;font-weight:900;margin-top:12px;color:#bd6900}
-.countdown{text-align:center;padding:35px 10px}.count-circle{width:110px;height:110px;border-radius:50%;background:var(--light);border:7px solid #b9dfe4;display:grid;place-items:center;margin:25px auto;font-size:46px;font-weight:900;color:var(--dark)}
-.ebook-ready{border:1px solid #bfe4cd;background:#f4fff7;border-radius:14px;padding:20px}.pdf-frame{width:100%;height:520px;border:1px solid #dce5e7;border-radius:10px;margin-top:16px}.ebook-ready-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
-.account-box{display:flex;align-items:center;gap:9px;border:1px solid #cfe2e5;border-radius:9px;padding:7px 11px;background:#f7fcfc;font-size:12px;font-weight:800}.account-avatar{width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:12px}
-.dashboard{max-width:1050px;margin:0 auto;background:#f8fcfc;border:1px solid var(--line);border-radius:18px;padding:28px;display:none}.dashboard.show{display:block}.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.dash-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px}.dash-card h3{margin-bottom:7px}.dash-card p{color:var(--muted);font-size:13px}
-@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:50px}.hero h1{font-size:44px}.unlock-grid{grid-template-columns:1fr}.category-grid{grid-template-columns:1fr}}
-@media(max-width:700px){.navbar{height:68px}.nav-links{display:none}.nav-actions{margin-left:auto}.nav-actions .btn{padding:9px 10px;font-size:11px}.nav-actions .trial-nav{display:none}.nav-toggle{display:block}.hero{padding:50px 6%}.hero h1{font-size:39px}.section{padding:60px 6%}.section-title{font-size:30px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.footer{flex-direction:column}.tri-white{font-size:10px}.pdf-frame{height:430px}.dashboard-grid{grid-template-columns:1fr}}
-
-.account-chip{display:flex;align-items:center;gap:8px;background:#e7f7f8;color:#197383;border:1px solid #b8dde1;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800}.account-chip button{border:0;background:transparent;color:#197383;font-weight:800;cursor:pointer;padding:0 2px}.nav-actions{min-width:190px;justify-content:flex-end}
-
-.account-counter{margin:8px auto 0;text-align:center;font-size:13px;font-weight:800;color:#17383e}.account-counter strong{color:#d97706;font-size:17px}
+.raksha-ambient{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}.rakhi-orbit{position:absolute;width:72px;height:72px;border-radius:50%;border:3px solid rgba(244,200,74,.65);box-shadow:0 0 28px rgba(244,200,74,.18),inset 0 0 18px rgba(255,255,255,.16);display:grid;place-items:center;color:#fff;font-size:22px;background:radial-gradient(circle,rgba(255,255,255,.14),rgba(244,200,74,.05) 62%,transparent 63%);animation:rakhiFloat 7s ease-in-out infinite}.rakhi-orbit:before,.rakhi-orbit:after{content:"";position:absolute;left:50%;top:50%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),#fff,var(--gold),transparent);width:180px;transform-origin:left center;opacity:.32}.rakhi-orbit:before{transform:translate(-2px,-1px) rotate(28deg)}.rakhi-orbit:after{transform:translate(-2px,-1px) rotate(208deg)}.rakhi-1{left:3%;top:19%;animation-delay:-1s}.rakhi-2{right:4%;top:28%;width:56px;height:56px;animation-delay:-3s}.rakhi-3{right:14%;bottom:13%;width:64px;height:64px;animation-delay:-5s}.raksha-sparkle{position:absolute;color:#fff7c9;font-size:18px;filter:drop-shadow(0 0 10px rgba(244,200,74,.55));animation:sparkleFloat 5s ease-in-out infinite}.spark-1{left:18%;top:37%}.spark-2{right:19%;top:17%;animation-delay:-1.7s}.spark-3{left:72%;bottom:21%;animation-delay:-3.1s}.festive-pulse{animation:festivePulse 2.6s ease-in-out infinite}.raksha-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid rgba(244,200,74,.38);border-radius:999px;background:rgba(255,255,255,.04);color:#fff3bc;box-shadow:0 0 24px rgba(244,200,74,.08)}.rakhi-art{width:54px;height:54px;flex:none;filter:drop-shadow(0 0 12px rgba(244,200,74,.3));animation:rakhiBreathe 3.2s ease-in-out infinite}.rakhi-art.small{width:42px;height:42px;animation-delay:-1s}.rakhi-art svg{width:100%;height:100%;display:block}.rakhi-float{position:absolute;pointer-events:none;opacity:.92;animation:rakhiDrift 8s ease-in-out infinite}.rakhi-float.rf1{left:6%;top:24%;}.rakhi-float.rf2{right:7%;top:18%;animation-delay:-2.4s}.rakhi-float.rf3{left:72%;bottom:11%;animation-delay:-4.7s}.rakhi-float.rf4{left:20%;bottom:8%;animation-delay:-6s}.rakhi-image-card{position:relative;display:grid;place-items:center;min-height:150px;border-radius:22px;border:1px solid rgba(244,200,74,.18);background:radial-gradient(circle at 50% 35%,rgba(244,200,74,.12),transparent 52%),rgba(255,255,255,.03);overflow:hidden}.rakhi-image-card:after{content:"";position:absolute;inset:-20%;background:conic-gradient(from 0deg,transparent,rgba(244,200,74,.12),transparent 25%);animation:rakhiSpinGlow 7s linear infinite}@keyframes rakhiBreathe{0%,100%{transform:scale(1) rotate(-4deg)}50%{transform:scale(1.08) rotate(4deg)}}@keyframes rakhiDrift{0%,100%{transform:translate3d(0,0,0) rotate(-8deg)}50%{transform:translate3d(0,-14px,0) rotate(8deg)}}@keyframes rakhiSpinGlow{to{transform:rotate(360deg)}}
+.raksha-banner{position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid rgba(244,200,74,.22);background:linear-gradient(90deg,rgba(244,200,74,.12),rgba(255,255,255,.06),rgba(244,200,74,.12));}.raksha-banner:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.22) 45%,transparent 70%);transform:translateX(-120%);animation:bannerSheen 5.5s linear infinite;}.raksha-banner-inner{min-height:58px;display:flex;align-items:center;justify-content:center;gap:18px;position:relative;z-index:1}.rakhi-line{width:76px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),#fff,var(--gold),transparent);box-shadow:0 0 10px rgba(244,200,74,.5)}.rakhi-center{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 40% 35%,#fff,var(--gold) 42%,#b78716 72%);color:#6b4b00;font-size:20px;font-weight:950;box-shadow:0 0 0 5px rgba(255,255,255,.07),0 0 28px rgba(244,200,74,.28);animation:rakhiSpin 6s ease-in-out infinite}.raksha-banner-copy{text-align:center}.raksha-banner-copy strong{display:block;color:#fff8d6;font-size:13px;letter-spacing:.08em;text-transform:uppercase}.raksha-banner-copy span{display:block;color:#decf94;font-size:11px;margin-top:2px}.raksha-confetti{position:absolute;inset:0;pointer-events:none}.raksha-confetti i{position:absolute;width:6px;height:10px;border-radius:2px;background:#fff;opacity:.75;animation:confettiFall 4.8s linear infinite}.raksha-confetti i:nth-child(1){left:12%;animation-delay:-1.2s;transform:rotate(28deg)}.raksha-confetti i:nth-child(2){left:27%;animation-delay:-3.1s;background:var(--gold)}.raksha-confetti i:nth-child(3){left:72%;animation-delay:-2.2s;transform:rotate(-24deg)}.raksha-confetti i:nth-child(4){left:88%;animation-delay:-4s;background:#fff3b0}@keyframes bannerSheen{to{transform:translateX(120%)}}@keyframes rakhiSpin{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(8deg) scale(1.08)}}@keyframes confettiFall{0%{top:-14px;opacity:0}12%{opacity:.85}100%{top:72px;opacity:0;transform:translateX(18px) rotate(180deg)}}@keyframes rakhiFloat{0%,100%{transform:translate3d(0,0,0) rotate(-5deg)}50%{transform:translate3d(0,-16px,0) rotate(5deg)}}@keyframes sparkleFloat{0%,100%{transform:translateY(0) scale(.9);opacity:.5}50%{transform:translateY(-16px) scale(1.12);opacity:1}}@keyframes festivePulse{0%,100%{box-shadow:0 0 0 rgba(244,200,74,0)}50%{box-shadow:0 0 28px rgba(244,200,74,.18)}}
+.library-item .library-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.library-view{background:linear-gradient(135deg,rgba(244,200,74,.1),rgba(255,255,255,.05));border:1px solid rgba(244,200,74,.25);border-radius:16px;padding:14px;margin-top:14px}.library-viewer{max-height:58vh;overflow:auto;display:grid;gap:12px;padding-right:5px}.library-viewer-page{background:#fff;color:#1f2426;border-radius:14px;padding:22px;box-shadow:0 10px 24px rgba(0,0,0,.16);min-height:230px}.library-viewer-page .page-num{font-size:10px;font-weight:900;letter-spacing:.14em;color:#96720c}.library-viewer-page h3{margin:7px 0;font-size:22px}.library-viewer-page p{margin:0;color:#4a4f50;font-size:14px;line-height:1.7}.library-download-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:700px){.raksha-banner-inner{gap:9px;padding:7px 12px}.rakhi-line{width:34px}.rakhi-center{width:34px;height:34px;font-size:16px}.raksha-banner-copy strong{font-size:11px}.raksha-banner-copy span{font-size:9px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer}.container{width:min(var(--max),calc(100% - 40px));margin:auto}.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#fff,var(--gold),#fff);z-index:9999;box-shadow:0 0 18px rgba(53,224,208,.7)}
+.nav{position:sticky;top:0;z-index:1000;background:rgba(7,16,20,.76);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:.08em}.brand-mark{width:34px;height:34px;border:1px solid rgba(244,200,74,.82);border-radius:12px 12px 12px 4px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(244,200,74,.22),rgba(255,255,255,.12));box-shadow:inset 0 0 18px rgba(244,200,74,.12),0 0 25px rgba(244,200,74,.12)}.links{display:flex;gap:25px;color:#eee6c9;font-size:13px;font-weight:750}.links a:hover{color:var(--gold2)}.nav-actions{display:flex;align-items:center;gap:9px}.btn{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:13px;padding:11px 16px;background:rgba(255,255,255,.035);color:var(--ink);font-weight:850;font-size:13px;transition:.25s transform,.25s box-shadow,.25s border-color,.25s background}.btn:after{content:"";position:absolute;inset:-40%;background:linear-gradient(100deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);transform:translateX(-80%);transition:.55s}.btn:hover{transform:translateY(-2px);border-color:rgba(244,200,74,.55);box-shadow:0 12px 30px rgba(0,0,0,.25)}.btn:hover:after{transform:translateX(80%)}.btn-primary{border-color:rgba(244,200,74,.55);background:linear-gradient(135deg,#f6d45c,#fff1b3 56%,#f4c84a);color:#171207;box-shadow:0 10px 32px rgba(244,200,74,.18)}.btn-ghost{background:transparent}.menu{display:none;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;border-radius:11px;padding:8px 10px}
+.hero{padding:86px 0 54px;position:relative;isolation:isolate}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(244,200,74,.22);background:rgba(244,200,74,.06);padding:7px 11px;border-radius:999px;color:#fff4c7;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.dot-live{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}h1{font-size:clamp(48px,6.2vw,82px);line-height:.98;letter-spacing:-.065em;margin:18px 0}.gradient-text{background:linear-gradient(110deg,#fff 0%,#fff6c8 36%,#ffd94f 66%,#fff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{font-size:17px;color:#a9bdc2;max-width:650px}.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin:28px 0}.trust-row{display:flex;gap:24px;flex-wrap:wrap;color:#9bb2b8;font-size:12px;font-weight:700}.trust-row strong{color:#fff}.hero-card{min-height:430px;border:1px solid var(--line);border-radius:30px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));box-shadow:var(--shadow);position:relative;overflow:hidden;padding:18px;transform:perspective(1000px) rotateY(-4deg)}.hero-card:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(53,224,208,.13);filter:blur(25px);top:-80px;right:-60px}.window{height:100%;border:1px solid var(--line);border-radius:22px;background:#091419;overflow:hidden}.window-top{height:43px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 15px}.window-top i{width:7px;height:7px;border-radius:50%;background:#6f858c}.dash-preview{padding:22px;display:grid;gap:14px}.mini-banner{border:1px solid rgba(53,224,208,.2);background:linear-gradient(110deg,rgba(53,224,208,.1),rgba(142,124,255,.08));border-radius:16px;padding:18px}.mini-banner b{display:block;font-size:12px;color:#aaf6f0}.mini-banner strong{font-size:25px}.mini-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:12px}.mini-panel{min-height:110px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.025);padding:15px}.bars{display:flex;align-items:end;height:55px;gap:7px}.bars span{flex:1;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,var(--cyan),rgba(85,216,255,.1));height:var(--h)}.float-pill{position:absolute;right:22px;bottom:22px;border:1px solid rgba(255,255,255,.14);background:rgba(9,20,25,.82);backdrop-filter:blur(12px);padding:11px 13px;border-radius:14px;font-size:12px;box-shadow:0 16px 35px rgba(0,0,0,.35)}
+.offer{padding:18px 0}.offer-card{border:1px solid rgba(53,224,208,.18);border-radius:18px;padding:18px 22px;background:linear-gradient(100deg,rgba(53,224,208,.08),rgba(142,124,255,.06));display:flex;justify-content:space-between;align-items:center;gap:15px;box-shadow:0 15px 40px rgba(0,0,0,.15)}.offer-card strong{font-size:18px}.offer-card small{color:#8fa7ad}
+.section{padding:90px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:30px}.section-head h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.045em;margin:0}.section-head p{max-width:610px;color:var(--muted);margin:8px 0 0}.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7eece3;font-weight:950}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border-radius:var(--radius);padding:24px;box-shadow:0 16px 50px rgba(0,0,0,.14);transition:.28s}.card:hover{transform:translateY(-6px);border-color:rgba(85,216,255,.24);box-shadow:0 25px 70px rgba(0,0,0,.25)}.icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(53,224,208,.12),rgba(142,124,255,.12));border:1px solid var(--line);font-size:22px;margin-bottom:18px}.card h3{margin:0 0 8px;font-size:20px}.card p{color:var(--muted);font-size:13px;margin:0}.feature-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}.stat{padding:20px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.025)}.stat strong{font-size:26px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.market-tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}.input,.select{width:100%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;border-radius:13px;padding:12px 13px;outline:none}.input:focus,.select:focus{border-color:rgba(85,216,255,.5);box-shadow:0 0 0 4px rgba(85,216,255,.06)}.search{flex:1;min-width:230px}.filter{width:190px}.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.product-cover{height:190px;border-radius:17px;border:1px solid rgba(255,255,255,.09);overflow:hidden;position:relative;background:linear-gradient(135deg,#0d2b31,#11183c 58%,#261f52)}.product-cover:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.13) 45%,transparent 60%);transform:translateX(-80%);transition:.8s}.product-card:hover .product-cover:after{transform:translateX(80%)}.cover-inner{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;justify-content:space-between}.cover-badge{font-size:10px;font-weight:900;letter-spacing:.14em;color:#bff8f3}.cover-title{font-size:25px;line-height:1.05;font-weight:950;max-width:85%}.product-meta{padding-top:17px}.product-meta h3{margin:0 0 5px}.product-meta p{font-size:12px;color:var(--muted);min-height:38px}.product-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}.price{font-size:18px;font-weight:950;color:var(--gold)}.tag{font-size:10px;color:#a9d6dc;border:1px solid var(--line);padding:5px 8px;border-radius:999px}.empty{border:1px dashed rgba(166,236,245,.22);border-radius:20px;padding:50px;text-align:center;color:var(--muted);grid-column:1/-1}
+.creator{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.creator-card{padding:30px;border-radius:26px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(53,224,208,.08),rgba(142,124,255,.07));box-shadow:var(--shadow)}.creator-card h2{font-size:42px;line-height:1.03;letter-spacing:-.05em;margin:8px 0 15px}.creator-list{display:grid;gap:12px;margin-top:24px}.creator-list div{display:flex;gap:10px;color:#b2c7cc;font-size:13px}.check{color:var(--teal)}.store-preview{display:grid;gap:13px}.store-header{height:130px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(135deg,#0f3037,#171c43,#241d4a);padding:22px;display:flex;align-items:end;justify-content:space-between}.avatar{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--teal),var(--violet));display:grid;place-items:center;font-weight:950}.store-products{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.store-products div{height:130px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02));padding:14px}.store-products b{font-size:13px}.store-products small{display:block;color:var(--muted);margin-top:8px}
+.dashboard{display:none}.dashboard.show{display:block}.dash-top{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.dash-card{border:1px solid var(--line);background:rgba(255,255,255,.025);border-radius:17px;padding:18px}.dash-card small{color:var(--muted)}.dash-card strong{display:block;font-size:24px;margin-top:5px}.creator-tools{display:grid;grid-template-columns:1fr 1fr;gap:14px}.upload-zone{border:1px dashed rgba(85,216,255,.28);padding:24px;border-radius:18px;background:rgba(85,216,255,.03)}.products-list{display:grid;gap:10px;margin-top:15px}.list-row{display:flex;justify-content:space-between;gap:12px;align-items:center;border:1px solid var(--line);padding:13px;border-radius:14px;background:rgba(255,255,255,.02)}
+.footer{border-top:1px solid var(--line);padding:55px 0;color:#8ea5ab}.footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:start}.footer strong{color:#fff}.modal{position:fixed;inset:0;background:rgba(2,8,11,.76);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:18px;z-index:3000}.modal.show{display:flex}.modal-card{width:min(760px,100%);max-height:92vh;overflow:auto;border:1px solid rgba(166,236,245,.16);border-radius:24px;background:#0b171c;box-shadow:0 35px 110px rgba(0,0,0,.58);padding:28px;position:relative}.close{position:absolute;right:16px;top:13px;border:0;background:transparent;color:#b8cbd0;font-size:28px}.modal-card h2{margin:5px 0 8px;font-size:32px;letter-spacing:-.04em}.modal-card .intro{color:var(--muted);font-size:13px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{margin:13px 0}.field.full{grid-column:1/-1}.field label{display:block;font-size:11px;font-weight:850;color:#a9c0c6;margin-bottom:6px}.field textarea{min-height:110px;resize:vertical}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px;flex-wrap:wrap}.notice{padding:13px;border:1px solid rgba(53,224,208,.16);border-radius:14px;background:rgba(53,224,208,.05);font-size:12px;color:#bfe5e8}.guide-sections{display:grid;gap:14px}.guide-block{padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025)}.guide-block h3{margin:0 0 5px}.guide-block p{margin:0;color:#a9bec3;font-size:13px}.countdown{text-align:center;padding:35px 10px}.count{width:105px;height:105px;border-radius:50%;margin:25px auto;display:grid;place-items:center;font-size:43px;font-weight:950;background:radial-gradient(circle,rgba(53,224,208,.12),rgba(142,124,255,.08));border:1px solid rgba(85,216,255,.25);box-shadow:0 0 45px rgba(53,224,208,.12)}.bar{height:7px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--cyan),var(--violet));transition:.2s}.preview-list{display:grid;gap:10px;margin-top:18px}.preview-page{padding:17px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.025)}.preview-page h3{margin:4px 0 7px}.preview-page p{font-size:12px;color:#a9bec3;margin:0}.small{font-size:10px;color:#7fded6;font-weight:900;letter-spacing:.12em}.toast{position:fixed;right:18px;bottom:18px;z-index:5000;max-width:360px;padding:14px 16px;border-radius:15px;border:1px solid rgba(85,216,255,.2);background:rgba(10,24,30,.92);backdrop-filter:blur(15px);box-shadow:var(--shadow);display:none}.toast.show{display:block}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.festive-ribbon{border:1px solid rgba(244,200,74,.3);background:linear-gradient(100deg,rgba(244,200,74,.12),rgba(255,255,255,.025) 42%,rgba(53,224,208,.06));border-radius:999px;padding:7px 12px;color:#ffe69a;font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;box-shadow:0 0 26px rgba(244,200,74,.06)}.festive-ribbon:before{content:"✦";color:var(--gold2)}.offer-card{border-color:rgba(244,200,74,.34);background:linear-gradient(100deg,rgba(244,200,74,.12),rgba(53,224,208,.07),rgba(142,124,255,.05))}.offer-card strong{color:#ffe49a}.gold-btn{border-color:rgba(244,200,74,.42);background:linear-gradient(135deg,#a87912,#d5a928 55%,#f4c84a);color:#171207;box-shadow:0 10px 30px rgba(244,200,74,.16)}.gold-btn:hover{border-color:rgba(255,216,107,.8);box-shadow:0 14px 34px rgba(244,200,74,.2)}.library-hero{border:1px solid rgba(244,200,74,.18);background:linear-gradient(145deg,rgba(244,200,74,.06),rgba(255,255,255,.02));}.library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.library-item{border:1px solid var(--line);border-radius:18px;padding:18px;background:rgba(255,255,255,.025);display:flex;flex-direction:column;min-height:190px}.library-item .library-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold-soft),rgba(53,224,208,.08));border:1px solid rgba(244,200,74,.18);margin-bottom:13px}.library-item h3{margin:0 0 6px}.library-item p{color:var(--muted);font-size:12px;margin:0 0 13px}.library-item .library-foot{margin-top:auto;display:flex;gap:8px;align-items:center;justify-content:space-between}.library-empty{grid-column:1/-1;border:1px dashed rgba(244,200,74,.2);border-radius:18px;padding:35px;text-align:center;color:var(--muted)}.festive-note{color:#f6d77a;font-weight:900;font-size:12px}.gold-text{color:var(--gold2)}
+@media(max-width:950px){.hero-grid,.creator{grid-template-columns:1fr}.hero-card{transform:none}.grid3,.product-grid{grid-template-columns:repeat(2,1fr)}.feature-strip,.dash-stats{grid-template-columns:repeat(2,1fr)}.links{display:none}.menu{display:block}.nav-actions .hide-mobile{display:none}.creator-card h2{font-size:34px}}
+@media(max-width:650px){.container{width:min(var(--max),calc(100% - 26px))}.nav-inner{height:68px}.nav-actions .btn{padding:9px 10px;font-size:11px}.hero{padding-top:55px}.hero p{font-size:15px}.hero-actions .btn{width:100%}.offer-card{align-items:start;flex-direction:column}.grid3,.product-grid,.feature-strip,.dash-stats,.creator-tools{grid-template-columns:1fr}.store-products{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.section{padding:65px 0}.section-head{align-items:start;flex-direction:column}.hero-card{min-height:350px}.mini-grid{grid-template-columns:1fr}.footer-grid{flex-direction:column}.modal-card{padding:22px}}
 </style>
-
-<script id="SELLORA30DayAutoLogin">
-/* SELLORA 30-DAY AUTO LOGIN
-   Keeps a created account/profile active on this browser for 30 days.
-   No password is stored in this browser.
-*/
-const SELLORA_SESSION_KEY = "sellora30DaySession";
-const SELLORA_PROFILE_KEY = "selloraProfile";
-
-function saveSelloraSession(profile){
-  const session = {
-    profile: profile,
-    expiresAt: Date.now() + (30 * 24 * 60 * 60 * 1000)
-  };
-  localStorage.setItem(SELLORA_SESSION_KEY, JSON.stringify(session));
-  localStorage.setItem(SELLORA_PROFILE_KEY, JSON.stringify(profile));
-}
-
-function getSelloraSession(){
-  try{
-    const raw = localStorage.getItem(SELLORA_SESSION_KEY);
-    if(!raw) return null;
-    const session = JSON.parse(raw);
-    if(!session || !session.profile || !session.expiresAt) return null;
-
-    if(Date.now() >= session.expiresAt){
-      localStorage.removeItem(SELLORA_SESSION_KEY);
-      return null;
-    }
-    return session.profile;
-  }catch(e){
-    return null;
-  }
-}
-
-function restoreSelloraAccount(){
-  const profile = getSelloraSession();
-  if(!profile) return;
-
-  // Keep the existing profile available to the rest of the website.
-  window.selloraCurrentProfile = profile;
-
-  // Update common welcome/account elements if they exist.
-  const name = profile.name || "Sellora User";
-  const welcome = document.getElementById("welcomeName");
-  if(welcome) welcome.textContent = "Welcome, " + name + "!";
-
-  const summary = document.getElementById("accountSummary");
-  if(summary){
-    summary.textContent =
-      name + (profile.email ? " • " + profile.email : "");
-  }
-
-  // Hide guest/create-account prompts when already signed in.
-  [
-    "creatorGuest",
-    "signupPrompt",
-    "guestActions"
-  ].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.style.display = "none";
-  });
-
-  // Update buttons/labels if the page has them.
-  document.querySelectorAll("[data-create-account]").forEach(el=>{
-    el.style.display = "none";
-  });
-
-  document.querySelectorAll("[data-login-button]").forEach(el=>{
-    el.style.display = "none";
-  });
-
-  const accountStatus = document.getElementById("accountStatus");
-  if(accountStatus){
-    accountStatus.style.display = "block";
-    accountStatus.textContent = "👋 Welcome back, " + name;
-  }
-}
-
-document.addEventListener("DOMContentLoaded", restoreSelloraAccount);
-</script>
-
 </head>
 <body>
-
-<header class="navbar">
-  <a href="#home" class="logo"><span class="logo-mark">S</span> SELLORA</a>
-  <nav class="nav-links">
-    <a href="#home">Home</a><a href="#how-it-works">How It Works</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#about">About Us</a>
-  </nav>
-  <div class="nav-actions" id="navActions">
-    <button class="btn btn-outline trial-nav" onclick="openFreeTrial()">🎁 Free Trial</button>
-    <button class="btn btn-outline" id="loginNavBtn" onclick="openLogin()">Log In</button>
-    <button class="btn btn-primary" id="signupNavBtn" onclick="openSignup()">Create Account</button>
-    <div id="accountNav" style="display:none"></div>
-  </div>
-  <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
-</header>
-
-<div class="india-tricolor">
-  <div class="tri-saffron"></div>
-  <div class="tri-white"><span class="chakra">☸</span><strong>🎀 RAKSHA BANDHAN SPECIAL — BUMPER OFFER 🎀</strong><span class="offer-mini">1 GUIDE = 1 EBOOK FREEEE 🎁</span></div>
-  <div id="accountCounter" class="account-counter" aria-live="polite"><span id="accountCounterNumber">106</span> + people joined</div>
-  <div class="tri-green"></div>
-</div>
-
-<section class="raksha-wrap" aria-label="Raksha Bandhan special offers">
-  <div class="raksha-banner">
-    <div class="raksha-kicker">🎀 SELLORA FESTIVE SPECIAL 🎀</div>
-    <h2>Raksha Bandhan Bumper Offer</h2>
-    <p>Celebrate the bond of ideas and growth with special FREE creator benefits on Sellora.</p>
-    <div class="raksha-offers">
-      <div class="raksha-card"><div class="raksha-icon">🪢</div><h3>Finish Any Guide</h3><p>Complete a Business, Startup or Marketing guide.</p><strong>1 GUIDE = 1 EBOOK FREE</strong></div>
-      <div class="raksha-card"><div class="raksha-icon">🎁</div><h3>15-Page Ebook</h3><p>Unlock your complete ebook after finishing a guide.</p><strong>FREE PDF + DOWNLOAD</strong></div>
-      <div class="raksha-card"><div class="raksha-icon">💝</div><h3>Create Your Own</h3><p>Use Sellora's ebook studio to turn your idea into a digital product.</p><strong>TRY IT FREE</strong></div>
-    </div>
-    <div class="raksha-strip">🎀 RAKSHA BANDHAN SPECIAL • 106+ PEOPLE JOINED • FREE EBOOK BENEFITS 🎀</div>
-  </div>
-</section>
-
+<div class="raksha-ambient" aria-hidden="true"><span class="rakhi-orbit rakhi-1">✦</span><span class="rakhi-orbit rakhi-2">✧</span><span class="rakhi-orbit rakhi-3">✦</span><span class="raksha-sparkle spark-1">✦</span><span class="raksha-sparkle spark-2">✧</span><span class="raksha-sparkle spark-3">✦</span></div>
+<div class="progress" id="progress"></div>
+<header class="nav"><div class="container nav-inner"><a class="brand" href="#home"><span class="brand-mark">S</span> SELLORA</a><nav class="links" aria-label="Primary"><a href="#home">Home</a><a href="#how">How It Works</a><a href="#marketplace">Marketplace</a><a href="#library">Library</a><a href="#creator">Creator Store</a><a href="#about">About</a></nav><div class="nav-actions" id="navActions"><button class="btn btn-ghost hide-mobile" onclick="openLogin()">Log in</button><button class="btn btn-primary" onclick="openSignup()">Create account</button></div><button class="menu" onclick="toggleNav()" aria-label="Open navigation">☰</button></div></header><div class="raksha-banner" role="region" aria-label="Raksha Bandhan Bumper Offer"><div class="raksha-confetti" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="container raksha-banner-inner"><span class="rakhi-art small"> <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M10 50 Q30 28 50 50 T90 50" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="50" r="19" fill="#f4c84a" stroke="#fff8d6" stroke-width="5"/><circle cx="50" cy="50" r="8" fill="#fff"/><path d="M50 24v12M50 64v12M24 50h12M64 50h12" stroke="#f4c84a" stroke-width="6" stroke-linecap="round"/></svg></span><span class="rakhi-line"></span><div class="raksha-banner-copy"><strong>Raksha Bandhan Bumper Offer</strong><span>Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE · Every digital product is FREE</span></div><span class="rakhi-line"></span><span class="rakhi-art small"> <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M10 50 Q30 28 50 50 T90 50" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="50" r="19" fill="#f4c84a" stroke="#fff8d6" stroke-width="5"/><circle cx="50" cy="50" r="8" fill="#fff"/><path d="M50 24v12M50 64v12M24 50h12M64 50h12" stroke="#f4c84a" stroke-width="6" stroke-linecap="round"/></svg></span></div><div class="rakhi-float rf1 rakhi-art"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M10 50 Q30 28 50 50 T90 50" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="50" r="19" fill="#f4c84a" stroke="#fff8d6" stroke-width="5"/><circle cx="50" cy="50" r="8" fill="#fff"/><path d="M50 24v12M50 64v12M24 50h12M64 50h12" stroke="#f4c84a" stroke-width="6" stroke-linecap="round"/></svg></div><div class="rakhi-float rf2 rakhi-art"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M10 50 Q30 28 50 50 T90 50" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="50" r="19" fill="#f4c84a" stroke="#fff8d6" stroke-width="5"/><circle cx="50" cy="50" r="8" fill="#fff"/><path d="M50 24v12M50 64v12M24 50h12M64 50h12" stroke="#f4c84a" stroke-width="6" stroke-linecap="round"/></svg></div></div>
 <main>
-<section class="hero" id="home">
-  <div class="hero-copy">
-    <h1>Your Journey to a <span>Million-Dollar Startup</span> Starts Here</h1>
-    <p>Learn business, startup building, marketing and monetization with practical step-by-step guidance. Then create your own ebook and turn your knowledge into a digital product.</p>
-    <div class="hero-buttons">
-      <button class="btn btn-primary" onclick="openSignup()">Start for Free</button>
-      <button class="btn btn-outline" onclick="openFreeTrial()">🎁 Try Free Ebook</button>
-    </div>
-    <p style="margin-top:14px;font-size:12px;font-weight:900;color:#c86c00">🇮🇳 BUMPER OFFER: 1 GUIDE = 1 EBOOK FREEEE</p>
-  </div>
-  <div class="hero-art">
-    <div class="browser"><div class="browser-top"><i></i><i></i><i></i></div><div class="chart-area"><div class="chart"><svg viewBox="0 0 500 120" preserveAspectRatio="none"><polyline points="0,105 75,95 135,100 200,75 260,88 325,48 390,55 455,18 500,25" fill="none" stroke="#4b91a0" stroke-width="5"/></svg></div><div class="person one">🧑🏻‍💻</div><div class="person two">👩🏻‍💼</div><div class="person three">🧑🏻‍💼</div></div></div>
-    <div class="hero-bubble">💡</div>
-  </div>
-</section>
-
-<section class="section unlock" id="features">
-  <div class="center"><h2 class="section-title">UNLOCK YOUR AD POTENTIAL</h2><p class="section-subtitle">Maximize your revenue with practical monetization, startup and marketing guidance.</p></div>
-  <div class="unlock-grid">
-    <div class="info-list">
-      <div class="info-item"><span class="dot"></span><div><h3>AI-powered monetization</h3><p>Understand opportunities and find ways to monetize your audience and skills.</p></div></div>
-      <div class="info-item"><span class="dot"></span><div><h3>Business strategy</h3><p>Turn an idea into a useful product and a repeatable business model.</p></div></div>
-    </div>
-    <div class="monetization-art"><div class="ad-window"></div><div class="money">$</div><div class="rpm"><span>RPM</span><strong>+27%</strong></div></div>
-    <div class="info-list">
-      <div class="info-item"><span class="dot"></span><div><h3>Investor-ready thinking</h3><p>Understand customers, revenue, costs and metrics before seeking capital.</p></div></div>
-      <div class="info-item"><span class="dot"></span><div><h3>Growth analytics</h3><p>Learn how to read monetization metrics and make better decisions.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="how-it-works">
-  <div class="center"><h2 class="section-title">Choose What You Want to Learn</h2><p class="section-subtitle">Create your account, select a learning path and finish the guide to unlock your FREE 15-page ebook.</p></div>
-  <div class="category-grid">
-    <button class="category-card" onclick="openGuide('business')"><div class="category-icon">🏢</div><h3>Business</h3><p>Learn how to choose an idea, organize a business, find customers, price your offer and grow.</p><span class="read-more">Open Business Guide →</span></button>
-    <button class="category-card" onclick="openGuide('startup')"><div class="category-icon">🚀</div><h3>Startup Guide</h3><p>Learn how to validate an idea, build an MVP, create a website and publish it through GitHub.</p><span class="read-more">Open Startup Guide →</span></button>
-    <button class="category-card" onclick="openGuide('marketing')"><div class="category-icon">📈</div><h3>Marketing</h3><p>Learn how to attract customers, create content, sell products and make money online.</p><span class="read-more">Open Marketing Guide →</span></button>
-  </div>
-  <div class="offer-banner"><div>🇮🇳 <strong>RAKSHA BANDHAN BUMPER OFFER</strong> 🇮🇳</div><div style="margin-top:4px;font-weight:900">1 GUIDE = 1 EBOOK FREEEE — Finish a guide and unlock your free 15-page PDF.</div></div>
-</section>
-
-<section class="section" id="creator">
-  <div class="center"><h2 class="section-title">Make Your Own Ebook & Sell</h2><p class="section-subtitle">Already have an account? Your saved name and details are automatically used. You do NOT need to fill them again.</p></div>
-  <div class="dashboard" id="creatorDashboard">
-    <div style="display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap">
-      <div><h2 id="welcomeName">Welcome!</h2><p style="color:var(--muted);font-size:13px">Create a digital ebook from your idea and download the 15-page PDF.</p></div>
-      <button class="btn btn-primary" onclick="openEbookCreator()">📕 Make My Ebook</button>
-    </div>
-    <div class="dashboard-grid" style="margin-top:18px">
-      <div class="dash-card"><h3>👤 Your account</h3><p id="accountSummary"></p></div>
-      <div class="dash-card"><h3>🎁 Raksha Bandhan Offer</h3><p>Finish any guide and get 1 full 15-page ebook FREEEE during the Raksha Bandhan special.</p></div>
-    </div>
-  </div>
-  <div id="accountStatus" style="display:none;text-align:center;margin:0 auto 18px;font-weight:900;color:#197383;font-size:18px"></div>
-  <div class="center" id="creatorGuest">
-    <button class="btn btn-primary" onclick="openFreeTrial()">🎁 Try Free Ebook Without Account</button>
-    <button class="btn btn-outline" onclick="openSignup()">Create Account & Make Ebook</button>
-  </div>
-</section>
-
-
-<section class="section" id="ebook-maker" style="background:#f7fbfc">
-  <div class="center">
-    <div class="guide-label">SELLORA EBOOK STUDIO</div>
-    <h2 class="section-title">Make Your Own Ebook & Sell</h2>
-    <p class="section-subtitle">
-      Create your ebook with Sellora. Enter your idea, choose a topic, wait through the
-      5-second generation countdown, then preview and download your 15-page ebook.
-    </p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-primary" type="button" onclick="openEbookCreator()">🚀 Create Your Own Ebook</button>
-      <button class="btn btn-outline" type="button" onclick="openFreeTrial()">🎁 Try Ebook Free</button>
-    </div>
-  </div>
-</section>
-
-<section class="section center" id="pricing">
-  <h2 class="section-title">Start Free. Learn. Build. Grow.</h2>
-  <p class="section-subtitle">Explore Sellora free and use the Raksha Bandhan offer to unlock a 15-page ebook.</p>
-  <button class="btn btn-primary" onclick="openFreeTrial()">🎁 Start Free Trial — No Account</button>
-</section>
-
-<section class="section center" id="about"><h2 class="section-title">Built for People Who Want to Build</h2><p class="section-subtitle">Sellora brings business, startup and marketing knowledge into one simple learning experience.</p></section>
+<section class="hero" id="home"><div class="container hero-grid"><div><span class="eyebrow"><span class="dot-live"></span> Premium creator commerce platform</span><div style="margin-top:12px"><span class="festive-ribbon festive-pulse">Raksha Bandhan Bumper Offer</span></div><h1>Sell your knowledge.<br><span class="gradient-text">Build your digital business.</span></h1><p>Sellora combines practical learning, an elegant ebook studio, creator storefronts and a digital-product marketplace in one polished workspace.</p><div class="hero-actions"><button class="btn btn-primary" onclick="openSignup()">Start building free →</button><button class="btn gold-btn" onclick="openTrial()">Create a free ebook</button></div><div class="trust-row"><span><strong>126+</strong> users</span><span><strong>50-page</strong> ebook studio</span><span><strong>Sellora Library</strong></span><span class="festive-note">Raksha Bandhan Bumper Offer</span></div></div><div class="hero-card"><div class="window"><div class="window-top"><i></i><i></i><i></i><span style="margin-left:auto;color:#718a91;font-size:10px">sellora / creator-os</span></div><div class="dash-preview"><div class="mini-banner"><b>CREATOR STORE</b><strong>Turn Your Knowledge Into a Premium Store.</strong></div><div class="mini-grid"><div class="mini-panel"><div style="display:flex;justify-content:space-between;font-size:11px;color:#8fa8ae"><span>Sales momentum</span><b style="color:#9df7ef">+27%</b></div><div class="bars"><span style="--h:35%"></span><span style="--h:48%"></span><span style="--h:43%"></span><span style="--h:68%"></span><span style="--h:58%"></span><span style="--h:84%"></span><span style="--h:100%"></span></div></div><div class="mini-panel"><small style="color:#7e989f">Products</small><strong style="display:block;font-size:31px;margin-top:7px">12</strong><span style="font-size:10px;color:#7e989f">published this month</span></div></div><div class="mini-panel"><small style="color:#7e989f">Featured product</small><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><b>Creator Playbook</b><span class="tag">FREE</span></div></div></div></div><div class="float-pill">✦ Smooth, premium &amp; creator-first</div></div></div></div></section>
+<section class="offer"><div class="container"><div class="offer-card"><div><small>SELLORA SPECIAL · RAKSHA BANDHAN BUMPER OFFER</small><br><strong>Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE</strong><div class="festive-note" style="margin-top:4px">Raksha Bandhan Bumper Offer · Learn → Create → Save to Library</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold-btn" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Explore the guides →</button><button class="btn" onclick="openLibrary()">Open Library</button></div></div></div></section>
+<section class="section" id="how"><div class="container"><div class="section-head"><div><div class="kicker">Learn → create → sell</div><h2>A workspace that moves with your idea.</h2></div><p>Keep the original Sellora learning journey, then turn what you know into digital products people can discover, get and use for free.</p></div><div class="grid3"><article class="card"><div class="icon">🏢</div><h3>Business</h3><p>Choose an idea, research demand, shape an offer, find customers, build value thoughtfully and build repeatable systems.</p><button class="btn" style="margin-top:18px" onclick="openGuide('business')">Open guide →</button></article><article class="card"><div class="icon">🚀</div><h3>Startup Guide</h3><p>Validate the problem, build an MVP, create a website, publish it and measure what matters before you scale.</p><button class="btn" style="margin-top:18px" onclick="openGuide('startup')">Open guide →</button></article><article class="card"><div class="icon">📈</div><h3>Marketing</h3><p>Build an audience, create useful content, improve conversion and explore sustainable ways to grow your community.</p><button class="btn" style="margin-top:18px" onclick="openGuide('marketing')">Open guide →</button></article></div><div class="feature-strip"><div class="stat"><strong>126+</strong><span>Sellora users</span></div><div class="stat"><strong>50</strong><span>pages per generated ebook</span></div><div class="stat"><strong>100%</strong><span>free digital products</span></div><div class="stat"><strong>100%</strong><span>standalone browser UI</span></div></div></div></section>
+<section class="section" id="marketplace"><div class="container"><div class="section-head"><div><div class="kicker">Digital products marketplace</div><div class="festive-note">Raksha Bandhan Bumper Offer</div><h2>Discover products built by creators.</h2></div><p>Browse ebooks, templates, guides and digital documents. Every marketplace product is free to get and download in this standalone version.</p></div><div class="market-tools"><input class="input search" id="searchProducts" placeholder="Search products, topics or creators…" oninput="renderMarketplace()"><select class="select filter" id="categoryFilter" onchange="renderMarketplace()"><option value="all">All categories</option><option value="ebooks">Ebooks</option><option value="templates">Templates</option><option value="guides">Guides</option><option value="documents">Documents</option><option value="other">Other</option></select><button class="btn" onclick="seedDemoProducts(true)">Refresh featured</button></div><div class="product-grid" id="productGrid"></div></div></section>
+<section class="section library-hero" id="library"><div class="container"><div class="section-head"><div><div class="kicker">Sellora Library</div><div class="festive-ribbon">Raksha Bandhan Bumper Offer</div><h2 style="margin-top:12px">Your saved digital shelf.</h2></div><p>Keep the digital products you collect and the ebooks you create in one polished library. Your saved items stay local to this browser in the standalone version.</p></div><div class="library-grid" id="libraryGrid"></div></div></section>
+<section class="section" id="creator"><div class="container"><div class="creator"><div class="creator-card"><div class="kicker">Creator OS</div><div class="festive-note">Raksha Bandhan Bumper Offer · Creator Bonus</div><h2>Turn Your Knowledge Into a Premium Store.</h2><p style="color:#a9bdc2">Create a storefront, publish digital products for free, and keep your creator controls in one focused dashboard.</p><div class="creator-list"><div><span class="check">✓</span><span>Upload ebooks, PDFs, templates, guides, documents and ZIP files.</span></div><div><span class="check">✓</span><span>Publish your digital products as FREE downloads for the Sellora community.</span></div><div><span class="check">✓</span><span>Edit, publish, delete and review your products.</span></div><div><span class="check">✓</span><span>Build a clean creator storefront inside Sellora.</span></div></div><button class="btn btn-primary" style="margin-top:24px" onclick="openCreatorDashboard()">Open creator dashboard →</button></div><div class="card"><div class="store-preview"><div class="store-header"><div><div class="kicker">CREATOR STORE</div><h3 style="font-size:24px;margin:5px 0 0">Your expertise, beautifully packaged.</h3></div><div class="avatar">S</div></div><div class="store-products"><div><b>Growth Playbook</b><small>Guide · FREE</small></div><div><b>Launch Template</b><small>Template · FREE</small></div><div><b>Creator Notes</b><small>Ebook · FREE</small></div></div></div></div></div></div></section>
+<section class="section" id="studio"><div class="container"><div class="section-head"><div><div class="kicker">Ebook studio</div><h2>Make a premium 50-page digital product.</h2></div><p>Sellora turns a topic and goal into a structured 50-page workbook with a cover, contents, chapters, examples, action steps, callouts, exercises and page numbers.</p></div><div class="card" style="display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:center"><div><h3>Designed to feel like a real premium free product.</h3><p>Every generated ebook uses 50 explicit pages rather than empty filler. The browser print view uses page breaks so you can save it as a PDF directly from Chrome.</p><div class="hero-actions" style="margin-bottom:0"><button class="btn btn-primary" onclick="openTrial()">Create free ebook</button><button class="btn" onclick="openCreatorDashboard()">Publish free product</button></div></div><div class="product-cover" style="height:250px"><div class="cover-inner"><span class="cover-badge">SELLORA EBOOK STUDIO</span><span class="cover-title">Your Knowledge.<br>50 Pages.<br>One Premium Product.</span><span class="tag">COVER · TOC · WORKBOOK</span></div></div></div></div></section>
+<section class="section" id="about"><div class="container"><div class="section-head"><div><div class="kicker">Why Sellora</div><h2>Premium by default. Practical by design.</h2></div><p>Sellora keeps the original offer and learning experience while giving the interface, creator tools and marketplace a polished startup-grade presentation.</p></div><div class="grid3"><div class="card"><div class="icon">✦</div><h3>Trustworthy UI</h3><p>Clear hierarchy, thoughtful spacing, premium surfaces and restrained motion make the product feel credible rather than flashy.</p></div><div class="card"><div class="icon">⚡</div><h3>Lightweight motion</h3><p>Ambient glows, hover lift, shine effects and reveals are CSS-first and respect reduced-motion preferences.</p></div><div class="card"><div class="icon">🛡</div><h3>Standalone first</h3><p>No external rendering dependency and no required network library just to display the Sellora interface.</p></div></div></div></section>
+<section class="section" id="account"><div class="container"><div class="dashboard" id="dashboard"><div class="dash-top"><div><div class="kicker">Creator dashboard</div><div class="festive-note">Raksha Bandhan Bumper Offer</div><h2 id="welcome" style="margin:3px 0">Welcome</h2><p id="accountSummary" style="color:var(--muted);margin:0"></p></div><div><button class="btn btn-primary" onclick="openEbookCreator()">📕 Make my ebook</button><button class="btn" onclick="logout()">Log out</button></div></div><div class="dash-stats"><div class="dash-card"><small>Products</small><strong id="statProducts">0</strong></div><div class="dash-card"><small>Published</small><strong id="statPublished">0</strong></div><div class="dash-card"><small>Free gets</small><strong>∞</strong></div><div class="dash-card"><small>Downloads</small><strong id="statSales">0</strong></div></div><div class="creator-tools"><div class="upload-zone"><h3>Upload a digital product</h3><p style="color:var(--muted);font-size:12px">Supported locally: PDF, ebook, templates, guides, documents and ZIP files. Files are stored in this browser for the current demo.</p><form onsubmit="publishProduct(event)"><div class="field"><label>Product title *</label><input class="input" id="productTitle" required placeholder="e.g. Creator Growth Playbook"></div><div class="form-grid"><div class="field"><label>Category</label><select class="select" id="productCategory"><option value="ebooks">Ebooks</option><option value="templates">Templates</option><option value="guides">Guides</option><option value="documents">Documents</option><option value="other">Other</option></select></div><div class="field"><label>Access</label><input class="input" value="FREE — Raksha Bandhan Bumper Offer" readonly></div></div><div class="field"><label>Description *</label><textarea class="input" id="productDescription" required placeholder="What will people get for free?"></textarea></div><div class="field"><label>Product file *</label><input class="input" id="productFile" type="file" required accept=".pdf,.epub,.txt,.md,.doc,.docx,.zip,.html,.csv,.json"></div><div class="field"><label>Cover image (optional)</label><input class="input" id="productCover" type="file" accept="image/*"></div><div class="modal-actions"><button class="btn btn-primary" type="submit">Publish product</button></div></form></div><div><div class="dash-card"><h3>Your products</h3><div id="myProducts" class="products-list"></div></div></div></div></div><div id="guestDashboard" class="card" style="text-align:center"><div class="icon" style="margin:0 auto 18px">◎</div><h3>Your creator dashboard is ready when you are.</h3><p>Create a Sellora account to manage products, build your storefront and create ebooks without re-entering your details.</p><button class="btn btn-primary" style="margin-top:18px" onclick="openSignup()">Create account →</button></div></div></section>
 </main>
+<section class="offer"><div class="container"><div class="offer-card"><div><small>SELLORA FESTIVE SPECIAL</small><br><strong>Raksha Bandhan Bumper Offer</strong><div class="festive-note" style="margin-top:4px">1 GUIDE = 1 EBOOK FREEEE · Your free ebook can be saved to the Sellora Library.</div></div><button class="btn gold-btn" onclick="openTrial()">Claim free ebook →</button></div></div></section>
+<footer class="footer"><div class="container footer-grid"><div><div class="brand"><span class="brand-mark">S</span> SELLORA</div><p>Sell your knowledge. Build your digital business.</p></div><div><strong>Sellora 2026</strong><br><span>Premium digital products marketplace + ebook creator.</span><br><span class="festive-note">Raksha Bandhan Bumper Offer · 1 GUIDE = 1 EBOOK FREEEE</span></div></div><div class="festive-ribbon festive-pulse" style="margin-top:10px">Raksha Bandhan Bumper Offer · 1 GUIDE = 1 EBOOK FREEEE</div></footer>
 
-<footer class="footer"><div><div class="logo"><span class="logo-mark">S</span> SELLORA</div><p style="margin-top:8px">Monetize ideas. Build businesses. Grow startups.</p></div><p>© 2026 Sellora. All rights reserved.</p></footer>
-
-<!-- SIGNUP -->
 <div class="modal" id="signupModal"><div class="modal-card"><button class="close" onclick="closeModal('signupModal')">×</button><div id="signupContent"></div></div></div>
-
-<!-- LOGIN -->
-<div class="modal" id="loginModal"><div class="modal-card"><button class="close" onclick="closeModal('loginModal')">×</button><div class="modal-step">SELLORA ACCOUNT</div><h2>Welcome back</h2><p class="intro">Log in with the account you created on this browser.</p><form onsubmit="loginDemo(event)"><div class="field"><label>Email</label><input id="loginEmail" type="email" required placeholder="you@example.com"></div><div class="field"><label>Password</label><input id="loginPassword" type="password" required placeholder="Your password"></div><div class="modal-footer"><button class="btn btn-primary" type="submit">Log In</button></div></form></div></div>
-
-<!-- FREE TRIAL -->
-<div class="modal" id="trialModal"><div class="modal-card"><button class="close" onclick="closeModal('trialModal')">×</button><div class="modal-step">SELLORA FREE TRIAL</div><h2>Make Your Free Ebook 🎁</h2><p class="intro">No account needed for the trial. Fill the ebook details below.</p>
-<form onsubmit="startFreeTrial(event)">
-<div class="field"><label>Your Name *</label><input id="trialName" required placeholder="Your name"></div>
-<div class="field"><label>Ebook Topic / Goal *</label><input id="trialTopic" required placeholder="Example: How to Make Money Online"></div>
-<div class="field"><label>What should the ebook contain? *</label><textarea id="trialGoal" rows="4" required placeholder="Tell Sellora what your ebook should teach..."></textarea></div>
-<div class="field"><label>Category</label><select id="trialCategory"><option value="marketing">Marketing & Making Money</option><option value="startup">Startup</option><option value="business">Business</option></select></div>
-<div class="success">🇮🇳 <strong>Raksha Bandhan Bumper Offer:</strong> Create your free 15-page ebook.</div>
-<div class="modal-footer"><button class="btn btn-primary" type="submit">🚀 Create My Free Ebook</button></div>
-</form></div></div>
-
-<!-- EBOOK CREATOR -->
-<div class="modal" id="ebookModal"><div class="modal-card"><button class="close" onclick="closeModal('ebookModal')">×</button><div id="ebookCreatorContent"></div></div></div>
-
-<!-- GUIDE / COUNTDOWN / PDF -->
-<div class="modal" id="guideModal"><div class="modal-card guide"><button class="close" onclick="closeModal('guideModal')">×</button><div id="guideContent"></div></div></div>
+<div class="modal" id="loginModal"><div class="modal-card"><button class="close" onclick="closeModal('loginModal')">×</button><div class="kicker">SELLORA ACCOUNT</div><h2>Welcome back.</h2><p class="intro">Your account stays on this browser. No network service is required for the interface.</p><form onsubmit="login(event)"><div class="field"><label>Email</label><input class="input" id="loginEmail" type="email" required></div><div class="field"><label>Password</label><input class="input" id="loginPassword" type="password" required></div><div class="modal-actions"><button class="btn btn-primary">Log in</button></div></form></div></div>
+<div class="modal" id="trialModal"><div class="modal-card"><button class="close" onclick="closeModal('trialModal')">×</button><div class="kicker">SELLORA EBOOK STUDIO</div><h2>Create your free 50-page ebook.</h2><p class="intro">No account is required for the trial. Your generated ebook is previewable and printable from the browser.</p><form onsubmit="startEbook(event,true)"><div class="field"><label>Your name *</label><input class="input" id="trialName" required></div><div class="field"><label>Ebook topic / goal *</label><input class="input" id="trialTopic" required placeholder="Example: How to Build a Creator Business"></div><div class="field"><label>What should it contain? *</label><textarea class="input" id="trialContent" required placeholder="Lessons, examples, tips, exercises, checklists…"></textarea></div><div class="notice"><b>Raksha Bandhan Bumper Offer</b><br>Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE</div><div class="modal-actions"><button class="btn btn-primary">Generate 50-page ebook →</button></div></form></div></div>
+<div class="modal" id="ebookModal"><div class="modal-card"><button class="close" onclick="closeModal('ebookModal')">×</button><div id="ebookFormContent"></div></div></div>
+<div class="modal" id="guideModal"><div class="modal-card"><button class="close" onclick="closeModal('guideModal')">×</button><div id="guideContent"></div></div></div>
+<div class="modal" id="previewModal"><div class="modal-card"><button class="close" onclick="closeModal(\'previewModal\')">×</button><div id="previewContent"></div></div></div>
+<div class="toast" id="toast"></div>
 
 <script>
-function getSelloraAccountCount(){
-  const stored=Number(localStorage.getItem("selloraAccountCount"));
-  if(!Number.isFinite(stored)||stored<106){localStorage.setItem("selloraAccountCount","106");}
-  const n=Number(localStorage.getItem("selloraAccountCount")||"106");
-  return Number.isFinite(n)&&n>=0?Math.floor(n):0;
-}
-function updateSelloraAccountCounter(){
-  const el=document.getElementById("accountCounterNumber");
-  if(el) el.textContent=getSelloraAccountCount().toLocaleString("en-IN");
-}
-function registerNewSelloraAccount(email){
-  const key="selloraCountedEmail";
-  const previous=localStorage.getItem(key);
-  if(previous===email){updateSelloraAccountCounter();return;}
-  const next=getSelloraAccountCount()+1;
-  localStorage.setItem("selloraAccountCount",String(next));
-  localStorage.setItem(key,email);
-  updateSelloraAccountCounter();
-}
-
+(function(){
+'use strict';
+const KEY={profile:'selloraProfileV2',products:'selloraProductsV2',count:'selloraAccountCountV2',sales:'selloraSalesV2',library:'selloraLibraryV2',ebookStore:'selloraEbookStoreV2'};
 const guides={
-business:{title:"How to Open a Business",intro:"Opening a business starts with a problem, a customer and a clear offer. Start small, validate demand, set up the appropriate legal and financial structure for your location, launch and improve using customer feedback.",sections:[
-["1. Choose a business idea","Start with a real customer problem. Identify who has it, how they currently solve it and why they might pay for a better solution."],
-["2. Research your market","Talk to potential customers and study competitors. Look for repeated complaints, desired outcomes, common prices and gaps in existing solutions."],
-["3. Create your business model","Decide what you sell, who pays, how much they pay and how you deliver it. Possible models include one-time sales, subscriptions, commissions, services and advertising."],
-["4. Set up the business","Choose an appropriate legal structure for your country, register where required, understand taxes and obtain any permits your activity needs."],
-["5. Build your first offer","Create the smallest useful version of your product or service. Get feedback from real users before spending heavily."],
-["6. Find your first customers","Use direct outreach, referrals, communities, partnerships and content. Talk directly to early customers to learn what converts."],
-["7. Price for value","Consider customer value, costs, alternatives and willingness to pay. Test pricing rather than assuming the perfect price immediately."],
-["8. Track the numbers","Track revenue, costs, margin, cash flow, conversion, customer acquisition cost and retention."],
-["9. Grow carefully","Document what works, automate repetitive tasks and delegate only after the process is working reliably."]]},
-startup:{title:"Complete Startup Guide",intro:"A startup begins with a meaningful problem, a useful solution and evidence that people want it. Validate first, build a small MVP, learn from users and then improve distribution and growth.",sections:[
-["1. Find a problem","Choose a painful, frequent or valuable problem. Interview potential customers before building too much."],
-["2. Validate the idea","Use a landing page, prototype, waitlist, manual service or other small experiment. Measure actions such as signups, replies, trials and purchases."],
-["3. Build an MVP","Build the smallest product that delivers your core promise. Avoid unnecessary features."],
-["4. Create your website","For a simple website, start with index.html, styles.css and app.js. HTML gives structure, CSS gives design and JavaScript gives interactivity."],
-["5. Website structure","A simple project can look like this:","sellora-project/\n├── index.html\n├── styles.css\n├── app.js\n└── README.md"],
-["6. Publish through GitHub Pages","Create a GitHub repository, upload your website files, commit the changes, open Settings → Pages, choose deployment from your main branch and root folder, then save. GitHub Pages will publish the static website."],
-["7. Git workflow","Use Git to clone, edit, commit and push your changes.","git clone YOUR_REPOSITORY_URL\ncd YOUR_REPOSITORY\ngit add .\ngit commit -m \"Update website\"\ngit push"],
-["8. Custom domain","After GitHub Pages works, connect a domain using the DNS settings required by your registrar and GitHub's current documentation. Enable HTTPS."],
-["9. Get users","Launch to a small group, collect feedback and improve onboarding, product value and distribution."],
-["10. Make money","Possible models include subscriptions, one-time sales, commissions, transaction fees, services, licensing and advertising. Test willingness to pay early."],
-["11. Measure growth","Track activation, retention, conversion, revenue, acquisition cost and lifetime value."]]},
-marketing:{title:"Marketing & How to Make Money",intro:"Marketing gets the right people to discover your offer, understand its value, trust your brand and take action. Online income usually comes from a valuable offer, a defined audience and a repeatable distribution channel.",sections:[
-["1. Choose what you will sell","You can sell physical products, digital products, software, services, subscriptions, memberships or advertising. Start with a specific problem."],
-["2. Choose your audience","Define your customer by their problem, goals, industry, interests or situation. Clear audiences make clearer marketing."],
-["3. Create a strong offer","Explain the problem, promised outcome, deliverables, differentiation and next action."],
-["4. Build a website","Use a clear value proposition, call to action, product details, proof where available, FAQs and contact information."],
-["5. Use content marketing","Create tutorials, educational posts, videos, comparisons, case studies and demonstrations."],
-["6. Use social media","Choose platforms where your target customers already spend time. Build recurring content themes around customer problems and solutions."],
-["7. Email marketing","Offer useful resources in exchange for email addresses, then send helpful content and relevant offers while respecting applicable privacy and marketing laws."],
-["8. SEO","Create useful pages that answer specific questions your customers search for. Use descriptive titles and headings."],
-["9. Paid advertising","Start with a small budget and a measurable objective. Test messages and landing pages. Calculate profit rather than assuming ads are successful."],
-["10. Ways to make money","Common methods include product sales, subscriptions, services, courses, memberships, software, affiliate commissions, sponsorships and advertising."],
-["11. Improve conversion","Improve your offer, proof, pricing explanation, page speed, checkout and call to action."],
-["12. Keep customers","Good onboarding, support and product quality can increase repeat purchases and retention."]]}};
-
-let signupStep=1,signupData={},selectedCategories=[];
-
-function currentUser(){try{return JSON.parse(localStorage.getItem("selloraProfile")||"null")}catch(e){return null}}
-function updateAccountUI(){
- const u=currentUser();
- const nav=document.getElementById("navActions");
- const dash=document.getElementById("creatorDashboard");
- const guest=document.getElementById("creatorGuest");
- const welcome=document.getElementById("welcomeName");
- const summary=document.getElementById("accountSummary");
-
- if(u){
-   if(nav){
-     const first=(u.name||"Account").trim().split(/\s+/)[0];
-     nav.innerHTML=`<span class="account-chip">👋 ${escapeHtml(first)}</span><button class="btn btn-primary" type="button" onclick="openEbookCreator()">Create Ebook</button>`;
-   }
-   if(dash) dash.classList.add("show");
-   if(guest) guest.style.display="none";
-   if(welcome) welcome.textContent="Welcome, "+u.name+"! 👋";
-   if(summary) summary.textContent=`${u.email} • ${u.company||"Sellora creator"} • Categories: ${(u.categories||[]).join(", ")||"Not selected"}`;
- }else{
-   if(nav){
-     nav.innerHTML=`<button class="btn btn-outline" type="button" onclick="openLogin()">Log In</button><button class="btn btn-primary" type="button" onclick="openSignup()">Create Account</button>`;
-   }
-   if(dash) dash.classList.remove("show");
-   if(guest) guest.style.display="block";
- }
-}
-function logout(){localStorage.removeItem("selloraProfile");updateAccountUI();alert("You have been logged out.");}
-/* ================= SELLORA WORKING ACCOUNT + EBOOK SYSTEM ================= */
-
-const SELLORA_ACCOUNT_KEY = "selloraProfile";
-let generatedEbookPages = [];
-let generatedEbookTitle = "";
-
-function getSelloraAccount(){
-  try{
-    const raw = localStorage.getItem(SELLORA_ACCOUNT_KEY);
-    if(!raw) return null;
-    const p = JSON.parse(raw);
-    return p && p.name && p.email ? p : null;
-  }catch(e){ return null; }
-}
-
-function refreshSelloraNavbar(){
-  const nav = document.getElementById("navActions");
-  if(!nav) return;
-
-  const account = getSelloraAccount();
-
-  if(account){
-    const firstName = String(account.name).trim().split(/\s+/)[0] || "Account";
-    nav.innerHTML = `
-      <span class="account-chip">👋 ${escapeHtml(firstName)}</span>
-      <button class="btn btn-primary" type="button" onclick="openEbookCreator()">Create Ebook</button>
-    `;
-  }else{
-    nav.innerHTML = `
-      <button class="btn btn-outline" type="button" onclick="openLogin()">Log In</button>
-      <button class="btn btn-primary" type="button" onclick="openSignup()">Create Account</button>
-    `;
-  }
-}
-
-function openEbookCreator(){
-  const modal = document.getElementById("ebookCreatorModal");
-  if(!modal) return;
-
-  const account = getSelloraAccount();
-
-  // Existing account = no account form again.
-  if(account){
-    const title = document.getElementById("ebookTitle");
-    if(title && !title.value){
-      title.value = account.company ? account.company + " Ebook" : "";
-    }
-  }
-
-  modal.classList.add("show");
-}
-
-function openFreeTrial(){
-  const modal = document.getElementById("ebookCreatorModal");
-  if(!modal) return;
-
-  // Free trial does NOT require an account.
-  modal.classList.add("show");
-}
-
-function startEbookGeneration(e){
-  e.preventDefault();
-
-  const title = document.getElementById("ebookTitle").value.trim();
-  const goal = document.getElementById("ebookGoal").value.trim();
-  const inside = document.getElementById("ebookContent").value.trim();
-  const category = document.getElementById("ebookCategory").value;
-
-  if(!title || !goal || !inside){
-    alert("Please fill all required ebook details.");
-    return;
-  }
-
-  generatedEbookTitle = title;
-  generatedEbookPages = buildEbookPages(title, goal, inside, category);
-
-  closeModal("ebookCreatorModal");
-
-  const generating = document.getElementById("ebookGeneratingModal");
-  const number = document.getElementById("countdownNumber");
-  const text = document.getElementById("countdownText");
-  const bar = document.getElementById("countdownBar");
-
-  generating.classList.add("show");
-
-  let seconds = 5;
-  number.textContent = seconds;
-  text.textContent = "Creating page 1 of 15...";
-  bar.style.width = "0%";
-
-  const timer = setInterval(() => {
-    seconds--;
-    number.textContent = seconds;
-    bar.style.width = ((5-seconds)/5*100) + "%";
-    text.textContent = seconds > 0
-      ? "Generating your 15-page ebook..."
-      : "Finishing your ebook...";
-
-    if(seconds <= 0){
-      clearInterval(timer);
-      setTimeout(() => {
-        closeModal("ebookGeneratingModal");
-        showGeneratedEbook();
-      }, 450);
-    }
-  }, 1000);
-}
-
-function buildEbookPages(title, goal, inside, category){
-  const g = escapeHtml(goal);
-  const c = escapeHtml(inside);
-  const cat = escapeHtml(category);
-
-  const pages = [
-    {
-      heading: title,
-      body: `Welcome to your Sellora ${cat} ebook. This guide is built around the goal you entered: ${g}. Use it as a practical workbook rather than something you only read once. The purpose is to help you turn information into action. Read each page, write down your decisions, and complete the suggested actions before moving forward.`
-    },
-    {
-      heading: "1. Understanding the Goal",
-      body: `A clear goal gives your project direction. Start by writing exactly what you want to achieve, who you want to help, and what success will look like. Your ebook goal is: ${g}. Break that large goal into smaller milestones. A good milestone should be specific enough that you can tell whether it has been completed. Avoid vague targets such as "be successful". Instead, define measurable outcomes such as publishing a website, reaching a number of customers, creating an offer, collecting feedback, or generating your first sale.`
-    },
-    {
-      heading: "2. Define Your Audience",
-      body: `Your audience is the group of people most likely to benefit from your idea. Describe their situation, problems, goals, budget, interests and current alternatives. Ask what they are trying to accomplish and what is stopping them. The more accurately you understand your audience, the easier it becomes to create products, content and marketing messages that feel relevant. Do not assume that everyone is your customer. Start with one clear audience and expand later when you have evidence.`
-    },
-    {
-      heading: "3. Define the Problem",
-      body: `Strong businesses solve meaningful problems. Write down the problem your project is trying to solve and explain why it matters. Find out how people currently handle the problem and what those solutions cost in money, time or effort. Speak with real people whenever possible. Look for repeated complaints and repeated needs. If people do not care enough about the problem to take action, improve the problem definition before spending heavily on a solution.`
-    },
-    {
-      heading: "4. Shape the Solution",
-      body: `Turn the problem into a simple solution. Describe what your customer receives, how it works and what result it is designed to provide. Your solution does not need dozens of features. Start with the smallest useful version that can deliver the main benefit. Your stated ebook content is: ${c}. Use that information to decide what should be included first, what can wait, and what can be removed because it does not directly support the main outcome.`
-    },
-    {
-      heading: "5. Validate Before You Scale",
-      body: `Validation means collecting evidence that people actually want what you are creating. Build a simple landing page, prototype, sample, demo, waitlist or manual service. Ask potential customers for specific feedback and watch what they do, not only what they say. Useful evidence can include signups, replies, calls booked, trials started, purchases, repeat usage and referrals. If the response is weak, learn why and adjust the offer before investing more resources.`
-    },
-    {
-      heading: "6. Build Your Brand",
-      body: `A brand is more than a logo. It is the experience and expectation people associate with your project. Choose a clear name, message, visual identity and tone. Explain your promise in simple language. Keep your website, social profiles, product pages and communications consistent. Trust grows when people repeatedly see the same clear message and then receive a product or service that delivers what was promised.`
-    },
-    {
-      heading: "7. Create Your Website",
-      body: `Your website should quickly answer four questions: What is this, who is it for, why should I care, and what should I do next? Start with a strong headline, a short explanation of the benefit, relevant proof or examples, important details, frequently asked questions and one clear call to action. For a simple static website you can use HTML for structure, CSS for design and JavaScript for interaction. Test every button and form before publishing.`
-    },
-    {
-      heading: "8. Publish and Launch",
-      body: `A launch is the beginning of learning, not the final step. Publish your website or product, tell your target audience what it does, and invite early users to try it. If you use GitHub Pages for a static website, keep your project files organized, commit your changes, enable Pages from the repository settings, and verify the live URL. After launch, check the site on desktop and mobile and make sure visitors can understand the offer without needing extra explanation.`
-    },
-    {
-      heading: "9. Marketing Strategy",
-      body: `Marketing connects your offer with people who may need it. Choose channels based on where your audience already spends attention. Useful channels can include short-form video, educational posts, communities, search, email, partnerships and direct outreach. Create content around real customer questions. Teach something useful, demonstrate your product, share lessons, explain mistakes and show outcomes where you have genuine evidence. Consistency matters more than posting randomly.`
-    },
-    {
-      heading: "10. Monetization",
-      body: `There are many ways to monetize a useful project. Depending on the business, options can include one-time product sales, subscriptions, services, memberships, digital products, software fees, commissions, affiliate revenue, sponsorships or advertising. Choose the model that matches the value you provide and how customers behave. Calculate your costs before deciding that revenue equals profit. Track sales, expenses, conversion rate, retention and cash flow so you can understand whether the model is sustainable.`
-    },
-    {
-      heading: "11. Sales and Conversion",
-      body: `A visitor becomes a customer when the value is clear and the next step is easy. Make your call to action visible. Explain what the customer gets, who it is for, how it works and what happens after they take action. Address common objections honestly. Avoid misleading claims or fake urgency. Improve conversion by testing your headline, offer, page structure, proof, pricing explanation and checkout experience. Measure the results of each meaningful change.`
-    },
-    {
-      heading: "12. Customer Retention",
-      body: `Getting a customer is only the beginning. Retention improves when the product delivers its promised value and customers know how to use it. Create a simple onboarding process, provide useful support, collect feedback and continue improving the experience. Give customers reasons to return when your business model depends on repeat use. Track repeat purchases, active users, cancellations and customer feedback. Retention can be a powerful signal of whether the product is genuinely useful.`
-    },
-    {
-      heading: "13. Growth and Systems",
-      body: `Once you find a process that works, document it. Write down how you attract leads, handle sales, deliver the product, answer common questions and measure performance. Automate repetitive tasks where appropriate, but do not automate a broken process. Growth should make a successful system larger rather than make an inefficient system more complicated. Hire or delegate only when the responsibility and expected result are clear.`
-    },
-    {
-      heading: "14. Your 30-Day Action Plan",
-      body: `Days 1–7: define the audience, problem, goal and offer. Days 8–14: create the smallest useful version and prepare your website or sales page. Days 15–21: launch it to a small audience, publish useful content and collect feedback. Days 22–30: review the numbers, improve the offer, fix confusing parts and repeat the strongest marketing activity. At the end of the month, write down what worked, what failed, what you learned and the single most important next step.`
-    },
-    {
-      heading: "15. Final Checklist",
-      body: `Before you finish, confirm that you can clearly explain your goal, audience, problem, solution, offer, marketing channel and monetization model. Confirm that your website or product works, your call to action is clear, your costs are understood and your first measurable target has been selected. Your next three actions should be written down with deadlines. Information only becomes valuable when you use it. Keep testing, learning, improving and serving your customers.`
-    }
-  ];
-
-  return pages;
-}
-
-function showGeneratedEbook(){
-  const preview = document.getElementById("ebookPreview");
-  const title = document.getElementById("ebookResultTitle");
-
-  title.textContent = generatedEbookTitle;
-  preview.innerHTML = "";
-
-  generatedEbookPages.forEach((page,index) => {
-    const card = document.createElement("div");
-    card.style.cssText = `
-      border:1px solid #dfe7e9;border-radius:14px;padding:22px;
-      background:${page.cover ? "#e7f7f8" : "#fff"};
-      min-height:150px;
-    `;
-    card.innerHTML = `
-      <div style="font-size:11px;font-weight:900;color:#197383;letter-spacing:1px">
-        PAGE ${index+1} OF 15
-      </div>
-      <h3 style="margin:8px 0">${escapeHtml(page.heading)}</h3>
-      <p style="color:#4c565b">${page.body}</p>
-    `;
-    preview.appendChild(card);
-  });
-
-  document.getElementById("ebookResultModal").classList.add("show");
-}
-
-function makeEbookHtml(){
-  const pages = generatedEbookPages.map((p,i)=>`
-    <section class="pdf-page">
-      <div class="small">SELLORA • PAGE ${i+1} OF 15</div>
-      <h1>${escapeHtml(p.heading)}</h1>
-      <p>${p.body}</p>
-      <div class="footer">Sellora • Monetize Ideas. Build Businesses. Grow.</div>
-    </section>
-  `).join("");
-
-  return `<!doctype html><html><head><meta charset="utf-8">
-  <title>${escapeHtml(generatedEbookTitle)}</title>
-  <style>
-    @page{size:A4;margin:0}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Arial,sans-serif;color:#101820}
-    .pdf-page{
-      width:210mm;height:297mm;padding:28mm 24mm;
-      page-break-after:always;position:relative;background:white;
-    }
-    .pdf-page h1{font-size:30px;color:#197383;margin:20px 0}
-    .pdf-page p{font-size:16px;line-height:1.8}
-    .small{font-size:11px;font-weight:bold;color:#2c8e9e;letter-spacing:1px}
-    .footer{position:absolute;bottom:18mm;left:24mm;right:24mm;font-size:10px;color:#7b8589;border-top:1px solid #ddd;padding-top:8px}
-  </style></head><body>${pages}</body></html>`;
-}
-
-function downloadGeneratedEbook(){
-  if(!generatedEbookPages.length){
-    alert("Create an ebook first.");
-    return;
-  }
-
-  // Browser-print PDF route: works on static GitHub Pages without a backend.
-  const popup = window.open("", "_blank");
-  if(!popup){
-    alert("Please allow popups for Sellora, then click Download PDF again.");
-    return;
-  }
-
-  popup.document.open();
-  popup.document.write(makeEbookHtml());
-  popup.document.close();
-
-  setTimeout(() => {
-    popup.focus();
-    popup.print();
-  }, 700);
-}
-
-function openGeneratedEbook(){
-  if(!generatedEbookPages.length){
-    alert("Create an ebook first.");
-    return;
-  }
-
-  const blob = new Blob([makeEbookHtml()], {type:"text/html"});
-  const url = URL.createObjectURL(blob);
-  window.open(url, "_blank");
-  setTimeout(() => URL.revokeObjectURL(url), 60000);
-}
-
-
-function openSignup(){
- const u=currentUser();
- if(u){updateAccountUI();document.getElementById("creator").scrollIntoView({behavior:"smooth"});return;}
- signupStep=1;signupData={};selectedCategories=[];renderSignup();document.getElementById("signupModal").classList.add("show");
-}
-function openLogin(){if(currentUser()){updateAccountUI();document.getElementById("creator").scrollIntoView({behavior:"smooth"});return}document.getElementById("loginModal").classList.add("show")}
-function closeModal(id){const el=document.getElementById(id);if(el)el.classList.remove("show")}
-function renderSignup(){
- const box=document.getElementById("signupContent");
- if(signupStep===1){box.innerHTML=`<div class="modal-step">STEP 1 OF 2</div><h2>Create your Sellora account</h2><p class="intro">Fill in your details once. After your account is created, Sellora remembers your name and does not ask for it again on this browser.</p>
-<form onsubmit="continueSignup(event)"><div class="form-grid">
-<div class="field"><label>Full Name *</label><input id="fullName" required placeholder="Your full name"></div>
-<div class="field"><label>Email *</label><input id="email" type="email" required placeholder="you@example.com"></div>
-<div class="field"><label>Password *</label><input id="password" type="password" minlength="6" required placeholder="Minimum 6 characters"></div>
-<div class="field"><label>Business / Startup Name *</label><input id="company" required placeholder="Your company"></div>
-<div class="field full"><label>What are you trying to build?</label><textarea id="goal" rows="3" placeholder="Tell us about your idea or goal"></textarea></div>
-</div><div class="modal-footer"><button class="btn btn-primary" type="submit">Continue →</button></div></form>`}
- else{box.innerHTML=`<div class="modal-step">STEP 2 OF 2</div><h2>Choose your learning categories</h2><p class="intro">Select one or more topics. Your account will be saved immediately after you finish.</p><div class="category-select-grid">
-${categorySelect("business","🏢","Business","How to open, operate and grow a business.")}
-${categorySelect("startup","🚀","Startup Guide","How to start, build and publish a startup website.")}
-${categorySelect("marketing","📈","Marketing","How to attract customers and make money online.")}
-</div><div class="modal-footer"><button class="btn btn-outline" onclick="signupStep=1;renderSignup()">← Back</button><button class="btn btn-primary" onclick="finishSignup()">Create Account & Continue →</button></div>`}
-}
-function categorySelect(id,icon,title,desc){return `<button type="button" class="select-card ${selectedCategories.includes(id)?"selected":""}" onclick="toggleCategory('${id}')"><div class="category-icon">${icon}</div><div><strong>${title}</strong><small>${desc}</small></div></button>`}
-function continueSignup(e){e.preventDefault();signupData={name:document.getElementById("fullName").value.trim(),email:document.getElementById("email").value.trim(),password:document.getElementById("password").value,company:document.getElementById("company").value.trim(),goal:document.getElementById("goal").value.trim()};signupStep=2;renderSignup()}
-function toggleCategory(c){selectedCategories=selectedCategories.includes(c)?selectedCategories.filter(x=>x!==c):[...selectedCategories,c];renderSignup()}
-function finishSignup(){
- if(!selectedCategories.length){alert("Please select at least one category.");return}
- const profile={name:signupData.name,email:signupData.email,password:signupData.password,company:signupData.company,goal:signupData.goal,categories:selectedCategories,createdAt:new Date().toISOString()};
- const oldProfile=currentUser();
- saveSelloraSession(profile);
- localStorage.setItem("selloraLoggedIn","true");
- if(!oldProfile || oldProfile.email!==profile.email){ registerNewSelloraAccount(profile.email.toLowerCase()); }
- else { updateSelloraAccountCounter(); }
- closeModal("signupModal");updateAccountUI();
- alert("Account created successfully! Welcome, "+profile.name+" 🎉");
- openGuide(selectedCategories[0]);
-}
-function loginDemo(e){
- e.preventDefault();const p=currentUser();const email=document.getElementById("loginEmail").value.trim().toLowerCase(),pass=document.getElementById("loginPassword").value;
- if(p && p.email.toLowerCase()===email && p.password===pass){localStorage.setItem("selloraLoggedIn","true");closeModal("loginModal");updateAccountUI();alert("Welcome back, "+p.name+"!");document.getElementById("creator").scrollIntoView({behavior:"smooth"});}
- else alert("Account not found or password is incorrect on this browser. Create the account first.");
-}
-function openGuide(type){
- const g=guides[type];if(!g)return;let c=`<div class="guide-header"><div class="guide-label">SELLORA LEARNING GUIDE</div><h2>${g.title}</h2><p>${g.intro}</p></div>`;
- g.sections.forEach(s=>{c+=`<h3>${s[0]}</h3>`;if(s[1])c+=`<p>${s[1]}</p>`;if(s[2])c+=`<pre class="code">${escapeHtml(s[2])}</pre>`});
- c+=`<div class="success"><strong>Sellora tip:</strong> Learn one concept, take one real action, measure the result, then improve.</div>
- <div class="ebook-unlocked"><h3>🎁 BUMPER OFFER UNLOCKED!</h3><p><strong>1 GUIDE = 1 EBOOK FREEEE.</strong><br>You finished this guide. Generate your FREE 15-page ebook now.</p><div class="ebook-actions"><button class="btn btn-primary" onclick="finishGuideAndGenerate('${type}')">🎁 Generate FREE 15-Page Ebook</button><button class="btn btn-outline" onclick="closeModal('guideModal')">Close</button></div><div class="guide-finish-note">🇮🇳 RAKSHA BANDHAN OFFER — 1 GUIDE = 1 EBOOK FREEEE!</div></div>`;
- document.getElementById("guideContent").innerHTML=c;document.getElementById("guideModal").classList.add("show");
-}
-function finishGuideAndGenerate(type){if(!currentUser()){alert("Please create an account first to claim the guide ebook.");closeModal("guideModal");openSignup();return}closeModal("guideModal");startEbookCountdown(type,false)}
-function openFreeTrial(){document.getElementById("trialModal").classList.add("show")}
-function startFreeTrial(e){e.preventDefault();const trial={name:document.getElementById("trialName").value.trim(),email:"trial@sellora.local",company:"Free Trial",goal:document.getElementById("trialGoal").value.trim(),ebookTopic:document.getElementById("trialTopic").value.trim(),createdAt:new Date().toISOString()};localStorage.setItem("selloraTrialProfile",JSON.stringify(trial));const type=document.getElementById("trialCategory").value;closeModal("trialModal");startEbookCountdown(type,true)}
-function openEbookCreator(){
- const u=currentUser();
- if(!u){openFreeTrial();return}
- document.getElementById("ebookCreatorContent").innerHTML=`<div class="modal-step">SELLORA EBOOK CREATOR</div><h2>Make Your Own Ebook & Sell 📕</h2><p class="intro">Welcome, <strong>${escapeHtml(u.name)}</strong>. Your account details are already saved, so you do not need to enter your name again.</p>
- <form onsubmit="startAccountEbook(event)"><div class="field"><label>Ebook Goal *</label><input id="creatorGoal" required placeholder="Example: Teach beginners how to make money online"></div><div class="field"><label>What will your ebook contain? *</label><textarea id="creatorContent" rows="5" required placeholder="Explain the lessons, tips, steps, examples or knowledge you want inside the ebook."></textarea></div><div class="field"><label>Ebook Category</label><select id="creatorCategory"><option value="marketing">Marketing & Making Money</option><option value="startup">Startup</option><option value="business">Business</option></select></div><div class="success">👤 Logged in as <strong>${escapeHtml(u.name)}</strong> — no repeated account details required.</div><div class="modal-footer"><button class="btn btn-primary" type="submit">Continue →</button></div></form>`;
- document.getElementById("ebookModal").classList.add("show");
-}
-function startAccountEbook(e){e.preventDefault();const u=currentUser();if(!u){closeModal("ebookModal");openLogin();return}const topic=document.getElementById("creatorGoal").value.trim(),content=document.getElementById("creatorContent").value.trim(),type=document.getElementById("creatorCategory").value;localStorage.setItem("selloraCreatorDraft",JSON.stringify({topic,content,type,createdAt:new Date().toISOString()}));closeModal("ebookModal");startEbookCountdown(type,false,true)}
-function startEbookCountdown(type,isTrial=false,isCreator=false){
- const modal=document.getElementById("guideModal");modal.classList.add("show");const title=isCreator?"Your ebook is being created":isTrial?"Your free trial ebook is being created":"Your FREE 15-page ebook is being created";
- document.getElementById("guideContent").innerHTML=`<div class="countdown"><div class="guide-label">SELLORA EBOOK GENERATOR</div><h2>${title} 🎁</h2><p class="intro">Please wait 5 seconds while Sellora prepares your 15-page PDF.</p><div class="count-circle" id="ebookCount">5</div><p><strong>Generating...</strong></p></div>`;
- let n=5;const el=document.getElementById("ebookCount");const timer=setInterval(()=>{n--;if(n>0)el.textContent=n;else{clearInterval(timer);generateSelloraEbook(type,isTrial,isCreator)}},1000);
-}
-function generateSelloraEbook(type,isTrial=false,isCreator=false){
- if(!window.jspdf){document.getElementById("guideContent").innerHTML=`<h2>PDF library failed to load</h2><p class="intro">Refresh the page and try again. An internet connection is required to load the PDF generator.</p>`;return}
- const {jsPDF}=window.jspdf,doc=new jsPDF({unit:"mm",format:"a4"}),u=currentUser()||{},t=JSON.parse(localStorage.getItem("selloraTrialProfile")||"null")||{},d=JSON.parse(localStorage.getItem("selloraCreatorDraft")||"null")||{},g=guides[type]||guides.startup;
- const name=isTrial?(t.name||"Sellora Creator"):(u.name||"Sellora Creator"),topic=isCreator?(d.topic||"My Sellora Ebook"):isTrial?(t.ebookTopic||"My Free Ebook"):"Sellora Learning Ebook",custom=isCreator?(d.content||"A practical guide created from your idea."):isTrial?(t.goal||"A practical learning guide."):g.intro;
- const pages=[
- ["SELLORA",topic,custom],
- ["CONTENTS","15-PAGE ROADMAP","1. Introduction\n2. Define the goal\n3. Understand the audience\n4. Build the solution\n5. Create value\n6. Content and marketing\n7. Distribution\n8. Monetization\n9. Pricing\n10. Customers\n11. Metrics\n12. Launch plan\n13. Mistakes to avoid\n14. Growth\n15. Next step"],
- ["1. INTRODUCTION","START WITH VALUE","A strong ebook begins with a clear promise. Explain one useful subject in simple language and give readers actions they can actually take."],
- ["2. DEFINE THE GOAL","KNOW THE OUTCOME","Write down what the reader should know or be able to do after finishing the ebook. A specific outcome makes the content easier to follow."],
- ["3. UNDERSTAND THE AUDIENCE","WHO IS THIS FOR?","Define the reader's current situation, problem, goals and level of knowledge. Write for one clear audience rather than everyone."],
- ["4. BUILD THE SOLUTION","STEP-BY-STEP","Break the topic into a sequence. Start with the basics, show the process, add examples and finish each section with an action."],
- ["5. CREATE VALUE","MAKE IT USEFUL","Use checklists, examples, templates, questions and practical tasks. Useful information is more valuable than unnecessary length."],
- ["6. CONTENT & MARKETING","GET ATTENTION","Create short educational posts, videos, tutorials and demonstrations around the same problem your ebook solves. Give useful information before asking for a sale."],
- ["7. DISTRIBUTION","GET IT IN FRONT OF PEOPLE","Use your website, social media, communities, partnerships, email and search-friendly content to reach people who already care about the topic."],
- ["8. MONETIZATION","HOW TO MAKE MONEY","Depending on the audience and product, monetization can include ebook sales, services, subscriptions, memberships, software, affiliate commissions or advertising. Never promise guaranteed income."],
- ["9. PRICING","TEST THE OFFER","Consider the value delivered, alternatives, costs and audience willingness to pay. Start with a clear offer and learn from real customer behavior."],
- ["10. CUSTOMERS","LISTEN AND IMPROVE","Ask customers what they liked, what was confusing and what they still need. Use the feedback to improve the product and future editions."],
- ["11. METRICS","MEASURE WHAT MATTERS","Track views, clicks, signups, conversion, revenue, repeat customers and other metrics relevant to your goal. Numbers help you find bottlenecks."],
- ["12. LAUNCH PLAN","30-DAY ACTION","Week 1: prepare the offer. Week 2: publish useful content. Week 3: reach out to potential customers. Week 4: review results and improve the offer."],
- ["13. MISTAKES TO AVOID","KEEP IT REAL","Avoid copying competitors, building without validation, spending heavily before proving demand, making unrealistic claims and ignoring customer feedback."],
- ["14. GROWTH","BUILD A SYSTEM","When something works repeatedly, document it, improve it and automate or delegate suitable tasks. Scale reliable processes instead of chaos."],
- ["15. NEXT STEP","TAKE ACTION","Choose one action you can complete today. Small consistent execution is more useful than waiting for the perfect plan.\n\nCreated for: "+name+"\nEbook topic: "+topic+"\n\n🇮🇳 RAKSHA BANDHAN BUMPER OFFER\n1 GUIDE = 1 EBOOK FREEEE 🎁"]
- ];
- pages.forEach((pg,i)=>{if(i>0)doc.addPage();doc.setFont("helvetica","bold");doc.setFontSize(i===0?27:20);doc.text(pg[0],20,28);doc.setFontSize(i===0?20:15);doc.text(doc.splitTextToSize(pg[1],170),20,45);doc.setFont("helvetica","normal");doc.setFontSize(12);let lines=doc.splitTextToSize(pg[2],168);let y=i===0?75:72;lines.forEach(line=>{if(y>270){doc.addPage();y=25}doc.text(line,20,y);y+=7});doc.setFontSize(9);doc.text("Sellora • sellora",20,287);doc.text(String(i+1)+"/15",180,287)});
- const blob=doc.output("blob"),url=URL.createObjectURL(blob);
- document.getElementById("guideContent").innerHTML=`<div class="ebook-ready"><div class="modal-step">🎁 EBOOK READY</div><h2>Your 15-page ebook is ready!</h2><p class="intro">Created for <strong>${escapeHtml(name)}</strong>. You can preview it and download it.</p><iframe class="pdf-frame" src="${url}"></iframe><div class="ebook-ready-actions"><a class="btn btn-primary" href="${url}" download="Sellora-15-Page-Ebook.pdf">⬇ Download 15-Page PDF</a><a class="btn btn-outline" href="${url}" target="_blank" rel="noopener">↗ Open PDF</a><button class="btn btn-outline" onclick="closeModal('guideModal')">Done</button></div><div class="success">🇮🇳 BUMPER OFFER: 1 GUIDE = 1 EBOOK FREEEE 🎁</div></div>`;
-}
-function escapeHtml(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
-function toggleMobileNav(){const n=document.querySelector(".nav-links");n.style.display=n.style.display==="flex"?"none":"flex";n.style.position="absolute";n.style.top="68px";n.style.left="0";n.style.right="0";n.style.background="#fff";n.style.padding="20px 6%";n.style.flexDirection="column"}
-window.addEventListener("click",e=>{document.querySelectorAll(".modal").forEach(m=>{if(e.target===m)m.classList.remove("show")})});
-window.addEventListener("DOMContentLoaded",()=>{updateAccountUI()});
-
+ business:{title:'How to Open a Business',intro:'Opening a business starts with a problem, a customer and a clear offer. Start small, validate demand, set up the appropriate legal and financial structure for your location, launch and improve using customer feedback.',sections:[['1. Choose a business idea','Start with a real customer problem. Identify who has it, how they currently solve it and why they might pay for a better solution.'],['2. Research your market','Talk to potential customers and study competitors. Look for repeated complaints, desired outcomes, common prices and gaps in existing solutions.'],['3. Create your business model','Decide what you sell, who pays, how much they pay and how you deliver it. Models can include one-time sales, subscriptions, commissions, services and advertising.'],['4. Set up the business','Choose an appropriate legal structure for your country, register where required, understand taxes and obtain permits your activity needs.'],['5. Build your first offer','Create the smallest useful version of your product or service. Get feedback from real users before spending heavily.'],['6. Find your first customers','Use direct outreach, referrals, communities, partnerships and content. Talk directly to early customers to learn what converts.'],['7. Price for value','Consider customer value, costs, alternatives and willingness to pay. Test pricing rather than assuming the perfect price immediately.'],['8. Track the numbers','Track revenue, costs, margin, cash flow, conversion, customer acquisition cost and retention.'],['9. Grow carefully','Document what works, automate repetitive tasks and delegate only after the process is working reliably.']]},
+ startup:{title:'Complete Startup Guide',intro:'A startup begins with a meaningful problem, a useful solution and evidence that people want it. Validate first, build a small MVP, learn from users and then improve distribution and growth.',sections:[['1. Find a problem','Choose a painful, frequent or valuable problem. Interview potential customers before building too much.'],['2. Validate the idea','Use a landing page, prototype, waitlist, manual service or small experiment. Measure actions such as signups, replies, trials and purchases.'],['3. Build an MVP','Build the smallest product that delivers your core promise. Avoid unnecessary features.'],['4. Create your website','For a simple website, start with index.html, styles.css and app.js. HTML gives structure, CSS gives design and JavaScript gives interactivity.'],['5. Website structure','Keep a simple project organized: index.html, styles.css, app.js and README.md.'],['6. Publish through GitHub Pages','Create a repository, upload files, commit changes, open Settings → Pages, choose deployment from your main branch and root folder, then save.'],['7. Git workflow','Clone, edit, commit and push in small reliable steps.'],['8. Custom domain','After your static site works, connect a domain using the DNS settings required by your registrar and publishing service. Enable HTTPS.'],['9. Get users','Launch to a small group, collect feedback and improve onboarding, product value and distribution.'],['10. Make money','Possible models include subscriptions, one-time sales, commissions, transaction fees, services, licensing and advertising. Test willingness to pay early.'],['11. Measure growth','Track activation, retention, conversion, revenue, acquisition cost and lifetime value.']]},
+ marketing:{title:'Marketing & How to Make Money',intro:'Marketing gets the right people to discover your offer, understand its value, trust your brand and take action. Online income usually comes from a valuable offer, a defined audience and a repeatable distribution channel.',sections:[['1. Choose what you will sell','You can sell physical products, digital products, software, services, subscriptions, memberships or advertising. Start with a specific problem.'],['2. Choose your audience','Define your customer by their problem, goals, industry, interests or situation. Clear audiences make clearer marketing.'],['3. Create a strong offer','Explain the problem, promised outcome, deliverables, differentiation and next action.'],['4. Build a website','Use a clear value proposition, call to action, product details, proof where available, FAQs and contact information.'],['5. Use content marketing','Create tutorials, educational posts, videos, comparisons, case studies and demonstrations.'],['6. Use social media','Choose platforms where your target customers already spend time. Build recurring content themes around customer problems and solutions.'],['7. Email marketing','Offer useful resources in exchange for email addresses, then send helpful content and relevant offers while respecting applicable privacy and marketing laws.'],['8. SEO','Create useful pages that answer specific questions customers search for. Use descriptive titles and headings.'],['9. Paid advertising','Start with a small budget and measurable objective. Test messages and landing pages. Calculate profit rather than assuming ads are successful.'],['10. Ways to make money','Common methods include product sales, subscriptions, services, courses, memberships, software, affiliate commissions, sponsorships and advertising.'],['11. Improve conversion','Improve your offer, proof, pricing explanation, page speed, checkout and call to action.'],['12. Keep customers','Good onboarding, support and product quality can increase repeat purchases and retention.']]}
+};
+const demo=[
+{id:'demo-1',title:'Creator Growth Playbook',description:'A practical guide for building a repeatable content and sales engine.',category:'guides',price:0,creator:'Sellora Studio',cover:'gradient1'},
+{id:'demo-2',title:'Launch Week Template Kit',description:'A clean set of launch planning prompts, checklists and campaign templates.',category:'templates',price:0,creator:'Nova Creator',cover:'gradient2'},
+{id:'demo-3',title:'The Digital Product Handbook',description:'A premium ebook about offers, validation, pricing and distribution.',category:'ebooks',price:0,creator:'Sellora Studio',cover:'gradient3'},
+{id:'demo-4',title:'Client Onboarding System',description:'A practical digital document for turning new clients into confident customers.',category:'documents',price:0,creator:'Studio North',cover:'gradient4'},
+{id:'demo-5',title:'Marketing Content Guide',description:'A compact content system for educational posts, videos and product promotion.',category:'guides',price:0,creator:'Growth Lab',cover:'gradient5'},
+{id:'demo-6',title:'Creator Pricing Worksheet',description:'A simple worksheet for testing value, costs, alternatives and willingness to pay.',category:'templates',price:0,creator:'Maker House',cover:'gradient6'}
+];
+let signupStep=1,signupData={},selected=[],ebookPages=[],ebookTitle='';
+function safeJSON(raw,fallback){try{return JSON.parse(raw)||fallback}catch(e){return fallback}}
+function profile(){try{return safeJSON(localStorage.getItem(KEY.profile),null)}catch(e){return null}}
+function saveProfile(p){try{localStorage.setItem(KEY.profile,JSON.stringify(p));return true}catch(e){toast('Browser storage is unavailable; your session may not persist.');return false}}
+function products(){return safeJSON(localStorage.getItem(KEY.products),[])}
+function saveProducts(a){try{localStorage.setItem(KEY.products,JSON.stringify(a));return true}catch(e){toast('Could not save this product. The file may be too large for browser storage.');return false}}
+function seedDemoProducts(force){if(force||!products().length)saveProducts(demo);renderMarketplace();}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),3200)}
+function closeModal(id){const e=document.getElementById(id);if(e)e.classList.remove('show')}
+window.closeModal=closeModal;
+function openSignup(){if(profile()){document.getElementById('account').scrollIntoView({behavior:'smooth'});return}signupStep=1;signupData={};selected=[];renderSignup();document.getElementById('signupModal').classList.add('show')}
+window.openSignup=openSignup;
+function renderSignup(){const b=document.getElementById('signupContent');if(signupStep===1){b.innerHTML='<div class="kicker">STEP 1 OF 2</div><h2>Create your Sellora account.</h2><p class="intro">Your profile is stored locally so the interface stays functional as a standalone HTML file.</p><form onsubmit="continueSignup(event)"><div class="form-grid"><div class="field"><label>Full name *</label><input class="input" id="fullName" required></div><div class="field"><label>Email *</label><input class="input" id="email" type="email" required></div><div class="field"><label>Password *</label><input class="input" id="password" type="password" minlength="6" required></div><div class="field"><label>Business / startup name *</label><input class="input" id="company" required></div><div class="field full"><label>What are you building?</label><textarea class="input" id="goal" placeholder="Tell us about your idea or goal"></textarea></div></div><div class="modal-actions"><button class="btn btn-primary">Continue →</button></div></form>'}else{b.innerHTML='<div class="kicker">STEP 2 OF 2</div><h2>Choose your learning categories.</h2><p class="intro">Select one or more paths, then start learning or creating.</p><div class="guide-sections">'+[['business','🏢','Business','Open, operate and grow a business.'],['startup','🚀','Startup Guide','Validate, build and publish a startup.'],['marketing','📈','Marketing','Attract customers and grow your community.']].map(x=>`<button type="button" class="card" style="text-align:left;display:flex;gap:14px;align-items:center" onclick="toggleCategory('${x[0]}')"><span class="icon" style="margin:0">${x[1]}</span><span><b>${x[2]}</b><br><small style="color:var(--muted)">${x[3]}</small></span><span style="margin-left:auto;color:${selected.includes(x[0])?'var(--teal)':'#52676d'}">${selected.includes(x[0])?'✓':'○'}</span></button>`).join('')+'</div><div class="modal-actions"><button class="btn" onclick="signupStep=1;renderSignup()">← Back</button><button class="btn btn-primary" onclick="finishSignup()">Create account →</button></div>'}}
+window.renderSignup=renderSignup;
+function continueSignup(e){e.preventDefault();signupData={name:document.getElementById('fullName').value.trim(),email:document.getElementById('email').value.trim().toLowerCase(),password:document.getElementById('password').value,company:document.getElementById('company').value.trim(),goal:document.getElementById('goal').value.trim()};signupStep=2;renderSignup()}
+window.continueSignup=continueSignup;
+function toggleCategory(c){selected=selected.includes(c)?selected.filter(x=>x!==c):selected.concat(c);renderSignup()}
+window.toggleCategory=toggleCategory;
+function finishSignup(){if(!selected.length){toast('Choose at least one category.');return}const p={...signupData,categories:selected,createdAt:new Date().toISOString()};if(saveProfile(p)){let n=Number(localStorage.getItem(KEY.count)||126);if(!Number.isFinite(n)||n<126)n=126;const old=window.__countedEmail;if(old!==p.email){n++;localStorage.setItem(KEY.count,String(n));window.__countedEmail=p.email}closeModal('signupModal');updateUI();toast('Account created — welcome to Sellora, '+p.name+'.');openCreatorDashboard()}}
+window.finishSignup=finishSignup;
+function openLogin(){if(profile()){openCreatorDashboard();return}document.getElementById('loginModal').classList.add('show')}
+window.openLogin=openLogin;
+function login(e){e.preventDefault();const p=profile();const email=document.getElementById('loginEmail').value.trim().toLowerCase();const pass=document.getElementById('loginPassword').value;if(p&&p.email===email&&p.password===pass){closeModal('loginModal');toast('Welcome back, '+p.name+'.');updateUI();openCreatorDashboard()}else toast('Account not found or password is incorrect on this browser.')}
+window.login=login;
+function logout(){try{localStorage.removeItem(KEY.profile)}catch(e){}updateUI();toast('You have been logged out.')}
+window.logout=logout;
+function updateUI(){const p=profile(),nav=document.getElementById('navActions'),dash=document.getElementById('dashboard'),guest=document.getElementById('guestDashboard');if(p){nav.innerHTML='<span class="tag">👋 '+escape(p.name.split(/\s+/)[0])+'</span><button class="btn btn-primary" onclick="openEbookCreator()">Create ebook</button>';dash.classList.add('show');guest.style.display='none';document.getElementById('welcome').textContent='Welcome, '+p.name;document.getElementById('accountSummary').textContent=p.email+' · '+(p.company||'Sellora creator');renderMyProducts()}else{nav.innerHTML='<button class="btn btn-ghost hide-mobile" onclick="openLogin()">Log in</button><button class="btn btn-primary" onclick="openSignup()">Create account</button>';dash.classList.remove('show');guest.style.display='block'}}
+function openCreatorDashboard(){document.getElementById('account').scrollIntoView({behavior:'smooth'});updateUI()}
+window.openCreatorDashboard=openCreatorDashboard;
+function openTrial(){document.getElementById('trialModal').classList.add('show')}
+window.openTrial=openTrial;
+function openEbookCreator(){const p=profile();if(!p){openTrial();return}document.getElementById('ebookFormContent').innerHTML='<div class="kicker">SELLORA EBOOK STUDIO</div><h2>Make your own ebook & sell.</h2><p class="intro">Welcome, <strong>'+escape(p.name)+'</strong>. Your account details are already saved.</p><form onsubmit="startEbook(event,false)"><div class="field"><label>Ebook goal / topic *</label><input class="input" id="creatorTopic" required placeholder="Example: Build a creator business from scratch"></div><div class="field"><label>What should the ebook contain? *</label><textarea class="input" id="creatorContent" required placeholder="Lessons, examples, tips, action steps, exercises…"></textarea></div><div class="field"><label>Category</label><select class="select" id="creatorCategory"><option value="Business">Business</option><option value="Startup">Startup</option><option value="Marketing">Marketing</option><option value="Creator Economy">Creator Economy</option></select></div><div class="notice">Your generated ebook will contain exactly 50 structured pages.</div><div class="modal-actions"><button class="btn btn-primary">Generate 50 pages →</button></div></form>';document.getElementById('ebookModal').classList.add('show')}
+window.openEbookCreator=openEbookCreator;
+function ebookStore(){return safeJSON(localStorage.getItem(KEY.ebookStore),{})}
+function saveEbookPages(key,pages){try{const store=ebookStore();store[key]=pages;localStorage.setItem(KEY.ebookStore,JSON.stringify(store));return true}catch(err){try{sessionStorage.setItem(KEY.ebookStore,JSON.stringify(Object.assign(ebookStore(),{[key]:pages})));return true}catch(e){toast('Your ebook was created, but browser storage is full. Download it now to keep a copy.');return false}}}
+function loadEbookPages(key){try{const store=ebookStore();if(Array.isArray(store[key]))return store[key]}catch(e){}try{const store=safeJSON(sessionStorage.getItem(KEY.ebookStore),{});if(Array.isArray(store[key]))return store[key]}catch(e){}return null}
+function downloadBlob(filename,blob){try{if(window.navigator && navigator.msSaveOrOpenBlob){navigator.msSaveOrOpenBlob(blob,filename);return true}const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.rel='noopener';a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(url)},1000);return true}catch(err){return false}}
+function downloadDataUrl(filename,text,mime){try{const blob=new Blob([text],{type:mime});if(downloadBlob(filename,blob))return true}catch(e){}try{const a=document.createElement('a');a.href='data:'+mime+';charset=utf-8,'+encodeURIComponent(text);a.download=filename;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),500);return true}catch(e){return false}}
+function startEbook(e,trial){e.preventDefault();let name,topic,content,category;if(trial){name=document.getElementById('trialName').value.trim();topic=document.getElementById('trialTopic').value.trim();content=document.getElementById('trialContent').value.trim();category='Creator Economy';closeModal('trialModal')}else{const p=profile();name=p?p.name:'Sellora Creator';topic=document.getElementById('creatorTopic').value.trim();content=document.getElementById('creatorContent').value.trim();category=document.getElementById('creatorCategory').value;closeModal('ebookModal')}ebookTitle=topic||'Sellora Ebook';ebookPages=build50Pages(ebookTitle,content||'Useful practical guidance, examples, exercises and action steps.',category,name);const ebookKey='ebook-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);const stored=saveEbookPages(ebookKey,ebookPages);const libraryItem={key:ebookKey,title:ebookTitle,description:'Your Sellora 50-page ebook · '+category,category:category,type:'ebook',fileData:'',fileName:(ebookTitle.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'')||'Sellora-Ebook')+'-50-pages.html',ebookKey:ebookKey,createdAt:new Date().toISOString()};if(stored){addToLibrary(libraryItem)}else{toast('Ebook created locally. Download it after generation because browser storage is full.')}startCountdown()}
+function startCountdown(){document.getElementById('guideContent').innerHTML='<div class="countdown"><div class="kicker">SELLORA EBOOK GENERATOR</div><h2>Crafting your 50-page product.</h2><p class="intro">Preparing the cover, contents, chapters, exercises, callouts and action pages.</p><div class="count" id="count">5</div><div class="bar"><span id="bar"></span></div><p id="countText" style="color:var(--muted);font-size:12px;margin-top:12px">Building page 1 of 50…</p></div>';document.getElementById('guideModal').classList.add('show');let n=5;const timer=setInterval(()=>{n--;document.getElementById('count').textContent=Math.max(n,0);document.getElementById('bar').style.width=((5-n)/5*100)+'%';document.getElementById('countText').textContent=n>0?'Building page '+Math.min(50,Math.max(1,(5-n)*10))+' of 50…':'Finishing your 50-page ebook…';if(n<=0){clearInterval(timer);setTimeout(showEbookPreview,300)}},1000)}
+function build50Pages(topic,content,category,name){const pages=[];pages.push({type:'cover',title:topic,subtitle:'A premium Sellora digital product',body:'Created for '+name+' · '+category});pages.push({type:'toc',title:'Table of Contents',body:'50-page roadmap: foundation, audience, problem, offer, validation, product design, brand, content, distribution, pricing, sales, retention, systems, metrics, launch and action planning.'});const chapters=[
+['01','Define the outcome','Write the exact result this product should help the reader achieve. Make it observable and specific.'],['02','Clarify the audience','Describe the reader by situation, goals, problems, budget, context and current alternatives.'],['03','Map the problem','List the friction, cost, urgency and consequences of the problem. Separate symptoms from root causes.'],['04','Research demand','Collect evidence through conversations, search behavior, competitor review, waitlists, preorders or small experiments.'],['05','Shape the offer','Turn the problem into a clear promise, deliverables, boundaries and a simple next step.'],['06','Build the smallest solution','Start with the smallest useful version. Remove features that do not strengthen the main outcome.'],['07','Create a useful framework','Organize your knowledge into a repeatable sequence, checklist, decision tree or workflow.'],['08','Use examples','Show the idea in context. Examples reduce ambiguity and help readers transfer concepts into real situations.'],['09','Add practical exercises','Turn passive reading into action with prompts, worksheets, scenarios and reflection questions.'],['10','Design the brand','Choose a clear name, message, tone and visual system. Consistency makes a small product feel intentional.'],['11','Build the product page','Answer what it is, who it is for, what is included, why it matters and what happens after purchase.'],['12','Create content','Teach useful pieces of the same problem your product solves. Build recurring content themes instead of random posts.'],['13','Choose distribution','Select channels based on where the target audience already pays attention. Match the format to the channel.'],['14','Set pricing','Consider value, alternatives, costs and willingness to pay. Test rather than pretending there is one perfect price.'],['15','Improve conversion','Clarify the promise, proof, objections, pricing explanation and call to action. Measure before changing everything.'],['16','Deliver a premium experience','Use clear onboarding, navigation, typography, downloadable assets and helpful support.'],['17','Collect feedback','Ask what was useful, confusing, missing and unexpectedly valuable. Look for patterns rather than isolated comments.'],['18','Retain customers','Give customers reasons to return when the business model depends on repeat use. Deliver promised value first.'],['19','Build systems','Document repeatable tasks for marketing, sales, delivery, support and measurement. Automate only stable processes.'],['20','Measure the business','Track acquisition, activation, conversion, revenue, costs, retention and other metrics connected to the goal.'],['21','Launch deliberately','Start with a small audience, clear message and a measurable target. A launch is the start of learning.'],['22','Handle objections','List the most likely doubts and answer them honestly with evidence, examples and clear boundaries.'],['23','Improve the workflow','Find bottlenecks and remove unnecessary steps. Make the next action obvious for both you and the customer.'],['24','Create a content calendar','Plan recurring educational themes, product stories, demonstrations, FAQs and customer-focused posts.'],['25','Build a 30-day plan','Assign actions to weeks, owners, deadlines and measurable outcomes. Keep the plan small enough to execute.']];
+for(let i=0;i<23;i++){const c=chapters[i];pages.push({type:'chapter',title:c[0]+' · '+c[1],body:c[2]+'\n\nYour input: '+content,callout:'Action: write one concrete decision for this chapter before moving on.'});pages.push({type:'workbook',title:'Workbook · '+c[1],body:'Prompt 1: What does this look like in your project?\nPrompt 2: What evidence do you already have?\nPrompt 3: What is the smallest next action?\n\nNotes:\n\n____________________________________________________________\n____________________________________________________________\n____________________________________________________________',callout:'Practical tip: keep the answer specific enough that you could act on it today.'})}
+pages.push({type:'checklist',title:'Final Product Checklist',body:'[ ] The audience is clearly defined.\n[ ] The problem and desired outcome are specific.\n[ ] The offer and deliverables are easy to understand.\n[ ] The product has examples, exercises and useful actions.\n[ ] The product page has a clear next step.\n[ ] Pricing reflects value, costs and alternatives.\n[ ] Distribution channels are chosen deliberately.\n[ ] Customer feedback is collected and reviewed.\n[ ] The next 30-day goal has a measurable target.',callout:'Quality check: remove anything that feels like filler. Every page should help the reader decide, learn or act.'});
+pages.push({type:'action',title:'Your Next 30 Days',body:'Week 1 · Clarify the audience, problem, offer and success metric.\nWeek 2 · Build or improve the smallest useful product and product page.\nWeek 3 · Launch to a focused audience, publish useful content and collect feedback.\nWeek 4 · Review conversion, revenue, retention and feedback; improve the strongest bottleneck.\n\nNext three actions:\n1. ______________________________________________\n2. ______________________________________________\n3. ______________________________________________',callout:'Sellora principle: learn one concept, take one real action, measure the result, then improve.'});
+return pages.slice(0,50)}
+function showEbookPreview(){closeModal('guideModal');const content=document.getElementById('previewContent');if(!content){toast('Ebook preview area is missing.');return}const pages=Array.isArray(ebookPages)?ebookPages:[];if(!pages.length){content.innerHTML='<div class="notice">This ebook could not be loaded from the Library. Please generate it again.</div>';document.getElementById('previewModal').classList.add('show');return}content.innerHTML='<div class="kicker">EBOOK READY · 50 PAGES</div><div class="festive-ribbon festive-pulse" style="margin:8px 0 12px">Raksha Bandhan Bumper Offer</div><h2>'+escape(ebookTitle)+'</h2><p class="intro">Open and read all 50 pages directly in Sellora. You can also download the complete ebook file or open a print view and save it as PDF.</p><div class="library-view"><div class="library-viewer">'+pages.map((x,i)=>'<article class="library-viewer-page"><div class="page-num">PAGE '+(i+1)+' OF 50</div><h3>'+escape(x.title)+'</h3><p>'+escape(x.body)+'</p>'+(x.callout?'<div style="margin-top:14px;padding:12px;border:1px solid #ead58a;border-radius:10px;background:#fff9dd;color:#5d4a0e;font-weight:700">'+escape(x.callout)+'</div>':'')+'</article>').join('')+'</div></div><div class="library-download-row"><button class="btn gold-btn" onclick="openPrintEbook()">Open print view</button><button class="btn btn-primary" onclick="downloadEbookHtml()">Download ebook</button><button class="btn" onclick="closeModal(\'previewModal\')">Close</button></div><div class="notice" style="margin-top:15px">Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE · This ebook is stored in the Sellora Library on this browser.</div>';document.getElementById('previewModal').classList.add('show')}
+function openPrintEbook(){const w=window.open('','_blank');if(!w){toast('Please allow popups to open the 50-page print view.');return}w.document.open();w.document.write(ebookDocument());w.document.close();setTimeout(()=>w.focus(),150)}
+window.openPrintEbook=openPrintEbook;
+function downloadEbookHtml(){const html=ebookDocument();const filename=(ebookTitle.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'')||'Sellora-Ebook')+'-50-pages.html';const ok=downloadDataUrl(filename,html,'text/html');if(!ok)toast('Download was blocked by the browser. Use Open print view → Save as PDF.');else toast('50-page ebook download started.')}
+function openGuide(type){const g=guides[type];if(!g)return;document.getElementById('guideContent').innerHTML='<div class=\"kicker\">SELLORA LEARNING GUIDE</div><h2>'+escape(g.title)+'</h2><p class=\"intro\">'+escape(g.intro)+'</p><div class=\"guide-sections\">'+g.sections.map(s=>`<article class=\"guide-block\"><h3>${escape(s[0])}</h3><p>${escape(s[1])}</p></article>`).join('')+'</div><div class=\"notice\" style=\"margin-top:16px\"><b>Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE</b><br>Finish the guide, then generate your 50-page ebook.</div><div class=\"modal-actions\"><button class=\"btn\" onclick=\"closeModal(\'guideModal\')\">Close</button><button class=\"btn btn-primary\" onclick=\"closeModal(\'guideModal\');openEbookCreator()\">Create my ebook →</button></div>';document.getElementById('guideModal').classList.add('show')}
+window.openGuide=openGuide;
+function renderMarketplace(){const q=(document.getElementById('searchProducts').value||'').toLowerCase();const cat=document.getElementById('categoryFilter').value;const all=products().filter(p=>{const hay=(p.title+' '+p.description+' '+p.creator+' '+p.category).toLowerCase();return(!q||hay.includes(q))&&(cat==='all'||p.category===cat)});const grid=document.getElementById('productGrid');if(!all.length){grid.innerHTML='<div class="empty"><h3>No products found.</h3><p>Try another search or publish your first FREE digital product from the creator dashboard.</p></div>';return}grid.innerHTML=all.map(p=>{const grad=p.coverData?`background-image:url('${p.coverData}')`:'';return `<article class="card product-card"><div class="product-cover" style="${grad}"><div class="cover-inner"><span class="cover-badge">${escape((p.category||'digital').toUpperCase())}</span><span class="cover-title">${escape(p.title)}</span><span class="tag">${escape(p.creator||'Creator')}</span></div></div><div class="product-meta"><div class="festive-note" style="margin-bottom:5px">Raksha Bandhan Bumper Offer</div><h3>${escape(p.title)}</h3><p>${escape(p.description)}</p><div class="product-foot"><span class="price">FREE</span><button class="btn btn-primary" onclick="getProduct('${escapeAttr(p.id)}')">Get free</button></div></div></article>`}).join('')}
+window.renderMarketplace=renderMarketplace;
+function library(){return safeJSON(localStorage.getItem(KEY.library),[])}
+function saveLibrary(a){try{localStorage.setItem(KEY.library,JSON.stringify(a));return true}catch(e){toast('Could not save your Sellora Library item. Browser storage may be full.');return false}}
+function addToLibrary(item){const arr=library();if(!arr.some(x=>x.key===item.key)){arr.unshift(item);saveLibrary(arr)}renderLibrary()}
+function openLibrary(){document.getElementById('library').scrollIntoView({behavior:'smooth'});renderLibrary()}
+window.openLibrary=openLibrary;
+function renderLibrary(){const grid=document.getElementById('libraryGrid');if(!grid)return;const arr=library();if(!arr.length){grid.innerHTML='<div class="library-empty"><div class="festive-ribbon festive-pulse" style="margin-bottom:12px">Raksha Bandhan Bumper Offer</div><h3>Your Sellora Library is ready.</h3><p>Get a digital product or create your free 50-page ebook and it will appear here.</p><div style="margin-top:16px"><button class="btn gold-btn" onclick="openTrial()">Create free ebook →</button><button class="btn" style="margin-left:8px" onclick="document.getElementById(&quot;marketplace&quot;).scrollIntoView({behavior:&quot;smooth&quot;})">Browse marketplace</button></div></div>';return}grid.innerHTML=arr.map((x,i)=>{const isEbook=x.type==='ebook';const hasFile=!!x.fileData;const type=isEbook?'📕':'✦';return '<article class="library-item"><div class="library-icon">'+type+'</div><div class="small">'+escape((x.category||x.type||'DIGITAL').toUpperCase())+'</div><h3>'+escape(x.title)+'</h3><p>'+escape(x.description||'Saved to your Sellora Library.')+'</p><div class="library-foot"><span class="tag">Raksha Bandhan Bumper Offer</span><div class="library-actions">'+(isEbook?'<button class="btn gold-btn" onclick="openLibraryItem('+i+')">Open ebook</button><button class="btn" onclick="downloadLibraryItem('+i+')">Download</button>':'<button class="btn '+(hasFile?'gold-btn':'')+'" onclick="openLibraryItem('+i+')">'+(hasFile?'Open / Save':'View')+'</button>')+'</div></div></article>'}).join('')}
+function openLibraryItem(i){const x=library()[i];if(!x)return;if(x.type==='ebook'){let pages=Array.isArray(x.pages)?x.pages:loadEbookPages(x.ebookKey||x.key);if(!pages){toast('This ebook copy is unavailable in browser storage. Generate it again, then download it.');return}ebookTitle=x.title;ebookPages=pages;showEbookPreview();return}if(x.fileData){const blobData=x.fileData;try{const a=document.createElement('a');a.href=blobData;a.target='_blank';a.rel='noopener';a.download=x.fileName||x.title;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),500);toast('Opened/saved from your Sellora Library: '+x.title);return}catch(e){}}toast(x.title+' is in your Sellora Library.')}
+function downloadLibraryItem(i){const x=library()[i];if(!x)return;if(x.type==='ebook'){let pages=Array.isArray(x.pages)?x.pages:loadEbookPages(x.ebookKey||x.key);if(!pages){toast('This ebook copy is unavailable in browser storage. Generate it again, then download it.');return}ebookTitle=x.title;ebookPages=pages;downloadEbookHtml();return}if(x.fileData){try{const mime=(x.fileName||'').toLowerCase().endsWith('.pdf')?'application/pdf':'application/octet-stream';const bytes=atob(x.fileData.split(',')[1]||'');const arr=new Uint8Array(bytes.length);for(let j=0;j<bytes.length;j++)arr[j]=bytes.charCodeAt(j);downloadBlob(x.fileName||x.title,new Blob([arr],{type:mime}));toast('Downloaded from your Sellora Library: '+x.title);return}catch(e){const a=document.createElement('a');a.href=x.fileData;a.download=x.fileName||x.title;a.click();toast('Download started: '+x.title);return}}toast('Download is not available for this item yet.')}
+window.openLibraryItem=openLibraryItem;window.downloadLibraryItem=downloadLibraryItem;
+function getProduct(id){const p=products().find(x=>x.id===id);if(!p)return;let sales=Number(localStorage.getItem(KEY.sales)||0)+1;localStorage.setItem(KEY.sales,String(sales));addToLibrary({key:'product-'+p.id,title:p.title,description:p.description,category:p.category,creator:p.creator,type:'product',fileData:p.fileData||'',fileName:p.fileName||p.title,createdAt:new Date().toISOString()});toast('Added to your Sellora Library: '+p.title);if(p.fileData){const a=document.createElement('a');a.href=p.fileData;a.download=p.fileName||p.title;a.click()}updateUI()}
+window.getProduct=getProduct;
+async function publishProduct(e){e.preventDefault();const user=profile();if(!user){toast('Create a Sellora account before publishing.');return}const file=document.getElementById('productFile').files[0];const cover=document.getElementById('productCover').files[0];if(!file){toast('Choose a product file.');return}const reader=new FileReader();reader.onload=()=>{const saveCover=()=>{const add=pCover=>{const p={id:'p-'+Date.now(),title:document.getElementById('productTitle').value.trim(),description:document.getElementById('productDescription').value.trim(),category:document.getElementById('productCategory').value,price:0,creator:user.name,fileData:reader.result,fileName:file.name,coverData:pCover||'',createdAt:new Date().toISOString()};const arr=products();arr.unshift(p);if(saveProducts(arr)){e.target.reset();renderMarketplace();renderMyProducts();toast('Product published to your Sellora marketplace.')}};if(cover){const cr=new FileReader();cr.onload=()=>add(cr.result);cr.onerror=()=>add('');cr.readAsDataURL(cover)}else add('')};saveCover()};reader.onerror=()=>toast('Could not read the selected file.');reader.readAsDataURL(file)}
+window.publishProduct=publishProduct;
+function renderMyProducts(){const user=profile();const box=document.getElementById('myProducts');if(!box||!user)return;const mine=products().filter(p=>p.creator===user.name&&!p.id.startsWith('demo-'));document.getElementById('statProducts').textContent=mine.length;document.getElementById('statPublished').textContent=mine.length;document.getElementById('statSales').textContent=Number(localStorage.getItem(KEY.sales)||0);box.innerHTML=mine.length?mine.map(p=>`<div class="list-row"><div><b>${escape(p.title)}</b><br><small style="color:var(--muted)">${escape(p.category)} · FREE</small></div><button class="btn" onclick="deleteProduct('${escapeAttr(p.id)}')">Delete</button></div>`).join(''):'<div class="empty" style="padding:25px"><p>No published products yet.</p></div>'}
+function deleteProduct(id){const arr=products().filter(p=>p.id!==id);if(saveProducts(arr)){renderMarketplace();renderMyProducts();toast('Product deleted.')}}
+window.deleteProduct=deleteProduct;
+function escape(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function escapeAttr(s){return escape(s).replace(/`/g,'&#96;')}
+function toggleNav(){const n=document.querySelector('.links');if(n.style.display==='flex'){n.style.display=''}else{n.style.display='flex';n.style.position='absolute';n.style.top='68px';n.style.left='13px';n.style.right='13px';n.style.padding='18px';n.style.flexDirection='column';n.style.background='rgba(7,16,20,.97)';n.style.border='1px solid var(--line)';n.style.borderRadius='16px'}}
+window.toggleNav=toggleNav;
+window.addEventListener('click',e=>document.querySelectorAll('.modal').forEach(m=>{if(e.target===m)m.classList.remove('show')}));
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(h?scrollY/h*100:0)+'%'});
+window.addEventListener('DOMContentLoaded',()=>{try{let n=Number(localStorage.getItem(KEY.count)||126);if(!Number.isFinite(n)||n<126){n=126;localStorage.setItem(KEY.count,'126')}}catch(e){}try{const lib=library();let migrated=false;for(const item of lib){if(item.type==='ebook'&&Array.isArray(item.pages)&&item.pages.length===50){const k=item.ebookKey||item.key;if(saveEbookPages(k,item.pages)){item.ebookKey=k;delete item.pages;migrated=true}}}if(migrated)saveLibrary(lib)}catch(e){}seedDemoProducts(false);try{const ps=products();ps.forEach(p=>p.price=0);saveProducts(ps)}catch(e){}renderMarketplace();renderLibrary();updateUI()});
+})();
 </script>
 </body>
 </html>
-<script>window.addEventListener("DOMContentLoaded",updateSelloraAccountCounter);</script>
