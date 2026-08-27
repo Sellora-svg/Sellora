@@ -110,6 +110,15 @@ a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}b
 (function(){
 'use strict';
 const KEY={profile:'selloraProfileV2',products:'selloraProductsV2',count:'selloraAccountCountV2',countedEmails:'selloraCountedEmailsV2',sales:'selloraSalesV2',library:'selloraLibraryV2',ebookStore:'selloraEbookStoreV2'};
+// OPTIONAL SHARED MARKETPLACE BACKEND (Supabase)
+// Put your Supabase Project URL and anon key here. The site keeps working locally if these are blank.
+// Supabase setup SQL is provided in sellora-supabase-setup.sql.
+const SELLORA_CLOUD={url:'',anonKey:'',bucket:'sellora-products'};
+let selloraSupabase=null;
+let selloraCloudUser=null;
+let selloraCloudReady=false;
+let selloraCloudInitPromise=null;
+
 const guides={
  business:{title:'How to Open a Business',intro:'Opening a business starts with a problem, a customer and a clear offer. Start small, validate demand, set up the appropriate legal and financial structure for your location, launch and improve using customer feedback.',sections:[['1. Choose a business idea','Start with a real customer problem. Identify who has it, how they currently solve it and why they might pay for a better solution.'],['2. Research your market','Talk to potential customers and study competitors. Look for repeated complaints, desired outcomes, common prices and gaps in existing solutions.'],['3. Create your business model','Decide what you sell, who pays, how much they pay and how you deliver it. Models can include one-time sales, subscriptions, commissions, services and advertising.'],['4. Set up the business','Choose an appropriate legal structure for your country, register where required, understand taxes and obtain permits your activity needs.'],['5. Build your first offer','Create the smallest useful version of your product or service. Get feedback from real users before spending heavily.'],['6. Find your first customers','Use direct outreach, referrals, communities, partnerships and content. Talk directly to early customers to learn what converts.'],['7. Price for value','Consider customer value, costs, alternatives and willingness to pay. Test pricing rather than assuming the perfect price immediately.'],['8. Track the numbers','Track revenue, costs, margin, cash flow, conversion, customer acquisition cost and retention.'],['9. Grow carefully','Document what works, automate repetitive tasks and delegate only after the process is working reliably.']]},
  startup:{title:'Complete Startup Guide',intro:'A startup begins with a meaningful problem, a useful solution and evidence that people want it. Validate first, build a small MVP, learn from users and then improve distribution and growth.',sections:[['1. Find a problem','Choose a painful, frequent or valuable problem. Interview potential customers before building too much.'],['2. Validate the idea','Use a landing page, prototype, waitlist, manual service or small experiment. Measure actions such as signups, replies, trials and purchases.'],['3. Build an MVP','Build the smallest product that delivers your core promise. Avoid unnecessary features.'],['4. Create your website','For a simple website, start with index.html, styles.css and app.js. HTML gives structure, CSS gives design and JavaScript gives interactivity.'],['5. Website structure','Keep a simple project organized: index.html, styles.css, app.js and README.md.'],['6. Publish through GitHub Pages','Create a repository, upload files, commit changes, open Settings → Pages, choose deployment from your main branch and root folder, then save.'],['7. Git workflow','Clone, edit, commit and push in small reliable steps.'],['8. Custom domain','After your static site works, connect a domain using the DNS settings required by your registrar and publishing service. Enable HTTPS.'],['9. Get users','Launch to a small group, collect feedback and improve onboarding, product value and distribution.'],['10. Make money','Possible models include subscriptions, one-time sales, commissions, transaction fees, services, licensing and advertising. Test willingness to pay early.'],['11. Measure growth','Track activation, retention, conversion, revenue, acquisition cost and lifetime value.']]},
@@ -129,7 +138,66 @@ function profile(){try{return safeJSON(localStorage.getItem(KEY.profile),null)}c
 function saveProfile(p){try{localStorage.setItem(KEY.profile,JSON.stringify(p));return true}catch(e){toast('Browser storage is unavailable; your session may not persist.');return false}}
 function products(){return safeJSON(localStorage.getItem(KEY.products),[])}
 function saveProducts(a){try{localStorage.setItem(KEY.products,JSON.stringify(a));return true}catch(e){toast('Could not save this product. The file may be too large for browser storage.');return false}}
+
+function loadSupabaseSdk(){
+  if(window.supabase?.createClient) return Promise.resolve();
+  return new Promise((resolve,reject)=>{
+    const existing=document.querySelector('script[data-sellora-supabase]');
+    if(existing){
+      existing.addEventListener('load',resolve,{once:true});
+      existing.addEventListener('error',reject,{once:true});
+      return;
+    }
+    const s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    s.async=true; s.dataset.selloraSupabase='1';
+    s.onload=resolve; s.onerror=reject; document.head.appendChild(s);
+  });
+}
+async function initSelloraCloud(){
+  if(!SELLORA_CLOUD.url || !SELLORA_CLOUD.anonKey) return false;
+  if(selloraCloudInitPromise) return selloraCloudInitPromise;
+  selloraCloudInitPromise=(async()=>{
+    try{
+      await loadSupabaseSdk();
+      selloraSupabase=window.supabase.createClient(SELLORA_CLOUD.url,SELLORA_CLOUD.anonKey,{auth:{persistSession:true,autoRefreshToken:true}});
+      const {data,error}=await selloraSupabase.auth.getSession();
+      if(error) throw error;
+      if(data?.session?.user) selloraCloudUser=data.session.user;
+      else{
+        const {data:sign,error:signErr}=await selloraSupabase.auth.signInAnonymously();
+        if(signErr) throw signErr;
+        selloraCloudUser=sign.user;
+      }
+      selloraCloudReady=!!selloraCloudUser;
+      return selloraCloudReady;
+    }catch(err){
+      selloraCloudReady=false;
+      console.warn('Sellora shared marketplace is offline:',err);
+      return false;
+    }
+  })();
+  return selloraCloudInitPromise;
+}
+async function syncProductsFromCloud(){
+  if(!selloraCloudReady || !selloraSupabase) return false;
+  try{
+    const {data,error}=await selloraSupabase.from('products').select('*').order('created_at',{ascending:false});
+    if(error) throw error;
+    const mapped=(data||[]).map(r=>({
+      id:String(r.id),title:r.title||'Untitled product',description:r.description||'',category:r.category||'digital',price:0,
+      creator:r.creator||'Sellora Creator',creator_id:r.creator_id||'',fileUrl:r.file_url||'',fileName:r.file_name||'product',
+      coverData:r.cover_url||'',type:r.type||'digital',pages:Array.isArray(r.pages)?r.pages:null,createdAt:r.created_at||''
+    }));
+    saveProducts(mapped);
+    return true;
+  }catch(err){
+    console.warn('Could not load shared products:',err);
+    return false;
+  }
+}
 function seedDemoProducts(force){if(force||!products().length)saveProducts(demo);renderMarketplace();}
+
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.classList.remove('show'),3200)}
 function closeModal(id){const e=document.getElementById(id);if(e)e.classList.remove('show')}
 window.closeModal=closeModal;
@@ -418,22 +486,157 @@ async function downloadEbookHtml(){
 
 function openGuide(type){const g=guides[type];if(!g)return;document.getElementById('guideContent').innerHTML='<div class=\"kicker\">SELLORA LEARNING GUIDE</div><h2>'+escape(g.title)+'</h2><p class=\"intro\">'+escape(g.intro)+'</p><div class=\"guide-sections\">'+g.sections.map(s=>`<article class=\"guide-block\"><h3>${escape(s[0])}</h3><p>${escape(s[1])}</p></article>`).join('')+'</div><div class=\"notice\" style=\"margin-top:16px\"><b>Raksha Bandhan 1 GUIDE = 1 EBOOK FREEEE</b><br>Finish the guide, then generate your 50-page ebook.</div><div class=\"modal-actions\"><button class=\"btn\" onclick=\"closeModal(\'guideModal\')\">Close</button><button class=\"btn btn-primary\" onclick=\"closeModal(\'guideModal\');openEbookCreator()\">Create my ebook →</button></div>';document.getElementById('guideModal').classList.add('show')}
 window.openGuide=openGuide;
-function renderMarketplace(){const q=(document.getElementById('searchProducts').value||'').toLowerCase();const cat=document.getElementById('categoryFilter').value;const all=products().filter(p=>{const hay=(p.title+' '+p.description+' '+p.creator+' '+p.category).toLowerCase();return(!q||hay.includes(q))&&(cat==='all'||p.category===cat)});const grid=document.getElementById('productGrid');if(!all.length){grid.innerHTML='<div class="empty"><h3>No products found.</h3><p>Try another search or publish your first FREE digital product from the creator dashboard.</p></div>';return}grid.innerHTML=all.map(p=>{const grad=p.coverData?`background-image:url('${p.coverData}')`:'';const isEbook=(p.category||'').toLowerCase()==='ebooks'||p.type==='ebook';return `<article class="card product-card"><div class="product-cover" style="${grad}"><div class="cover-inner"><span class="cover-badge">${escape((p.category||'digital').toUpperCase())}</span><span class="cover-title">${escape(p.title)}</span><span class="tag">${escape(p.creator||'Creator')}</span></div></div><div class="product-meta"><div class="festive-note" style="margin-bottom:5px">Raksha Bandhan Bumper Offer</div><h3>${escape(p.title)}</h3><p>${escape(p.description)}</p><div class="product-foot"><span class="price">FREE</span>${isEbook?`<button class="btn btn-primary" onclick="openEbookProduct('${escapeAttr(p.id)}')">Open ebook</button>`:`<button class="btn btn-primary" onclick="getProduct('${escapeAttr(p.id)}')">Get free</button>`}</div></div></article>`}).join('')}
+function renderMarketplace(){
+  const q=(document.getElementById('searchProducts').value||'').toLowerCase();
+  const cat=document.getElementById('categoryFilter').value;
+  const all=products().filter(p=>{
+    const hay=(p.title+' '+p.description+' '+p.creator+' '+p.category).toLowerCase();
+    return(!q||hay.includes(q))&&(cat==='all'||p.category===cat)
+  });
+  const grid=document.getElementById('productGrid');
+  if(!all.length){
+    grid.innerHTML='<div class="empty"><h3>No products found.</h3><p>Try another search or publish your first FREE digital product from the creator dashboard.</p></div>';
+    return;
+  }
+  grid.innerHTML=all.map(p=>{
+    const cover=p.coverData||p.cover_url||'';
+    const grad=cover?`background-image:url('${escapeAttr(cover)}')`:'';
+    const isEbook=(p.category||'').toLowerCase()==='ebooks'||p.type==='ebook';
+    const action=isEbook
+      ? `<button class="btn btn-primary" onclick="openEbookProduct('${escapeAttr(p.id)}')">Open ebook</button>`
+      : `<button class="btn btn-primary" onclick="getProduct('${escapeAttr(p.id)}')">Get free</button>`;
+    return `<article class="card product-card">
+      <div class="product-cover" style="${grad}">
+        <div class="cover-inner">
+          <span class="cover-badge">${escape((p.category||'digital').toUpperCase())}</span>
+          <span class="cover-title">${escape(p.title)}</span>
+          <span class="tag">${escape(p.creator||'Creator')}</span>
+        </div>
+      </div>
+      <div class="product-meta">
+        <div class="festive-note" style="margin-bottom:5px">Raksha Bandhan Bumper Offer</div>
+        <h3>${escape(p.title)}</h3>
+        <p>${escape(p.description)}</p>
+        <div class="product-foot"><span class="price">FREE</span>${action}</div>
+      </div>
+    </article>`;
+  }).join('');
+}
 window.renderMarketplace=renderMarketplace;
-function getProduct(id){const p=products().find(x=>x.id===id);if(!p)return;let sales=Number(localStorage.getItem(KEY.sales)||0)+1;localStorage.setItem(KEY.sales,String(sales));toast('Free product ready: '+p.title);if(p.fileData){try{const parts=String(p.fileData).split(',');const mime=(p.fileName||'').toLowerCase().endsWith('.pdf')?'application/pdf':'application/octet-stream';const raw=atob(parts[1]||'');const arr=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)arr[i]=raw.charCodeAt(i);downloadBlob(p.fileName||p.title,new Blob([arr],{type:mime}));}catch(e){try{const a=document.createElement('a');a.href=p.fileData;a.download=p.fileName||p.title;document.body.appendChild(a);a.click();a.remove();}catch(_){} }}updateUI()}
+async function getProduct(id){
+  const p=products().find(x=>x.id===id);
+  if(!p) return;
+  let sales=Number(localStorage.getItem(KEY.sales)||0)+1;
+  localStorage.setItem(KEY.sales,String(sales));
+  toast('Free product ready: '+p.title);
+  try{
+    if(p.fileUrl){
+      const a=document.createElement('a');
+      a.href=p.fileUrl;
+      a.target='_blank';
+      a.rel='noopener';
+      a.download=p.fileName||p.title;
+      document.body.appendChild(a); a.click(); a.remove();
+    }else if(p.fileData){
+      const parts=String(p.fileData).split(',');
+      const mime=(p.fileName||'').toLowerCase().endsWith('.pdf')?'application/pdf':'application/octet-stream';
+      const raw=atob(parts[1]||'');
+      const arr=new Uint8Array(raw.length);
+      for(let i=0;i<raw.length;i++)arr[i]=raw.charCodeAt(i);
+      await downloadBlob(p.fileName||p.title,new Blob([arr],{type:mime}));
+    }
+  }catch(err){toast('Download blocked by the browser. Try the product again.');}
+  updateUI();
+}
 window.getProduct=getProduct;
 function openEbookProduct(id){
   const p=products().find(x=>x.id===id); if(!p)return;
   try{
     ebookTitle=p.title||'Sellora Ebook';
-    ebookPages=(Array.isArray(p.pages)&&p.pages.length===50)?p.pages:build50Pages(ebookTitle,p.description||'Useful practical guidance, examples, exercises and action steps.',p.category||'Ebooks',p.creator||'Sellora Creator');
+    ebookPages=(Array.isArray(p.pages)&&p.pages.length===50)
+      ? p.pages
+      : build50Pages(ebookTitle,p.description||'Useful practical guidance, examples, exercises and action steps.',p.category||'Ebooks',p.creator||'Sellora Creator');
     showEbookPreview();
   }catch(err){toast('This ebook could not be opened. Please try Generate Ebook again.')}}
+
 window.openEbookProduct=openEbookProduct;
-async function publishProduct(e){e.preventDefault();const user=profile();if(!user){toast('Create a Sellora account before publishing.');return}const file=document.getElementById('productFile').files[0];const cover=document.getElementById('productCover').files[0];if(!file){toast('Choose a product file.');return}const reader=new FileReader();reader.onload=()=>{const saveCover=()=>{const add=pCover=>{const p={id:'p-'+Date.now(),title:document.getElementById('productTitle').value.trim(),description:document.getElementById('productDescription').value.trim(),category:document.getElementById('productCategory').value,price:0,creator:user.name,fileData:reader.result,fileName:file.name,coverData:pCover||'',createdAt:new Date().toISOString()};const arr=products();arr.unshift(p);if(saveProducts(arr)){e.target.reset();renderMarketplace();renderMyProducts();toast('Product published to your Sellora marketplace.')}};if(cover){const cr=new FileReader();cr.onload=()=>add(cr.result);cr.onerror=()=>add('');cr.readAsDataURL(cover)}else add('')};saveCover()};reader.onerror=()=>toast('Could not read the selected file.');reader.readAsDataURL(file)}
+async function publishProduct(e){
+  e.preventDefault();
+  const user=profile();
+  if(!user){toast('Create a Sellora account before publishing.');return}
+  const file=document.getElementById('productFile').files[0];
+  const cover=document.getElementById('productCover').files[0];
+  if(!file){toast('Choose a product file.');return}
+  const title=document.getElementById('productTitle').value.trim();
+  const description=document.getElementById('productDescription').value.trim();
+  const category=document.getElementById('productCategory').value;
+  if(!title){toast('Add a product title.');return}
+
+  if(SELLORA_CLOUD.url && SELLORA_CLOUD.anonKey){
+    const cloudOk=await initSelloraCloud();
+    if(cloudOk){
+      try{
+        const base='public/'+(selloraCloudUser.id||'anonymous')+'/'+Date.now()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'-');
+        const {error:upErr}=await selloraSupabase.storage.from(SELLORA_CLOUD.bucket).upload(base,file,{upsert:false,contentType:file.type||'application/octet-stream',cacheControl:'3600'});
+        if(upErr) throw upErr;
+        const {data:urlData}=selloraSupabase.storage.from(SELLORA_CLOUD.bucket).getPublicUrl(base);
+        let coverUrl='';
+        if(cover){
+          const coverPath='public/'+(selloraCloudUser.id||'anonymous')+'/'+Date.now()+'-cover-'+cover.name.replace(/[^a-zA-Z0-9._-]/g,'-');
+          const {error:coverErr}=await selloraSupabase.storage.from(SELLORA_CLOUD.bucket).upload(coverPath,cover,{upsert:false,contentType:cover.type||'image/png',cacheControl:'3600'});
+          if(coverErr) throw coverErr;
+          coverUrl=selloraSupabase.storage.from(SELLORA_CLOUD.bucket).getPublicUrl(coverPath).data.publicUrl||'';
+        }
+        const record={
+          id:'p-'+crypto.randomUUID(),
+          title,description,category,price:0,creator:user.name,creator_id:selloraCloudUser.id,
+          file_url:urlData.publicUrl||'',file_name:file.name,cover_url:coverUrl,
+          type:category==='ebooks'?'ebook':'digital'
+        };
+        const {data:rows,error:insErr}=await selloraSupabase.from('products').insert(record).select().single();
+        if(insErr) throw insErr;
+        const p={id:String(rows.id),title:rows.title,description:rows.description,category:rows.category,price:0,creator:rows.creator,creator_id:rows.creator_id,fileUrl:rows.file_url,fileName:rows.file_name,coverData:rows.cover_url,type:rows.type,createdAt:rows.created_at};
+        const arr=products().filter(x=>x.id!==p.id);arr.unshift(p);saveProducts(arr);
+        e.target.reset();renderMarketplace();renderMyProducts();
+        toast('Published! Other Sellora users can now see this product.');
+        return;
+      }catch(err){
+        console.error(err);
+        toast('Shared publishing failed. Check the Supabase setup; using local fallback.');
+      }
+    }
+  }
+
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const saveCover=()=>{
+      const add=pCover=>{
+        const p={id:'p-'+Date.now(),title,description,category,price:0,creator:user.name,fileData:reader.result,fileName:file.name,coverData:pCover||'',createdAt:new Date().toISOString()};
+        const arr=products();arr.unshift(p);
+        if(saveProducts(arr)){e.target.reset();renderMarketplace();renderMyProducts();toast('Product published locally. Shared mode is not configured.')}
+      };
+      if(cover){const cr=new FileReader();cr.onload=()=>add(cr.result);cr.onerror=()=>add('');cr.readAsDataURL(cover)}else add('');
+    };
+    saveCover();
+  };
+  reader.onerror=()=>toast('Could not read the selected file.');
+  reader.readAsDataURL(file);
+}
 window.publishProduct=publishProduct;
 function renderMyProducts(){const user=profile();const box=document.getElementById('myProducts');if(!box||!user)return;const mine=products().filter(p=>p.creator===user.name&&!p.id.startsWith('demo-'));document.getElementById('statProducts').textContent=mine.length;document.getElementById('statPublished').textContent=mine.length;document.getElementById('statSales').textContent=Number(localStorage.getItem(KEY.sales)||0);box.innerHTML=mine.length?mine.map(p=>`<div class="list-row"><div><b>${escape(p.title)}</b><br><small style="color:var(--muted)">${escape(p.category)} · FREE</small></div><button class="btn" onclick="deleteProduct('${escapeAttr(p.id)}')">Delete</button></div>`).join(''):'<div class="empty" style="padding:25px"><p>No published products yet.</p></div>'}
-function deleteProduct(id){const arr=products().filter(p=>p.id!==id);if(saveProducts(arr)){renderMarketplace();renderMyProducts();toast('Product deleted.')}}
+async function deleteProduct(id){
+  if(SELLORA_CLOUD.url && SELLORA_CLOUD.anonKey){
+    const cloudOk=await initSelloraCloud();
+    if(cloudOk){
+      try{
+        const {error}=await selloraSupabase.from('products').delete().eq('id',id).eq('creator_id',selloraCloudUser.id);
+        if(error) throw error;
+      }catch(err){console.warn('Cloud delete failed',err);toast('Could not delete shared product.');return}
+    }
+  }
+  const arr=products().filter(p=>p.id!==id);
+  if(saveProducts(arr)){renderMarketplace();renderMyProducts();toast('Product deleted.')}
+}
 window.deleteProduct=deleteProduct;
 function escape(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 function escapeAttr(s){return escape(s).replace(/`/g,'&#96;')}
@@ -441,7 +644,22 @@ function toggleNav(){const n=document.querySelector('.links');if(n.style.display
 window.toggleNav=toggleNav;
 window.addEventListener('click',e=>document.querySelectorAll('.modal').forEach(m=>{if(e.target===m)closeModal(m.id)}));
 window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(h?scrollY/h*100:0)+'%'});
-window.addEventListener('DOMContentLoaded',()=>{try{let n=Number(localStorage.getItem(KEY.count)||126);if(!Number.isFinite(n)||n<126){n=126;localStorage.setItem(KEY.count,'126')}}catch(e){}refreshSelloraUserCount();seedDemoProducts(false);try{const ps=products();ps.forEach(p=>p.price=0);saveProducts(ps)}catch(e){}renderMarketplace();updateUI()});
+window.addEventListener('DOMContentLoaded',async()=>{
+  try{let n=Number(localStorage.getItem(KEY.count)||126);if(!Number.isFinite(n)||n<126){n=126;localStorage.setItem(KEY.count,'126')}}catch(e){}
+  refreshSelloraUserCount();
+  seedDemoProducts(false);
+  try{const ps=products();ps.forEach(p=>p.price=0);saveProducts(ps)}catch(e){}
+  renderMarketplace();updateUI();
+  if(SELLORA_CLOUD.url && SELLORA_CLOUD.anonKey){
+    const ok=await initSelloraCloud();
+    if(ok){
+      const synced=await syncProductsFromCloud();
+      if(synced) renderMarketplace();
+    }else{
+      console.warn('Set SELLORA_CLOUD.url and SELLORA_CLOUD.anonKey to enable shared marketplace sync.');
+    }
+  }
+});
 })();
 </script>
 </body>
