@@ -4,45 +4,46 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta name="description"
-      content="Sellora — digital products marketplace, creator studio and 50-page ebook creator.">
+<title>Sellora — Sell Your Knowledge</title>
+
+<meta
+  name="description"
+  content="Sellora — real digital products marketplace and ebook studio."
+>
 
 <meta name="theme-color" content="#f4c84a">
 
-<title>Sellora — Sell Your Knowledge. Build Your Digital Business.</title>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="48x48"
+  href="sellora-favicon-48.png"
+>
 
-<link rel="icon"
-      type="image/png"
-      sizes="48x48"
-      href="sellora-favicon-48.png">
+<link
+  rel="icon"
+  type="image/png"
+  href="sellora-favicon.png"
+>
 
-<link rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="sellora-favicon.png">
-
-<link rel="apple-touch-icon"
-      href="sellora-favicon.png">
+<link
+  rel="apple-touch-icon"
+  href="sellora-favicon.png"
+>
 
 <style>
+
 :root{
   --bg:#071014;
-  --bg2:#0a171c;
   --panel:#0d1b21;
-  --panel2:#11242b;
   --text:#f7fbfc;
-  --muted:#9eb0b6;
-  --line:rgba(255,255,255,.11);
-
+  --muted:#9db0b6;
+  --line:rgba(255,255,255,.1);
   --gold:#f4c84a;
   --gold2:#ffe58a;
-  --gold3:#fff7ca;
-
-  --green:#67d99d;
-  --red:#ff7979;
-
-  --shadow:0 25px 80px rgba(0,0,0,.35);
-
+  --gold3:#fff6ca;
+  --green:#69dba0;
+  --red:#ff7777;
   --max:1180px;
 }
 
@@ -66,28 +67,28 @@ body{
     "Segoe UI",
     sans-serif;
 
+  line-height:1.55;
+  overflow-x:hidden;
+
   background:
     radial-gradient(
       circle at 10% 0%,
-      rgba(244,200,74,.14),
+      rgba(244,200,74,.13),
       transparent 30%
     ),
     radial-gradient(
-      circle at 90% 8%,
-      rgba(255,255,255,.06),
-      transparent 26%
+      circle at 90% 5%,
+      rgba(255,255,255,.05),
+      transparent 25%
     ),
     var(--bg);
-
-  line-height:1.55;
-  overflow-x:hidden;
 }
 
 body:before{
   content:"";
   position:fixed;
   inset:-30%;
-  z-index:-2;
+  z-index:-3;
   pointer-events:none;
 
   background:
@@ -95,69 +96,13 @@ body:before{
       from 0deg,
       transparent,
       rgba(244,200,74,.06),
-      transparent 25%,
-      rgba(255,255,255,.035),
-      transparent 58%
+      transparent 27%,
+      rgba(255,255,255,.03),
+      transparent 60%
     );
 
-  filter:blur(65px);
-  animation:rotateBg 20s linear infinite;
-}
-
-@keyframes rotateBg{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-@keyframes shine{
-  0%{
-    transform:translateX(-130%);
-  }
-
-  100%{
-    transform:translateX(130%);
-  }
-}
-
-@keyframes dropFall{
-  0%{
-    transform:translateY(-40px);
-    opacity:0;
-  }
-
-  15%{
-    opacity:1;
-  }
-
-  100%{
-    transform:translateY(180px);
-    opacity:0;
-  }
-}
-
-@keyframes pulse{
-  0%,100%{
-    box-shadow:
-      0 0 0 rgba(244,200,74,0);
-  }
-
-  50%{
-    box-shadow:
-      0 0 35px rgba(244,200,74,.25);
-  }
-}
-
-@keyframes modalIn{
-  from{
-    opacity:0;
-    transform:translateY(12px) scale(.98);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
+  filter:blur(70px);
+  animation:spin 22s linear infinite;
 }
 
 a{
@@ -182,42 +127,101 @@ img{
 }
 
 .container{
-  width:min(
-    var(--max),
-    92%
-  );
-
+  width:min(var(--max),92%);
   margin:auto;
 }
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* =========================
+   ANIMATIONS
+========================= */
 
-.navbar{
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes shine{
+  from{
+    transform:translateX(-130%);
+  }
+  to{
+    transform:translateX(130%);
+  }
+}
+
+@keyframes drop{
+  0%{
+    transform:translateY(-40px) rotate(0deg);
+    opacity:0;
+  }
+
+  12%{
+    opacity:1;
+  }
+
+  100%{
+    transform:translateY(190px) rotate(18deg);
+    opacity:0;
+  }
+}
+
+@keyframes pulse{
+  0%,100%{
+    box-shadow:0 0 0 rgba(244,200,74,0);
+  }
+
+  50%{
+    box-shadow:
+      0 0 30px
+      rgba(244,200,74,.22);
+  }
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:
+      translateY(12px)
+      scale(.98);
+  }
+
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
   position:sticky;
   top:0;
   z-index:1000;
 
-  min-height:74px;
+  min-height:72px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  gap:16px;
+  gap:15px;
+
   padding:0 4%;
 
   background:
-    rgba(5,12,16,.88);
+    rgba(5,12,16,.9);
 
   backdrop-filter:blur(18px);
 
   border-bottom:
-    1px solid var(--line);
+    1px solid
+    var(--line);
 }
 
-.logo{
+.brand{
   display:flex;
   align-items:center;
   gap:10px;
@@ -227,17 +231,20 @@ img{
   letter-spacing:.08em;
 }
 
-.logo-mark{
-  width:32px;
-  height:32px;
+.brand-icon{
+  width:33px;
+  height:33px;
 
   display:grid;
   place-items:center;
 
-  border-radius:
-    10px 10px 10px 3px;
+  color:#634700;
 
-  color:#614700;
+  border-radius:
+    10px
+    10px
+    10px
+    3px;
 
   background:
     linear-gradient(
@@ -245,46 +252,42 @@ img{
       #fff,
       var(--gold)
     );
-
-  box-shadow:
-    0 0 25px
-    rgba(244,200,74,.16);
 }
 
-.nav-links{
+.navlinks{
   display:flex;
-  gap:22px;
+  gap:20px;
 }
 
-.nav-links a{
-  color:#c7d2d5;
+.navlinks a{
+  color:#c8d3d7;
   font-size:13px;
   font-weight:850;
 }
 
-.nav-links a:hover{
+.navlinks a:hover{
   color:var(--gold2);
 }
 
-.nav-actions{
+.navright{
   display:flex;
   align-items:center;
   gap:8px;
 }
 
-.mobile-toggle{
+.mobile-btn{
   display:none;
 
-  border:0;
-  background:none;
-
   color:white;
+  background:none;
+  border:0;
+
   font-size:25px;
 }
 
-/* =====================================================
+/* =========================
    BUTTONS
-===================================================== */
+========================= */
 
 .btn{
   border:0;
@@ -300,8 +303,18 @@ img{
   transition:.2s;
 }
 
-.btn-primary{
-  color:#4a3600;
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.primary{
+  color:#4a3500;
 
   background:
     linear-gradient(
@@ -311,65 +324,55 @@ img{
     );
 
   box-shadow:
-    0 10px 28px
+    0 10px 25px
     rgba(244,200,74,.18);
 }
 
-.btn-primary:hover{
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 16px 38px
-    rgba(244,200,74,.27);
-}
-
-.btn-outline{
-  color:white;
+.outline{
+  color:#fff;
 
   background:
     rgba(255,255,255,.035);
 
   border:
     1px solid
-    rgba(244,200,74,.24);
+    rgba(244,200,74,.22);
 }
 
-.btn-outline:hover{
+.outline:hover{
   border-color:var(--gold);
-
   background:
     rgba(244,200,74,.08);
 }
 
-.btn-danger{
+.danger{
   color:white;
 
   background:
-    rgba(255,70,70,.1);
+    rgba(255,70,70,.09);
 
   border:
     1px solid
-    rgba(255,70,70,.22);
+    rgba(255,70,70,.21);
 }
 
-/* =====================================================
+/* =========================
    FESTIVE
-===================================================== */
+========================= */
 
 .festive{
   position:relative;
-
   overflow:hidden;
 
   border-bottom:
     1px solid
-    rgba(244,200,74,.18);
+    rgba(244,200,74,.17);
 
   background:
     linear-gradient(
       90deg,
       rgba(244,200,74,.1),
-      rgba(255,255,255,.04),
+      rgba(255,255,255,.03),
       rgba(244,200,74,.1)
     );
 }
@@ -384,12 +387,9 @@ img{
     linear-gradient(
       110deg,
       transparent 20%,
-      rgba(255,255,255,.17) 50%,
-      transparent 75%
+      rgba(255,255,255,.16) 50%,
+      transparent 76%
     );
-
-  transform:
-    translateX(-130%);
 
   animation:
     shine 5s linear infinite;
@@ -399,7 +399,7 @@ img{
   position:relative;
   z-index:2;
 
-  min-height:66px;
+  min-height:64px;
 
   display:flex;
   align-items:center;
@@ -410,20 +410,19 @@ img{
   text-align:center;
 }
 
-.festive-copy strong{
+.festive-text strong{
   display:block;
 
   color:var(--gold3);
 
   font-size:13px;
-
-  letter-spacing:.08em;
+  font-weight:1000;
 }
 
-.festive-copy span{
+.festive-text span{
   display:block;
 
-  color:#dccd94;
+  color:#d9cb94;
 
   font-size:11px;
 }
@@ -437,135 +436,107 @@ img{
 
   border-radius:50%;
 
-  color:#624800;
-
   background:
     radial-gradient(
-      circle at 35% 30%,
+      circle at 32% 28%,
       #fff,
-      var(--gold) 45%,
-      #ad7f10
+      var(--gold) 46%,
+      #ae8213
     );
 
   animation:
-    pulse 2.8s ease-in-out infinite;
+    pulse 2.6s ease-in-out infinite;
 }
 
-/* =====================================================
-   WHITE MAKKHAN
-===================================================== */
+/* =========================
+   MAKKHAN
+========================= */
 
 .makhan-layer{
   position:fixed;
   inset:0;
 
-  z-index:-1;
+  z-index:-2;
 
-  pointer-events:none;
   overflow:hidden;
+  pointer-events:none;
 }
 
 .makhan{
   position:absolute;
 
   width:11px;
-  height:20px;
+  height:21px;
 
-  background:
-    #ffffff;
+  background:#fff;
 
   border-radius:
-    55% 45% 50% 50%;
+    60% 40% 50% 50%;
 
   box-shadow:
-    0 0 20px
+    0 0 18px
     rgba(255,255,255,.42);
 
   animation:
-    dropFall 5.5s linear infinite;
+    drop 5.7s linear infinite;
 }
 
-.makhan.m1{
-  left:8%;
-  animation-delay:-1s;
-}
+.m1{left:7%;animation-delay:-1s}
+.m2{left:22%;animation-delay:-2.8s}
+.m3{left:41%;animation-delay:-1.8s}
+.m4{left:61%;animation-delay:-4s}
+.m5{left:79%;animation-delay:-2s}
+.m6{left:94%;animation-delay:-3.1s}
 
-.makhan.m2{
-  left:24%;
-  animation-delay:-3s;
-}
-
-.makhan.m3{
-  left:43%;
-  animation-delay:-2s;
-}
-
-.makhan.m4{
-  left:64%;
-  animation-delay:-4s;
-}
-
-.makhan.m5{
-  left:82%;
-  animation-delay:-1.8s;
-}
-
-.makhan.m6{
-  left:94%;
-  animation-delay:-2.7s;
-}
-
-/* =====================================================
+/* =========================
    HERO
-===================================================== */
+========================= */
 
 .hero{
   padding:
-    82px 0 70px;
+    72px 0;
 
   display:grid;
 
   grid-template-columns:
-    1.05fr .95fr;
+    1.06fr .94fr;
 
-  gap:48px;
+  gap:45px;
 
   align-items:center;
 }
 
 .badge{
   display:inline-flex;
-
   align-items:center;
-
-  gap:8px;
+  gap:7px;
 
   padding:
     7px 10px;
 
-  border-radius:999px;
-
-  background:
-    rgba(255,255,255,.03);
-
-  border:
-    1px solid
-    rgba(244,200,74,.27);
-
   color:var(--gold2);
 
   font-size:11px;
-
   font-weight:950;
+
+  border:
+    1px solid
+    rgba(244,200,74,.25);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.025);
 }
 
 .hero h1{
-  margin:18px 0;
+  margin:
+    18px 0;
 
   font-size:
-    clamp(44px,6vw,76px);
+    clamp(43px,6vw,74px);
 
-  line-height:1.01;
+  line-height:1.02;
 
   letter-spacing:-.055em;
 }
@@ -588,46 +559,44 @@ img{
 }
 
 .hero p{
-  max-width:660px;
+  max-width:650px;
 
-  color:#b5c1c6;
+  color:#b5c2c7;
 
   font-size:17px;
 }
 
 .hero-actions{
   display:flex;
-
   flex-wrap:wrap;
 
   gap:9px;
 
-  margin-top:28px;
+  margin-top:25px;
 }
 
-.offer-line{
-  margin-top:15px;
+.offer{
+  margin-top:14px;
 
   color:var(--gold2);
 
   font-size:13px;
-
   font-weight:900;
 }
 
-.hero-art{
+.hero-image-box{
   position:relative;
 
-  min-height:480px;
+  min-height:470px;
 
   display:grid;
   place-items:center;
 
-  padding:20px;
+  padding:18px;
 
   overflow:hidden;
 
-  border-radius:28px;
+  border-radius:27px;
 
   border:
     1px solid
@@ -635,22 +604,18 @@ img{
 
   background:
     radial-gradient(
-      circle at 50% 25%,
-      rgba(244,200,74,.16),
-      transparent 44%
+      circle at 50% 20%,
+      rgba(244,200,74,.17),
+      transparent 45%
     ),
     rgba(255,255,255,.025);
-
-  box-shadow:
-    var(--shadow);
 }
 
-.hero-art:before{
+.hero-image-box:before{
   content:"";
 
   position:absolute;
-
-  inset:-35%;
+  inset:-30%;
 
   background:
     conic-gradient(
@@ -661,62 +626,57 @@ img{
     );
 
   animation:
-    rotateBg 10s linear infinite;
+    spin 11s linear infinite;
 }
 
 .hero-image{
   position:relative;
   z-index:2;
 
-  width:min(440px,94%);
+  width:min(430px,94%);
 
-  border-radius:24px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.12);
+  border-radius:23px;
 
   box-shadow:
     0 30px 75px
-    rgba(0,0,0,.42);
+    rgba(0,0,0,.44);
 }
 
 .hero-label{
   position:absolute;
 
-  top:20px;
-  right:20px;
+  top:18px;
+  right:18px;
 
-  z-index:4;
+  z-index:5;
 
   padding:
-    11px 14px;
-
-  border-radius:14px;
-
-  background:
-    rgba(7,16,20,.8);
-
-  border:
-    1px solid
-    rgba(244,200,74,.23);
+    10px 13px;
 
   color:var(--gold2);
 
-  font-size:12px;
+  background:
+    rgba(7,16,20,.84);
 
+  border:
+    1px solid
+    rgba(244,200,74,.21);
+
+  border-radius:13px;
+
+  font-size:11px;
   font-weight:900;
 
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(9px);
 }
 
-/* =====================================================
+/* =========================
    SECTION
-===================================================== */
+========================= */
 
 .section{
   padding:
-    82px 0;
+    72px 0;
 }
 
 .center{
@@ -728,7 +688,7 @@ img{
     0 0 10px;
 
   font-size:
-    clamp(31px,5vw,52px);
+    clamp(31px,5vw,51px);
 
   line-height:1.05;
 
@@ -739,55 +699,44 @@ img{
   max-width:720px;
 
   margin:
-    0 auto 32px;
+    0 auto 30px;
 
   color:var(--muted);
 }
 
-/* =====================================================
-   FEATURE CARDS
-===================================================== */
+/* =========================
+   CARDS
+========================= */
 
-.feature-grid{
+.grid3{
   display:grid;
 
   grid-template-columns:
     repeat(3,1fr);
 
-  gap:18px;
+  gap:17px;
 }
 
 .card{
-  padding:23px;
+  padding:22px;
 
   border:
     1px solid
     var(--line);
 
-  border-radius:20px;
+  border-radius:19px;
 
-  background:
-    var(--panel);
-
-  transition:.22s;
-}
-
-.card:hover{
-  transform:
-    translateY(-5px);
-
-  border-color:
-    rgba(244,200,74,.28);
+  background:var(--panel);
 }
 
 .icon{
-  width:47px;
-  height:47px;
+  width:46px;
+  height:46px;
 
   display:grid;
   place-items:center;
 
-  margin-bottom:14px;
+  margin-bottom:13px;
 
   border-radius:14px;
 
@@ -796,13 +745,14 @@ img{
 
   border:
     1px solid
-    rgba(244,200,74,.2);
+    rgba(244,200,74,.18);
 
-  font-size:22px;
+  font-size:21px;
 }
 
 .card h3{
-  margin:0 0 7px;
+  margin:
+    0 0 7px;
 }
 
 .card p{
@@ -813,9 +763,9 @@ img{
   font-size:13px;
 }
 
-/* =====================================================
+/* =========================
    GALLERY
-===================================================== */
+========================= */
 
 .gallery{
   display:grid;
@@ -829,11 +779,11 @@ img{
 .gallery-card{
   overflow:hidden;
 
-  border-radius:22px;
+  border-radius:20px;
 
   border:
     1px solid
-    rgba(244,200,74,.2);
+    rgba(244,200,74,.18);
 
   background:
     rgba(255,255,255,.025);
@@ -841,14 +791,14 @@ img{
 
 .gallery-card img{
   width:100%;
-  height:430px;
+  height:420px;
 
   object-fit:cover;
 }
 
 .gallery-info{
   padding:
-    15px 17px;
+    14px 16px;
 }
 
 .gallery-info strong{
@@ -863,16 +813,16 @@ img{
   color:var(--muted);
 }
 
-/* =====================================================
+/* =========================
    MARKETPLACE
-===================================================== */
+========================= */
 
 .market-tools{
   display:flex;
 
-  gap:10px;
-
   flex-wrap:wrap;
+
+  gap:9px;
 
   margin:
     18px 0 20px;
@@ -882,6 +832,9 @@ img{
 textarea,
 select{
   width:100%;
+
+  padding:
+    12px 13px;
 
   color:#fff;
 
@@ -894,17 +847,13 @@ select{
 
   border-radius:12px;
 
-  padding:
-    12px 13px;
-
   outline:none;
 }
 
 .input:focus,
 textarea:focus,
 select:focus{
-  border-color:
-    var(--gold);
+  border-color:var(--gold);
 
   box-shadow:
     0 0 0 3px
@@ -927,7 +876,7 @@ select:focus{
   grid-template-columns:
     repeat(3,1fr);
 
-  gap:18px;
+  gap:17px;
 }
 
 .product{
@@ -937,20 +886,9 @@ select:focus{
     1px solid
     var(--line);
 
-  border-radius:21px;
+  border-radius:20px;
 
-  background:
-    var(--panel);
-
-  transition:.22s;
-}
-
-.product:hover{
-  transform:
-    translateY(-4px);
-
-  border-color:
-    rgba(244,200,74,.3);
+  background:var(--panel);
 }
 
 .product-cover{
@@ -960,29 +898,19 @@ select:focus{
     16 / 10;
 
   display:grid;
-
   place-items:center;
 
   overflow:hidden;
 
   background:
-    radial-gradient(
-      circle at 30% 30%,
-      rgba(244,200,74,.22),
-      transparent 30%
-    ),
     linear-gradient(
       145deg,
-      #18282f,
+      #192a31,
       #091316
     );
 }
 
 .product-cover img{
-  position:absolute;
-
-  inset:0;
-
   width:100%;
   height:100%;
 
@@ -990,55 +918,53 @@ select:focus{
 }
 
 .product-cover span{
-  position:relative;
-  z-index:2;
-
   color:var(--gold2);
 
-  font-size:28px;
-
+  font-size:25px;
   font-weight:1000;
 }
 
 .product-body{
-  padding:18px;
+  padding:17px;
 }
 
 .meta{
   display:flex;
 
+  align-items:center;
   justify-content:space-between;
 
   gap:8px;
-
-  align-items:center;
 }
 
 .price{
   color:var(--gold2);
-
   font-weight:1000;
 }
 
 .product h3{
   margin:
-    8px 0 6px;
+    8px 0 5px;
 }
 
 .product p{
-  min-height:58px;
+  min-height:55px;
 
   color:var(--muted);
 
   font-size:13px;
 }
 
+.creator-name{
+  color:var(--muted);
+  font-size:11px;
+}
+
 .product-actions{
   display:flex;
+  flex-wrap:wrap;
 
   gap:8px;
-
-  flex-wrap:wrap;
 
   margin-top:13px;
 }
@@ -1061,21 +987,21 @@ select:focus{
     1px dashed
     rgba(255,255,255,.14);
 
-  border-radius:18px;
+  border-radius:17px;
 }
 
-/* =====================================================
-   CREATOR DASHBOARD
-===================================================== */
+/* =========================
+   CREATOR
+========================= */
 
 .dashboard{
-  padding:25px;
+  padding:23px;
 
   border:
     1px solid
     var(--line);
 
-  border-radius:22px;
+  border-radius:21px;
 
   background:
     rgba(255,255,255,.025);
@@ -1085,11 +1011,9 @@ select:focus{
   display:flex;
 
   justify-content:space-between;
-
   align-items:center;
 
   gap:15px;
-
   flex-wrap:wrap;
 }
 
@@ -1097,22 +1021,22 @@ select:focus{
   display:grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+    repeat(3,1fr);
 
-  gap:12px;
+  gap:11px;
 
   margin:
     20px 0;
 }
 
 .stat{
-  padding:16px;
+  padding:15px;
 
   border:
     1px solid
     var(--line);
 
-  border-radius:15px;
+  border-radius:14px;
 
   background:
     rgba(255,255,255,.025);
@@ -1127,11 +1051,11 @@ select:focus{
 .stat strong{
   display:block;
 
+  margin-top:4px;
+
   color:var(--gold2);
 
-  font-size:25px;
-
-  margin-top:4px;
+  font-size:24px;
 }
 
 .creator-grid{
@@ -1140,7 +1064,7 @@ select:focus{
   grid-template-columns:
     1fr 1fr;
 
-  gap:18px;
+  gap:17px;
 }
 
 .form-card{
@@ -1150,7 +1074,7 @@ select:focus{
     1px solid
     var(--line);
 
-  border-radius:19px;
+  border-radius:18px;
 
   background:
     rgba(255,255,255,.02);
@@ -1162,7 +1086,7 @@ select:focus{
 
 .field{
   margin:
-    13px 0;
+    12px 0;
 }
 
 .field label{
@@ -1170,78 +1094,118 @@ select:focus{
 
   margin-bottom:6px;
 
-  color:#dce5e7;
+  color:#dae3e6;
 
   font-size:11px;
 
   font-weight:900;
 }
 
-.form-two{
+.two{
   display:grid;
 
   grid-template-columns:
     1fr 1fr;
 
-  gap:10px;
+  gap:9px;
 }
 
 .notice{
-  padding:12px;
+  padding:11px;
 
-  border-radius:13px;
+  border-radius:12px;
+
+  color:#f1dfa2;
 
   background:
-    rgba(244,200,74,.08);
+    rgba(244,200,74,.07);
 
   border:
     1px solid
-    rgba(244,200,74,.18);
-
-  color:#f0dfa0;
+    rgba(244,200,74,.16);
 
   font-size:12px;
 }
 
+.cloud-status{
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  margin-top:9px;
+
+  padding:
+    8px 10px;
+
+  color:var(--muted);
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:10px;
+
+  font-size:11px;
+}
+
+.status-dot{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:var(--red);
+}
+
+.status-dot.ok{
+  background:var(--green);
+
+  box-shadow:
+    0 0 9px
+    rgba(103,217,157,.5);
+}
+
 .my-products{
   display:grid;
-  gap:10px;
-  margin-top:15px;
+
+  gap:9px;
+
+  margin-top:13px;
 }
 
 .my-row{
   display:flex;
 
   justify-content:space-between;
-
   align-items:center;
 
   gap:10px;
 
-  padding:13px;
+  padding:11px;
 
   border:
     1px solid
     var(--line);
 
-  border-radius:14px;
+  border-radius:13px;
+}
 
-  background:
-    rgba(255,255,255,.02);
+.my-row strong{
+  display:block;
 }
 
 .my-row small{
-  display:block;
   color:var(--muted);
 }
 
-/* =====================================================
-   MODAL
-===================================================== */
+/* =========================
+   MODALS
+========================= */
 
 .modal{
   position:fixed;
-
   inset:0;
 
   z-index:5000;
@@ -1251,10 +1215,10 @@ select:focus{
   align-items:center;
   justify-content:center;
 
-  padding:18px;
+  padding:17px;
 
   background:
-    rgba(0,0,0,.76);
+    rgba(0,0,0,.78);
 
   backdrop-filter:blur(8px);
 }
@@ -1263,31 +1227,27 @@ select:focus{
   display:flex;
 }
 
-.modal-card{
+.modal-box{
   position:relative;
 
-  width:min(
-    800px,
-    100%
-  );
+  width:min(800px,100%);
 
   max-height:94vh;
 
   overflow:auto;
 
-  padding:26px;
+  padding:25px;
 
   border:
     1px solid
     rgba(244,200,74,.2);
 
-  border-radius:23px;
+  border-radius:21px;
 
-  background:
-    #0a171c;
+  background:#0a171c;
 
   box-shadow:
-    0 30px 100px
+    0 30px 90px
     rgba(0,0,0,.5);
 
   animation:
@@ -1297,45 +1257,44 @@ select:focus{
 .close{
   position:absolute;
 
-  top:9px;
-  right:14px;
-
-  color:#fff;
-
-  background:none;
+  right:12px;
+  top:7px;
 
   border:0;
 
-  font-size:30px;
+  background:none;
+
+  color:#fff;
+
+  font-size:29px;
 }
 
-/* =====================================================
+/* =========================
    COUNTDOWN
-===================================================== */
+========================= */
 
 .countdown{
   text-align:center;
 
   padding:
-    30px 8px;
+    27px 7px;
 }
 
-.count-number{
-  width:125px;
-  height:125px;
-
-  margin:
-    27px auto;
+.count{
+  width:122px;
+  height:122px;
 
   display:grid;
   place-items:center;
 
+  margin:
+    26px auto;
+
   border-radius:50%;
 
-  color:#634900;
+  color:#614500;
 
-  font-size:58px;
-
+  font-size:55px;
   font-weight:1000;
 
   background:
@@ -1346,8 +1305,8 @@ select:focus{
     );
 
   box-shadow:
-    0 0 60px
-    rgba(244,200,74,.24);
+    0 0 52px
+    rgba(244,200,74,.25);
 }
 
 .progress{
@@ -1374,72 +1333,66 @@ select:focus{
       #fff
     );
 
-  transition:.9s;
+  transition:
+    .9s;
 }
 
-/* =====================================================
-   EBOOK READER
-===================================================== */
+/* =========================
+   EBOOK
+========================= */
 
-.ebook-stage{
+.book-wrap{
   display:grid;
 
   place-items:center;
 
-  min-height:58vh;
+  min-height:55vh;
 
-  padding:
-    10px;
+  padding:8px;
 
-  perspective:1800px;
-
-  touch-action:pan-y;
+  perspective:1700px;
 }
 
 .book{
-  width:min(
-    100%,
-    210mm
-  );
+  position:relative;
+
+  width:min(100%,210mm);
 
   aspect-ratio:
     210 / 297;
 
-  position:relative;
-
-  transform-style:preserve-3d;
+  transform-style:
+    preserve-3d;
 
   transition:
-    transform .65s
+    transform .62s
     cubic-bezier(.2,.8,.2,1);
 
   filter:
     drop-shadow(
-      0 24px 55px
-      rgba(0,0,0,.31)
+      0 23px 52px
+      rgba(0,0,0,.3)
     );
 }
 
-.book.flip-next{
+.book.next{
   transform:
     rotateY(-180deg);
 }
 
-.book.flip-prev{
+.book.prev{
   transform:
     rotateY(180deg);
 }
 
 .sheet{
   position:absolute;
-
   inset:0;
 
-  padding:8%;
-
   display:flex;
-
   flex-direction:column;
+
+  padding:8%;
 
   overflow:auto;
 
@@ -1449,7 +1402,7 @@ select:focus{
 
   border:
     1px solid
-    #e8dfc5;
+    #e7dfc5;
 
   border-radius:8px;
 
@@ -1462,10 +1415,9 @@ select:focus{
 }
 
 .page-top{
-  color:#95710d;
+  color:#96700c;
 
   font-size:9px;
-
   font-weight:1000;
 
   letter-spacing:.12em;
@@ -1477,7 +1429,6 @@ select:focus{
   color:#777;
 
   font-size:10px;
-
   font-weight:900;
 }
 
@@ -1486,7 +1437,7 @@ select:focus{
     13px 0;
 
   font-size:
-    clamp(24px,3vw,38px);
+    clamp(23px,3vw,37px);
 
   line-height:1.08;
 }
@@ -1499,28 +1450,27 @@ select:focus{
   overflow:auto;
 
   font-size:
-    clamp(12px,1.25vw,17px);
+    clamp(12px,1.2vw,16px);
 
-  line-height:1.72;
+  line-height:1.7;
 }
 
 .page-callout{
-  margin-top:17px;
+  margin-top:14px;
 
-  padding:13px;
+  padding:12px;
 
   border:
     1px solid
-    #e5cc68;
+    #e3ca68;
 
-  border-radius:11px;
+  border-radius:10px;
 
-  background:#fff6ce;
+  background:#fff6cf;
 
-  color:#594400;
+  color:#594300;
 
   font-size:12px;
-
   font-weight:850;
 }
 
@@ -1528,200 +1478,27 @@ select:focus{
   display:flex;
 
   justify-content:center;
-
   align-items:center;
 
-  gap:8px;
-
   flex-wrap:wrap;
+
+  gap:8px;
 }
 
 .counter{
-  min-width:100px;
+  min-width:85px;
 
   text-align:center;
 
-  color:#eadc97;
+  color:#eadc98;
 
   font-size:12px;
-
   font-weight:900;
 }
 
-/* =====================================================
-   BUY MODAL
-===================================================== */
-
-.buy-price{
-  margin:
-    13px 0;
-
-  color:var(--gold2);
-
-  font-size:40px;
-
-  font-weight:1000;
-}
-
-.upi-box{
-  padding:14px;
-
-  margin:
-    15px 0;
-
-  border:
-    1px solid
-    var(--line);
-
-  border-radius:14px;
-
-  background:
-    rgba(255,255,255,.025);
-}
-
-.upi-code{
-  margin-top:5px;
-
-  color:#fff;
-
-  word-break:break-all;
-
-  font-weight:900;
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer{
-  padding:
-    48px 0 60px;
-
-  margin-top:40px;
-
-  border-top:
-    1px solid
-    var(--line);
-
-  color:#91a4aa;
-}
-
-.footer-inner{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:20px;
-}
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:950px){
-
-  .hero{
-    grid-template-columns:1fr;
-  }
-
-  .products,
-  .feature-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .creator-grid{
-    grid-template-columns:1fr;
-  }
-
-  .stats{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-}
-
-@media(max-width:700px){
-
-  .nav-links{
-    display:none;
-
-    position:absolute;
-
-    top:68px;
-
-    left:12px;
-    right:12px;
-
-    padding:15px;
-
-    flex-direction:column;
-
-    border:
-      1px solid
-      var(--line);
-
-    border-radius:16px;
-
-    background:#081318;
-  }
-
-  .nav-links.open{
-    display:flex;
-  }
-
-  .mobile-toggle{
-    display:block;
-  }
-
-  .nav-actions .hide-mobile{
-    display:none;
-  }
-
-  .products,
-  .feature-grid,
-  .gallery,
-  .stats,
-  .form-two{
-    grid-template-columns:1fr;
-  }
-
-  .hero{
-    padding-top:55px;
-  }
-
-  .hero-actions .btn{
-    width:100%;
-  }
-
-  .gallery-card img{
-    height:330px;
-  }
-
-  .footer-inner{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    animation-duration:.001ms!important;
-    animation-iteration-count:1!important;
-    transition-duration:.001ms!important;
-    scroll-behavior:auto!important;
-  }
-}
-
-/* =====================================================
-   PRINT A4
-===================================================== */
+/* =========================
+   PRINT
+========================= */
 
 .print-stage{
   display:none;
@@ -1732,18 +1509,21 @@ body.printing .print-stage{
 }
 
 body.printing > *:not(.print-stage){
-  display:none!important;
+  display:none !important;
 }
 
 .print-page{
   width:210mm;
+
   height:297mm;
 
   min-height:297mm;
   max-height:297mm;
 
   padding:
-    17mm 16mm 20mm;
+    17mm
+    16mm
+    20mm;
 
   position:relative;
 
@@ -1764,14 +1544,18 @@ body.printing > *:not(.print-stage){
 
 .print-top{
   color:#92700d;
+
   font-size:9pt;
   font-weight:900;
+
   letter-spacing:.12em;
 }
 
 .print-number{
   margin-top:3mm;
+
   color:#777;
+
   font-size:9pt;
   font-weight:900;
 }
@@ -1816,11 +1600,11 @@ body.printing > *:not(.print-stage){
   right:16mm;
   bottom:8mm;
 
+  padding-top:3mm;
+
   border-top:
     1px solid
     #e5dfc7;
-
-  padding-top:3mm;
 
   color:#777;
 
@@ -1832,29 +1616,130 @@ body.printing > *:not(.print-stage){
   margin:0;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:950px){
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .products,
+  .grid3{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .creator-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .navlinks{
+    display:none;
+
+    position:absolute;
+
+    top:67px;
+
+    left:12px;
+    right:12px;
+
+    flex-direction:column;
+
+    padding:14px;
+
+    border:
+      1px solid
+      var(--line);
+
+    border-radius:15px;
+
+    background:#081318;
+  }
+
+  .navlinks.open{
+    display:flex;
+  }
+
+  .mobile-btn{
+    display:block;
+  }
+
+  .navright .optional{
+    display:none;
+  }
+
+  .products,
+  .grid3,
+  .gallery,
+  .two,
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:50px;
+  }
+
+  .hero-actions .btn{
+    width:100%;
+  }
+
+  .gallery-card img{
+    height:310px;
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- WHITE MAKKHAN DROPS -->
+<!-- =====================================================
+     WHITE MAKKHAN
+===================================================== -->
+
 <div class="makhan-layer" aria-hidden="true">
+
   <i class="makhan m1"></i>
   <i class="makhan m2"></i>
   <i class="makhan m3"></i>
   <i class="makhan m4"></i>
   <i class="makhan m5"></i>
   <i class="makhan m6"></i>
+
 </div>
 
-<!-- NAV -->
-<header class="navbar">
+<!-- =====================================================
+     NAV
+===================================================== -->
+
+<header class="nav">
 
   <a
-    class="logo"
-    href="#home">
+    href="#home"
+    class="brand">
 
-    <span class="logo-mark">
+    <span class="brand-icon">
       S
     </span>
 
@@ -1863,8 +1748,8 @@ body.printing > *:not(.print-stage){
   </a>
 
   <nav
-    id="navLinks"
-    class="nav-links">
+    id="navlinks"
+    class="navlinks">
 
     <a href="#home">
       Home
@@ -1882,26 +1767,22 @@ body.printing > *:not(.print-stage){
       Ebook Studio
     </a>
 
-    <a href="#about">
-      About
-    </a>
-
   </nav>
 
   <div
-    id="navActions"
-    class="nav-actions">
+    id="navright"
+    class="navright">
 
     <button
-      class="btn btn-outline hide-mobile"
+      class="btn outline optional"
       onclick="openEbookCreator()">
 
-      🎁 Free Ebook
+      📕 Ebook
 
     </button>
 
     <button
-      class="btn btn-outline"
+      class="btn outline"
       onclick="openLogin()">
 
       Log In
@@ -1909,7 +1790,7 @@ body.printing > *:not(.print-stage){
     </button>
 
     <button
-      class="btn btn-primary"
+      class="btn primary"
       onclick="openSignup()">
 
       Create Account
@@ -1919,7 +1800,7 @@ body.printing > *:not(.print-stage){
   </div>
 
   <button
-    class="mobile-toggle"
+    class="mobile-btn"
     onclick="toggleNav()">
 
     ☰
@@ -1928,19 +1809,22 @@ body.printing > *:not(.print-stage){
 
 </header>
 
-<!-- FESTIVE BANNER -->
+<!-- =====================================================
+     FESTIVE
+===================================================== -->
+
 <section class="festive">
 
   <div class="festive-inner">
 
-    <div class="festive-copy">
+    <div class="festive-text">
 
       <strong>
         🦚 JANMASHTAMI BUMPER OFFER
       </strong>
 
       <span>
-        Create • Publish • Grow • FREE & Paid Digital Products
+        Create · Publish · Grow · FREE & Paid Products
       </span>
 
     </div>
@@ -1949,14 +1833,14 @@ body.printing > *:not(.print-stage){
       🪔
     </div>
 
-    <div class="festive-copy">
+    <div class="festive-text">
 
       <strong>
         🧈 MAKKHAN WALI VIBES
       </strong>
 
       <span>
-        Sellora — Sell Your Knowledge. Build Your Digital Business.
+        Sellora — Sell Your Knowledge
       </span>
 
     </div>
@@ -1965,12 +1849,13 @@ body.printing > *:not(.print-stage){
 
 </section>
 
-<main>
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-<!-- HERO -->
 <section
-  class="hero container"
-  id="home">
+  id="home"
+  class="hero container">
 
   <div>
 
@@ -1990,16 +1875,17 @@ body.printing > *:not(.print-stage){
 
     <p>
 
-      Create premium ebooks, publish digital products,
-      set your own price or offer products completely free,
-      and let other Sellora users discover them.
+      Create ebooks, publish real digital products,
+      set your own price or make them FREE.
+      Products are shared through Sellora's
+      Supabase marketplace.
 
     </p>
 
     <div class="hero-actions">
 
       <button
-        class="btn btn-primary"
+        class="btn primary"
         onclick="openSignup()">
 
         🚀 Start Creating
@@ -2007,15 +1893,15 @@ body.printing > *:not(.print-stage){
       </button>
 
       <button
-        class="btn btn-outline"
-        onclick="openCreatorDashboard()">
+        class="btn outline"
+        onclick="scrollToCreator()">
 
-        🛍️ Creator Studio
+        🛍️ Publish Product
 
       </button>
 
       <button
-        class="btn btn-outline"
+        class="btn outline"
         onclick="openEbookCreator()">
 
         📕 Generate Ebook
@@ -2024,30 +1910,23 @@ body.printing > *:not(.print-stage){
 
     </div>
 
-    <div class="offer-line">
-
+    <div class="offer">
       🪔 JANMASHTAMI BUMPER OFFER
-
     </div>
 
-    <div class="offer-line">
-
-      👥 <span id="userCount">
-        126+
-      </span>
-      Sellora users
-
+    <div class="offer">
+      👥 126+ Sellora users
     </div>
 
   </div>
 
-  <div class="hero-art">
+  <div class="hero-image-box">
 
     <img
-      src="krishna-janmashtami-1.png"
       class="hero-image"
+      src="krishna-janmashtami-1.png"
       alt="Krishna Janmashtami"
-      onerror="this.style.display='none'">
+    >
 
     <div class="hero-label">
 
@@ -2061,142 +1940,85 @@ body.printing > *:not(.print-stage){
 
 </section>
 
-<!-- OFFER -->
+<!-- =====================================================
+     FEATURES
+===================================================== -->
+
 <section class="section">
-
-  <div class="container">
-
-    <div class="card center">
-
-      <div class="badge">
-        🦚 JANMASHTAMI BUMPER OFFER
-      </div>
-
-      <h2 style="margin:14px 0 7px">
-
-        Create Your Digital Business
-
-      </h2>
-
-      <p class="subtitle">
-
-        Build a 50-page ebook,
-        publish your own digital products,
-        choose FREE or your own price,
-        and reach the shared marketplace.
-
-      </p>
-
-      <div style="
-        display:flex;
-        justify-content:center;
-        gap:9px;
-        flex-wrap:wrap">
-
-        <button
-          class="btn btn-primary"
-          onclick="openEbookCreator()">
-
-          📕 Make Ebook
-
-        </button>
-
-        <button
-          class="btn btn-outline"
-          onclick="openCreatorDashboard()">
-
-          🛍️ Publish Product
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FEATURES -->
-<section
-  class="section"
-  id="about">
 
   <div class="container center">
 
-    <h2 class="title">
-      One Premium Home For Creators
+    <div class="badge">
+      SELLORA CREATOR PLATFORM
+    </div>
+
+    <h2
+      class="title"
+      style="margin-top:13px">
+
+      One Home For Creators
+
     </h2>
 
     <p class="subtitle">
 
-      Create ebooks,
-      publish digital products,
-      set pricing and build your creator store.
+      Real accounts, real products,
+      shared marketplace and digital downloads.
 
     </p>
 
-    <div class="feature-grid">
+    <div class="grid3">
 
-      <article class="card">
+      <div class="card">
 
         <div class="icon">
           📕
         </div>
 
         <h3>
-          50-Page Ebook Studio
+          Ebook Studio
         </h3>
 
         <p>
-
-          Generate exactly 50 A4 ebook pages,
-          use the page flip reader,
-          and download the ebook.
-
+          Generate 50-page ebooks with countdown,
+          page flip and A4 PDF printing.
         </p>
 
-      </article>
+      </div>
 
-      <article class="card">
+      <div class="card">
 
         <div class="icon">
-          🛍️
+          🌐
         </div>
 
         <h3>
-          Shared Marketplace
+          Real Marketplace
         </h3>
 
         <p>
-
-          Products published by one user
-          can be fetched from Supabase and
-          shown to other users.
-
+          Products are stored in Supabase and
+          loaded for every visitor.
         </p>
 
-      </article>
+      </div>
 
-      <article class="card">
+      <div class="card">
 
         <div class="icon">
           💰
         </div>
 
         <h3>
-          FREE or Your Price
+          FREE or Paid
         </h3>
 
         <p>
-
-          Set ₹0 for free products,
-          or use your own price and UPI ID
-          for paid products.
-
+          Set ₹0 for free products or set your
+          own price and add a UPI ID.
         </p>
 
-      </article>
+      </div>
 
     </div>
 
@@ -2204,7 +2026,10 @@ body.printing > *:not(.print-stage){
 
 </section>
 
-<!-- KRISHNA GALLERY -->
+<!-- =====================================================
+     KRISHNA
+===================================================== -->
+
 <section class="section">
 
   <div class="container">
@@ -2212,12 +2037,12 @@ body.printing > *:not(.print-stage){
     <div class="center">
 
       <div class="badge">
-        🦚 JANMASHTAMI BUMPER OFFER
+        🦚 JANMASHTAMI 2026
       </div>
 
       <h2
         class="title"
-        style="margin-top:14px">
+        style="margin-top:13px">
 
         Krishna Janmashtami Celebration
 
@@ -2225,8 +2050,8 @@ body.printing > *:not(.print-stage){
 
       <p class="subtitle">
 
-        Celebrate the divine birth of Shri Krishna
-        with Sellora's creator season.
+        🧈 White Makkhan · 🦚 Krishna ·
+        Sellora Creator Season
 
       </p>
 
@@ -2239,7 +2064,7 @@ body.printing > *:not(.print-stage){
         <img
           src="krishna-janmashtami-1.png"
           alt="Krishna Janmashtami"
-          onerror="this.style.display='none'">
+        >
 
         <div class="gallery-info">
 
@@ -2259,8 +2084,8 @@ body.printing > *:not(.print-stage){
 
         <img
           src="krishna-janmashtami-2.png"
-          alt="Krishna celebration"
-          onerror="this.style.display='none'">
+          alt="Krishna Janmashtami"
+        >
 
         <div class="gallery-info">
 
@@ -2269,7 +2094,7 @@ body.printing > *:not(.print-stage){
           </strong>
 
           <small>
-            Janmashtami Bumper Offer is live.
+            Janmashtami Bumper Offer
           </small>
 
         </div>
@@ -2282,23 +2107,34 @@ body.printing > *:not(.print-stage){
 
 </section>
 
-<!-- MARKETPLACE -->
+<!-- =====================================================
+     MARKETPLACE
+===================================================== -->
+
 <section
-  class="section"
-  id="marketplace">
+  id="marketplace"
+  class="section">
 
   <div class="container">
 
     <div class="center">
 
-      <h2 class="title">
+      <div class="badge">
+        🛍️ REAL SHARED MARKETPLACE
+      </div>
+
+      <h2
+        class="title"
+        style="margin-top:13px">
+
         Sellora Marketplace
+
       </h2>
 
       <p class="subtitle">
 
-        Products from Sellora creators.
-        This marketplace automatically syncs from Supabase.
+        Products come directly from the shared
+        Supabase database.
 
       </p>
 
@@ -2310,7 +2146,8 @@ body.printing > *:not(.print-stage){
         id="marketSearch"
         class="input search"
         placeholder="Search products..."
-        oninput="renderMarketplace()">
+        oninput="renderMarketplace()"
+      >
 
       <select
         id="marketCategory"
@@ -2318,7 +2155,7 @@ body.printing > *:not(.print-stage){
         onchange="renderMarketplace()">
 
         <option value="all">
-          All categories
+          All Categories
         </option>
 
         <option value="ebooks">
@@ -2344,8 +2181,8 @@ body.printing > *:not(.print-stage){
       </select>
 
       <button
-        class="btn btn-outline"
-        onclick="refreshCloudProducts()">
+        class="btn outline"
+        onclick="loadProducts(true)">
 
         🔄 Refresh
 
@@ -2370,24 +2207,78 @@ body.printing > *:not(.print-stage){
 
 </section>
 
-<!-- CREATOR -->
+<!-- =====================================================
+     CREATOR
+===================================================== -->
+
 <section
-  class="section"
-  id="creator">
+  id="creator"
+  class="section">
 
   <div class="container">
 
     <div class="center">
 
-      <h2 class="title">
-        Creator Studio
+      <div class="badge">
+        ✦ CREATOR STUDIO
+      </div>
+
+      <h2
+        class="title"
+        style="margin-top:13px">
+
+        Publish Real Products
+
       </h2>
 
       <p class="subtitle">
 
-        Turn Your Knowledge Into a Premium Store.
+        Your published product goes into the
+        shared Sellora database.
 
       </p>
+
+    </div>
+
+    <div
+      id="creatorGuest"
+      class="card center">
+
+      <div
+        class="icon"
+        style="margin:0 auto 14px">
+
+        ✦
+
+      </div>
+
+      <h3>
+        Sign in to publish
+      </h3>
+
+      <p>
+
+        Use your real Sellora account to upload
+        products and manage your listings.
+
+      </p>
+
+      <button
+        class="btn primary"
+        onclick="openSignup()">
+
+        Create Account
+
+      </button>
+
+      <button
+        class="btn outline"
+        style="margin-left:6px"
+        onclick="openLogin()">
+
+        Log In
+
+      </button>
 
     </div>
 
@@ -2406,7 +2297,7 @@ body.printing > *:not(.print-stage){
 
           <h2
             id="welcomeName"
-            style="margin:9px 0 2px">
+            style="margin:8px 0 2px">
 
             Welcome
 
@@ -2414,42 +2305,38 @@ body.printing > *:not(.print-stage){
 
           <p
             id="accountSummary"
-            style="margin:0;color:var(--muted)">
+            style="
+              margin:0;
+              color:var(--muted)
+            ">
 
           </p>
 
-        </div>
+          <div class="cloud-status">
 
-        <div style="
-          display:flex;
-          gap:8px;
-          flex-wrap:wrap">
+            <span
+              id="cloudDot"
+              class="status-dot">
+            </span>
 
-          <button
-            class="btn btn-primary"
-            onclick="openEbookCreator()">
+            <span
+              id="cloudText">
 
-            📕 Create Ebook
+              Connecting...
 
-          </button>
+            </span>
 
-          <button
-            class="btn btn-outline"
-            onclick="openCloudSetup()">
-
-            ☁ Supabase
-
-          </button>
-
-          <button
-            class="btn btn-outline"
-            onclick="logout()">
-
-            Log Out
-
-          </button>
+          </div>
 
         </div>
+
+        <button
+          class="btn outline"
+          onclick="logout()">
+
+          Log Out
+
+        </button>
 
       </div>
 
@@ -2458,24 +2345,10 @@ body.printing > *:not(.print-stage){
         <div class="stat">
 
           <small>
-            Users
-          </small>
-
-          <strong
-            id="statUsers">
-            126+
-          </strong>
-
-        </div>
-
-        <div class="stat">
-
-          <small>
             Your Products
           </small>
 
-          <strong
-            id="statProducts">
+          <strong id="statProducts">
             0
           </strong>
 
@@ -2487,8 +2360,7 @@ body.printing > *:not(.print-stage){
             Published
           </small>
 
-          <strong
-            id="statPublished">
+          <strong id="statPublished">
             0
           </strong>
 
@@ -2497,11 +2369,10 @@ body.printing > *:not(.print-stage){
         <div class="stat">
 
           <small>
-            Sales / Downloads
+            Downloads
           </small>
 
-          <strong
-            id="statSales">
+          <strong id="statDownloads">
             0
           </strong>
 
@@ -2511,28 +2382,27 @@ body.printing > *:not(.print-stage){
 
       <div class="creator-grid">
 
-        <!-- PUBLISH FORM -->
+        <!-- PRODUCT FORM -->
         <div class="form-card">
 
           <h3>
-            🛍️ Publish Your Product
+            🛍️ Publish Product
           </h3>
 
           <div class="notice">
 
             <b>
-              Janmashtami Bumper Offer
+              ₹0 = FREE
             </b>
 
             <br>
 
-            ₹0 = FREE.
-            For paid products use your own price
-            and enter your UPI ID.
+            Paid products need your price and UPI ID.
 
           </div>
 
           <form
+            id="productForm"
             onsubmit="publishProduct(event)">
 
             <div class="field">
@@ -2545,11 +2415,12 @@ body.printing > *:not(.print-stage){
                 id="productTitle"
                 class="input"
                 required
-                placeholder="Example: Creator Growth Guide">
+                placeholder="My Digital Product"
+              >
 
             </div>
 
-            <div class="form-two">
+            <div class="two">
 
               <div class="field">
 
@@ -2596,7 +2467,8 @@ body.printing > *:not(.print-stage){
                   type="number"
                   min="0"
                   step="1"
-                  value="0">
+                  value="0"
+                >
 
               </div>
 
@@ -2610,8 +2482,9 @@ body.printing > *:not(.print-stage){
 
               <textarea
                 id="productDescription"
-                required
+                class="input"
                 rows="5"
+                required
                 placeholder="Describe your product...">
               </textarea>
 
@@ -2627,7 +2500,8 @@ body.printing > *:not(.print-stage){
                 id="productFile"
                 class="input"
                 type="file"
-                required>
+                required
+              >
 
             </div>
 
@@ -2641,7 +2515,8 @@ body.printing > *:not(.print-stage){
                 id="productCover"
                 class="input"
                 type="file"
-                accept="image/*">
+                accept="image/*"
+              >
 
             </div>
 
@@ -2654,13 +2529,15 @@ body.printing > *:not(.print-stage){
               <input
                 id="productUpi"
                 class="input"
-                placeholder="yourname@upi">
+                placeholder="yourname@upi"
+              >
 
             </div>
 
             <button
-              class="btn btn-primary"
-              type="submit">
+              id="publishButton"
+              type="submit"
+              class="btn primary">
 
               🚀 Publish Product
 
@@ -2674,17 +2551,8 @@ body.printing > *:not(.print-stage){
         <div class="form-card">
 
           <h3>
-            📦 Your Products
+            📦 My Products
           </h3>
-
-          <p style="
-            color:var(--muted);
-            font-size:12px">
-
-            Products successfully published to Supabase
-            can be discovered by other Sellora users.
-
-          </p>
 
           <div
             id="myProducts"
@@ -2697,45 +2565,17 @@ body.printing > *:not(.print-stage){
 
     </div>
 
-    <div
-      id="creatorGuest"
-      class="card center">
-
-      <div
-        class="icon"
-        style="margin:0 auto 14px">
-
-        ✦
-
-      </div>
-
-      <h3>
-        Your Creator Studio is ready.
-      </h3>
-
-      <p>
-        Create an account to upload products,
-        set your price and make ebooks.
-      </p>
-
-      <button
-        class="btn btn-primary"
-        onclick="openSignup()">
-
-        Create Account
-
-      </button>
-
-    </div>
-
   </div>
 
 </section>
 
-<!-- EBOOK -->
+<!-- =====================================================
+     EBOOK
+===================================================== -->
+
 <section
-  class="section"
-  id="ebook">
+  id="ebook"
+  class="section">
 
   <div class="container center">
 
@@ -2745,7 +2585,7 @@ body.printing > *:not(.print-stage){
 
     <h2
       class="title"
-      style="margin-top:14px">
+      style="margin-top:13px">
 
       Create Your 50-Page Ebook
 
@@ -2754,12 +2594,12 @@ body.printing > *:not(.print-stage){
     <p class="subtitle">
 
       Generate → 5-second countdown →
-      automatically open → page flip → download.
+      automatic open → flip → A4 print → download.
 
     </p>
 
     <button
-      class="btn btn-primary"
+      class="btn primary"
       onclick="openEbookCreator()">
 
       🚀 Generate Ebook
@@ -2770,18 +2610,27 @@ body.printing > *:not(.print-stage){
 
 </section>
 
-</main>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
-<!-- FOOTER -->
-<footer class="footer">
+<footer class="section">
 
-  <div class="container footer-inner">
+  <div class="container">
 
-    <div>
+    <div
+      class="card"
+      style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:15px;
+        flex-wrap:wrap
+      ">
 
-      <div class="logo">
+      <div class="brand">
 
-        <span class="logo-mark">
+        <span class="brand-icon">
           S
         </span>
 
@@ -2789,18 +2638,14 @@ body.printing > *:not(.print-stage){
 
       </div>
 
-      <div style="margin-top:7px">
+      <div
+        style="
+          color:var(--muted);
+          font-size:12px">
 
-        Sell your knowledge.
-        Build your digital business.
+        🦚 JANMASHTAMI BUMPER OFFER · 🧈 WHITE MAKKHAN
 
       </div>
-
-    </div>
-
-    <div>
-
-      🦚 JANMASHTAMI BUMPER OFFER
 
     </div>
 
@@ -2808,15 +2653,15 @@ body.printing > *:not(.print-stage){
 
 </footer>
 
-<!-- ====================================================
-     SIGNUP MODAL
-==================================================== -->
+<!-- =====================================================
+     SIGNUP
+===================================================== -->
 
 <div
   id="signupModal"
   class="modal">
 
-  <div class="modal-card">
+  <div class="modal-box">
 
     <button
       class="close"
@@ -2827,7 +2672,7 @@ body.printing > *:not(.print-stage){
     </button>
 
     <div class="badge">
-      SELLORA ACCOUNT
+      SELLORA REAL ACCOUNT
     </div>
 
     <h2>
@@ -2836,13 +2681,12 @@ body.printing > *:not(.print-stage){
 
     <p style="color:var(--muted)">
 
-      Every new unique account adds +1
-      to the local Sellora count.
+      This account is stored in Supabase Auth.
 
     </p>
 
     <form
-      onsubmit="createAccount(event)">
+      onsubmit="signup(event)">
 
       <div class="field">
 
@@ -2853,7 +2697,8 @@ body.printing > *:not(.print-stage){
         <input
           id="signupName"
           class="input"
-          required>
+          required
+        >
 
       </div>
 
@@ -2867,7 +2712,8 @@ body.printing > *:not(.print-stage){
           id="signupEmail"
           class="input"
           type="email"
-          required>
+          required
+        >
 
       </div>
 
@@ -2881,14 +2727,16 @@ body.printing > *:not(.print-stage){
           id="signupPassword"
           class="input"
           type="password"
-          minlength="4"
-          required>
+          minlength="6"
+          required
+        >
 
       </div>
 
       <button
-        class="btn btn-primary"
-        type="submit">
+        id="signupButton"
+        type="submit"
+        class="btn primary">
 
         Create Account
 
@@ -2900,15 +2748,15 @@ body.printing > *:not(.print-stage){
 
 </div>
 
-<!-- ====================================================
-     LOGIN MODAL
-==================================================== -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div
   id="loginModal"
   class="modal">
 
-  <div class="modal-card">
+  <div class="modal-box">
 
     <button
       class="close"
@@ -2927,7 +2775,7 @@ body.printing > *:not(.print-stage){
     </h2>
 
     <form
-      onsubmit="loginAccount(event)">
+      onsubmit="login(event)">
 
       <div class="field">
 
@@ -2939,7 +2787,8 @@ body.printing > *:not(.print-stage){
           id="loginEmail"
           class="input"
           type="email"
-          required>
+          required
+        >
 
       </div>
 
@@ -2953,13 +2802,15 @@ body.printing > *:not(.print-stage){
           id="loginPassword"
           class="input"
           type="password"
-          required>
+          required
+        >
 
       </div>
 
       <button
-        class="btn btn-primary"
-        type="submit">
+        id="loginButton"
+        type="submit"
+        class="btn primary">
 
         Log In
 
@@ -2971,15 +2822,15 @@ body.printing > *:not(.print-stage){
 
 </div>
 
-<!-- ====================================================
+<!-- =====================================================
      EBOOK CREATOR
-==================================================== -->
+===================================================== -->
 
 <div
   id="ebookCreatorModal"
   class="modal">
 
-  <div class="modal-card">
+  <div class="modal-box">
 
     <button
       class="close"
@@ -2994,7 +2845,7 @@ body.printing > *:not(.print-stage){
     </div>
 
     <h2>
-      Generate Your 50-Page Ebook
+      Generate Your Ebook
     </h2>
 
     <form
@@ -3010,7 +2861,8 @@ body.printing > *:not(.print-stage){
           id="ebookTitle"
           class="input"
           required
-          placeholder="My Digital Business Guide">
+          placeholder="My Digital Business Guide"
+        >
 
       </div>
 
@@ -3024,7 +2876,8 @@ body.printing > *:not(.print-stage){
           id="ebookGoal"
           class="input"
           required
-          placeholder="What should the reader learn?">
+          placeholder="What should the reader learn?"
+        >
 
       </div>
 
@@ -3039,43 +2892,14 @@ body.printing > *:not(.print-stage){
           class="input"
           rows="6"
           required
-          placeholder="Describe what your ebook should teach...">
+          placeholder="Describe the topic...">
         </textarea>
 
       </div>
 
-      <div class="field">
-
-        <label>
-          Category
-        </label>
-
-        <select
-          id="ebookCategory">
-
-          <option>
-            Business
-          </option>
-
-          <option>
-            Startup
-          </option>
-
-          <option>
-            Marketing
-          </option>
-
-          <option>
-            Creator Economy
-          </option>
-
-        </select>
-
-      </div>
-
       <button
-        class="btn btn-primary"
-        type="submit">
+        type="submit"
+        class="btn primary">
 
         🚀 Generate Ebook
 
@@ -3087,15 +2911,15 @@ body.printing > *:not(.print-stage){
 
 </div>
 
-<!-- ====================================================
+<!-- =====================================================
      COUNTDOWN
-==================================================== -->
+===================================================== -->
 
 <div
   id="countdownModal"
   class="modal">
 
-  <div class="modal-card">
+  <div class="modal-box">
 
     <div class="countdown">
 
@@ -3109,7 +2933,7 @@ body.printing > *:not(.print-stage){
 
       <div
         id="countNumber"
-        class="count-number">
+        class="count">
 
         5
 
@@ -3125,7 +2949,7 @@ body.printing > *:not(.print-stage){
         id="countMessage"
         style="color:var(--muted)">
 
-        Preparing your 50-page ebook...
+        Preparing your ebook...
 
       </p>
 
@@ -3135,16 +2959,16 @@ body.printing > *:not(.print-stage){
 
 </div>
 
-<!-- ====================================================
+<!-- =====================================================
      EBOOK VIEWER
-==================================================== -->
+===================================================== -->
 
 <div
   id="ebookModal"
   class="modal">
 
   <div
-    class="modal-card"
+    class="modal-box"
     style="width:min(1080px,100%)">
 
     <button
@@ -3156,9 +2980,7 @@ body.printing > *:not(.print-stage){
     </button>
 
     <div class="badge">
-
       📕 SELLORA · JANMASHTAMI BUMPER OFFER
-
     </div>
 
     <h2
@@ -3171,13 +2993,11 @@ body.printing > *:not(.print-stage){
 
     <p style="color:var(--muted)">
 
-      50 A4 pages · Page flip · Download Ebook · PDF
+      50 A4 pages · Flip · Download · Print
 
     </p>
 
-    <div
-      id="ebookStage"
-      class="ebook-stage">
+    <div class="book-wrap">
 
       <div
         id="book"
@@ -3210,9 +3030,7 @@ body.printing > *:not(.print-stage){
           </div>
 
           <div class="page-callout">
-
-            🦚 JANMASHTAMI BUMPER OFFER
-
+            🧈 WHITE MAKKHAN · 🦚 KRISHNA · SELLORA
           </div>
 
         </article>
@@ -3221,9 +3039,7 @@ body.printing > *:not(.print-stage){
           class="sheet back">
 
           <div class="page-top">
-
             SELLORA · JANMASHTAMI BUMPER OFFER
-
           </div>
 
           <div
@@ -3247,9 +3063,7 @@ body.printing > *:not(.print-stage){
           </div>
 
           <div class="page-callout">
-
-            🧈 CREATE · PUBLISH · GROW
-
+            🦚 CREATE · PUBLISH · GROW
           </div>
 
         </article>
@@ -3261,7 +3075,7 @@ body.printing > *:not(.print-stage){
     <div class="ebook-controls">
 
       <button
-        class="btn btn-outline"
+        class="btn outline"
         onclick="prevPage()">
 
         ← Previous
@@ -3277,7 +3091,7 @@ body.printing > *:not(.print-stage){
       </div>
 
       <button
-        class="btn btn-primary"
+        class="btn primary"
         onclick="nextPage()">
 
         Next →
@@ -3285,7 +3099,7 @@ body.printing > *:not(.print-stage){
       </button>
 
       <button
-        class="btn btn-outline"
+        class="btn outline"
         onclick="downloadEbookHTML()">
 
         ⬇ Download Ebook
@@ -3293,7 +3107,7 @@ body.printing > *:not(.print-stage){
       </button>
 
       <button
-        class="btn btn-primary"
+        class="btn primary"
         onclick="downloadEbookPDF()">
 
         📄 Download PDF
@@ -3301,7 +3115,7 @@ body.printing > *:not(.print-stage){
       </button>
 
       <button
-        class="btn btn-outline"
+        class="btn outline"
         onclick="printEbook()">
 
         🖨 Print
@@ -3314,15 +3128,15 @@ body.printing > *:not(.print-stage){
 
 </div>
 
-<!-- ====================================================
-     BUY MODAL
-==================================================== -->
+<!-- =====================================================
+     BUY
+===================================================== -->
 
 <div
   id="buyModal"
   class="modal">
 
-  <div class="modal-card">
+  <div class="modal-box">
 
     <button
       class="close"
@@ -3333,7 +3147,7 @@ body.printing > *:not(.print-stage){
     </button>
 
     <div class="badge">
-      🛍️ JANMASHTAMI BUMPER OFFER
+      🛍️ SELLORA MARKETPLACE
     </div>
 
     <h2
@@ -3350,37 +3164,41 @@ body.printing > *:not(.print-stage){
 
     <div
       id="buyAmount"
-      class="buy-price">
+      style="
+        color:var(--gold2);
+        font-size:38px;
+        font-weight:1000;
+        margin:12px 0">
 
       ₹0
 
     </div>
 
-    <div class="upi-box">
+    <div class="notice">
 
-      <div style="
-        font-size:12px;
-        color:var(--muted)">
+      Seller UPI ID
 
-        Seller UPI ID
+      <br>
 
-      </div>
-
-      <div
+      <strong
         id="buyUpi"
-        class="upi-code">
-      </div>
+        style="
+          display:block;
+          margin-top:4px;
+          word-break:break-all">
+      </strong>
 
     </div>
 
     <div style="
       display:flex;
+      flex-wrap:wrap;
       gap:8px;
-      flex-wrap:wrap">
+      margin-top:13px">
 
       <button
         id="upiOpen"
-        class="btn btn-primary">
+        class="btn primary">
 
         📱 Open UPI
 
@@ -3388,7 +3206,7 @@ body.printing > *:not(.print-stage){
 
       <button
         id="upiCopy"
-        class="btn btn-outline">
+        class="btn outline">
 
         📋 Copy UPI
 
@@ -3396,7 +3214,7 @@ body.printing > *:not(.print-stage){
 
       <button
         id="paymentDone"
-        class="btn btn-outline">
+        class="btn outline">
 
         ✅ I Have Paid
 
@@ -3404,93 +3222,13 @@ body.printing > *:not(.print-stage){
 
     </div>
 
-    <p style="
-      color:var(--muted);
-      font-size:11px;
-      margin-top:13px">
-
-      UPI payment launches from the buyer's device.
-      Automatic payment verification requires a payment gateway/webhook.
-
-    </p>
-
   </div>
 
 </div>
 
-<!-- ====================================================
-     SUPABASE SETTINGS
-==================================================== -->
-
-<div
-  id="cloudModal"
-  class="modal">
-
-  <div class="modal-card">
-
-    <button
-      class="close"
-      onclick="closeModal('cloudModal')">
-
-      ×
-
-    </button>
-
-    <div class="badge">
-      ☁ SHARED MARKETPLACE
-    </div>
-
-    <h2>
-      Supabase Connection
-    </h2>
-
-    <p style="color:var(--muted)">
-
-      These values are already configured for your Sellora project.
-
-    </p>
-
-    <div class="field">
-
-      <label>
-        Project URL
-      </label>
-
-      <input
-        id="cloudUrl"
-        class="input"
-        value="https://vpvwkdeeltilwlundkcj.supabase.co">
-
-    </div>
-
-    <div class="field">
-
-      <label>
-        Publishable Key
-      </label>
-
-      <textarea
-        id="cloudKey"
-        class="input"
-        rows="4">sb_publishable_CDLDhOmfc8KmnZ2lVroqEA_wlyXag27</textarea>
-
-    </div>
-
-    <button
-      class="btn btn-primary"
-      onclick="saveCloudSettings()">
-
-      Connect & Sync
-
-    </button>
-
-  </div>
-
-</div>
-
-<!-- ====================================================
-     PRINT STAGE
-==================================================== -->
+<!-- =====================================================
+     PRINT
+===================================================== -->
 
 <div
   id="printStage"
@@ -3500,7 +3238,7 @@ body.printing > *:not(.print-stage){
 <script>
 
 /* =========================================================
-   SELLORA CONFIG
+   SUPABASE
 ========================================================= */
 
 const SUPABASE_URL =
@@ -3512,41 +3250,16 @@ const SUPABASE_KEY =
 const SUPABASE_BUCKET =
   "sellora-products";
 
-const STORAGE = {
-
-  profile:
-    "sellora_profile",
-
-  accounts:
-    "sellora_accounts",
-
-  products:
-    "sellora_products",
-
-  count:
-    "sellora_user_count",
-
-  counted:
-    "sellora_counted_emails",
-
-  sales:
-    "sellora_sales"
-
-};
-
 let supabaseClient =
   null;
 
-let supabaseUser =
+let currentUser =
   null;
 
-let supabaseSession =
+let currentSession =
   null;
 
-let supabaseSdkPromise =
-  null;
-
-let currentEbook = {
+let ebook = {
 
   title:
     "Sellora Ebook",
@@ -3560,7 +3273,7 @@ let currentEbook = {
 };
 
 /* =========================================================
-   BASIC HELPERS
+   HELPERS
 ========================================================= */
 
 function $(id){
@@ -3571,67 +3284,14 @@ function $(id){
 
 function escapeHtml(value){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-function escapeAttr(value){
-
-  return escapeHtml(value)
-    .replace(/`/g,"&#096;");
-
-}
-
-function getJSON(
-  key,
-  fallback
-){
-
-  try{
-
-    const raw =
-      localStorage.getItem(key);
-
-    return raw
-      ? JSON.parse(raw)
-      : fallback;
-
-  }catch{
-
-    return fallback;
-
-  }
-
-}
-
-function setJSON(
-  key,
-  value
-){
-
-  try{
-
-    localStorage.setItem(
-      key,
-      JSON.stringify(value)
-    );
-
-    return true;
-
-  }catch{
-
-    toast(
-      "Could not save this information in your browser."
-    );
-
-    return false;
-
-  }
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
 
 }
 
@@ -3653,16 +3313,16 @@ function toast(message){
     box.style.cssText = `
       position:fixed;
       left:50%;
-      bottom:22px;
+      bottom:20px;
       transform:translateX(-50%);
       z-index:99999;
       max-width:92vw;
       padding:12px 17px;
       border-radius:13px;
-      background:#10191d;
       color:#fff;
+      background:#10191d;
       border:1px solid rgba(244,200,74,.25);
-      box-shadow:0 15px 45px rgba(0,0,0,.38);
+      box-shadow:0 15px 45px rgba(0,0,0,.4);
       font-size:13px;
       font-weight:850;
     `;
@@ -3677,35 +3337,24 @@ function toast(message){
     message;
 
   clearTimeout(
-    box.__timer
+    box._timer
   );
 
-  box.__timer =
+  box._timer =
     setTimeout(
       ()=>{
-        if(box.isConnected){
+
+        if(
+          box.isConnected
+        ){
           box.remove();
         }
+
       },
-      3500
+      4000
     );
 
 }
-
-/* =========================================================
-   NAV
-========================================================= */
-
-function toggleNav(){
-
-  $("navLinks")
-    ?.classList
-    .toggle("open");
-
-}
-
-window.toggleNav =
-  toggleNav;
 
 /* =========================================================
    MODALS
@@ -3715,7 +3364,9 @@ function openModal(id){
 
   $(id)
     ?.classList
-    .add("show");
+    .add(
+      "show"
+    );
 
 }
 
@@ -3723,9 +3374,14 @@ function closeModal(id){
 
   $(id)
     ?.classList
-    .remove("show");
+    .remove(
+      "show"
+    );
 
 }
+
+window.openModal =
+  openModal;
 
 window.closeModal =
   closeModal;
@@ -3784,7 +3440,9 @@ document.addEventListener(
     if(
       $("ebookModal")
         ?.classList
-        .contains("show")
+        .contains(
+          "show"
+        )
     ){
 
       if(
@@ -3807,119 +3465,417 @@ document.addEventListener(
 );
 
 /* =========================================================
-   USER COUNT
+   NAV
 ========================================================= */
 
-function getUserCount(){
+function toggleNav(){
 
-  let count =
-    Number(
-      localStorage.getItem(
-        STORAGE.count
-      )
+  $("navlinks")
+    ?.classList
+    .toggle(
+      "open"
     );
-
-  if(
-    !Number.isFinite(count) ||
-    count < 126
-  ){
-
-    count =
-      126;
-
-    localStorage.setItem(
-      STORAGE.count,
-      "126"
-    );
-
-  }
-
-  return Math.floor(
-    count
-  );
 
 }
 
-function refreshUserCount(){
+window.toggleNav =
+  toggleNav;
 
-  const value =
-    getUserCount()+
-    "+";
+function scrollToCreator(){
 
-  if(
-    $("userCount")
-  ){
-
-    $("userCount")
-      .textContent =
-      value;
-
-  }
-
-  if(
-    $("statUsers")
-  ){
-
-    $("statUsers")
-      .textContent =
-      value;
-
-  }
+  $("creator")
+    ?.scrollIntoView({
+      behavior:"smooth"
+    });
 
 }
 
-function countNewUser(
-  email
-){
+window.scrollToCreator =
+  scrollToCreator;
 
-  const counted =
-    getJSON(
-      STORAGE.counted,
-      []
-    );
+/* =========================================================
+   LOAD SUPABASE SDK
+========================================================= */
+
+function loadSupabaseSDK(){
 
   if(
-    counted.includes(email)
+    window.supabase &&
+    typeof
+      window.supabase.createClient ===
+      "function"
   ){
 
-    refreshUserCount();
-
-    return;
+    return Promise.resolve(
+      true
+    );
 
   }
 
-  counted.push(
-    email
-  );
+  return new Promise(
+    (resolve,reject)=>{
 
-  setJSON(
-    STORAGE.counted,
-    counted
-  );
+      const script =
+        document.createElement(
+          "script"
+        );
 
-  localStorage.setItem(
-    STORAGE.count,
-    String(
-      getUserCount()+1
-    )
-  );
+      script.src =
+        "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
 
-  refreshUserCount();
+      script.async =
+        true;
+
+      script.onload =
+        ()=>{
+
+          if(
+            window.supabase &&
+            typeof
+              window.supabase.createClient ===
+              "function"
+          ){
+
+            resolve(
+              true
+            );
+
+          }else{
+
+            reject(
+              new Error(
+                "Supabase library loaded but createClient is unavailable."
+              )
+            );
+
+          }
+
+        };
+
+      script.onerror =
+        ()=>{
+
+          reject(
+            new Error(
+              "Could not load Supabase."
+            )
+          );
+
+        };
+
+      document.head.appendChild(
+        script
+      );
+
+    }
+  );
 
 }
 
 /* =========================================================
-   ACCOUNT
+   SUPABASE INIT
 ========================================================= */
 
-function currentProfile(){
+async function initSupabase(){
 
-  return getJSON(
-    STORAGE.profile,
-    null
-  );
+  if(
+    supabaseClient
+  ){
+
+    try{
+
+      const result =
+        await supabaseClient
+          .auth
+          .getSession();
+
+      if(
+        !result.error
+      ){
+
+        currentSession =
+          result.data?.session ||
+          null;
+
+        currentUser =
+          currentSession?.user ||
+          null;
+
+        updateAuthUI();
+
+        return true;
+
+      }
+
+    }catch{}
+
+  }
+
+  try{
+
+    await loadSupabaseSDK();
+
+    supabaseClient =
+      window.supabase
+        .createClient(
+          SUPABASE_URL,
+          SUPABASE_KEY,
+          {
+            auth:{
+              persistSession:true,
+              autoRefreshToken:true,
+              detectSessionInUrl:true
+            }
+          }
+        );
+
+    const result =
+      await supabaseClient
+        .auth
+        .getSession();
+
+    if(
+      result.error
+    ){
+
+      throw result.error;
+
+    }
+
+    currentSession =
+      result.data?.session ||
+      null;
+
+    currentUser =
+      currentSession?.user ||
+      null;
+
+    updateAuthUI();
+
+    /*
+      Watch real Supabase authentication changes.
+    */
+
+    supabaseClient
+      .auth
+      .onAuthStateChange(
+        (_event,session)=>{
+
+          currentSession =
+            session ||
+            null;
+
+          currentUser =
+            session?.user ||
+            null;
+
+          updateAuthUI();
+
+          loadProducts();
+
+        }
+      );
+
+    return true;
+
+  }catch(error){
+
+    console.error(
+      "SUPABASE INIT ERROR:",
+      error
+    );
+
+    toast(
+      "Supabase connection failed."
+    );
+
+    return false;
+
+  }
 
 }
+
+window.initSupabase =
+  initSupabase;
+
+/* =========================================================
+   AUTH UI
+========================================================= */
+
+function updateAuthUI(){
+
+  const guest =
+    $("creatorGuest");
+
+  const dashboard =
+    $("creatorDashboard");
+
+  const nav =
+    $("navright");
+
+  if(
+    currentUser
+  ){
+
+    if(guest){
+      guest.style.display =
+        "none";
+    }
+
+    if(dashboard){
+      dashboard.style.display =
+        "block";
+    }
+
+    const name =
+      currentUser
+        .user_metadata
+        ?.full_name ||
+      currentUser
+        .email
+        ?.split("@")[0] ||
+      "Creator";
+
+    const email =
+      currentUser.email ||
+      "";
+
+    if(
+      $("welcomeName")
+    ){
+
+      $("welcomeName")
+        .textContent =
+        "Welcome, "+
+        name+
+        "! 👋";
+
+    }
+
+    if(
+      $("accountSummary")
+    ){
+
+      $("accountSummary")
+        .textContent =
+        email+
+        " · Real Supabase Account";
+
+    }
+
+    if(
+      $("cloudDot")
+    ){
+
+      $("cloudDot")
+        .classList
+        .add(
+          "ok"
+        );
+
+    }
+
+    if(
+      $("cloudText")
+    ){
+
+      $("cloudText")
+        .textContent =
+        "Supabase connected";
+
+    }
+
+    nav.innerHTML = `
+
+      <span class="badge">
+
+        👋 ${escapeHtml(
+          name
+        )}
+
+      </span>
+
+      <button
+        class="btn primary"
+        onclick="scrollToCreator()">
+
+        Creator Studio
+
+      </button>
+
+    `;
+
+  }else{
+
+    if(guest){
+      guest.style.display =
+        "block";
+    }
+
+    if(dashboard){
+      dashboard.style.display =
+        "none";
+    }
+
+    if(
+      $("cloudDot")
+    ){
+
+      $("cloudDot")
+        .classList
+        .remove(
+          "ok"
+        );
+
+    }
+
+    if(
+      $("cloudText")
+    ){
+
+      $("cloudText")
+        .textContent =
+        "Marketplace is public";
+
+    }
+
+    nav.innerHTML = `
+
+      <button
+        class="btn outline optional"
+        onclick="openEbookCreator()">
+
+        📕 Ebook
+
+      </button>
+
+      <button
+        class="btn outline"
+        onclick="openLogin()">
+
+        Log In
+
+      </button>
+
+      <button
+        class="btn primary"
+        onclick="openSignup()">
+
+        Create Account
+
+      </button>
+
+    `;
+
+  }
+
+  renderMyProducts();
+
+}
+
+/* =========================================================
+   SIGNUP
+========================================================= */
 
 function openSignup(){
 
@@ -3932,45 +3888,7 @@ function openSignup(){
 window.openSignup =
   openSignup;
 
-function openLogin(){
-
-  openModal(
-    "loginModal"
-  );
-
-}
-
-window.openLogin =
-  openLogin;
-
-function openCreatorDashboard(){
-
-  const profile =
-    currentProfile();
-
-  if(!profile){
-
-    openSignup();
-
-    toast(
-      "Create a Sellora account first."
-    );
-
-    return;
-
-  }
-
-  $("creator")
-    ?.scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
-window.openCreatorDashboard =
-  openCreatorDashboard;
-
-function createAccount(
+async function signup(
   event
 ){
 
@@ -3992,109 +3910,144 @@ function createAccount(
       .value;
 
   if(
-    !name ||
-    !email ||
-    password.length < 4
+    password.length < 6
   ){
 
     toast(
-      "Please enter valid account details."
+      "Password must be at least 6 characters."
     );
 
     return;
 
   }
 
-  const accounts =
-    getJSON(
-      STORAGE.accounts,
-      []
-    );
+  const ready =
+    await initSupabase();
 
-  const existing =
-    accounts.find(
-      account =>
-        account.email ===
-        email
-    );
+  if(
+    !ready
+  ){
 
-  if(existing){
+    return;
+
+  }
+
+  const button =
+    $("signupButton");
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "Creating...";
+
+  try{
+
+    const result =
+      await supabaseClient
+        .auth
+        .signUp({
+
+          email,
+
+          password,
+
+          options:{
+            data:{
+              full_name:
+                name
+            }
+          }
+
+        });
+
+    if(
+      result.error
+    ){
+
+      throw result.error;
+
+    }
+
+    /*
+      Supabase may require email confirmation.
+    */
+
+    if(
+      result.data?.session
+    ){
+
+      currentSession =
+        result.data.session;
+
+      currentUser =
+        result.data.user;
+
+      updateAuthUI();
+
+      closeModal(
+        "signupModal"
+      );
+
+      toast(
+        "Account created successfully."
+      );
+
+    }else{
+
+      closeModal(
+        "signupModal"
+      );
+
+      toast(
+        "Account created. Check your email to confirm your account."
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "SIGNUP ERROR:",
+      error
+    );
 
     toast(
-      "Account already exists. Please log in."
+      error?.message ||
+      "Signup failed."
     );
 
-    closeModal(
-      "signupModal"
-    );
+  }finally{
 
-    openLogin();
+    button.disabled =
+      false;
 
-    return;
+    button.textContent =
+      "Create Account";
 
   }
 
-  const account = {
+}
 
-    id:
-      "user-"+
-      Date.now()+
-      "-"+
-      Math.random()
-        .toString(36)
-        .slice(2),
+window.signup =
+  signup;
 
-    name,
+/* =========================================================
+   LOGIN
+========================================================= */
 
-    email,
+function openLogin(){
 
-    password
-
-  };
-
-  accounts.push(
-    account
-  );
-
-  setJSON(
-    STORAGE.accounts,
-    accounts
-  );
-
-  setJSON(
-    STORAGE.profile,
-    {
-      id:
-        account.id,
-
-      name:
-        account.name,
-
-      email:
-        account.email
-    }
-  );
-
-  countNewUser(
-    email
-  );
-
-  closeModal(
-    "signupModal"
-  );
-
-  updateAccountUI();
-
-  toast(
-    "Account created successfully."
+  openModal(
+    "loginModal"
   );
 
 }
 
-window.createAccount =
-  createAccount;
+window.openLogin =
+  openLogin;
 
-function loginAccount(
+async function login(
   event
 ){
 
@@ -4110,655 +4063,164 @@ function loginAccount(
     $("loginPassword")
       .value;
 
-  const accounts =
-    getJSON(
-      STORAGE.accounts,
-      []
-    );
+  const ready =
+    await initSupabase();
 
-  const found =
-    accounts.find(
-      account =>
-        account.email ===
-        email &&
-        account.password ===
-        password
-    );
-
-  if(!found){
-
-    toast(
-      "Email or password is incorrect."
-    );
+  if(
+    !ready
+  ){
 
     return;
 
   }
 
-  setJSON(
-    STORAGE.profile,
-    {
-      id:
-        found.id,
+  const button =
+    $("loginButton");
 
-      name:
-        found.name,
+  button.disabled =
+    true;
 
-      email:
-        found.email
+  button.textContent =
+    "Logging in...";
+
+  try{
+
+    const result =
+      await supabaseClient
+        .auth
+        .signInWithPassword({
+
+          email,
+
+          password
+
+        });
+
+    if(
+      result.error
+    ){
+
+      throw result.error;
+
     }
-  );
 
-  closeModal(
-    "loginModal"
-  );
+    currentSession =
+      result.data.session;
 
-  updateAccountUI();
+    currentUser =
+      result.data.user;
 
-  toast(
-    "Welcome back, "+
-    found.name+
-    "!"
-  );
+    closeModal(
+      "loginModal"
+    );
+
+    updateAuthUI();
+
+    await loadProducts();
+
+    toast(
+      "Welcome back!"
+    );
+
+  }catch(error){
+
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
+
+    toast(
+      error?.message ||
+      "Login failed."
+    );
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "Log In";
+
+  }
 
 }
 
-window.loginAccount =
-  loginAccount;
+window.login =
+  login;
 
-function logout(){
+/* =========================================================
+   LOGOUT
+========================================================= */
 
-  localStorage.removeItem(
-    STORAGE.profile
-  );
+async function logout(){
 
-  updateAccountUI();
+  try{
 
-  toast(
-    "Logged out."
-  );
+    if(
+      supabaseClient
+    ){
+
+      const result =
+        await supabaseClient
+          .auth
+          .signOut();
+
+      if(
+        result.error
+      ){
+
+        throw result.error;
+
+      }
+
+    }
+
+    currentUser =
+      null;
+
+    currentSession =
+      null;
+
+    updateAuthUI();
+
+    toast(
+      "Logged out."
+    );
+
+  }catch(error){
+
+    console.error(
+      "LOGOUT ERROR:",
+      error
+    );
+
+    toast(
+      error?.message ||
+      "Logout failed."
+    );
+
+  }
 
 }
 
 window.logout =
   logout;
 
-function updateAccountUI(){
-
-  const profile =
-    currentProfile();
-
-  const dashboard =
-    $("creatorDashboard");
-
-  const guest =
-    $("creatorGuest");
-
-  const nav =
-    $("navActions");
-
-  if(profile){
-
-    dashboard.style.display =
-      "block";
-
-    guest.style.display =
-      "none";
-
-    const firstName =
-      String(
-        profile.name ||
-        "Creator"
-      )
-      .trim()
-      .split(/\s+/)[0];
-
-    nav.innerHTML = `
-
-      <span class="badge">
-        👋 ${escapeHtml(firstName)}
-      </span>
-
-      <button
-        class="btn btn-primary"
-        onclick="openCreatorDashboard()">
-        Creator Studio
-      </button>
-
-    `;
-
-    $("welcomeName")
-      .textContent =
-      "Welcome, "+
-      profile.name+
-      "! 👋";
-
-    $("accountSummary")
-      .textContent =
-      profile.email+
-      " · Sellora Creator";
-
-  }else{
-
-    dashboard.style.display =
-      "none";
-
-    guest.style.display =
-      "block";
-
-    nav.innerHTML = `
-
-      <button
-        class="btn btn-outline hide-mobile"
-        onclick="openEbookCreator()">
-
-        🎁 Free Ebook
-
-      </button>
-
-      <button
-        class="btn btn-outline"
-        onclick="openLogin()">
-
-        Log In
-
-      </button>
-
-      <button
-        class="btn btn-primary"
-        onclick="openSignup()">
-
-        Create Account
-
-      </button>
-
-    `;
-
-  }
-
-  renderMyProducts();
-
-}
-
 /* =========================================================
-   LOCAL PRODUCTS CACHE
+   LOAD SHARED PRODUCTS
 ========================================================= */
 
-function localProducts(){
-
-  return getJSON(
-    STORAGE.products,
-    []
-  );
-
-}
-
-function saveLocalProducts(
-  products
+async function loadProducts(
+  showToast=false
 ){
-
-  return setJSON(
-    STORAGE.products,
-    products
-  );
-
-}
-
-function replaceProducts(
-  products
-){
-
-  saveLocalProducts(
-    products
-  );
-
-  renderMarketplace();
-  renderMyProducts();
-
-}
-
-/* =========================================================
-   DEMO PRODUCTS
-========================================================= */
-
-function seedDemoProducts(){
-
-  const current =
-    localProducts();
-
-  const demos = [
-
-    {
-      id:
-        "demo-1",
-
-      title:
-        "Creator Growth Playbook",
-
-      description:
-        "A practical creator growth guide.",
-
-      category:
-        "guides",
-
-      price:
-        0,
-
-      creator:
-        "Sellora Studio",
-
-      type:
-        "digital",
-
-      demo:
-        true
-    },
-
-    {
-      id:
-        "demo-2",
-
-      title:
-        "Digital Product Handbook",
-
-      description:
-        "A free guide to digital products.",
-
-      category:
-        "ebooks",
-
-      price:
-        0,
-
-      creator:
-        "Sellora Studio",
-
-      type:
-        "ebook",
-
-      demo:
-        true
-    },
-
-    {
-      id:
-        "demo-3",
-
-      title:
-        "Launch Week Templates",
-
-      description:
-        "Simple launch templates for creators.",
-
-      category:
-        "templates",
-
-      price:
-        0,
-
-      creator:
-        "Sellora Studio",
-
-      type:
-        "digital",
-
-      demo:
-        true
-    }
-
-  ];
-
-  const ids =
-    new Set(
-      current.map(
-        item =>
-          String(item.id)
-      )
-    );
-
-  demos.forEach(
-    demo=>{
-
-      if(
-        !ids.has(
-          demo.id
-        )
-      ){
-
-        current.push(
-          demo
-        );
-
-      }
-
-    }
-  );
-
-  saveLocalProducts(
-    current
-  );
-
-}
-
-/* =========================================================
-   SUPABASE SDK LOADER
-========================================================= */
-
-function loadSupabaseSDK(){
-
-  if(
-    window.supabase &&
-    typeof
-      window.supabase.createClient ===
-      "function"
-  ){
-
-    return Promise.resolve(
-      true
-    );
-
-  }
-
-  if(
-    supabaseSdkPromise
-  ){
-
-    return supabaseSdkPromise;
-
-  }
-
-  supabaseSdkPromise =
-    new Promise(
-      (resolve,reject)=>{
-
-        const urls = [
-
-          "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js",
-
-          "https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"
-
-        ];
-
-        let index =
-          0;
-
-        function tryNext(){
-
-          if(
-            index >=
-            urls.length
-          ){
-
-            reject(
-              new Error(
-                "Supabase SDK could not be loaded."
-              )
-            );
-
-            return;
-
-          }
-
-          const script =
-            document.createElement(
-              "script"
-            );
-
-          script.src =
-            urls[index++];
-
-          script.async =
-            true;
-
-          script.onload =
-            ()=>{
-
-              if(
-                window.supabase &&
-                typeof
-                  window.supabase.createClient ===
-                  "function"
-              ){
-
-                resolve(
-                  true
-                );
-
-              }else{
-
-                tryNext();
-
-              }
-
-            };
-
-          script.onerror =
-            ()=>{
-              tryNext();
-            };
-
-          document.head
-            .appendChild(
-              script
-            );
-
-        }
-
-        tryNext();
-
-      }
-    );
-
-  return supabaseSdkPromise;
-
-}
-
-/* =========================================================
-   SUPABASE AUTH
-========================================================= */
-
-async function initCloud(){
-
-  if(
-    supabaseClient &&
-    supabaseUser &&
-    supabaseSession
-  ){
-
-    return true;
-
-  }
-
-  try{
-
-    await loadSupabaseSDK();
-
-    supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY,
-        {
-          auth:{
-            persistSession:true,
-            autoRefreshToken:true,
-            detectSessionInUrl:false
-          }
-        }
-      );
-
-    const sessionResult =
-      await supabaseClient
-        .auth
-        .getSession();
-
-    if(
-      sessionResult.data &&
-      sessionResult.data.session
-    ){
-
-      supabaseSession =
-        sessionResult.data.session;
-
-      supabaseUser =
-        supabaseSession.user;
-
-      return true;
-
-    }
-
-    const authResult =
-      await supabaseClient
-        .auth
-        .signInAnonymously();
-
-    if(
-      authResult.error
-    ){
-
-      throw authResult.error;
-
-    }
-
-    supabaseSession =
-      authResult.data.session;
-
-    supabaseUser =
-      authResult.data.user;
-
-    return true;
-
-  }catch(error){
-
-    console.error(
-      "Supabase authentication failed:",
-      error
-    );
-
-    supabaseClient =
-      null;
-
-    supabaseUser =
-      null;
-
-    supabaseSession =
-      null;
-
-    return false;
-
-  }
-
-}
-
-/* =========================================================
-   DIRECT SUPABASE REST REQUEST
-========================================================= */
-
-async function supabaseREST(
-  endpoint,
-  options={}
-){
-
-  const headers =
-    {
-      apikey:
-        SUPABASE_KEY,
-
-      Accept:
-        "application/json",
-
-      ...(options.headers||{})
-    };
-
-  if(
-    supabaseSession &&
-    supabaseSession.access_token
-  ){
-
-    headers.Authorization =
-      "Bearer "+
-      supabaseSession.access_token;
-
-  }else{
-
-    headers.Authorization =
-      "Bearer "+
-      SUPABASE_KEY;
-
-  }
-
-  const response =
-    await fetch(
-      SUPABASE_URL+
-      endpoint,
-      {
-        ...options,
-        headers
-      }
-    );
-
-  const text =
-    await response.text();
-
-  let data =
-    null;
-
-  try{
-
-    data =
-      text
-        ? JSON.parse(text)
-        : null;
-
-  }catch{
-
-    data =
-      text;
-
-  }
-
-  if(
-    !response.ok
-  ){
-
-    const message =
-      typeof data ===
-      "string"
-        ? data
-        : JSON.stringify(
-            data
-          );
-
-    throw new Error(
-      "Supabase "+
-      response.status+
-      ": "+
-      message
-    );
-
-  }
-
-  return data;
-
-}
-
-/* =========================================================
-   CLOUD PRODUCT SYNC
-========================================================= */
-
-async function refreshCloudProducts(){
 
   const ready =
-    await initCloud();
+    await initSupabase();
 
-  /*
-     Do NOT wipe local products if cloud is unavailable.
-     This is important so the UI never loses cached data.
-  */
-
-  if(!ready){
-
-    renderMarketplace();
-    renderMyProducts();
+  if(
+    !ready
+  ){
 
     return false;
 
@@ -4766,128 +4228,126 @@ async function refreshCloudProducts(){
 
   try{
 
-    const rows =
-      await supabaseREST(
-        "/rest/v1/products"+
-        "?select=*"+
-        "&order=created_at.desc",
-        {
-          method:
-            "GET",
-          cache:
-            "no-store"
-        }
-      );
-
-    const remote =
-      Array.isArray(rows)
-        ? rows.map(
-            row=>({
-
-              id:
-                String(
-                  row.id
-                ),
-
-              title:
-                row.title ||
-                "Untitled Product",
-
-              description:
-                row.description ||
-                "",
-
-              category:
-                row.category ||
-                "other",
-
-              price:
-                Number(
-                  row.price ||
-                  0
-                ),
-
-              creator:
-                row.creator ||
-                "Sellora Creator",
-
-              creator_id:
-                row.creator_id ||
-                "",
-
-              upiId:
-                row.upi_id ||
-                "",
-
-              fileUrl:
-                row.file_url ||
-                "",
-
-              fileName:
-                row.file_name ||
-                "product",
-
-              coverData:
-                row.cover_url ||
-                "",
-
-              type:
-                row.type ||
-                "digital",
-
-              pages:
-                Array.isArray(
-                  row.pages
-                )
-                  ? row.pages
-                  : null,
-
-              createdAt:
-                row.created_at ||
-                "",
-
-              demo:
-                false
-
-            })
-          )
-        : [];
-
-    const demos =
-      localProducts()
-        .filter(
-          product =>
-            product.demo ===
-            true
+    const result =
+      await supabaseClient
+        .from("products")
+        .select("*")
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
         );
 
+    if(
+      result.error
+    ){
+
+      throw result.error;
+
+    }
+
+    const rows =
+      Array.isArray(
+        result.data
+      )
+        ? result.data
+        : [];
+
     /*
-      Cloud becomes authoritative for shared products.
-      Local demo products are preserved.
+      Store cloud products only in memory.
+      No local product cache.
     */
 
-    replaceProducts(
-      [
-        ...demos,
-        ...remote
-      ]
-    );
+    window.selloraProducts =
+      rows.map(
+        row=>({
+
+          id:
+            String(
+              row.id
+            ),
+
+          title:
+            row.title ||
+            "Untitled Product",
+
+          description:
+            row.description ||
+            "",
+
+          category:
+            row.category ||
+            "other",
+
+          price:
+            Number(
+              row.price ||
+              0
+            ),
+
+          creator:
+            row.creator ||
+            "Sellora Creator",
+
+          creator_id:
+            row.creator_id ||
+            "",
+
+          fileUrl:
+            row.file_url ||
+            "",
+
+          fileName:
+            row.file_name ||
+            "product",
+
+          coverUrl:
+            row.cover_url ||
+            "",
+
+          upiId:
+            row.upi_id ||
+            "",
+
+          type:
+            row.type ||
+            "digital",
+
+          createdAt:
+            row.created_at ||
+            ""
+
+        })
+      );
+
+    renderMarketplace();
+
+    renderMyProducts();
+
+    if(
+      showToast
+    ){
+
+      toast(
+        "Marketplace refreshed."
+      );
+
+    }
 
     return true;
 
   }catch(error){
 
     console.error(
-      "Cloud sync error:",
+      "PRODUCT FETCH ERROR:",
       error
     );
 
-    /*
-      Do not delete local products on failure.
-    */
-
-    renderMarketplace();
-    renderMyProducts();
+    toast(
+      error?.message ||
+      "Could not load marketplace."
+    );
 
     return false;
 
@@ -4895,11 +4355,21 @@ async function refreshCloudProducts(){
 
 }
 
-window.refreshCloudProducts =
-  refreshCloudProducts;
+window.loadProducts =
+  loadProducts;
+
+function products(){
+
+  return Array.isArray(
+    window.selloraProducts
+  )
+    ? window.selloraProducts
+    : [];
+
+}
 
 /* =========================================================
-   MARKETPLACE UI
+   MARKETPLACE RENDER
 ========================================================= */
 
 function renderMarketplace(){
@@ -4934,11 +4404,11 @@ function renderMarketplace(){
     "all";
 
   const filtered =
-    localProducts()
+    products()
       .filter(
         product=>{
 
-          const hay =
+          const text =
             (
               product.title+
               " "+
@@ -4952,7 +4422,7 @@ function renderMarketplace(){
 
           const searchMatch =
             !search ||
-            hay.includes(
+            text.includes(
               search
             );
 
@@ -4961,8 +4431,7 @@ function renderMarketplace(){
               "all" ||
             String(
               product.category
-            )
-            .toLowerCase() ===
+            ).toLowerCase() ===
               category;
 
           return (
@@ -4992,11 +4461,13 @@ function renderMarketplace(){
 
   filtered.forEach(
     product=>{
+
       grid.appendChild(
         createProductCard(
           product
         )
       );
+
     }
   );
 
@@ -5004,6 +4475,10 @@ function renderMarketplace(){
 
 window.renderMarketplace =
   renderMarketplace;
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
 
 function createProductCard(
   product
@@ -5023,7 +4498,7 @@ function createProductCard(
       0
     ) <= 0;
 
-  const ebook =
+  const ebookProduct =
     product.type ===
       "ebook" ||
     String(
@@ -5031,27 +4506,26 @@ function createProductCard(
     ).toLowerCase() ===
       "ebooks";
 
-  const cover =
-    product.coverData ||
-    product.cover_url ||
-    "";
-
   card.innerHTML = `
 
     <div class="product-cover">
 
       ${
-        cover
+        product.coverUrl
+
           ? `
-            <img
-              src="${escapeAttr(cover)}"
-              alt="">
-          `
+              <img
+                src="${escapeHtml(
+                  product.coverUrl
+                )}"
+                alt="">
+            `
+
           : `
-            <span>
-              SELLORA
-            </span>
-          `
+              <span>
+                SELLORA
+              </span>
+            `
       }
 
     </div>
@@ -5078,8 +4552,7 @@ function createProductCard(
                 "₹"+
                 Number(
                   product.price
-                )
-                .toLocaleString(
+                ).toLocaleString(
                   "en-IN"
                 )
           }
@@ -5089,23 +4562,26 @@ function createProductCard(
       </div>
 
       <h3>
+
         ${escapeHtml(
           product.title
         )}
+
       </h3>
 
       <p>
+
         ${escapeHtml(
           product.description ||
           "Digital product from a Sellora creator."
         )}
+
       </p>
 
-      <div style="
-        color:var(--muted);
-        font-size:11px">
+      <div class="creator-name">
 
-        By ${escapeHtml(
+        By
+        ${escapeHtml(
           product.creator ||
           "Sellora Creator"
         )}
@@ -5115,50 +4591,58 @@ function createProductCard(
       <div class="product-actions">
 
         ${
-          ebook
+          ebookProduct
+
             ? `
-              <button
-                class="btn btn-primary"
-                onclick="openProductEbook('${escapeAttr(product.id)}')">
+                <button
+                  class="btn primary"
+                  onclick="openProductEbook('${escapeHtml(
+                    product.id
+                  )}')">
 
-                📖 Open Ebook
+                  📖 Open Ebook
 
-              </button>
-            `
+                </button>
+              `
+
             : `
-              <button
-                class="btn btn-outline"
-                onclick="getProduct('${escapeAttr(product.id)}')">
+                <button
+                  class="btn outline"
+                  onclick="getProduct('${escapeHtml(
+                    product.id
+                  )}')">
 
-                ${
-                  free
-                    ? "⬇ Get Free"
-                    : "⬇ Get Product"
-                }
+                  ${
+                    free
+                      ? "⬇ Get Free"
+                      : "⬇ Get Product"
+                  }
 
-              </button>
-            `
+                </button>
+              `
         }
 
         ${
           free
             ? ""
+
             : `
-              <button
-                class="btn btn-primary"
-                onclick="buyProduct('${escapeAttr(product.id)}')">
+                <button
+                  class="btn primary"
+                  onclick="buyProduct('${escapeHtml(
+                    product.id
+                  )}')">
 
-                Buy ₹${
-                  Number(
-                    product.price
-                  )
-                  .toLocaleString(
-                    "en-IN"
-                  )
-                }
+                  Buy ₹${
+                    Number(
+                      product.price
+                    ).toLocaleString(
+                      "en-IN"
+                    )
+                  }
 
-              </button>
-            `
+                </button>
+              `
         }
 
       </div>
@@ -5172,24 +4656,718 @@ function createProductCard(
 }
 
 /* =========================================================
+   PUBLISH PRODUCT
+========================================================= */
+
+async function publishProduct(
+  event
+){
+
+  event.preventDefault();
+
+  if(
+    !currentUser
+  ){
+
+    openLogin();
+
+    toast(
+      "Log in to publish a product."
+    );
+
+    return;
+
+  }
+
+  const title =
+    $("productTitle")
+      .value
+      .trim();
+
+  const category =
+    $("productCategory")
+      .value;
+
+  const description =
+    $("productDescription")
+      .value
+      .trim();
+
+  const price =
+    Math.max(
+      0,
+      Number(
+        $("productPrice")
+          .value ||
+        0
+      )
+    );
+
+  const upiId =
+    $("productUpi")
+      .value
+      .trim();
+
+  const file =
+    $("productFile")
+      .files[0];
+
+  const cover =
+    $("productCover")
+      .files[0];
+
+  if(
+    !title ||
+    !description ||
+    !file
+  ){
+
+    toast(
+      "Title, description and product file are required."
+    );
+
+    return;
+
+  }
+
+  if(
+    price > 0 &&
+    !upiId
+  ){
+
+    toast(
+      "Paid product ke liye UPI ID add karo."
+    );
+
+    return;
+
+  }
+
+  const button =
+    $("publishButton");
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "⏳ Publishing...";
+
+  try{
+
+    /*
+      Refresh session first.
+    */
+
+    const sessionResult =
+      await supabaseClient
+        .auth
+        .getSession();
+
+    if(
+      sessionResult.error
+    ){
+
+      throw sessionResult.error;
+
+    }
+
+    currentSession =
+      sessionResult.data.session;
+
+    currentUser =
+      currentSession?.user ||
+      null;
+
+    if(
+      !currentUser
+    ){
+
+      throw new Error(
+        "Your Supabase session has expired. Please log in again."
+      );
+
+    }
+
+    const creatorName =
+      currentUser
+        .user_metadata
+        ?.full_name ||
+      currentUser.email
+        ?.split("@")[0] ||
+      "Sellora Creator";
+
+    /*
+      =====================================================
+      STEP 1 — REAL DATABASE INSERT
+      =====================================================
+    */
+
+    const insert =
+      await supabaseClient
+        .from("products")
+        .insert({
+
+          title,
+
+          description,
+
+          category,
+
+          price,
+
+          creator:
+            creatorName,
+
+          creator_id:
+            currentUser.id,
+
+          file_url:
+            "",
+
+          file_name:
+            file.name,
+
+          cover_url:
+            "",
+
+          upi_id:
+            upiId,
+
+          type:
+            category ===
+            "ebooks"
+              ? "ebook"
+              : "digital"
+
+        })
+        .select("*")
+        .single();
+
+    if(
+      insert.error
+    ){
+
+      throw insert.error;
+
+    }
+
+    const product =
+      insert.data;
+
+    if(
+      !product ||
+      !product.id
+    ){
+
+      throw new Error(
+        "Product row was not returned after insert."
+      );
+
+    }
+
+    toast(
+      "✅ Product saved to real database."
+    );
+
+    /*
+      =====================================================
+      STEP 2 — REAL STORAGE FILE UPLOAD
+      =====================================================
+    */
+
+    let fileUrl =
+      "";
+
+    const safeFileName =
+      file.name
+        .replace(
+          /[^a-zA-Z0-9._-]/g,
+          "-"
+        );
+
+    const filePath =
+      "products/"+
+      currentUser.id+
+      "/"+
+      product.id+
+      "-"+
+      safeFileName;
+
+    const upload =
+      await supabaseClient
+        .storage
+        .from(
+          SUPABASE_BUCKET
+        )
+        .upload(
+          filePath,
+          file,
+          {
+
+            cacheControl:
+              "3600",
+
+            upsert:
+              false,
+
+            contentType:
+              file.type ||
+              "application/octet-stream"
+
+          }
+        );
+
+    if(
+      upload.error
+    ){
+
+      /*
+        Delete the database row because this was
+        intended to be a complete product publish.
+      */
+
+      await supabaseClient
+        .from("products")
+        .delete()
+        .eq(
+          "id",
+          product.id
+        )
+        .eq(
+          "creator_id",
+          currentUser.id
+        );
+
+      throw upload.error;
+
+    }
+
+    fileUrl =
+      supabaseClient
+        .storage
+        .from(
+          SUPABASE_BUCKET
+        )
+        .getPublicUrl(
+          filePath
+        )
+        .data
+        .publicUrl ||
+        "";
+
+    /*
+      =====================================================
+      STEP 3 — COVER
+      =====================================================
+    */
+
+    let coverUrl =
+      "";
+
+    if(
+      cover
+    ){
+
+      const safeCoverName =
+        cover.name
+          .replace(
+            /[^a-zA-Z0-9._-]/g,
+            "-"
+          );
+
+      const coverPath =
+        "covers/"+
+        currentUser.id+
+        "/"+
+        product.id+
+        "-"+
+        safeCoverName;
+
+      const coverUpload =
+        await supabaseClient
+          .storage
+          .from(
+            SUPABASE_BUCKET
+          )
+          .upload(
+            coverPath,
+            cover,
+            {
+
+              cacheControl:
+                "3600",
+
+              upsert:
+                false,
+
+              contentType:
+                cover.type ||
+                "image/png"
+
+            }
+          );
+
+      if(
+        coverUpload.error
+      ){
+
+        console.warn(
+          "Cover upload failed:",
+          coverUpload.error
+        );
+
+      }else{
+
+        coverUrl =
+          supabaseClient
+            .storage
+            .from(
+              SUPABASE_BUCKET
+            )
+            .getPublicUrl(
+              coverPath
+            )
+            .data
+            .publicUrl ||
+            "";
+
+      }
+
+    }
+
+    /*
+      =====================================================
+      STEP 4 — UPDATE REAL DATABASE ROW
+      =====================================================
+    */
+
+    const update =
+      await supabaseClient
+        .from("products")
+        .update({
+
+          file_url:
+            fileUrl,
+
+          cover_url:
+            coverUrl
+
+        })
+        .eq(
+          "id",
+          product.id
+        )
+        .eq(
+          "creator_id",
+          currentUser.id
+        );
+
+    if(
+      update.error
+    ){
+
+      throw update.error;
+
+    }
+
+    /*
+      =====================================================
+      STEP 5 — RELOAD REAL MARKETPLACE
+      =====================================================
+    */
+
+    await loadProducts();
+
+    $("productForm")
+      .reset();
+
+    renderMarketplace();
+    renderMyProducts();
+
+    toast(
+      "🎉 Product published to the real shared Sellora marketplace!"
+    );
+
+  }catch(error){
+
+    console.error(
+      "REAL PRODUCT PUBLISH ERROR:",
+      error
+    );
+
+    alert(
+      "SELLORA PUBLISH ERROR\n\n"+
+      (
+        error?.message ||
+        "Unknown error"
+      )+
+      "\n\nDetails:\n"+
+      (
+        error?.details ||
+        "None"
+      )+
+      "\n\nHint:\n"+
+      (
+        error?.hint ||
+        "None"
+      )
+    );
+
+    toast(
+      "❌ Publish failed: "+
+      (
+        error?.message ||
+        "Unknown error"
+      )
+    );
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "🚀 Publish Product";
+
+  }
+
+}
+
+window.publishProduct =
+  publishProduct;
+
+/* =========================================================
+   MY PRODUCTS
+========================================================= */
+
+function renderMyProducts(){
+
+  const box =
+    $("myProducts");
+
+  if(
+    !box ||
+    !currentUser
+  ){
+
+    return;
+
+  }
+
+  const mine =
+    products()
+      .filter(
+        product =>
+          String(
+            product.creator_id
+          ) ===
+          String(
+            currentUser.id
+          )
+      );
+
+  $("statProducts")
+    .textContent =
+    String(
+      mine.length
+    );
+
+  $("statPublished")
+    .textContent =
+    String(
+      mine.length
+    );
+
+  $("statDownloads")
+    .textContent =
+    "0";
+
+  if(
+    !mine.length
+  ){
+
+    box.innerHTML = `
+
+      <div
+        class="empty"
+        style="display:block">
+
+        No products published yet.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  box.innerHTML =
+    mine.map(
+      item=>`
+
+      <div class="my-row">
+
+        <div>
+
+          <strong>
+
+            ${escapeHtml(
+              item.title
+            )}
+
+          </strong>
+
+          <small>
+
+            ${
+              Number(
+                item.price ||
+                0
+              ) > 0
+
+                ? "₹"+
+                  Number(
+                    item.price
+                  ).toLocaleString(
+                    "en-IN"
+                  )
+
+                : "FREE"
+            }
+
+            ·
+
+            ${escapeHtml(
+              item.category ||
+              "digital"
+            )}
+
+          </small>
+
+        </div>
+
+        <button
+          class="btn danger"
+          onclick="deleteProduct('${escapeHtml(
+            item.id
+          )}')">
+
+          Delete
+
+        </button>
+
+      </div>
+
+      `
+    )
+    .join("");
+
+}
+
+window.renderMyProducts =
+  renderMyProducts;
+
+/* =========================================================
+   DELETE PRODUCT
+========================================================= */
+
+async function deleteProduct(
+  id
+){
+
+  if(
+    !currentUser
+  ){
+
+    return;
+
+  }
+
+  const yes =
+    confirm(
+      "Delete this product from the shared marketplace?"
+    );
+
+  if(
+    !yes
+  ){
+
+    return;
+
+  }
+
+  try{
+
+    const result =
+      await supabaseClient
+        .from("products")
+        .delete()
+        .eq(
+          "id",
+          id
+        )
+        .eq(
+          "creator_id",
+          currentUser.id
+        );
+
+    if(
+      result.error
+    ){
+
+      throw result.error;
+
+    }
+
+    await loadProducts();
+
+    toast(
+      "Product deleted."
+    );
+
+  }catch(error){
+
+    console.error(
+      "DELETE ERROR:",
+      error
+    );
+
+    toast(
+      error?.message ||
+      "Delete failed."
+    );
+
+  }
+
+}
+
+window.deleteProduct =
+  deleteProduct;
+
+/* =========================================================
    DOWNLOAD PRODUCT
 ========================================================= */
 
-function getProduct(id){
+function getProduct(
+  id
+){
 
   const product =
-    localProducts()
+    products()
       .find(
-        p =>
+        item =>
           String(
-            p.id
+            item.id
           ) ===
           String(
             id
           )
       );
 
-  if(!product){
+  if(
+    !product
+  ){
 
     toast(
       "Product not found."
@@ -5212,101 +5390,47 @@ function getProduct(id){
 
   }
 
-  const url =
-    product.fileUrl ||
-    product.file_url ||
-    "";
-
-  if(url){
-
-    const a =
-      document.createElement(
-        "a"
-      );
-
-    a.href =
-      url;
-
-    a.download =
-      product.fileName ||
-      product.file_name ||
-      "sellora-product";
-
-    a.target =
-      "_blank";
-
-    a.rel =
-      "noopener";
-
-    document.body.appendChild(
-      a
-    );
-
-    a.click();
-
-    a.remove();
-
-    toast(
-      "Download started."
-    );
-
-    const sales =
-      Number(
-        localStorage.getItem(
-          STORAGE.sales
-        ) ||
-        0
-      )+
-      1;
-
-    localStorage.setItem(
-      STORAGE.sales,
-      String(
-        sales
-      )
-    );
-
-    renderMyProducts();
-
-    return;
-
-  }
-
   if(
-    product.fileData
+    !product.fileUrl
   ){
 
-    const a =
-      document.createElement(
-        "a"
-      );
-
-    a.href =
-      product.fileData;
-
-    a.download =
-      product.fileName ||
-      product.title ||
-      "sellora-product";
-
-    document.body.appendChild(
-      a
-    );
-
-    a.click();
-
-    a.remove();
-
     toast(
-      "Download started."
+      "Product file is not available."
     );
 
     return;
 
   }
 
+  const link =
+    document.createElement(
+      "a"
+    );
+
+  link.href =
+    product.fileUrl;
+
+  link.download =
+    product.fileName ||
+    product.title ||
+    "sellora-product";
+
+  link.target =
+    "_blank";
+
+  link.rel =
+    "noopener";
+
+  document.body.appendChild(
+    link
+  );
+
+  link.click();
+
+  link.remove();
+
   toast(
-    "This product does not have a downloadable file."
+    "Download started."
   );
 
 }
@@ -5315,20 +5439,28 @@ window.getProduct =
   getProduct;
 
 /* =========================================================
-   BUY / UPI
+   BUY
 ========================================================= */
 
-function buyProduct(id){
+function buyProduct(
+  id
+){
 
   const product =
-    localProducts()
+    products()
       .find(
-        p =>
-          String(p.id)===
-          String(id)
+        item =>
+          String(
+            item.id
+          ) ===
+          String(
+            id
+          )
       );
 
-  if(!product){
+  if(
+    !product
+  ){
 
     toast(
       "Product not found."
@@ -5348,7 +5480,9 @@ function buyProduct(id){
     amount <= 0
   ){
 
-    getProduct(id);
+    getProduct(
+      id
+    );
 
     return;
 
@@ -5357,12 +5491,12 @@ function buyProduct(id){
   const upi =
     String(
       product.upiId ||
-      product.upi_id ||
       ""
-    )
-    .trim();
+    ).trim();
 
-  if(!upi){
+  if(
+    !upi
+  ){
 
     toast(
       "Seller has not added a UPI ID."
@@ -5460,22 +5594,9 @@ function buyProduct(id){
         "buyModal"
       );
 
-      if(
-        product.type ===
-        "ebook"
-      ){
-
-        openProductEbook(
-          id
-        );
-
-      }else{
-
-        getProduct(
-          id
-        );
-
-      }
+      getProduct(
+        id
+      );
 
     };
 
@@ -5489,692 +5610,13 @@ window.buyProduct =
   buyProduct;
 
 /* =========================================================
-   FILE -> DATA URL
-========================================================= */
-
-function readFileAsDataURL(
-  file
-){
-
-  return new Promise(
-    (resolve,reject)=>{
-
-      const reader =
-        new FileReader();
-
-      reader.onload =
-        ()=>resolve(
-          reader.result
-        );
-
-      reader.onerror =
-        ()=>reject(
-          reader.error
-        );
-
-      reader.readAsDataURL(
-        file
-      );
-
-    }
-  );
-
-}
-
-/* =========================================================
-   PUBLISH PRODUCT
-   IMPORTANT:
-   DATABASE FIRST -> STORAGE SECOND -> UPDATE
-========================================================= */
-
-async function publishProduct(
-  event
-){
-
-  event.preventDefault();
-
-  const profile =
-    currentProfile();
-
-  if(!profile){
-
-    openSignup();
-
-    toast(
-      "Create a Sellora account first."
-    );
-
-    return;
-
-  }
-
-  const title =
-    $("productTitle")
-      .value
-      .trim();
-
-  const category =
-    $("productCategory")
-      .value;
-
-  const description =
-    $("productDescription")
-      .value
-      .trim();
-
-  const price =
-    Math.max(
-      0,
-      Number(
-        $("productPrice")
-          .value ||
-        0
-      )
-    );
-
-  const upiId =
-    $("productUpi")
-      .value
-      .trim();
-
-  const file =
-    $("productFile")
-      .files[0];
-
-  const cover =
-    $("productCover")
-      .files[0];
-
-  if(
-    !title ||
-    !description ||
-    !file
-  ){
-
-    toast(
-      "Fill all required fields."
-    );
-
-    return;
-
-  }
-
-  if(
-    price > 0 &&
-    !upiId
-  ){
-
-    toast(
-      "Paid products need a UPI ID. For FREE products use ₹0."
-    );
-
-    return;
-
-  }
-
-  /* AUTH */
-
-  const ready =
-    await initCloud();
-
-  if(
-    !ready ||
-    !supabaseUser ||
-    !supabaseSession
-  ){
-
-    toast(
-      "Supabase authentication failed. Refresh the page and try again."
-    );
-
-    return;
-
-  }
-
-  const productId =
-    crypto.randomUUID
-      ? crypto.randomUUID()
-      :
-        (
-          "p-"+
-          Date.now()+
-          "-"+
-          Math.random()
-            .toString(36)
-            .slice(2)
-        );
-
-  /*
-    STEP 1:
-    CREATE DATABASE ROW FIRST.
-  */
-
-  const record = {
-
-    id:
-      productId,
-
-    title:
-      title,
-
-    description:
-      description,
-
-    category:
-      category,
-
-    price:
-      price,
-
-    creator:
-      profile.name,
-
-    creator_id:
-      supabaseUser.id,
-
-    file_url:
-      "",
-
-    file_name:
-      file.name,
-
-    cover_url:
-      "",
-
-    upi_id:
-      upiId,
-
-    type:
-      category ===
-      "ebooks"
-        ? "ebook"
-        : "digital"
-
-  };
-
-  try{
-
-    console.log(
-      "SELLORA PRODUCT INSERT:",
-      record
-    );
-
-    await supabaseREST(
-      "/rest/v1/products",
-      {
-        method:
-          "POST",
-
-        headers:{
-          "Content-Type":
-            "application/json",
-
-          "Prefer":
-            "return=representation"
-        },
-
-        body:
-          JSON.stringify(
-            record
-          )
-      }
-    );
-
-    /*
-      STEP 2:
-      UPLOAD FILE.
-    */
-
-    let fileUrl =
-      "";
-
-    try{
-
-      const safeName =
-        file.name.replace(
-          /[^a-zA-Z0-9._-]/g,
-          "-"
-        );
-
-      const path =
-        "products/"+
-        supabaseUser.id+
-        "/"+
-        Date.now()+
-        "-"+
-        safeName;
-
-      const uploadResponse =
-        await fetch(
-          SUPABASE_URL+
-          "/storage/v1/object/"+
-          SUPABASE_BUCKET+
-          "/"+
-          path,
-          {
-            method:
-              "POST",
-
-            headers:{
-              apikey:
-                SUPABASE_KEY,
-
-              Authorization:
-                "Bearer "+
-                supabaseSession
-                  .access_token,
-
-              "Content-Type":
-                file.type ||
-                "application/octet-stream",
-
-              "x-upsert":
-                "false"
-
-            },
-
-            body:
-              file
-          }
-        );
-
-      if(
-        uploadResponse.ok
-      ){
-
-        fileUrl =
-          SUPABASE_URL+
-          "/storage/v1/object/public/"+
-          SUPABASE_BUCKET+
-          "/"+
-          path;
-
-      }else{
-
-        console.warn(
-          "FILE UPLOAD FAILED:",
-          await uploadResponse.text()
-        );
-
-      }
-
-    }catch(fileError){
-
-      console.warn(
-        "FILE UPLOAD ERROR:",
-        fileError
-      );
-
-    }
-
-    /*
-      STEP 3:
-      COVER UPLOAD.
-    */
-
-    let coverUrl =
-      "";
-
-    if(cover){
-
-      try{
-
-        const safeCover =
-          cover.name.replace(
-            /[^a-zA-Z0-9._-]/g,
-            "-"
-          );
-
-        const coverPath =
-          "covers/"+
-          supabaseUser.id+
-          "/"+
-          Date.now()+
-          "-"+
-          safeCover;
-
-        const coverResponse =
-          await fetch(
-            SUPABASE_URL+
-            "/storage/v1/object/"+
-            SUPABASE_BUCKET+
-            "/"+
-            coverPath,
-            {
-              method:
-                "POST",
-
-              headers:{
-                apikey:
-                  SUPABASE_KEY,
-
-                Authorization:
-                  "Bearer "+
-                  supabaseSession
-                    .access_token,
-
-                "Content-Type":
-                  cover.type ||
-                  "image/png",
-
-                "x-upsert":
-                  "false"
-              },
-
-              body:
-                cover
-            }
-          );
-
-        if(
-          coverResponse.ok
-        ){
-
-          coverUrl =
-            SUPABASE_URL+
-            "/storage/v1/object/public/"+
-            SUPABASE_BUCKET+
-            "/"+
-            coverPath;
-
-        }
-
-      }catch(error){
-
-        console.warn(
-          "COVER UPLOAD ERROR:",
-          error
-        );
-
-      }
-
-    }
-
-    /*
-      STEP 4:
-      UPDATE DATABASE ROW.
-    */
-
-    await supabaseREST(
-      "/rest/v1/products"+
-      "?id=eq."+
-      encodeURIComponent(
-        productId
-      ),
-      {
-        method:
-          "PATCH",
-
-        headers:{
-          "Content-Type":
-            "application/json",
-
-          "Prefer":
-            "return=minimal"
-        },
-
-        body:
-          JSON.stringify({
-
-            file_url:
-              fileUrl,
-
-            cover_url:
-              coverUrl
-
-          })
-      }
-    );
-
-    /*
-      STEP 5:
-      GET FRESH SHARED DATA.
-    */
-
-    await refreshCloudProducts();
-
-    event.target.reset();
-
-    toast(
-      "✅ Product published. Other Sellora users can now see it."
-    );
-
-  }catch(error){
-
-    console.error(
-      "FINAL PRODUCT PUBLISH ERROR:",
-      error
-    );
-
-    toast(
-      "Publish failed: "+
-      (
-        error?.message ||
-        "Unknown Supabase error"
-      )
-    );
-
-  }
-
-}
-
-window.publishProduct =
-  publishProduct;
-
-/* =========================================================
-   MY PRODUCTS
-========================================================= */
-
-function renderMyProducts(){
-
-  const box =
-    $("myProducts");
-
-  const profile =
-    currentProfile();
-
-  if(!box){
-
-    return;
-
-  }
-
-  if(!profile){
-
-    return;
-
-  }
-
-  const mine =
-    localProducts()
-      .filter(
-        product =>
-          !product.demo &&
-          (
-            product.creator ===
-            profile.name ||
-            product.creator_id ===
-            supabaseUser?.id
-          )
-      );
-
-  $("statProducts")
-    .textContent =
-    mine.length;
-
-  $("statPublished")
-    .textContent =
-    mine.length;
-
-  $("statSales")
-    .textContent =
-    Number(
-      localStorage.getItem(
-        STORAGE.sales
-      ) ||
-      0
-    );
-
-  if(!mine.length){
-
-    box.innerHTML = `
-
-      <div class="empty"
-           style="display:block">
-
-        No products published yet.
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-  box.innerHTML =
-    mine.map(
-      product=>`
-
-      <div class="my-row">
-
-        <div>
-
-          <strong>
-            ${escapeHtml(
-              product.title
-            )}
-          </strong>
-
-          <small>
-
-            ${
-              Number(
-                product.price||
-                0
-              )>0
-                ? "₹"+
-                  Number(
-                    product.price
-                  ).toLocaleString(
-                    "en-IN"
-                  )
-                : "FREE"
-            }
-
-            ·
-
-            ${escapeHtml(
-              product.category||
-              "digital"
-            )}
-
-          </small>
-
-        </div>
-
-        <button
-          class="btn btn-danger"
-          onclick="deleteProduct('${escapeAttr(product.id)}')">
-
-          Delete
-
-        </button>
-
-      </div>
-
-      `
-    )
-    .join("");
-
-}
-
-window.renderMyProducts =
-  renderMyProducts;
-
-/* =========================================================
-   DELETE PRODUCT
-========================================================= */
-
-async function deleteProduct(
-  id
-){
-
-  const profile =
-    currentProfile();
-
-  const ready =
-    await initCloud();
-
-  if(
-    ready &&
-    supabaseUser
-  ){
-
-    try{
-
-      await supabaseREST(
-        "/rest/v1/products"+
-        "?id=eq."+
-        encodeURIComponent(
-          id
-        )+
-        "&creator_id=eq."+
-        encodeURIComponent(
-          supabaseUser.id
-        ),
-        {
-          method:
-            "DELETE"
-        }
-      );
-
-    }catch(error){
-
-      console.warn(
-        "Cloud delete failed:",
-        error
-      );
-
-    }
-
-  }
-
-  const remaining =
-    localProducts()
-      .filter(
-        product =>
-          String(
-            product.id
-          ) !==
-          String(id)
-      );
-
-  saveLocalProducts(
-    remaining
-  );
-
-  renderMarketplace();
-  renderMyProducts();
-
-  toast(
-    "Product deleted."
-  );
-
-}
-
-window.deleteProduct =
-  deleteProduct;
-
-/* =========================================================
    EBOOK
 ========================================================= */
 
 function build50Pages(
   title,
   goal,
-  content,
-  category
+  content
 ){
 
   const chapters = [
@@ -6192,7 +5634,7 @@ function build50Pages(
     "Social Media Strategy",
     "Email Marketing",
     "SEO Basics",
-    "Paid Marketing",
+    "Marketing Fundamentals",
     "Sales Fundamentals",
     "Pricing Strategy",
     "Customer Experience",
@@ -6215,7 +5657,7 @@ function build50Pages(
     "Marketplace Strategy",
     "Product Description",
     "Product Covers",
-    "Creator Storefront",
+    "Creator Store",
     "Free Product Strategy",
     "Paid Product Strategy",
     "UPI Payment Basics",
@@ -6232,25 +5674,21 @@ function build50Pages(
 
   ];
 
-  const pages =
-    [];
+  return chapters.map(
+    (chapter,index)=>({
 
-  for(
-    let i=0;
-    i<50;
-    i++
-  ){
+      number:
+        index+1,
 
-    const body =
+      title:
+        chapter,
+
+      body:
 `This page is part of "${title}".
 
 MAIN GOAL
 
 ${goal}
-
-CATEGORY
-
-${category}
 
 CONTENT DIRECTION
 
@@ -6258,80 +5696,54 @@ ${content}
 
 LESSON
 
-${chapters[i]} is an important part of turning knowledge into a useful digital product. Start with a clear outcome, organize the information logically, and make every idea practical enough for the reader to apply.
+${chapter} is an important part of creating a useful digital product. Keep the goal clear, organize information logically and give the reader practical actions.
 
-Strong creators usually focus on a specific audience, a meaningful problem and a useful outcome. This keeps the product clear and helps the reader understand exactly what they should do next.
+A strong creator focuses on a specific audience, a meaningful problem and a useful result. Clear structure makes a digital product easier to understand and apply.
 
-PRACTICAL GUIDANCE
+PRACTICAL STEPS
 
-1. Define one measurable objective.
-2. Identify the audience that needs the solution.
-3. Write the main problem in one clear sentence.
-4. Describe the desired result.
-5. Break the work into small actions.
+1. Define the objective.
+2. Identify the audience.
+3. Describe the problem clearly.
+4. Define the desired result.
+5. Break the work into smaller steps.
 6. Complete one action at a time.
-7. Record what happened.
+7. Review the result.
 8. Improve the next version.
 
 EXAMPLE
 
-Imagine a creator who has a valuable skill. The creator can identify a specific audience, understand its biggest problem, package the knowledge into an ebook, publish it on Sellora, collect feedback and improve future editions. The important part is building a repeatable process.
+A creator can identify an audience, package useful knowledge into a digital product, publish it through Sellora, collect feedback and improve the next version.
 
-ACTION STEPS
+ACTION CHECKLIST
 
 □ Define the result.
 □ Define the audience.
 □ Identify the problem.
-□ Create a useful solution.
+□ Create the solution.
 □ Test the idea.
+□ Publish the product.
 □ Collect feedback.
-□ Improve the product.
+□ Improve.
 
 REFLECTION
 
-What is the biggest lesson from this page, and how will you use it in your own project?
+What is the most useful lesson from this page and how will you apply it?
 
 CREATOR NOTE
 
-Information becomes more valuable when it is organized clearly, communicated professionally, packaged thoughtfully and turned into action.
+Information becomes more valuable when it is clearly organized, professionally communicated and turned into action.
 
 JANMASHTAMI BUMPER OFFER
 
-Use Sellora to create ebooks, guides, templates and digital products while building your creator brand.`;
+Create ebooks, guides, templates and digital products with Sellora.`
 
-    pages.push({
-
-      number:
-        i+1,
-
-      title:
-        chapters[i],
-
-      body
-
-    });
-
-  }
-
-  return pages;
+    })
+  );
 
 }
 
 function openEbookCreator(){
-
-  const profile =
-    currentProfile();
-
-  if(profile){
-
-    $("ebookTitle")
-      .value =
-      $("ebookTitle")
-        .value ||
-      profile.name+
-      "'s Sellora Ebook";
-
-  }
 
   openModal(
     "ebookCreatorModal"
@@ -6363,10 +5775,6 @@ function startEbook(
       .value
       .trim();
 
-  const category =
-    $("ebookCategory")
-      .value;
-
   if(
     !title ||
     !goal ||
@@ -6381,7 +5789,7 @@ function startEbook(
 
   }
 
-  currentEbook = {
+  ebook = {
 
     title,
 
@@ -6389,8 +5797,7 @@ function startEbook(
       build50Pages(
         title,
         goal,
-        content,
-        category
+        content
       ),
 
     page:
@@ -6419,7 +5826,7 @@ function startCountdown(){
     "countdownModal"
   );
 
-  let seconds =
+  let n =
     5;
 
   function tick(){
@@ -6427,41 +5834,32 @@ function startCountdown(){
     $("countNumber")
       .textContent =
       String(
-        seconds
+        n
       );
 
     $("countProgress")
       .style
       .width =
       (
-        (5-seconds) /
-        5 *
+        (5-n)/
+        5*
         100
       )+
       "%";
 
-    if(
-      seconds>0
-    ){
-
-      $("countMessage")
-        .textContent =
-        "Creating your 50-page ebook...";
-
-    }else{
-
-      $("countMessage")
-        .textContent =
-        "Opening your ebook...";
-
-    }
+    $("countMessage")
+      .textContent =
+      n > 0
+        ? "Creating your 50-page ebook..."
+        : "Opening your ebook...";
 
     if(
-      seconds<=0
+      n <= 0
     ){
 
       setTimeout(
         ()=>{
+
           closeModal(
             "countdownModal"
           );
@@ -6476,7 +5874,7 @@ function startCountdown(){
 
     }
 
-    seconds--;
+    n--;
 
     setTimeout(
       tick,
@@ -6496,8 +5894,8 @@ function startCountdown(){
 function openGeneratedEbook(){
 
   if(
-    !currentEbook.pages ||
-    currentEbook.pages.length !== 50
+    !ebook.pages ||
+    ebook.pages.length !== 50
   ){
 
     toast(
@@ -6508,14 +5906,14 @@ function openGeneratedEbook(){
 
   }
 
-  currentEbook.page =
+  ebook.page =
     1;
 
   $("ebookViewerTitle")
     .textContent =
-    currentEbook.title;
+    ebook.title;
 
-  renderEbookPage();
+  renderEbook();
 
   openModal(
     "ebookModal"
@@ -6528,16 +5926,20 @@ function openProductEbook(
 ){
 
   const product =
-    localProducts()
+    products()
       .find(
         item =>
           String(
             item.id
           ) ===
-          String(id)
+          String(
+            id
+          )
       );
 
-  if(!product){
+  if(
+    !product
+  ){
 
     toast(
       "Ebook not found."
@@ -6547,26 +5949,19 @@ function openProductEbook(
 
   }
 
-  currentEbook = {
+  ebook = {
 
     title:
       product.title,
 
     pages:
-      Array.isArray(
-        product.pages
-      ) &&
-      product.pages.length === 50
-        ? product.pages
-        : build50Pages(
-            product.title,
-            product.description ||
-              "Digital business",
-            product.description ||
-              "Creator economy",
-            product.category ||
-              "ebooks"
-          ),
+      build50Pages(
+        product.title,
+        product.description ||
+          "Digital product guide",
+        product.description ||
+          "Sellora marketplace ebook"
+      ),
 
     page:
       1
@@ -6580,26 +5975,26 @@ function openProductEbook(
 window.openProductEbook =
   openProductEbook;
 
-function renderEbookPage(){
+function renderEbook(){
 
   const index =
-    currentEbook.page -
-    1;
+    ebook.page-1;
 
   const front =
-    currentEbook.pages[
-      index
-    ];
+    ebook.pages[index];
 
   const back =
-    currentEbook.pages[
+    ebook.pages[
       Math.min(
         49,
         index+1
       )
     ];
 
-  if(!front){
+  if(
+    !front ||
+    !back
+  ){
 
     return;
 
@@ -6635,14 +6030,14 @@ function renderEbookPage(){
 
   $("pageCounter")
     .textContent =
-    currentEbook.page+
+    ebook.page+
     " / 50";
 
   $("book")
     .classList
     .remove(
-      "flip-next",
-      "flip-prev"
+      "next",
+      "prev"
     );
 
 }
@@ -6650,11 +6045,12 @@ function renderEbookPage(){
 function nextPage(){
 
   if(
-    currentEbook.page >= 50
+    ebook.page >=
+    50
   ){
 
     toast(
-      "You are on the last page."
+      "Last page."
     );
 
     return;
@@ -6664,7 +6060,7 @@ function nextPage(){
   $("book")
     .classList
     .remove(
-      "flip-prev"
+      "prev"
     );
 
   void $("book")
@@ -6673,15 +6069,18 @@ function nextPage(){
   $("book")
     .classList
     .add(
-      "flip-next"
+      "next"
     );
 
   setTimeout(
     ()=>{
-      currentEbook.page++;
-      renderEbookPage();
+
+      ebook.page++;
+
+      renderEbook();
+
     },
-    330
+    320
   );
 
 }
@@ -6692,11 +6091,12 @@ window.nextPage =
 function prevPage(){
 
   if(
-    currentEbook.page <= 1
+    ebook.page <=
+    1
   ){
 
     toast(
-      "You are on the first page."
+      "First page."
     );
 
     return;
@@ -6706,7 +6106,7 @@ function prevPage(){
   $("book")
     .classList
     .remove(
-      "flip-next"
+      "next"
     );
 
   void $("book")
@@ -6715,15 +6115,18 @@ function prevPage(){
   $("book")
     .classList
     .add(
-      "flip-prev"
+      "prev"
     );
 
   setTimeout(
     ()=>{
-      currentEbook.page--;
-      renderEbookPage();
+
+      ebook.page--;
+
+      renderEbook();
+
     },
-    330
+    320
   );
 
 }
@@ -6749,7 +6152,7 @@ function makeEbookHTML(){
 
 <title>
 ${escapeHtml(
-  currentEbook.title
+  ebook.title
 )}
 </title>
 
@@ -6764,24 +6167,16 @@ ${escapeHtml(
   box-sizing:border-box;
 }
 
-html,
 body{
   margin:0;
-  padding:0;
-
   color:#171717;
   background:#fff;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 .page{
 
   width:210mm;
-
   height:297mm;
 
   min-height:297mm;
@@ -6795,6 +6190,7 @@ body{
   background:#fffef9;
 
   page-break-after:always;
+
   break-after:page;
 
   overflow:hidden;
@@ -6828,8 +6224,6 @@ body{
 
   font-size:9pt;
 
-  font-weight:900;
-
 }
 
 h1{
@@ -6838,8 +6232,6 @@ h1{
     8mm 0 5mm;
 
   font-size:27pt;
-
-  line-height:1.08;
 
 }
 
@@ -6861,7 +6253,7 @@ h1{
 
   border:
     1px solid
-    #e5cb69;
+    #e5cc6b;
 
   border-radius:9px;
 
@@ -6879,12 +6271,11 @@ h1{
 
   left:16mm;
   right:16mm;
-
   bottom:8mm;
 
   border-top:
     1px solid
-    #e5dfc8;
+    #e5dfc7;
 
   padding-top:3mm;
 
@@ -6900,7 +6291,7 @@ h1{
 
 <body>
 
-${currentEbook.pages
+${ebook.pages
   .map(
     page=>`
 
@@ -6939,7 +6330,9 @@ ${currentEbook.pages
 
   <div class="callout">
 
-    🦚 JANMASHTAMI BUMPER OFFER
+    🧈 WHITE MAKKHAN ·
+    🦚 KRISHNA ·
+    SELLORA
 
   </div>
 
@@ -6947,7 +6340,6 @@ ${currentEbook.pages
 
     SELLORA ·
     Sell Your Knowledge.
-    Build Your Digital Business.
 
   </div>
 
@@ -6993,7 +6385,7 @@ function downloadEbookHTML(){
 
   a.download =
     (
-      currentEbook.title
+      ebook.title
         .replace(
           /[^a-z0-9]+/gi,
           "-"
@@ -7042,7 +6434,7 @@ function printEbook(){
     $("printStage");
 
   stage.innerHTML =
-    currentEbook.pages
+    ebook.pages
       .map(
         page=>`
 
@@ -7081,7 +6473,9 @@ function printEbook(){
 
   <div class="print-callout">
 
-    🦚 JANMASHTAMI BUMPER OFFER
+    🧈 WHITE MAKKHAN ·
+    🦚 KRISHNA ·
+    SELLORA
 
   </div>
 
@@ -7089,7 +6483,6 @@ function printEbook(){
 
     SELLORA ·
     Sell Your Knowledge.
-    Build Your Digital Business.
 
   </div>
 
@@ -7101,13 +6494,15 @@ function printEbook(){
 
   document.body
     .classList
-    .add("printing");
+    .add(
+      "printing"
+    );
 
   setTimeout(
     ()=>{
       window.print();
     },
-    400
+    300
   );
 
 }
@@ -7127,234 +6522,62 @@ window.downloadEbookPDF =
 window.addEventListener(
   "afterprint",
   ()=>{
+
     document.body
       .classList
       .remove(
         "printing"
       );
+
   }
 );
 
 /* =========================================================
-   EBOOK SWIPE
+   START APP
 ========================================================= */
 
-let swipeStartX =
-  0;
+async function initApp(){
 
-$("ebookStage")
-  ?.addEventListener(
-    "touchstart",
-    event=>{
-
-      if(
-        event.touches &&
-        event.touches[0]
-      ){
-
-        swipeStartX =
-          event.touches[0]
-            .clientX;
-
-      }
-
-    },
-    {
-      passive:true
-    }
-  );
-
-$("ebookStage")
-  ?.addEventListener(
-    "touchend",
-    event=>{
-
-      if(
-        !event.changedTouches ||
-        !event.changedTouches[0]
-      ){
-
-        return;
-
-      }
-
-      const endX =
-        event
-          .changedTouches[0]
-          .clientX;
-
-      const diff =
-        endX-
-        swipeStartX;
-
-      if(
-        Math.abs(diff) <
-        45
-      ){
-
-        return;
-
-      }
-
-      if(
-        diff < 0
-      ){
-
-        nextPage();
-
-      }else{
-
-        prevPage();
-
-      }
-
-    },
-    {
-      passive:true
-    }
-  );
-
-/* =========================================================
-   CLOUD SETTINGS
-========================================================= */
-
-function openCloudSetup(){
-
-  $("cloudUrl")
-    .value =
-    SUPABASE_URL;
-
-  $("cloudKey")
-    .value =
-    SUPABASE_KEY;
-
-  openModal(
-    "cloudModal"
-  );
-
-}
-
-window.openCloudSetup =
-  openCloudSetup;
-
-async function saveCloudSettings(){
-
-  const url =
-    $("cloudUrl")
-      .value
-      .trim();
-
-  const key =
-    $("cloudKey")
-      .value
-      .trim();
-
-  if(
-    !url ||
-    !key
-  ){
-
-    toast(
-      "Enter both Supabase values."
-    );
-
-    return;
-
-  }
-
-  closeModal(
-    "cloudModal"
-  );
-
-  toast(
-    "Connecting shared marketplace..."
-  );
-
-  /*
-    Current app uses the constants above.
-    This button mainly triggers a fresh sync.
-  */
-
-  supabaseClient =
-    null;
-
-  supabaseUser =
-    null;
-
-  supabaseSession =
-    null;
-
-  supabaseSdkPromise =
-    null;
-
-  await refreshCloudProducts();
-
-  toast(
-    "Shared marketplace sync complete."
-  );
-
-}
-
-window.saveCloudSettings =
-  saveCloudSettings;
-
-/* =========================================================
-   INITIALIZE
-========================================================= */
-
-async function initSellora(){
-
-  refreshUserCount();
-
-  seedDemoProducts();
-
-  updateAccountUI();
+  window.selloraProducts =
+    [];
 
   renderMarketplace();
 
-  /*
-    The important part:
-    fetch shared products immediately.
-  */
+  await initSupabase();
 
-  await refreshCloudProducts();
+  await loadProducts();
 
   /*
-    Keep marketplace fresh.
+    Shared marketplace keeps refreshing.
   */
 
   setInterval(
     ()=>{
-      refreshCloudProducts();
+      loadProducts();
     },
     15000
   );
 
-  /*
-    When another browser/tab becomes active,
-    sync again.
-  */
-
   document.addEventListener(
     "visibilitychange",
     ()=>{
+
       if(
         !document.hidden
       ){
-        refreshCloudProducts();
+
+        loadProducts();
+
       }
+
     }
   );
 
 }
 
-/* =========================================================
-   START
-========================================================= */
-
 document.addEventListener(
   "DOMContentLoaded",
-  initSellora
+  initApp
 );
 
 </script>
