@@ -3,73 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
-<meta name="description"
-content="Sellora — premium digital products marketplace, creator studio and ebook creator.">
-
+<meta name="description" content="Sellora — digital products marketplace, creator studio and ebook creator.">
 <meta name="theme-color" content="#f4c84a">
-
 <title>Sellora — Sell Your Knowledge. Build Your Digital Business.</title>
 
 <link rel="icon" type="image/png" sizes="48x48" href="sellora-favicon-48.png">
 <link rel="icon" type="image/png" sizes="192x192" href="sellora-favicon.png">
-<link rel="apple-touch-icon" sizes="192x192" href="sellora-favicon.png">
+<link rel="apple-touch-icon" href="sellora-favicon.png">
 
 <style>
-
 :root{
   --bg:#071014;
-  --bg2:#0b171c;
   --panel:#0d1b21;
-  --panel2:#11242b;
+  --panel2:#10252d;
   --white:#fff;
-  --text:#f4fbfc;
-  --muted:#9db0b7;
-  --line:rgba(255,255,255,.11);
-
+  --text:#f6fbfc;
+  --muted:#9eb0b6;
+  --line:rgba(255,255,255,.1);
   --gold:#f4c84a;
   --gold2:#ffe58a;
   --gold3:#fff5c7;
-
-  --green:#67d79c;
-  --red:#ff7474;
-
+  --green:#5ed89e;
+  --red:#ff7676;
   --shadow:0 25px 80px rgba(0,0,0,.35);
-
   --max:1180px;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--text);
-
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   background:
-    radial-gradient(
-      circle at 15% 0%,
-      rgba(244,200,74,.14),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 85% 10%,
-      rgba(255,255,255,.07),
-      transparent 26%
-    ),
-    radial-gradient(
-      circle at 50% 80%,
-      rgba(244,200,74,.05),
-      transparent 25%
-    ),
+    radial-gradient(circle at 10% 0%,rgba(244,200,74,.12),transparent 30%),
+    radial-gradient(circle at 90% 10%,rgba(255,255,255,.06),transparent 25%),
     var(--bg);
-
   line-height:1.55;
   overflow-x:hidden;
 }
@@ -77,28 +48,23 @@ body{
 body:before{
   content:"";
   position:fixed;
-  inset:-40%;
-  pointer-events:none;
+  inset:-30%;
   z-index:-2;
-
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent,
-      rgba(244,200,74,.07),
-      transparent 25%,
-      rgba(255,255,255,.04),
-      transparent 55%
-    );
-
+  pointer-events:none;
+  background:conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(244,200,74,.07),
+    transparent 26%,
+    rgba(255,255,255,.035),
+    transparent 56%
+  );
   filter:blur(60px);
-  animation:rotateBg 22s linear infinite;
+  animation:rotateBg 18s linear infinite;
 }
 
 @keyframes rotateBg{
-  to{
-    transform:rotate(360deg);
-  }
+  to{transform:rotate(360deg)}
 }
 
 @keyframes shine{
@@ -107,95 +73,49 @@ body:before{
 }
 
 @keyframes float{
-  0%,100%{
-    transform:translateY(0) rotate(-5deg);
-  }
-  50%{
-    transform:translateY(-14px) rotate(5deg);
-  }
+  0%,100%{transform:translateY(0) rotate(-4deg)}
+  50%{transform:translateY(-15px) rotate(4deg)}
 }
 
 @keyframes drop{
-  0%{
-    transform:translateY(-50px);
-    opacity:0;
-  }
-  12%{
-    opacity:1;
-  }
-  100%{
-    transform:translateY(170px);
-    opacity:0;
-  }
+  0%{transform:translateY(-40px);opacity:0}
+  15%{opacity:1}
+  100%{transform:translateY(180px);opacity:0}
 }
 
 @keyframes pulse{
-  0%,100%{
-    box-shadow:0 0 0 rgba(244,200,74,0);
-  }
-  50%{
-    box-shadow:0 0 35px rgba(244,200,74,.25);
-  }
+  0%,100%{box-shadow:0 0 0 rgba(244,200,74,0)}
+  50%{box-shadow:0 0 32px rgba(244,200,74,.25)}
 }
 
-@keyframes popup{
-  from{
-    opacity:0;
-    transform:translateY(10px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(12px) scale(.98)}
+  to{opacity:1;transform:none}
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button,
-input,
-textarea,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-img{
-  max-width:100%;
-  display:block;
-}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
 
 .container{
   width:min(var(--max),92%);
   margin:auto;
 }
 
-/* =========================
-   NAV
-========================= */
-
-.navbar{
+/* NAV */
+.nav{
   position:sticky;
   top:0;
   z-index:1000;
-
   min-height:74px;
-
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   gap:16px;
   padding:0 4%;
-
-  background:rgba(5,13,17,.86);
+  background:rgba(5,12,16,.87);
   backdrop-filter:blur(18px);
-
   border-bottom:1px solid var(--line);
 }
 
@@ -203,152 +123,109 @@ img{
   display:flex;
   align-items:center;
   gap:10px;
-
   font-weight:1000;
   letter-spacing:.08em;
 }
 
-.logo-mark{
+.logo-box{
   width:32px;
   height:32px;
-
   display:grid;
   place-items:center;
-
   border-radius:10px 10px 10px 3px;
-
-  color:#614900;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      var(--gold)
-    );
-
-  box-shadow:
-    0 0 28px rgba(244,200,74,.18);
+  color:#664900;
+  background:linear-gradient(135deg,#fff,var(--gold));
+  box-shadow:0 0 24px rgba(244,200,74,.15);
 }
 
 .nav-links{
   display:flex;
-  gap:23px;
+  gap:22px;
 }
 
 .nav-links a{
-  color:#c3d2d6;
+  color:#c4d1d4;
   font-size:13px;
   font-weight:800;
 }
 
-.nav-links a:hover{
-  color:var(--gold2);
-}
+.nav-links a:hover{color:var(--gold2)}
 
 .nav-actions{
   display:flex;
-  align-items:center;
   gap:8px;
+  align-items:center;
 }
 
-.nav-mobile{
+.mobile-btn{
   display:none;
-
   border:0;
   background:none;
   color:#fff;
-
-  font-size:26px;
+  font-size:25px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
+/* BUTTONS */
 .btn{
   border:0;
   border-radius:12px;
-
   padding:11px 16px;
-
   font-weight:900;
   font-size:13px;
-
   transition:.2s;
 }
 
 .btn-primary{
   color:#4a3600;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--gold),
-      var(--gold2)
-    );
-
-  box-shadow:
-    0 10px 28px rgba(244,200,74,.2);
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  box-shadow:0 10px 28px rgba(244,200,74,.18);
 }
 
 .btn-primary:hover{
   transform:translateY(-2px);
-  box-shadow:
-    0 16px 35px rgba(244,200,74,.28);
+  box-shadow:0 15px 35px rgba(244,200,74,.28);
 }
 
 .btn-outline{
   color:#fff;
-
   background:rgba(255,255,255,.035);
-
   border:1px solid rgba(244,200,74,.25);
 }
 
 .btn-outline:hover{
-  background:rgba(244,200,74,.08);
   border-color:var(--gold);
+  background:rgba(244,200,74,.08);
 }
 
 .btn-danger{
   color:#fff;
-  background:rgba(255,80,80,.1);
-  border:1px solid rgba(255,80,80,.24);
+  background:rgba(255,70,70,.1);
+  border:1px solid rgba(255,70,70,.25);
 }
 
-/* =========================
-   FESTIVE BANNER
-========================= */
-
-.festive-banner{
+/* FESTIVE */
+.festive{
   position:relative;
   overflow:hidden;
-
-  border-bottom:
-    1px solid rgba(244,200,74,.18);
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(244,200,74,.12),
-      rgba(255,255,255,.05),
-      rgba(244,200,74,.12)
-    );
+  border-bottom:1px solid rgba(244,200,74,.2);
+  background:linear-gradient(
+    90deg,
+    rgba(244,200,74,.1),
+    rgba(255,255,255,.05),
+    rgba(244,200,74,.1)
+  );
 }
 
-.festive-banner:after{
+.festive:after{
   content:"";
   position:absolute;
   inset:0;
-
-  background:
-    linear-gradient(
-      110deg,
-      transparent 20%,
-      rgba(255,255,255,.18) 50%,
-      transparent 75%
-    );
-
+  background:linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255,255,255,.18) 48%,
+    transparent 75%
+  );
   transform:translateX(-130%);
   animation:shine 5s linear infinite;
 }
@@ -356,62 +233,39 @@ img{
 .festive-inner{
   position:relative;
   z-index:2;
-
-  min-height:66px;
-
+  min-height:65px;
   display:flex;
   align-items:center;
   justify-content:center;
-
   gap:16px;
-
   text-align:center;
 }
 
-.festive-text strong{
+.festive-copy strong{
   display:block;
-  color:#fff7cc;
+  color:var(--gold3);
   font-size:13px;
   letter-spacing:.08em;
-  text-transform:uppercase;
 }
 
-.festive-text span{
+.festive-copy span{
   display:block;
-  color:#dfcf91;
+  color:#dbc98d;
   font-size:11px;
 }
 
 .festive-orb{
   width:44px;
   height:44px;
-
-  border-radius:50%;
-
   display:grid;
   place-items:center;
-
-  color:#674b00;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #fff,
-      var(--gold) 45%,
-      #a8780f
-    );
-
-  box-shadow:
-    0 0 0 5px rgba(255,255,255,.05),
-    0 0 32px rgba(244,200,74,.28);
-
+  border-radius:50%;
+  color:#654900;
+  background:radial-gradient(circle at 35% 30%,#fff,var(--gold) 45%,#ad7f12);
   animation:pulse 2.8s ease-in-out infinite;
 }
 
-/* =========================
-   MAKKHAN
-========================= */
-
+/* MAKKHAN */
 .makhan-layer{
   position:fixed;
   inset:0;
@@ -422,482 +276,285 @@ img{
 
 .makhan{
   position:absolute;
-
   width:11px;
   height:20px;
-
-  border-radius:
-    55% 45% 50% 50%;
-
+  border-radius:55% 45% 50% 50%;
   background:#fff;
-
-  box-shadow:
-    0 0 18px rgba(255,255,255,.38);
-
-  animation:
-    drop 5.5s linear infinite;
+  box-shadow:0 0 20px rgba(255,255,255,.42);
+  animation:drop 5.5s linear infinite;
 }
 
-.makhan:nth-child(1){
-  left:8%;
-  animation-delay:-1s;
-}
+.m1{left:8%;animation-delay:-1s}
+.m2{left:24%;animation-delay:-3s}
+.m3{left:43%;animation-delay:-2s}
+.m4{left:64%;animation-delay:-4s}
+.m5{left:82%;animation-delay:-1.8s}
+.m6{left:94%;animation-delay:-2.7s}
 
-.makhan:nth-child(2){
-  left:23%;
-  animation-delay:-3s;
-}
-
-.makhan:nth-child(3){
-  left:43%;
-  animation-delay:-2s;
-}
-
-.makhan:nth-child(4){
-  left:64%;
-  animation-delay:-4s;
-}
-
-.makhan:nth-child(5){
-  left:82%;
-  animation-delay:-1.8s;
-}
-
-.makhan:nth-child(6){
-  left:94%;
-  animation-delay:-2.7s;
-}
-
-/* =========================
-   HERO
-========================= */
-
+/* HERO */
 .hero{
   padding:82px 0 70px;
-
   display:grid;
-  grid-template-columns:
-    1.05fr .95fr;
-
-  gap:48px;
-
+  grid-template-columns:1.05fr .95fr;
+  gap:46px;
   align-items:center;
 }
 
-.hero-badge{
+.badge{
   display:inline-flex;
   align-items:center;
   gap:8px;
-
-  padding:8px 11px;
-
+  padding:7px 10px;
   border-radius:999px;
-
   background:rgba(255,255,255,.03);
-
-  border:
-    1px solid rgba(244,200,74,.25);
-
+  border:1px solid rgba(244,200,74,.28);
   color:var(--gold2);
-
   font-size:11px;
   font-weight:950;
 }
 
 .hero h1{
-  font-size:
-    clamp(44px,6vw,76px);
-
-  line-height:1.02;
-
-  letter-spacing:-.055em;
-
   margin:18px 0;
+  font-size:clamp(44px,6vw,76px);
+  line-height:1.01;
+  letter-spacing:-.055em;
 }
 
 .hero h1 span{
   display:block;
-
   color:transparent;
-
-  background:
-    linear-gradient(
-      90deg,
-      #fff,
-      var(--gold2),
-      #fff
-    );
-
+  background:linear-gradient(
+    90deg,
+    #fff,
+    var(--gold2),
+    #fff
+  );
   -webkit-background-clip:text;
   background-clip:text;
 }
 
 .hero p{
-  max-width:650px;
-
-  color:#b2c0c5;
-
+  max-width:660px;
+  color:#b6c3c7;
   font-size:17px;
 }
 
 .hero-actions{
   display:flex;
-  flex-wrap:wrap;
   gap:9px;
-
+  flex-wrap:wrap;
   margin-top:27px;
 }
 
 .offer-line{
-  margin-top:16px;
-
+  margin-top:15px;
   color:var(--gold2);
-
   font-size:13px;
-  font-weight:950;
+  font-weight:900;
 }
-
-/* HERO ART */
 
 .hero-art{
   position:relative;
-
   min-height:480px;
-
   display:grid;
   place-items:center;
-
-  padding:22px;
-
-  border:
-    1px solid rgba(244,200,74,.18);
-
+  padding:20px;
   border-radius:28px;
-
-  background:
-    radial-gradient(
-      circle at 50% 30%,
-      rgba(244,200,74,.16),
-      transparent 45%
-    ),
-    rgba(255,255,255,.025);
-
-  box-shadow:var(--shadow);
-
   overflow:hidden;
+  border:1px solid rgba(244,200,74,.18);
+  background:
+    radial-gradient(circle at 50% 25%,rgba(244,200,74,.16),transparent 45%),
+    rgba(255,255,255,.025);
+  box-shadow:var(--shadow);
 }
 
 .hero-art:before{
   content:"";
-
   position:absolute;
   inset:-30%;
-
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent,
-      rgba(244,200,74,.09),
-      transparent 24%
-    );
-
-  animation:
-    rotateBg 10s linear infinite;
+  background:conic-gradient(
+    from 0deg,
+    transparent,
+    rgba(244,200,74,.08),
+    transparent 25%
+  );
+  animation:rotateBg 10s linear infinite;
 }
 
-.krishna-main{
+.hero-image{
   position:relative;
   z-index:2;
-
   width:min(440px,94%);
-
+  max-height:590px;
+  object-fit:cover;
   border-radius:24px;
-
-  border:
-    1px solid rgba(255,255,255,.13);
-
-  box-shadow:
-    0 30px 75px rgba(0,0,0,.42);
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 30px 75px rgba(0,0,0,.42);
 }
 
 .hero-label{
   position:absolute;
-
   top:20px;
   right:20px;
-
-  z-index:4;
-
+  z-index:3;
   padding:11px 14px;
-
   border-radius:14px;
-
-  background:rgba(7,16,20,.78);
-
-  border:
-    1px solid rgba(244,200,74,.25);
-
+  background:rgba(7,16,20,.8);
+  border:1px solid rgba(244,200,74,.22);
   color:var(--gold2);
-
   font-weight:900;
   font-size:12px;
-
   backdrop-filter:blur(10px);
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* SECTIONS */
+.section{padding:82px 0}
+.center{text-align:center}
 
-.section{
-  padding:82px 0;
-}
-
-.center{
-  text-align:center;
-}
-
-.section-title{
+.title{
   margin:0 0 10px;
-
-  font-size:
-    clamp(31px,5vw,51px);
-
+  font-size:clamp(31px,5vw,52px);
   line-height:1.05;
-
   letter-spacing:-.04em;
 }
 
-.section-sub{
+.subtitle{
   max-width:720px;
-
-  margin:0 auto 34px;
-
+  margin:0 auto 32px;
   color:var(--muted);
 }
 
-/* =========================
-   OFFER CARD
-========================= */
-
-.offer{
+/* OFFER CARD */
+.offer-card{
   position:relative;
   overflow:hidden;
-
   padding:30px;
-
-  border:
-    1px solid rgba(244,200,74,.27);
-
-  border-radius:25px;
-
   text-align:center;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(244,200,74,.12),
-      rgba(255,255,255,.03)
-    );
-
+  border:1px solid rgba(244,200,74,.25);
+  border-radius:24px;
+  background:linear-gradient(
+    135deg,
+    rgba(244,200,74,.11),
+    rgba(255,255,255,.03)
+  );
   box-shadow:var(--shadow);
 }
 
-.offer:after{
+.offer-card:after{
   content:"";
-
   position:absolute;
   inset:0;
-
-  background:
-    linear-gradient(
-      110deg,
-      transparent 20%,
-      rgba(255,255,255,.1) 50%,
-      transparent 75%
-    );
-
+  background:linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255,255,255,.1) 50%,
+    transparent 75%
+  );
   transform:translateX(-120%);
-
   animation:shine 5s linear infinite;
 }
 
-.offer > *{
-  position:relative;
-  z-index:2;
-}
+.offer-card>*{position:relative;z-index:2}
 
-.offer h2{
-  margin:0 0 7px;
-
-  color:var(--gold2);
-}
-
-/* =========================
-   FEATURE CARDS
-========================= */
-
-.grid3{
+/* FEATURES */
+.feature-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
 .card{
   padding:23px;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:20px;
-
   background:var(--panel);
-
   transition:.22s;
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,.12);
 }
 
 .card:hover{
-  transform:translateY(-5px);
-
-  border-color:
-    rgba(244,200,74,.28);
+  transform:translateY(-4px);
+  border-color:rgba(244,200,74,.28);
 }
 
-.card-icon{
-  width:47px;
-  height:47px;
-
-  border-radius:14px;
-
+.icon{
+  width:46px;
+  height:46px;
   display:grid;
   place-items:center;
-
-  background:
-    rgba(244,200,74,.10);
-
-  border:
-    1px solid rgba(244,200,74,.18);
-
+  border-radius:14px;
+  background:rgba(244,200,74,.1);
+  border:1px solid rgba(244,200,74,.2);
   margin-bottom:14px;
-
-  font-size:22px;
+  font-size:21px;
 }
 
-.card h3{
-  margin:0 0 6px;
-}
+.card h3{margin:0 0 7px}
+.card p{margin:0;color:var(--muted);font-size:13px}
 
-.card p{
-  margin:0;
-
-  color:var(--muted);
-
-  font-size:13px;
-}
-
-/* =========================
-   KRISHNA GALLERY
-========================= */
-
-.krishna-gallery{
+/* GALLERY */
+.gallery{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:20px;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
 
-.krishna-photo-card{
+.gallery-card{
   overflow:hidden;
-
-  border-radius:22px;
-
-  border:
-    1px solid rgba(244,200,74,.2);
-
-  background:
-    rgba(255,255,255,.025);
+  border-radius:21px;
+  border:1px solid rgba(244,200,74,.2);
+  background:rgba(255,255,255,.025);
 }
 
-.krishna-photo-card img{
+.gallery-card img{
   width:100%;
-  height:100%;
-  min-height:330px;
-
+  height:420px;
   object-fit:cover;
 }
 
-.krishna-caption{
-  padding:16px 18px;
-
-  color:#ffeaa5;
-
-  font-weight:900;
+.gallery-info{
+  padding:14px 17px;
 }
 
-.krishna-caption small{
+.gallery-info strong{
+  color:var(--gold2);
+}
+
+.gallery-info small{
   display:block;
-
-  margin-top:4px;
-
+  margin-top:3px;
   color:var(--muted);
-
-  font-weight:500;
 }
 
-/* =========================
-   MARKETPLACE
-========================= */
-
-.market-controls{
+/* MARKETPLACE */
+.market-tools{
   display:flex;
-
   gap:10px;
-
   flex-wrap:wrap;
-
-  margin:20px 0;
+  margin:18px 0 20px;
 }
 
 .input,
 textarea,
 select{
   width:100%;
-
-  padding:12px 13px;
-
-  border:
-    1px solid rgba(255,255,255,.12);
-
-  border-radius:12px;
-
-  outline:none;
-
   color:#fff;
-
-  background:
-    rgba(255,255,255,.035);
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:12px 13px;
+  outline:none;
 }
 
 .input:focus,
 textarea:focus,
 select:focus{
   border-color:var(--gold);
-
-  box-shadow:
-    0 0 0 3px rgba(244,200,74,.07);
+  box-shadow:0 0 0 3px rgba(244,200,74,.08);
 }
 
 .search{
   flex:1;
-  min-width:220px;
+  min-width:230px;
 }
 
 .select{
@@ -905,132 +562,59 @@ select:focus{
   min-width:170px;
 }
 
-.product-grid{
+.products{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
 .product{
   overflow:hidden;
-
-  border:
-    1px solid var(--line);
-
-  border-radius:22px;
-
+  border:1px solid var(--line);
+  border-radius:21px;
   background:var(--panel);
-
   transition:.2s;
 }
 
 .product:hover{
   transform:translateY(-5px);
-
-  border-color:
-    rgba(244,200,74,.3);
+  border-color:rgba(244,200,74,.3);
 }
 
 .product-cover{
   position:relative;
-
   aspect-ratio:16/10;
-
   display:grid;
   place-items:center;
-
   overflow:hidden;
-
   background:
-    radial-gradient(
-      circle at 30% 25%,
-      rgba(244,200,74,.22),
-      transparent 30%
-    ),
-    linear-gradient(
-      145deg,
-      #17272e,
-      #091316
-    );
-}
-
-.product-cover:after{
-  content:"";
-
-  position:absolute;
-  inset:-40%;
-
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent,
-      rgba(255,255,255,.07),
-      transparent 25%
-    );
-
-  animation:
-    rotateBg 8s linear infinite;
+    radial-gradient(circle at 30% 30%,rgba(244,200,74,.23),transparent 30%),
+    linear-gradient(145deg,#18292f,#091317);
 }
 
 .product-cover img{
   position:absolute;
-
   inset:0;
-
   width:100%;
   height:100%;
-
   object-fit:cover;
-
-  z-index:2;
 }
 
 .product-cover span{
   position:relative;
-
-  z-index:3;
-
+  z-index:2;
   color:var(--gold2);
-
   font-size:28px;
-
   font-weight:1000;
 }
 
-.product-body{
-  padding:18px;
-}
+.product-body{padding:18px}
 
 .meta{
   display:flex;
-
-  align-items:center;
-
   justify-content:space-between;
-
   gap:8px;
-}
-
-.badge{
-  display:inline-flex;
-
-  padding:5px 8px;
-
-  border-radius:999px;
-
-  background:
-    rgba(255,255,255,.04);
-
-  border:
-    1px solid var(--line);
-
-  color:#cfdbde;
-
-  font-size:10px;
-  font-weight:900;
+  align-items:center;
 }
 
 .price{
@@ -1039,632 +623,449 @@ select:focus{
 }
 
 .product h3{
-  margin:7px 0 6px;
+  margin:8px 0 6px;
 }
 
 .product p{
-  min-height:60px;
-
+  min-height:58px;
   color:var(--muted);
-
   font-size:13px;
 }
 
 .product-actions{
   display:flex;
-
   gap:8px;
-
   flex-wrap:wrap;
-
-  margin-top:13px;
+  margin-top:12px;
 }
 
 .product-actions .btn{
   flex:1;
+  min-width:100px;
 }
 
-/* =========================
-   ACCOUNT / CREATOR
-========================= */
+.empty{
+  display:none;
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed rgba(255,255,255,.14);
+  border-radius:18px;
+}
 
+/* CREATOR */
 .dashboard{
   padding:24px;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:22px;
-
-  background:
-    rgba(255,255,255,.025);
+  background:rgba(255,255,255,.02);
 }
 
 .dashboard-top{
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
-  gap:15px;
-
+  gap:14px;
   flex-wrap:wrap;
 }
 
 .stats{
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:12px;
-
   margin:20px 0;
 }
 
 .stat{
   padding:16px;
-
-  border:
-    1px solid var(--line);
-
-  border-radius:16px;
-
-  background:
-    rgba(255,255,255,.025);
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:rgba(255,255,255,.025);
 }
 
-.stat small{
-  color:var(--muted);
-}
+.stat small{color:var(--muted)}
 
 .stat strong{
   display:block;
-
-  margin-top:4px;
-
-  font-size:25px;
-
   color:var(--gold2);
+  font-size:24px;
+  margin-top:3px;
 }
 
 .creator-grid{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:17px;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
 
 .form-card{
-  padding:20px;
-
-  border:
-    1px solid var(--line);
-
+  padding:21px;
+  border:1px solid var(--line);
   border-radius:19px;
-
-  background:
-    rgba(255,255,255,.02);
+  background:rgba(255,255,255,.02);
 }
 
-.form-card h3{
-  margin-top:0;
-}
+.form-card h3{margin-top:0}
 
-.field{
-  margin:13px 0;
-}
+.field{margin:13px 0}
 
 .field label{
   display:block;
-
-  margin-bottom:6px;
-
-  color:#d8e2e4;
-
+  color:#dce5e7;
   font-size:11px;
-
   font-weight:900;
+  margin-bottom:6px;
 }
 
-.form-grid{
+.form-two{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
 .notice{
   padding:12px;
-
   border-radius:13px;
-
-  background:
-    rgba(244,200,74,.08);
-
-  border:
-    1px solid rgba(244,200,74,.18);
-
-  color:#f0df9e;
-
+  background:rgba(244,200,74,.08);
+  border:1px solid rgba(244,200,74,.18);
+  color:#eedf9f;
   font-size:12px;
 }
 
 .my-products{
   display:grid;
-
-  gap:9px;
-
+  gap:10px;
   margin-top:14px;
 }
 
 .my-row{
   display:flex;
-
-  align-items:center;
-
   justify-content:space-between;
-
+  align-items:center;
   gap:10px;
-
   padding:13px;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:14px;
-
-  background:
-    rgba(255,255,255,.02);
+  background:rgba(255,255,255,.02);
 }
 
 .my-row small{
+  display:block;
   color:var(--muted);
 }
 
-/* =========================
-   MODAL
-========================= */
-
+/* MODALS */
 .modal{
   position:fixed;
-
   inset:0;
-
   z-index:5000;
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   padding:18px;
-
-  background:
-    rgba(0,0,0,.74);
-
+  background:rgba(0,0,0,.75);
   backdrop-filter:blur(8px);
 }
 
-.modal.show{
-  display:flex;
-}
+.modal.show{display:flex}
 
 .modal-card{
   position:relative;
-
   width:min(780px,100%);
-
-  max-height:93vh;
-
+  max-height:94vh;
   overflow:auto;
-
-  padding:27px;
-
-  border:
-    1px solid rgba(244,200,74,.2);
-
-  border-radius:24px;
-
-  background:#0b171c;
-
-  box-shadow:
-    0 30px 100px rgba(0,0,0,.5);
-
-  animation:popup .2s ease;
+  padding:26px;
+  border:1px solid rgba(244,200,74,.2);
+  border-radius:23px;
+  background:#0a171c;
+  box-shadow:0 30px 100px rgba(0,0,0,.5);
+  animation:modalIn .22s ease;
 }
 
 .close{
   position:absolute;
-
-  top:10px;
-  right:15px;
-
-  background:none;
-
+  top:9px;
+  right:14px;
   border:0;
-
-  color:#dce7e9;
-
+  background:none;
+  color:#fff;
   font-size:30px;
 }
 
-/* =========================
-   COUNTDOWN
-========================= */
-
-.countdown{
-  text-align:center;
-
-  padding:35px 10px;
-}
+/* COUNTDOWN */
+.countdown{text-align:center;padding:30px 8px}
 
 .count-number{
-  width:120px;
-  height:120px;
-
-  margin:28px auto;
-
-  border-radius:50%;
-
+  width:125px;
+  height:125px;
+  margin:27px auto;
   display:grid;
   place-items:center;
-
-  font-size:57px;
-
+  border-radius:50%;
+  color:#624800;
+  font-size:58px;
   font-weight:1000;
-
-  color:#614700;
-
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #fff,
-      var(--gold)
-    );
-
-  box-shadow:
-    0 0 55px rgba(244,200,74,.25);
+  background:radial-gradient(circle at 35% 30%,#fff,var(--gold));
+  box-shadow:0 0 60px rgba(244,200,74,.25);
 }
 
 .progress{
   height:8px;
-
   border-radius:999px;
-
   overflow:hidden;
-
-  background:
-    rgba(255,255,255,.08);
+  background:rgba(255,255,255,.08);
 }
 
 .progress span{
   display:block;
-
   width:0;
   height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--gold),
-      #fff
-    );
-
+  background:linear-gradient(90deg,var(--gold),#fff);
   transition:.9s;
 }
 
-/* =========================
-   EBOOK READER
-========================= */
-
-.ebook-wrap{
-  padding-top:10px;
-}
-
-.flip-stage{
-  position:relative;
-
+/* EBOOK */
+.ebook-stage{
   display:grid;
   place-items:center;
-
-  min-height:60vh;
-
+  min-height:58vh;
+  padding:10px;
   perspective:1800px;
-
   touch-action:pan-y;
 }
 
 .book{
   width:min(100%,210mm);
-
-  aspect-ratio:
-    210 / 297;
-
+  aspect-ratio:210/297;
   position:relative;
-
   transform-style:preserve-3d;
-
-  transition:
-    transform .65s
-    cubic-bezier(.2,.8,.2,1);
-
-  filter:
-    drop-shadow(
-      0 24px 55px
-      rgba(0,0,0,.33)
-    );
+  transition:transform .65s cubic-bezier(.2,.8,.2,1);
+  filter:drop-shadow(0 22px 50px rgba(0,0,0,.3));
 }
 
-.book.flip-next{
-  transform:
-    rotateY(-180deg);
-}
-
-.book.flip-prev{
-  transform:
-    rotateY(180deg);
-}
+.book.flip-next{transform:rotateY(-180deg)}
+.book.flip-prev{transform:rotateY(180deg)}
 
 .sheet{
   position:absolute;
-
   inset:0;
-
   padding:8%;
-
   display:flex;
   flex-direction:column;
-
   overflow:auto;
-
-  color:#171717;
-
-  background:#fffef8;
-
-  border:
-    1px solid #e7dfc8;
-
+  color:#181818;
+  background:#fffef9;
+  border:1px solid #e8dfc4;
   border-radius:8px;
-
   backface-visibility:hidden;
 }
 
-.sheet.back{
-  transform:
-    rotateY(180deg);
-}
+.sheet.back{transform:rotateY(180deg)}
 
-.sheet-top{
-  color:#92700d;
-
-  font-size:10px;
-
+.page-top{
+  color:#95700c;
+  font-size:9px;
   font-weight:1000;
-
   letter-spacing:.12em;
 }
 
-.sheet-page{
+.page-num{
   margin-top:4px;
-
   color:#777;
-
   font-size:10px;
-
   font-weight:900;
 }
 
-.sheet h2{
+.sheet h3{
   margin:13px 0;
-
-  font-size:
-    clamp(24px,3vw,38px);
-
+  font-size:clamp(23px,3vw,38px);
   line-height:1.08;
 }
 
-.sheet-body{
+.page-body{
   flex:1;
-
   white-space:pre-wrap;
-
-  overflow:auto;
-
-  font-size:
-    clamp(12px,1.2vw,17px);
-
+  font-size:clamp(12px,1.25vw,17px);
   line-height:1.72;
+  overflow:auto;
 }
 
-.sheet-callout{
-  margin-top:16px;
-
-  padding:12px;
-
-  border:
-    1px solid #e7cd68;
-
-  border-radius:12px;
-
+.callout{
+  margin-top:17px;
+  padding:13px;
+  border:1px solid #e5cb68;
+  border-radius:11px;
   background:#fff6ce;
-
-  color:#5b4703;
-
-  font-weight:800;
-
+  color:#5b4603;
+  font-weight:850;
   font-size:12px;
 }
 
 .ebook-controls{
   display:flex;
-
-  align-items:center;
   justify-content:center;
-
+  align-items:center;
   gap:8px;
-
   flex-wrap:wrap;
-
-  margin-top:14px;
 }
 
-.page-counter{
-  min-width:90px;
-
+.counter{
+  min-width:100px;
   text-align:center;
-
-  color:#e9d98d;
-
-  font-size:12px;
-
+  color:#ebdb91;
   font-weight:900;
+  font-size:12px;
 }
 
-/* =========================
-   BUY
-========================= */
-
+/* BUY */
 .buy-price{
-  color:var(--gold2);
-
-  font-size:40px;
-
-  font-weight:1000;
-
   margin:12px 0;
+  color:var(--gold2);
+  font-size:40px;
+  font-weight:1000;
 }
 
 .upi-box{
   padding:14px;
-
-  border:
-    1px solid var(--line);
-
+  margin:14px 0;
+  border:1px solid var(--line);
   border-radius:14px;
-
-  background:
-    rgba(255,255,255,.025);
-
-  margin:15px 0;
+  background:rgba(255,255,255,.025);
 }
 
-.upi-id{
+.upi-code{
   margin-top:5px;
-
   word-break:break-all;
-
   font-weight:900;
 }
 
-/* =========================
-   EMPTY
-========================= */
-
-.empty{
-  padding:30px;
-
-  text-align:center;
-
-  color:var(--muted);
-
-  border:
-    1px dashed rgba(255,255,255,.15);
-
-  border-radius:18px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER */
 footer{
   margin-top:40px;
-
-  padding:45px 0 60px;
-
-  border-top:
-    1px solid var(--line);
-
-  color:#8ea3aa;
+  padding:46px 0 60px;
+  border-top:1px solid var(--line);
+  color:#91a4aa;
 }
 
-.footer-flex{
+.footer-inner{
   display:flex;
-
   justify-content:space-between;
-
-  gap:20px;
-
   align-items:center;
+  gap:20px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* PRINT */
+.print-stage{display:none}
 
+body.printing .print-stage{
+  display:block;
+}
+
+body.printing > *:not(.print-stage){
+  display:none!important;
+}
+
+.print-stage .print-page{
+  width:210mm;
+  height:297mm;
+  min-height:297mm;
+  max-height:297mm;
+  padding:17mm 16mm 20mm;
+  position:relative;
+  color:#171717;
+  background:#fffef9;
+  break-after:page;
+  page-break-after:always;
+  overflow:hidden;
+}
+
+.print-stage .print-page:last-child{
+  break-after:auto;
+  page-break-after:auto;
+}
+
+.print-top{
+  color:#92700d;
+  font-size:9pt;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+.print-number{
+  margin-top:3mm;
+  color:#777;
+  font-size:9pt;
+  font-weight:900;
+}
+
+.print-stage h1{
+  margin:8mm 0 5mm;
+  font-size:27pt;
+  line-height:1.08;
+}
+
+.print-body{
+  white-space:pre-wrap;
+  font-size:11pt;
+  line-height:1.7;
+}
+
+.print-callout{
+  margin-top:8mm;
+  padding:4mm;
+  border:1px solid #e6cc6d;
+  border-radius:9px;
+  background:#fff6cf;
+  font-weight:800;
+}
+
+.print-footer{
+  position:absolute;
+  left:16mm;
+  right:16mm;
+  bottom:8mm;
+  border-top:1px solid #e5dfc7;
+  padding-top:3mm;
+  color:#777;
+  font-size:8pt;
+}
+
+/* RESPONSIVE */
 @media(max-width:950px){
-
-  .hero{
-    grid-template-columns:1fr;
-  }
-
-  .product-grid,
-  .grid3{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .creator-grid{
-    grid-template-columns:1fr;
-  }
-
-  .stats{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
+  .hero{grid-template-columns:1fr}
+  .products,.feature-grid{grid-template-columns:repeat(2,1fr)}
+  .creator-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:700px){
 
   .nav-links{
     display:none;
-
     position:absolute;
-
     top:68px;
-
     left:12px;
     right:12px;
-
-    padding:15px;
-
+    padding:14px;
     flex-direction:column;
-
-    border:
-      1px solid var(--line);
-
-    border-radius:15px;
-
+    border:1px solid var(--line);
+    border-radius:16px;
     background:#081318;
   }
 
-  .nav-links.open{
-    display:flex;
-  }
-
-  .nav-mobile{
-    display:block;
-  }
+  .nav-links.open{display:flex}
+  .mobile-btn{display:block}
 
   .nav-actions .hide-mobile{
     display:none;
+  }
+
+  .products,
+  .feature-grid,
+  .gallery,
+  .stats,
+  .form-two{
+    grid-template-columns:1fr;
   }
 
   .hero{
@@ -1675,35 +1076,14 @@ footer{
     width:100%;
   }
 
-  .grid3,
-  .product-grid,
-  .stats,
-  .krishna-gallery,
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .footer-flex{
+  .footer-inner{
     flex-direction:column;
     align-items:flex-start;
-  }
-
-  .modal-card{
-    padding:21px;
-  }
-
-  .sheet{
-    padding:7%;
-  }
-
-  .sheet-body{
-    font-size:12px;
   }
 
 }
 
 @media(prefers-reduced-motion:reduce){
-
   *,
   *:before,
   *:after{
@@ -1712,161 +1092,42 @@ footer{
     transition-duration:.001ms!important;
     scroll-behavior:auto!important;
   }
-
 }
 
-/* =========================
-   PRINT A4
-========================= */
-
-.printing{
-  background:#fff!important;
-}
-
-.print-stage{
-  display:none;
-}
-
-.printing .print-stage{
-  display:block;
-}
-
-.printing > *:not(.print-stage){
-  display:none!important;
-}
-
-.print-page{
-  width:210mm;
-  height:297mm;
-  min-height:297mm;
-  max-height:297mm;
-
-  padding:17mm 16mm 20mm;
-
-  position:relative;
-
-  background:#fffef8;
-  color:#171717;
-
-  page-break-after:always;
-  break-after:page;
-
-  overflow:hidden;
-}
-
-.print-page:last-child{
-  page-break-after:auto;
-  break-after:auto;
-}
-
-.print-top{
-  color:#8d6c0b;
-
-  font-size:9pt;
-
-  font-weight:900;
-
-  letter-spacing:.12em;
-}
-
-.print-number{
-  margin-top:3mm;
-
-  color:#777;
-
-  font-size:9pt;
-
-  font-weight:900;
-}
-
-.print-page h1{
-  margin:8mm 0 5mm;
-
-  font-size:27pt;
-
-  line-height:1.08;
-}
-
-.print-body{
-  white-space:pre-wrap;
-
-  font-size:11pt;
-
-  line-height:1.7;
-}
-
-.print-callout{
-  margin-top:8mm;
-
-  padding:4mm;
-
-  border:1px solid #e6cc6d;
-
-  border-radius:9px;
-
-  background:#fff6cf;
-
-  font-weight:800;
-}
-
-.print-footer{
-  position:absolute;
-
-  left:16mm;
-  right:16mm;
-  bottom:8mm;
-
-  border-top:1px solid #e5dfc7;
-
-  padding-top:3mm;
-
-  font-size:8pt;
-
-  color:#777;
+@page{
+  size:A4;
+  margin:0;
 }
 
 @media print{
-
-  @page{
-    size:A4;
-    margin:0;
-  }
-
-  .printing .print-stage{
+  body.printing .print-stage{
     display:block!important;
   }
-
-  .print-page{
-    width:210mm!important;
-    height:297mm!important;
-  }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- WHITE MAKKHAN DROPS -->
+<!-- WHITE MAKKHAN -->
 <div class="makhan-layer" aria-hidden="true">
-  <i class="makhan"></i>
-  <i class="makhan"></i>
-  <i class="makhan"></i>
-  <i class="makhan"></i>
-  <i class="makhan"></i>
-  <i class="makhan"></i>
+  <i class="makhan m1"></i>
+  <i class="makhan m2"></i>
+  <i class="makhan m3"></i>
+  <i class="makhan m4"></i>
+  <i class="makhan m5"></i>
+  <i class="makhan m6"></i>
 </div>
 
 <!-- NAV -->
-<header class="navbar">
+<header class="nav">
 
-  <a class="logo" href="#home">
-    <span class="logo-mark">S</span>
+  <a href="#home" class="logo">
+    <span class="logo-box">S</span>
     SELLORA
   </a>
 
-  <nav class="nav-links" id="navLinks">
+  <nav id="navLinks" class="nav-links">
     <a href="#home">Home</a>
     <a href="#marketplace">Marketplace</a>
     <a href="#creator">Creator Studio</a>
@@ -1874,8 +1135,8 @@ footer{
     <a href="#about">About</a>
   </nav>
 
-  <div class="nav-actions" id="navActions">
-    <button class="btn btn-outline hide-mobile" onclick="openTrial()">
+  <div id="navActions" class="nav-actions">
+    <button class="btn btn-outline hide-mobile" onclick="openEbookCreator()">
       🎁 Free Ebook
     </button>
 
@@ -1888,21 +1149,16 @@ footer{
     </button>
   </div>
 
-  <button
-    class="nav-mobile"
-    onclick="toggleNav()"
-    aria-label="Menu">
-    ☰
-  </button>
+  <button class="mobile-btn" onclick="toggleNav()">☰</button>
 
 </header>
 
-<!-- JANMASHTAMI -->
-<section class="festive-banner">
+<!-- FESTIVE -->
+<section class="festive">
 
   <div class="festive-inner">
 
-    <div class="festive-text">
+    <div class="festive-copy">
       <strong>🦚 JANMASHTAMI BUMPER OFFER</strong>
       <span>
         Create • Publish • Grow • FREE & Paid Digital Products
@@ -1913,10 +1169,10 @@ footer{
       🪔
     </div>
 
-    <div class="festive-text">
+    <div class="festive-copy">
       <strong>🧈 MAKKHAN WALI VIBES</strong>
       <span>
-        Sellora — Sell your knowledge. Build your digital business.
+        Sellora — Sell Your Knowledge. Build Your Digital Business.
       </span>
     </div>
 
@@ -1927,11 +1183,11 @@ footer{
 <main>
 
 <!-- HERO -->
-<section class="hero container" id="home">
+<section id="home" class="hero container">
 
   <div>
 
-    <div class="hero-badge">
+    <div class="badge">
       🦚 JANMASHTAMI BUMPER OFFER
     </div>
 
@@ -1942,8 +1198,8 @@ footer{
 
     <p>
       Create premium ebooks, publish digital products,
-      set your own price or offer products for FREE,
-      and build your creator brand on Sellora.
+      set your own price or offer products completely FREE,
+      and reach other Sellora users.
     </p>
 
     <div class="hero-actions">
@@ -1969,7 +1225,7 @@ footer{
     </div>
 
     <div class="offer-line">
-      🪔 JANMASHTAMI BUMPER OFFER — 50-PAGE EBOOK STUDIO
+      🪔 JANMASHTAMI BUMPER OFFER
     </div>
 
     <div class="offer-line">
@@ -1982,13 +1238,13 @@ footer{
 
     <img
       src="krishna-janmashtami-1.png"
-      class="krishna-main"
       alt="Krishna Janmashtami"
-      onerror="this.style.display='none';"
+      class="hero-image"
+      onerror="this.style.display='none'"
     >
 
     <div class="hero-label">
-      🧈 White Makhan • 🦚 Krishna • 🪔 Janmashtami
+      🧈 WHITE MAKKHAN · 🦚 KRISHNA · 🪔 JANMASHTAMI
     </div>
 
   </div>
@@ -2000,34 +1256,32 @@ footer{
 
   <div class="container">
 
-    <div class="offer">
+    <div class="offer-card">
 
-      <div class="hero-badge">
+      <div class="badge">
         🦚 JANMASHTAMI BUMPER OFFER
       </div>
 
-      <h2>
-        Create Your Own Digital Business
+      <h2 style="margin:13px 0 7px">
+        Build Your Digital Business on Sellora
       </h2>
 
-      <p style="color:var(--muted);max-width:720px;margin:auto">
-        Create a complete 50-page ebook, publish digital products,
-        sell them FREE or at your own price, and let creators build
-        their own digital storefront.
+      <p style="max-width:720px;margin:auto;color:var(--muted)">
+        Create a 50-page ebook, publish your own digital products,
+        choose FREE or your own price and reach a shared marketplace.
       </p>
 
       <div style="
         display:flex;
         justify-content:center;
-        gap:9px;
+        gap:8px;
         flex-wrap:wrap;
-        margin-top:17px;
-      ">
+        margin-top:17px">
 
         <button
           class="btn btn-primary"
           onclick="openEbookCreator()">
-          📕 Create Ebook
+          📕 Make Ebook
         </button>
 
         <button
@@ -2045,58 +1299,46 @@ footer{
 </section>
 
 <!-- FEATURES -->
-<section class="section" id="about">
+<section id="about" class="section">
 
   <div class="container center">
 
-    <h2 class="section-title">
-      Built For Modern Creators
+    <h2 class="title">
+      One Premium Home For Creators
     </h2>
 
-    <p class="section-sub">
-      Premium tools for ebooks, digital products,
-      creator stores and online businesses.
+    <p class="subtitle">
+      Build ebooks, publish digital products,
+      choose your pricing and create your digital brand.
     </p>
 
-    <div class="grid3">
+    <div class="feature-grid">
 
       <div class="card">
-
-        <div class="card-icon">📕</div>
-
+        <div class="icon">📕</div>
         <h3>50-Page Ebook Studio</h3>
-
         <p>
           Generate a complete 50-page ebook,
-          read it with a page flip and download it.
+          flip through it and download it.
         </p>
-
       </div>
 
       <div class="card">
-
-        <div class="card-icon">🛍️</div>
-
+        <div class="icon">🛍️</div>
         <h3>Shared Marketplace</h3>
-
         <p>
-          Upload your digital products and make
-          them visible to other Sellora users.
+          Publish your product so other users
+          can see and access it through the shared backend.
         </p>
-
       </div>
 
       <div class="card">
-
-        <div class="card-icon">💰</div>
-
-        <h3>Free or Your Price</h3>
-
+        <div class="icon">💰</div>
+        <h3>FREE or Your Price</h3>
         <p>
-          Set ₹0 for free products or set your own
-          price and add your UPI ID.
+          Set ₹0 for free products or your own
+          selling price with UPI payment information.
         </p>
-
       </div>
 
     </div>
@@ -2105,61 +1347,58 @@ footer{
 
 </section>
 
-<!-- KRISHNA GALLERY -->
+<!-- KRISHNA IMAGES -->
 <section class="section">
 
   <div class="container">
 
     <div class="center">
 
-      <div class="hero-badge">
+      <div class="badge">
         🦚 JANMASHTAMI BUMPER OFFER
       </div>
 
-      <h2
-        class="section-title"
-        style="margin-top:14px">
+      <h2 class="title" style="margin-top:14px">
         Krishna Janmashtami Celebration
       </h2>
 
-      <p class="section-sub">
-        Celebrate the divine birth of Shri Krishna
-        with Sellora's festive creator season.
+      <p class="subtitle">
+        Festive creator season powered by Sellora.
       </p>
 
     </div>
 
-    <div class="krishna-gallery">
+    <div class="gallery">
 
-      <div class="krishna-photo-card">
+      <div class="gallery-card">
 
         <img
           src="krishna-janmashtami-1.png"
-          alt="Krishna Janmashtami image"
-          onerror="this.style.display='none';"
+          alt="Krishna Janmashtami"
+          onerror="this.style.display='none'"
         >
 
-        <div class="krishna-caption">
-          🦚 Happy Janmashtami
+        <div class="gallery-info">
+          <strong>🦚 Happy Janmashtami</strong>
           <small>
-            Build, create and grow with Sellora.
+            Create, publish and grow with Sellora.
           </small>
         </div>
 
       </div>
 
-      <div class="krishna-photo-card">
+      <div class="gallery-card">
 
         <img
           src="krishna-janmashtami-2.png"
-          alt="Krishna celebration image"
-          onerror="this.style.display='none';"
+          alt="Krishna celebration"
+          onerror="this.style.display='none'"
         >
 
-        <div class="krishna-caption">
-          🧈 Makhan Wali Creator Vibes
+        <div class="gallery-info">
+          <strong>🧈 Makhan Wali Vibes</strong>
           <small>
-            Janmashtami Bumper Offer is live on Sellora.
+            Janmashtami Bumper Offer is live.
           </small>
         </div>
 
@@ -2172,24 +1411,24 @@ footer{
 </section>
 
 <!-- MARKETPLACE -->
-<section class="section" id="marketplace">
+<section id="marketplace" class="section">
 
   <div class="container">
 
     <div class="center">
 
-      <h2 class="section-title">
+      <h2 class="title">
         Sellora Marketplace
       </h2>
 
-      <p class="section-sub">
-        Janmashtami Bumper Offer · Discover
-        ebooks, guides, templates and other digital products.
+      <p class="subtitle">
+        Discover creator ebooks, guides, templates,
+        documents and other digital products.
       </p>
 
     </div>
 
-    <div class="market-controls">
+    <div class="market-tools">
 
       <input
         id="marketSearch"
@@ -2229,20 +1468,23 @@ footer{
 
       </select>
 
+      <button
+        class="btn btn-outline"
+        onclick="refreshCloudProducts()">
+        🔄 Refresh
+      </button>
+
     </div>
 
     <div
       id="productGrid"
-      class="product-grid">
+      class="products">
     </div>
 
     <div
       id="emptyProducts"
-      class="empty"
-      style="display:none;margin-top:18px">
-
-      No products found.
-
+      class="empty">
+      No matching products.
     </div>
 
   </div>
@@ -2250,37 +1492,38 @@ footer{
 </section>
 
 <!-- CREATOR -->
-<section class="section" id="creator">
+<section id="creator" class="section">
 
   <div class="container">
 
     <div class="center">
 
-      <h2 class="section-title">
+      <h2 class="title">
         Creator Studio
       </h2>
 
-      <p class="section-sub">
+      <p class="subtitle">
         Turn Your Knowledge Into a Premium Store.
       </p>
 
     </div>
 
     <div
+      id="creatorDashboard"
       class="dashboard"
-      id="creatorDashboard">
+      style="display:none">
 
       <div class="dashboard-top">
 
         <div>
 
-          <div class="hero-badge">
+          <div class="badge">
             🦚 JANMASHTAMI BUMPER OFFER
           </div>
 
           <h2
             id="welcomeName"
-            style="margin:8px 0 2px">
+            style="margin:9px 0 2px">
             Welcome
           </h2>
 
@@ -2295,19 +1538,18 @@ footer{
           style="
           display:flex;
           gap:8px;
-          flex-wrap:wrap;
-          ">
+          flex-wrap:wrap">
 
           <button
             class="btn btn-primary"
             onclick="openEbookCreator()">
-            📕 Make Ebook
+            📕 Create Ebook
           </button>
 
           <button
             class="btn btn-outline"
             onclick="openCloudSetup()">
-            ☁️ Shared Marketplace
+            ☁ Shared Setup
           </button>
 
           <button
@@ -2338,7 +1580,7 @@ footer{
         </div>
 
         <div class="stat">
-          <small>Downloads / Sales</small>
+          <small>Sales / Downloads</small>
           <strong id="statSales">0</strong>
         </div>
 
@@ -2346,21 +1588,19 @@ footer{
 
       <div class="creator-grid">
 
-        <!-- UPLOAD -->
+        <!-- PRODUCT FORM -->
         <div class="form-card">
 
           <h3>
-            🛍️ Publish Your Product
+            🛍️ Publish a Product
           </h3>
 
           <div class="notice">
-            <b>Janmashtami Bumper Offer</b><br>
-            ₹0 = FREE. Or choose your own price such as
-            ₹99, ₹199, ₹499, ₹999.
+            ₹0 = FREE product.
+            For paid products enter your own price and UPI ID.
           </div>
 
           <form
-            id="productForm"
             onsubmit="publishProduct(event)">
 
             <div class="field">
@@ -2378,7 +1618,7 @@ footer{
 
             </div>
 
-            <div class="form-grid">
+            <div class="form-two">
 
               <div class="field">
 
@@ -2386,8 +1626,7 @@ footer{
                   Category
                 </label>
 
-                <select
-                  id="productCategory">
+                <select id="productCategory">
 
                   <option value="ebooks">
                     Ebooks
@@ -2416,7 +1655,7 @@ footer{
               <div class="field">
 
                 <label>
-                  Price (₹)
+                  Price ₹
                 </label>
 
                 <input
@@ -2426,7 +1665,6 @@ footer{
                   min="0"
                   step="1"
                   value="0"
-                  placeholder="0 = FREE"
                 >
 
               </div>
@@ -2459,7 +1697,6 @@ footer{
                 class="input"
                 type="file"
                 required
-                accept=".pdf,.epub,.txt,.md,.doc,.docx,.zip,.html,.csv,.json"
               >
 
             </div>
@@ -2482,10 +1719,7 @@ footer{
             <div class="field">
 
               <label>
-                UPI ID
-                <span style="color:var(--muted)">
-                  (required for paid products)
-                </span>
+                UPI ID for paid products
               </label>
 
               <input
@@ -2516,8 +1750,8 @@ footer{
           </h3>
 
           <p style="color:var(--muted);font-size:12px">
-            Products published through Supabase can appear
-            for users on other browsers/devices.
+            Your published products are synced with the
+            shared Sellora marketplace.
           </p>
 
           <div
@@ -2534,10 +1768,10 @@ footer{
     <div
       id="creatorGuest"
       class="card"
-      style="text-align:center;margin-top:18px">
+      style="text-align:center">
 
       <div
-        class="card-icon"
+        class="icon"
         style="margin:auto">
         ✦
       </div>
@@ -2548,7 +1782,7 @@ footer{
 
       <p>
         Create an account to upload products,
-        choose your price and create ebooks.
+        set pricing and create ebooks.
       </p>
 
       <button
@@ -2565,28 +1799,22 @@ footer{
 
 </section>
 
-<!-- EBOOK CTA -->
-<section class="section" id="ebook">
+<!-- EBOOK -->
+<section id="ebook" class="section">
 
   <div class="container center">
 
-    <div class="hero-badge">
+    <div class="badge">
       📕 SELLORA EBOOK STUDIO
     </div>
 
-    <h2
-      class="section-title"
-      style="margin-top:14px">
-
+    <h2 class="title" style="margin-top:14px">
       Create Your 50-Page Ebook
-
     </h2>
 
-    <p class="section-sub">
-
+    <p class="subtitle">
       Generate → 5 second countdown →
-      ebook automatically opens → flip → download.
-
+      automatically open → flip → download.
     </p>
 
     <button
@@ -2601,18 +1829,17 @@ footer{
 
 </section>
 
+</main>
+
 <footer>
 
-  <div class="container footer-flex">
+  <div class="container footer-inner">
 
     <div>
 
       <div class="logo">
-
-        <span class="logo-mark">S</span>
-
+        <span class="logo-box">S</span>
         SELLORA
-
       </div>
 
       <div style="margin-top:7px">
@@ -2629,15 +1856,13 @@ footer{
 
 </footer>
 
-</main>
-
 <!-- =========================
-     SIGNUP MODAL
+     SIGNUP
 ========================= -->
 
 <div
-  class="modal"
-  id="signupModal">
+  id="signupModal"
+  class="modal">
 
   <div class="modal-card">
 
@@ -2647,7 +1872,7 @@ footer{
       ×
     </button>
 
-    <div class="hero-badge">
+    <div class="badge">
       SELLORA ACCOUNT
     </div>
 
@@ -2656,7 +1881,7 @@ footer{
     </h2>
 
     <p style="color:var(--muted)">
-      A new unique account increases Sellora's visible count by 1.
+      A new unique account adds +1 to Sellora's visible count.
     </p>
 
     <form onsubmit="createAccount(event)">
@@ -2671,7 +1896,6 @@ footer{
           id="signupName"
           class="input"
           required
-          placeholder="Your name"
         >
 
       </div>
@@ -2687,7 +1911,6 @@ footer{
           class="input"
           type="email"
           required
-          placeholder="you@example.com"
         >
 
       </div>
@@ -2702,8 +1925,8 @@ footer{
           id="signupPassword"
           class="input"
           type="password"
-          required
           minlength="4"
+          required
         >
 
       </div>
@@ -2724,8 +1947,8 @@ footer{
 
 <!-- LOGIN -->
 <div
-  class="modal"
-  id="loginModal">
+  id="loginModal"
+  class="modal">
 
   <div class="modal-card">
 
@@ -2735,7 +1958,7 @@ footer{
       ×
     </button>
 
-    <div class="hero-badge">
+    <div class="badge">
       SELLORA LOGIN
     </div>
 
@@ -2776,8 +1999,7 @@ footer{
       </div>
 
       <button
-        class="btn btn-primary"
-        type="submit">
+        class="btn btn-primary">
 
         Log In
 
@@ -2789,118 +2011,10 @@ footer{
 
 </div>
 
-<!-- FREE TRIAL -->
-<div
-  class="modal"
-  id="trialModal">
-
-  <div class="modal-card">
-
-    <button
-      class="close"
-      onclick="closeModal('trialModal')">
-      ×
-    </button>
-
-    <div class="hero-badge">
-      🎁 JANMASHTAMI BUMPER OFFER
-    </div>
-
-    <h2>
-      Make Your Free Ebook
-    </h2>
-
-    <form onsubmit="startEbook(event,'trial')">
-
-      <div class="field">
-
-        <label>
-          Your Name
-        </label>
-
-        <input
-          id="trialName"
-          class="input"
-          required
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          Ebook Topic
-        </label>
-
-        <input
-          id="trialTopic"
-          class="input"
-          required
-          placeholder="How to Build a Digital Business"
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          What should it teach?
-        </label>
-
-        <textarea
-          id="trialGoal"
-          required
-          rows="5">
-        </textarea>
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          Category
-        </label>
-
-        <select id="trialCategory">
-
-          <option>
-            Business
-          </option>
-
-          <option>
-            Startup
-          </option>
-
-          <option>
-            Marketing
-          </option>
-
-          <option>
-            Creator Economy
-          </option>
-
-        </select>
-
-      </div>
-
-      <button
-        class="btn btn-primary"
-        type="submit">
-
-        🚀 Generate Ebook
-
-      </button>
-
-    </form>
-
-  </div>
-
-</div>
-
 <!-- EBOOK CREATOR -->
 <div
-  class="modal"
-  id="ebookCreatorModal">
+  id="ebookCreatorModal"
+  class="modal">
 
   <div class="modal-card">
 
@@ -2910,19 +2024,15 @@ footer{
       ×
     </button>
 
-    <div class="hero-badge">
-      📕 SELLORA EBOOK STUDIO
+    <div class="badge">
+      📕 JANMASHTAMI BUMPER OFFER
     </div>
 
     <h2>
-      Generate 50-Page Ebook
+      Create 50-Page Ebook
     </h2>
 
-    <p style="color:var(--muted)">
-      Janmashtami Bumper Offer · 5-second countdown · automatic opening.
-    </p>
-
-    <form onsubmit="startEbook(event,'creator')">
+    <form onsubmit="startEbook(event)">
 
       <div class="field">
 
@@ -2934,7 +2044,7 @@ footer{
           id="ebookTitle"
           class="input"
           required
-          placeholder="Your Ebook Title"
+          placeholder="Example: My Digital Business Guide"
         >
 
       </div>
@@ -2942,14 +2052,14 @@ footer{
       <div class="field">
 
         <label>
-          Goal / Topic
+          Main Goal
         </label>
 
         <input
           id="ebookGoal"
           class="input"
           required
-          placeholder="What should readers learn?"
+          placeholder="What should the reader learn?"
         >
 
       </div>
@@ -2964,7 +2074,7 @@ footer{
           id="ebookContent"
           required
           rows="6"
-          placeholder="Describe what the ebook should teach..."
+          placeholder="Describe your topic..."
         ></textarea>
 
       </div>
@@ -3013,14 +2123,14 @@ footer{
 
 <!-- COUNTDOWN -->
 <div
-  class="modal"
-  id="countdownModal">
+  id="countdownModal"
+  class="modal">
 
   <div class="modal-card">
 
     <div class="countdown">
 
-      <div class="hero-badge">
+      <div class="badge">
         🦚 JANMASHTAMI BUMPER OFFER
       </div>
 
@@ -3029,8 +2139,8 @@ footer{
       </h2>
 
       <div
-        class="count-number"
-        id="countNumber">
+        id="countNumber"
+        class="count-number">
         5
       </div>
 
@@ -3041,7 +2151,7 @@ footer{
       <p
         id="countMessage"
         style="color:var(--muted)">
-        Preparing your 50-page ebook...
+        Preparing 50 pages...
       </p>
 
     </div>
@@ -3052,8 +2162,8 @@ footer{
 
 <!-- EBOOK VIEWER -->
 <div
-  class="modal"
-  id="ebookModal">
+  id="ebookModal"
+  class="modal">
 
   <div
     class="modal-card"
@@ -3065,8 +2175,8 @@ footer{
       ×
     </button>
 
-    <div class="hero-badge">
-      📕 JANMASHTAMI BUMPER OFFER
+    <div class="badge">
+      📕 SELLORA · JANMASHTAMI BUMPER OFFER
     </div>
 
     <h2
@@ -3076,116 +2186,112 @@ footer{
     </h2>
 
     <p style="color:var(--muted)">
-      50 A4 pages · Page flip · Download PDF · Download Ebook
+      50 A4 pages · Flip · Download PDF · Download Ebook
     </p>
 
-    <div class="ebook-wrap">
+    <div
+      id="ebookStage"
+      class="ebook-stage">
 
       <div
-        class="flip-stage"
-        id="flipStage">
+        id="book"
+        class="book">
 
-        <div
-          class="book"
-          id="ebookBook">
+        <article class="sheet">
 
-          <article class="sheet">
+          <div class="page-top">
+            SELLORA · JANMASHTAMI BUMPER OFFER
+          </div>
 
-            <div class="sheet-top">
-              SELLORA · JANMASHTAMI BUMPER OFFER
-            </div>
+          <div
+            id="frontPageNum"
+            class="page-num">
+            PAGE 1 OF 50
+          </div>
 
-            <div
-              class="sheet-page"
-              id="frontPageNumber">
-              PAGE 1 OF 50
-            </div>
+          <h3 id="frontPageTitle">
+            Introduction
+          </h3>
 
-            <h2 id="frontPageTitle">
-              Sellora Ebook
-            </h2>
+          <div
+            id="frontPageBody"
+            class="page-body">
+          </div>
 
-            <div
-              class="sheet-body"
-              id="frontPageBody">
-            </div>
+          <div class="callout">
+            🦚 JANMASHTAMI BUMPER OFFER
+          </div>
 
-            <div class="sheet-callout">
-              🦚 JANMASHTAMI BUMPER OFFER
-            </div>
+        </article>
 
-          </article>
+        <article class="sheet back">
 
-          <article class="sheet back">
+          <div class="page-top">
+            SELLORA · JANMASHTAMI BUMPER OFFER
+          </div>
 
-            <div class="sheet-top">
-              SELLORA · JANMASHTAMI BUMPER OFFER
-            </div>
+          <div
+            id="backPageNum"
+            class="page-num">
+            PAGE 2 OF 50
+          </div>
 
-            <div
-              class="sheet-page"
-              id="backPageNumber">
-              PAGE 2 OF 50
-            </div>
+          <h3 id="backPageTitle">
+            Page 2
+          </h3>
 
-            <h2 id="backPageTitle">
-              Page 2
-            </h2>
+          <div
+            id="backPageBody"
+            class="page-body">
+          </div>
 
-            <div
-              class="sheet-body"
-              id="backPageBody">
-            </div>
+          <div class="callout">
+            🧈 CREATE · PUBLISH · GROW
+          </div>
 
-            <div class="sheet-callout">
-              🧈 CREATE · PUBLISH · GROW
-            </div>
-
-          </article>
-
-        </div>
+        </article>
 
       </div>
 
-      <div class="ebook-controls">
+    </div>
 
-        <button
-          class="btn btn-outline"
-          onclick="prevPage()">
-          ← Previous
-        </button>
+    <div class="ebook-controls">
 
-        <div
-          class="page-counter"
-          id="pageCounter">
-          1 / 50
-        </div>
+      <button
+        class="btn btn-outline"
+        onclick="prevPage()">
+        ← Previous
+      </button>
 
-        <button
-          class="btn btn-primary"
-          onclick="nextPage()">
-          Next →
-        </button>
-
-        <button
-          class="btn btn-primary"
-          onclick="downloadEbookHtml()">
-          ⬇ Download Ebook
-        </button>
-
-        <button
-          class="btn btn-outline"
-          onclick="downloadEbookPdf()">
-          📄 Download PDF
-        </button>
-
-        <button
-          class="btn btn-outline"
-          onclick="printEbook()">
-          🖨️ Print / Save PDF
-        </button>
-
+      <div
+        id="pageCounter"
+        class="counter">
+        1 / 50
       </div>
+
+      <button
+        class="btn btn-primary"
+        onclick="nextPage()">
+        Next →
+      </button>
+
+      <button
+        class="btn btn-outline"
+        onclick="downloadEbookHTML()">
+        ⬇ Download Ebook
+      </button>
+
+      <button
+        class="btn btn-primary"
+        onclick="downloadEbookPDF()">
+        📄 Download PDF
+      </button>
+
+      <button
+        class="btn btn-outline"
+        onclick="printEbook()">
+        🖨 Print
+      </button>
 
     </div>
 
@@ -3193,10 +2299,10 @@ footer{
 
 </div>
 
-<!-- BUY -->
+<!-- BUY MODAL -->
 <div
-  class="modal"
-  id="buyModal">
+  id="buyModal"
+  class="modal">
 
   <div class="modal-card">
 
@@ -3206,8 +2312,8 @@ footer{
       ×
     </button>
 
-    <div class="hero-badge">
-      🪔 JANMASHTAMI BUMPER OFFER
+    <div class="badge">
+      🛍️ JANMASHTAMI BUMPER OFFER
     </div>
 
     <h2 id="buyTitle">
@@ -3220,69 +2326,57 @@ footer{
     </p>
 
     <div
-      class="buy-price"
-      id="buyAmount">
+      id="buyAmount"
+      class="buy-price">
       ₹0
     </div>
 
     <div class="upi-box">
 
-      <div
-        style="color:var(--muted);font-size:12px">
+      <div style="font-size:12px;color:var(--muted)">
         Seller UPI ID
       </div>
 
       <div
-        class="upi-id"
-        id="buyUpi">
+        id="buyUpi"
+        class="upi-code">
       </div>
 
     </div>
 
-    <div
-      style="
+    <div style="
       display:flex;
       gap:8px;
-      flex-wrap:wrap;
-      ">
+      flex-wrap:wrap">
 
       <button
-        class="btn btn-primary"
-        id="upiOpenButton">
+        id="upiOpen"
+        class="btn btn-primary">
         📱 Open UPI
       </button>
 
       <button
-        class="btn btn-outline"
-        id="upiCopyButton">
+        id="upiCopy"
+        class="btn btn-outline">
         📋 Copy UPI
       </button>
 
       <button
-        class="btn btn-outline"
-        id="paymentDoneButton">
+        id="paymentDone"
+        class="btn btn-outline">
         ✅ I Have Paid
       </button>
 
     </div>
 
-    <p
-      style="
-      color:var(--muted);
-      font-size:11px;
-      margin-top:12px">
-      UPI payment is initiated by your device.
-      Automatic bank verification requires a payment gateway/server.
-    </p>
-
   </div>
 
 </div>
 
-<!-- CLOUD SETUP -->
+<!-- CLOUD -->
 <div
-  class="modal"
-  id="cloudModal">
+  id="cloudModal"
+  class="modal">
 
   <div class="modal-card">
 
@@ -3292,16 +2386,16 @@ footer{
       ×
     </button>
 
-    <div class="hero-badge">
-      ☁️ SHARED MARKETPLACE
+    <div class="badge">
+      ☁ SHARED MARKETPLACE
     </div>
 
     <h2>
-      Shared Marketplace
+      Supabase Connection
     </h2>
 
     <p style="color:var(--muted)">
-      Your Sellora Supabase connection is already configured.
+      Your Sellora Supabase connection is preconfigured.
     </p>
 
     <div class="field">
@@ -3330,44 +2424,30 @@ footer{
 
     </div>
 
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button
+      class="btn btn-primary"
+      onclick="saveCloudConfig()">
 
-      <button
-        class="btn btn-primary"
-        onclick="saveCloudConfig()">
+      Connect & Sync
 
-        Connect
-
-      </button>
-
-      <button
-        class="btn btn-outline"
-        onclick="refreshCloudProducts()">
-
-        Sync Products
-
-      </button>
-
-    </div>
+    </button>
 
   </div>
 
 </div>
 
-<!-- PRINT STAGE -->
-<div class="print-stage" id="printStage"></div>
+<!-- PRINT -->
+<div
+  id="printStage"
+  class="print-stage">
+</div>
 
 <script>
-
-/* =========================================================
-   SELLORA COMPLETE JAVASCRIPT
-========================================================= */
-
 "use strict";
 
-/* =========================
-   SUPABASE
-========================= */
+/* ======================================================
+   SELLORA CONFIG
+====================================================== */
 
 const SUPABASE_URL =
   "https://vpvwkdeeltilwlundkcj.supabase.co";
@@ -3378,146 +2458,82 @@ const SUPABASE_KEY =
 const SUPABASE_BUCKET =
   "sellora-products";
 
-let supabaseClient = null;
-let supabaseUser = null;
-
-/* =========================
-   STORAGE
-========================= */
-
 const STORAGE = {
-
-  profile:
-    "selloraProfile",
-
-  accounts:
-    "selloraAccounts",
-
-  products:
-    "selloraProducts",
-
-  count:
-    "selloraAccountCount",
-
-  countedEmails:
-    "selloraCountedEmails",
-
-  sales:
-    "selloraSales",
-
-  cloudUrl:
-    "selloraCloudUrl",
-
-  cloudKey:
-    "selloraCloudKey"
-
+  accounts:"sellora_accounts",
+  profile:"sellora_profile",
+  products:"sellora_products",
+  count:"sellora_user_count",
+  counted:"sellora_counted_emails",
+  sales:"sellora_sales",
+  cloudUrl:"sellora_cloud_url",
+  cloudKey:"sellora_cloud_key"
 };
 
-/* =========================
-   EBOOK
-========================= */
+let supabaseClient=null;
+let supabaseUser=null;
 
-let currentEbook = {
+let cloudPromise=null;
 
-  title:
-    "Sellora Ebook",
-
-  pages:
-    [],
-
-  page:
-    1
-
+let currentEbook={
+  title:"",
+  pages:[],
+  page:1
 };
 
-/* =========================
+/* ======================================================
    HELPERS
-========================= */
+====================================================== */
 
-function el(id){
-
+function $(id){
   return document.getElementById(id);
-
 }
 
 function escapeHtml(value){
-
   return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
-
 }
 
 function escapeAttr(value){
-
   return escapeHtml(value)
     .replace(/`/g,"&#096;");
-
 }
 
-function readJSON(key,fallback){
-
+function getJSON(key,fallback){
   try{
-
-    const raw =
-      localStorage.getItem(key);
-
-    return raw
-      ? JSON.parse(raw)
-      : fallback;
-
+    const raw=localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
   }catch{
-
     return fallback;
-
   }
-
 }
 
-function writeJSON(key,value){
-
+function setJSON(key,value){
   try{
-
-    localStorage.setItem(
-      key,
-      JSON.stringify(value)
-    );
-
+    localStorage.setItem(key,JSON.stringify(value));
     return true;
-
   }catch{
-
     toast(
-      "Browser storage is unavailable."
+      "Browser storage could not save this data."
     );
-
     return false;
-
   }
-
 }
 
 function toast(message){
 
-  let box =
-    document.getElementById(
-      "selloraToast"
-    );
+  let box=$("selloraToast");
 
   if(!box){
 
-    box =
-      document.createElement(
-        "div"
-      );
+    box=document.createElement("div");
 
-    box.id =
-      "selloraToast";
+    box.id="selloraToast";
 
-    box.style.cssText = `
+    box.style.cssText=`
       position:fixed;
       left:50%;
       bottom:22px;
@@ -3526,432 +2542,228 @@ function toast(message){
       max-width:90vw;
       padding:12px 17px;
       border-radius:13px;
-      background:#10191d;
+      background:#10191e;
       color:#fff;
       border:1px solid rgba(244,200,74,.25);
-      box-shadow:0 15px 45px rgba(0,0,0,.35);
-      font-weight:800;
+      box-shadow:0 15px 40px rgba(0,0,0,.35);
       font-size:13px;
+      font-weight:800;
     `;
 
-    document.body.appendChild(
-      box
-    );
-
+    document.body.appendChild(box);
   }
 
-  box.textContent =
-    message;
+  box.textContent=message;
 
-  clearTimeout(
-    box.__timer
-  );
+  clearTimeout(box.__timer);
 
-  box.__timer =
-    setTimeout(
-      ()=>{
-        box.remove();
-      },
-      3200
-    );
-
+  box.__timer=setTimeout(()=>{
+    box.remove();
+  },3500);
 }
 
-/* =========================
+/* ======================================================
    NAV
-========================= */
+====================================================== */
 
 function toggleNav(){
-
-  const nav =
-    el("navLinks");
-
-  if(nav){
-
-    nav.classList.toggle(
-      "open"
-    );
-
-  }
-
+  $("navLinks")?.classList.toggle("open");
 }
 
-window.toggleNav =
-  toggleNav;
+window.toggleNav=toggleNav;
 
-/* =========================
+/* ======================================================
    MODALS
-========================= */
+====================================================== */
 
 function openModal(id){
-
-  const modal =
-    el(id);
-
-  if(modal){
-
-    modal.classList.add(
-      "show"
-    );
-
-  }
-
+  $(id)?.classList.add("show");
 }
 
 function closeModal(id){
-
-  const modal =
-    el(id);
-
-  if(modal){
-
-    modal.classList.remove(
-      "show"
-    );
-
-  }
-
+  $(id)?.classList.remove("show");
 }
 
-window.closeModal =
-  closeModal;
+window.closeModal=closeModal;
 
-/* =========================
+document.addEventListener("click",event=>{
+  document.querySelectorAll(".modal.show")
+    .forEach(modal=>{
+      if(event.target===modal){
+        modal.classList.remove("show");
+      }
+    });
+});
+
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"){
+    document.querySelectorAll(".modal.show")
+      .forEach(m=>m.classList.remove("show"));
+  }
+
+  if($("ebookModal")?.classList.contains("show")){
+    if(event.key==="ArrowRight") nextPage();
+    if(event.key==="ArrowLeft") prevPage();
+  }
+});
+
+/* ======================================================
    USERS
-========================= */
+====================================================== */
 
-function getUserCount(){
+function userCount(){
 
-  let n =
-    Number(
-      localStorage.getItem(
-        STORAGE.count
-      )
-    );
+  let count=Number(
+    localStorage.getItem(
+      STORAGE.count
+    )
+  );
 
   if(
-    !Number.isFinite(n) ||
-    n < 126
+    !Number.isFinite(count) ||
+    count<126
   ){
-
-    n = 126;
+    count=126;
 
     localStorage.setItem(
       STORAGE.count,
       "126"
     );
-
   }
 
-  return Math.floor(n);
-
+  return Math.floor(count);
 }
 
 function refreshUserCount(){
 
-  const value =
-    getUserCount() + "+";
+  const text=
+    userCount()+"+";
 
-  const a =
-    el("userCount");
-
-  const b =
-    el("statUsers");
-
-  if(a){
-
-    a.textContent =
-      value;
-
+  if($("userCount")){
+    $("userCount").textContent=text;
   }
 
-  if(b){
-
-    b.textContent =
-      value;
-
+  if($("statUsers")){
+    $("statUsers").textContent=text;
   }
-
 }
 
-function incrementUserCount(){
+function countNewAccount(email){
 
-  const profile =
-    readJSON(
-      STORAGE.profile,
-      null
-    );
-
-  if(
-    !profile ||
-    !profile.email
-  ){
-
-    return;
-
-  }
-
-  const counted =
-    readJSON(
-      STORAGE.countedEmails,
+  const counted=
+    getJSON(
+      STORAGE.counted,
       []
     );
 
   if(
-    counted.includes(
-      profile.email
-    )
+    counted.includes(email)
   ){
-
+    refreshUserCount();
     return;
-
   }
 
-  counted.push(
-    profile.email
-  );
+  counted.push(email);
 
-  writeJSON(
-    STORAGE.countedEmails,
+  setJSON(
+    STORAGE.counted,
     counted
   );
 
   localStorage.setItem(
     STORAGE.count,
-    String(
-      getUserCount()+1
-    )
+    String(userCount()+1)
   );
 
   refreshUserCount();
-
 }
 
-/* =========================
+/* ======================================================
    ACCOUNT
-========================= */
+====================================================== */
 
-function getProfile(){
-
-  return readJSON(
+function currentProfile(){
+  return getJSON(
     STORAGE.profile,
     null
   );
-
-}
-
-function updateAccountUI(){
-
-  const profile =
-    getProfile();
-
-  const dashboard =
-    el("creatorDashboard");
-
-  const guest =
-    el("creatorGuest");
-
-  const nav =
-    el("navActions");
-
-  if(profile){
-
-    if(dashboard){
-
-      dashboard.style.display =
-        "block";
-
-    }
-
-    if(guest){
-
-      guest.style.display =
-        "none";
-
-    }
-
-    if(nav){
-
-      const firstName =
-        String(
-          profile.name ||
-          "Creator"
-        )
-        .trim()
-        .split(/\s+/)[0];
-
-      nav.innerHTML = `
-
-        <span class="badge">
-          👋 ${escapeHtml(firstName)}
-        </span>
-
-        <button
-          class="btn btn-primary"
-          onclick="openEbookCreator()">
-
-          Create Ebook
-
-        </button>
-
-      `;
-
-    }
-
-    const welcome =
-      el("welcomeName");
-
-    if(welcome){
-
-      welcome.textContent =
-        "Welcome, "+
-        (
-          profile.name ||
-          "Creator"
-        )+
-        "! 👋";
-
-    }
-
-    const summary =
-      el("accountSummary");
-
-    if(summary){
-
-      summary.textContent =
-        profile.email+
-        " • Sellora Creator";
-
-    }
-
-  }else{
-
-    if(dashboard){
-
-      dashboard.style.display =
-        "none";
-
-    }
-
-    if(guest){
-
-      guest.style.display =
-        "block";
-
-    }
-
-  }
-
-  renderMyProducts();
-
 }
 
 function openSignup(){
-
-  openModal(
-    "signupModal"
-  );
-
+  openModal("signupModal");
 }
 
-window.openSignup =
-  openSignup;
+window.openSignup=openSignup;
 
 function openLogin(){
-
-  openModal(
-    "loginModal"
-  );
-
+  openModal("loginModal");
 }
 
-window.openLogin =
-  openLogin;
-
-function openTrial(){
-
-  openModal(
-    "trialModal"
-  );
-
-}
-
-window.openTrial =
-  openTrial;
+window.openLogin=openLogin;
 
 function openCreatorDashboard(){
 
-  const profile =
-    getProfile();
+  const profile=
+    currentProfile();
 
   if(!profile){
-
     openSignup();
-
     toast(
-      "Create a Sellora account first."
+      "Create your account first."
     );
-
     return;
-
   }
 
-  document
-    .getElementById("creator")
+  $("creator")
     ?.scrollIntoView({
       behavior:"smooth"
     });
-
 }
 
-window.openCreatorDashboard =
+window.openCreatorDashboard=
   openCreatorDashboard;
 
 function createAccount(event){
 
   event.preventDefault();
 
-  const name =
-    el("signupName")
-      .value
-      .trim();
+  const name=
+    $("signupName").value.trim();
 
-  const email =
-    el("signupEmail")
+  const email=
+    $("signupEmail")
       .value
       .trim()
       .toLowerCase();
 
-  const password =
-    el("signupPassword")
-      .value;
+  const password=
+    $("signupPassword").value;
 
   if(
     !name ||
     !email ||
-    password.length < 4
+    password.length<4
   ){
-
     toast(
       "Please enter valid account details."
     );
-
     return;
-
   }
 
-  const accounts =
-    readJSON(
+  const accounts=
+    getJSON(
       STORAGE.accounts,
       []
     );
 
-  if(
-    accounts.some(
-      a =>
-        a.email === email
-    )
-  ){
+  const existing=
+    accounts.find(
+      account =>
+        account.email===
+        email
+    );
+
+  if(existing){
 
     toast(
       "Account already exists. Please log in."
@@ -3964,44 +2776,33 @@ function createAccount(event){
     openLogin();
 
     return;
-
   }
 
-  const account = {
-
+  const account={
     id:
-      "user-"+Date.now(),
-
+      "user-"+Date.now()+"-"+Math.random().toString(36).slice(2),
     name,
     email,
     password
-
   };
 
-  accounts.push(
-    account
-  );
+  accounts.push(account);
 
-  writeJSON(
+  setJSON(
     STORAGE.accounts,
     accounts
   );
 
-  writeJSON(
+  setJSON(
     STORAGE.profile,
     {
-      id:
-        account.id,
-
-      name:
-        account.name,
-
-      email:
-        account.email
+      id:account.id,
+      name,
+      email
     }
   );
 
-  incrementUserCount();
+  countNewAccount(email);
 
   closeModal(
     "signupModal"
@@ -4012,37 +2813,38 @@ function createAccount(event){
   toast(
     "Account created successfully."
   );
-
 }
 
-window.createAccount =
+window.createAccount=
   createAccount;
 
 function loginAccount(event){
 
   event.preventDefault();
 
-  const email =
-    el("loginEmail")
+  const email=
+    $("loginEmail")
       .value
       .trim()
       .toLowerCase();
 
-  const password =
-    el("loginPassword")
+  const password=
+    $("loginPassword")
       .value;
 
-  const accounts =
-    readJSON(
+  const accounts=
+    getJSON(
       STORAGE.accounts,
       []
     );
 
-  const found =
+  const found=
     accounts.find(
-      a =>
-        a.email === email &&
-        a.password === password
+      account =>
+        account.email===
+        email &&
+        account.password===
+        password
     );
 
   if(!found){
@@ -4052,20 +2854,14 @@ function loginAccount(event){
     );
 
     return;
-
   }
 
-  writeJSON(
+  setJSON(
     STORAGE.profile,
     {
-      id:
-        found.id,
-
-      name:
-        found.name,
-
-      email:
-        found.email
+      id:found.id,
+      name:found.name,
+      email:found.email
     }
   );
 
@@ -4080,10 +2876,9 @@ function loginAccount(event){
     found.name+
     "!"
   );
-
 }
 
-window.loginAccount =
+window.loginAccount=
   loginAccount;
 
 function logout(){
@@ -4092,238 +2887,816 @@ function logout(){
     STORAGE.profile
   );
 
-  supabaseUser =
-    null;
-
   updateAccountUI();
 
-  toast(
-    "Logged out."
-  );
+  toast("Logged out.");
 
 }
 
-window.logout =
-  logout;
+window.logout=logout;
 
-/* =========================
+function updateAccountUI(){
+
+  const profile=
+    currentProfile();
+
+  const dashboard=
+    $("creatorDashboard");
+
+  const guest=
+    $("creatorGuest");
+
+  const nav=
+    $("navActions");
+
+  if(profile){
+
+    dashboard.style.display=
+      "block";
+
+    guest.style.display=
+      "none";
+
+    const first=
+      (
+        profile.name||
+        "Creator"
+      )
+      .trim()
+      .split(/\s+/)[0];
+
+    nav.innerHTML=`
+
+      <span class="badge">
+        👋 ${escapeHtml(first)}
+      </span>
+
+      <button
+        class="btn btn-primary"
+        onclick="openCreatorDashboard()">
+        Creator Studio
+      </button>
+
+    `;
+
+    $("welcomeName").textContent=
+      "Welcome, "+
+      profile.name+
+      "! 👋";
+
+    $("accountSummary").textContent=
+      profile.email+
+      " · Sellora Creator";
+
+  }else{
+
+    dashboard.style.display=
+      "none";
+
+    guest.style.display=
+      "block";
+
+    nav.innerHTML=`
+
+      <button
+        class="btn btn-outline hide-mobile"
+        onclick="openEbookCreator()">
+        🎁 Free Ebook
+      </button>
+
+      <button
+        class="btn btn-outline"
+        onclick="openLogin()">
+        Log In
+      </button>
+
+      <button
+        class="btn btn-primary"
+        onclick="openSignup()">
+        Create Account
+      </button>
+
+    `;
+  }
+
+  renderMyProducts();
+}
+
+/* ======================================================
    LOCAL PRODUCTS
-========================= */
+====================================================== */
 
-function getLocalProducts(){
-
-  return readJSON(
+function localProducts(){
+  return getJSON(
     STORAGE.products,
     []
   );
-
 }
 
-function saveLocalProducts(
-  products
-){
-
-  return writeJSON(
+function saveLocalProducts(list){
+  return setJSON(
     STORAGE.products,
-    products
+    list
   );
-
 }
 
-/* =========================
-   SUPABASE LOADER
-========================= */
+function addOrReplaceLocal(product){
 
-async function loadSupabase(){
+  const products=
+    localProducts();
+
+  const index=
+    products.findIndex(
+      p=>
+        String(p.id)===
+        String(product.id)
+    );
+
+  if(index>=0){
+    products[index]=product;
+  }else{
+    products.unshift(product);
+  }
+
+  saveLocalProducts(products);
+}
+
+/* ======================================================
+   DEMO PRODUCTS
+====================================================== */
+
+function seedDemo(){
+
+  const products=
+    localProducts();
+
+  const demo=[
+    {
+      id:"demo-1",
+      title:"Creator Growth Playbook",
+      description:"A practical creator growth guide.",
+      category:"guides",
+      price:0,
+      creator:"Sellora Studio",
+      type:"digital",
+      demo:true
+    },
+    {
+      id:"demo-2",
+      title:"Digital Product Handbook",
+      description:"Plan, validate and launch digital products.",
+      category:"ebooks",
+      price:0,
+      creator:"Sellora Studio",
+      type:"ebook",
+      demo:true
+    },
+    {
+      id:"demo-3",
+      title:"Launch Week Template Kit",
+      description:"Simple templates for launching digital products.",
+      category:"templates",
+      price:0,
+      creator:"Sellora Studio",
+      type:"digital",
+      demo:true
+    }
+  ];
+
+  const ids=
+    new Set(
+      products.map(p=>p.id)
+    );
+
+  demo.forEach(item=>{
+    if(!ids.has(item.id)){
+      products.push(item);
+    }
+  });
+
+  saveLocalProducts(products);
+}
+
+/* ======================================================
+   MARKETPLACE
+====================================================== */
+
+function renderMarketplace(){
+
+  const grid=
+    $("productGrid");
+
+  if(!grid) return;
+
+  const search=
+    (
+      $("marketSearch")?.value||
+      ""
+    )
+    .trim()
+    .toLowerCase();
+
+  const category=
+    $("marketCategory")?.value||
+    "all";
+
+  const filtered=
+    localProducts()
+      .filter(product=>{
+
+        const hay=
+          (
+            product.title+
+            " "+
+            product.description+
+            " "+
+            product.creator+
+            " "+
+            product.category
+          )
+          .toLowerCase();
+
+        const searchMatch=
+          !search||
+          hay.includes(search);
+
+        const categoryMatch=
+          category==="all"||
+          String(
+            product.category
+          ).toLowerCase()===
+          category;
+
+        return(
+          searchMatch&&
+          categoryMatch
+        );
+      });
+
+  grid.innerHTML="";
+
+  $("emptyProducts").style.display=
+    filtered.length
+      ? "none"
+      : "block";
+
+  filtered.forEach(product=>{
+    grid.appendChild(
+      createProductCard(product)
+    );
+  });
+}
+
+window.renderMarketplace=
+  renderMarketplace;
+
+function createProductCard(product){
+
+  const card=
+    document.createElement("article");
+
+  card.className="product";
+
+  const free=
+    Number(
+      product.price||0
+    )<=0;
+
+  const ebook=
+    product.type==="ebook"||
+    String(
+      product.category
+    ).toLowerCase()==="ebooks";
+
+  const cover=
+    product.cover_url||
+    product.coverUrl||
+    product.coverData||
+    "";
+
+  card.innerHTML=`
+
+    <div class="product-cover">
+
+      ${
+        cover
+        ?`
+          <img
+            src="${escapeAttr(cover)}"
+            alt="">
+        `
+        :`
+          <span>SELLORA</span>
+        `
+      }
+
+    </div>
+
+    <div class="product-body">
+
+      <div class="meta">
+
+        <span class="badge">
+          ${escapeHtml(
+            product.category||
+            "Digital"
+          )}
+        </span>
+
+        <span class="price">
+          ${
+            free
+            ?"FREE"
+            :"₹"+
+              Number(
+                product.price
+              ).toLocaleString(
+                "en-IN"
+              )
+          }
+        </span>
+
+      </div>
+
+      <h3>
+        ${escapeHtml(
+          product.title
+        )}
+      </h3>
+
+      <p>
+        ${escapeHtml(
+          product.description||
+          "Digital product."
+        )}
+      </p>
+
+      <div
+        style="
+        color:var(--muted);
+        font-size:11px">
+
+        By ${escapeHtml(
+          product.creator||
+          "Sellora Creator"
+        )}
+
+      </div>
+
+      <div class="product-actions">
+
+        ${
+          ebook
+          ?`
+            <button
+              class="btn btn-primary"
+              onclick="openProductEbook('${escapeAttr(product.id)}')">
+              📖 Open Ebook
+            </button>
+          `
+          :`
+            <button
+              class="btn btn-outline"
+              onclick="getProduct('${escapeAttr(product.id)}')">
+              ${free?"⬇ Get Free":"⬇ Get Product"}
+            </button>
+          `
+        }
+
+        ${
+          free
+          ?""
+          :`
+            <button
+              class="btn btn-primary"
+              onclick="buyProduct('${escapeAttr(product.id)}')">
+              Buy ₹${Number(
+                product.price
+              ).toLocaleString(
+                "en-IN"
+              )}
+            </button>
+          `
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+  return card;
+}
+
+/* ======================================================
+   DOWNLOAD PRODUCT
+====================================================== */
+
+function getProduct(id){
+
+  const product=
+    localProducts()
+      .find(
+        p=>
+          String(p.id)===
+          String(id)
+      );
+
+  if(!product){
+    toast(
+      "Product not found."
+    );
+    return;
+  }
+
+  if(
+    product.type===
+      "ebook"
+  ){
+    openProductEbook(id);
+    return;
+  }
+
+  const url=
+    product.file_url||
+    product.fileUrl||
+    "";
+
+  if(url){
+
+    const a=
+      document.createElement("a");
+
+    a.href=url;
+    a.download=
+      product.file_name||
+      product.fileName||
+      product.title||
+      "sellora-product";
+
+    a.target="_blank";
+    a.rel="noopener";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    toast(
+      "Download started."
+    );
+
+    return;
+  }
+
+  if(product.fileData){
+
+    const a=
+      document.createElement("a");
+
+    a.href=
+      product.fileData;
+
+    a.download=
+      product.fileName||
+      product.title||
+      "sellora-product";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    toast(
+      "Download started."
+    );
+
+    return;
+  }
+
+  toast(
+    "No downloadable file is attached."
+  );
+}
+
+window.getProduct=
+  getProduct;
+
+/* ======================================================
+   UPI
+====================================================== */
+
+function buyProduct(id){
+
+  const product=
+    localProducts()
+      .find(
+        p=>
+          String(p.id)===
+          String(id)
+      );
+
+  if(!product){
+    toast(
+      "Product not found."
+    );
+    return;
+  }
+
+  const amount=
+    Number(
+      product.price||0
+    );
+
+  if(amount<=0){
+    getProduct(id);
+    return;
+  }
+
+  const upi=
+    String(
+      product.upi_id||
+      product.upiId||
+      ""
+    ).trim();
+
+  if(!upi){
+    toast(
+      "Seller has not added a UPI ID."
+    );
+    return;
+  }
+
+  $("buyTitle").textContent=
+    product.title;
+
+  $("buyDescription").textContent=
+    product.description||
+    "";
+
+  $("buyAmount").textContent=
+    "₹"+
+    amount.toLocaleString(
+      "en-IN"
+    );
+
+  $("buyUpi").textContent=
+    upi;
+
+  $("upiOpen").onclick=()=>{
+
+    const uri=
+      "upi://pay"+
+      "?pa="+
+      encodeURIComponent(upi)+
+      "&pn="+
+      encodeURIComponent(
+        product.creator||
+        "Sellora Creator"
+      )+
+      "&am="+
+      encodeURIComponent(
+        amount.toFixed(2)
+      )+
+      "&cu=INR"+
+      "&tn="+
+      encodeURIComponent(
+        "Sellora - "+
+        product.title
+      );
+
+    window.location.href=
+      uri;
+  };
+
+  $("upiCopy").onclick=
+    async()=>{
+
+      try{
+
+        await navigator
+          .clipboard
+          .writeText(
+            upi
+          );
+
+        toast(
+          "UPI ID copied."
+        );
+
+      }catch{
+
+        toast(
+          "UPI: "+upi
+        );
+
+      }
+
+    };
+
+  $("paymentDone").onclick=
+    ()=>{
+
+      closeModal(
+        "buyModal"
+      );
+
+      getProduct(id);
+
+    };
+
+  openModal(
+    "buyModal"
+  );
+}
+
+window.buyProduct=
+  buyProduct;
+
+/* ======================================================
+   SUPABASE SDK
+====================================================== */
+
+function loadSupabase(){
 
   if(
     window.supabase &&
-    typeof
-    window.supabase.createClient ===
-    "function"
+    window.supabase.createClient
   ){
-
-    return true;
-
+    return Promise.resolve();
   }
 
   if(
-    window.__selloraSupabasePromise
+    cloudPromise
   ){
-
-    return (
-      window.__selloraSupabasePromise
-    );
-
+    return cloudPromise;
   }
 
-  window.__selloraSupabasePromise =
+  cloudPromise=
     new Promise(
       (resolve,reject)=>{
 
-        const script =
-          document.createElement(
-            "script"
-          );
+        const sources=[
+          "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js",
+          "https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"
+        ];
 
-        script.src =
-          "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+        let index=0;
 
-        script.onload =
-          ()=>{
-            if(
-              window.supabase &&
-              typeof
-              window.supabase.createClient ===
-              "function"
-            ){
+        function tryNext(){
 
-              resolve(true);
+          if(index>=sources.length){
 
-            }else{
-
-              reject(
-                new Error(
-                  "Supabase SDK failed."
-                )
-              );
-
-            }
-          };
-
-        script.onerror =
-          ()=>{
             reject(
               new Error(
-                "Could not load Supabase."
+                "Supabase SDK could not load."
               )
             );
+
+            return;
+          }
+
+          const script=
+            document.createElement(
+              "script"
+            );
+
+          script.src=
+            sources[index++];
+
+          script.async=true;
+
+          script.onload=()=>{
+
+            if(
+              window.supabase &&
+              window.supabase.createClient
+            ){
+              resolve();
+            }else{
+              tryNext();
+            }
+
           };
 
-        document.head.appendChild(
-          script
-        );
+          script.onerror=
+            ()=>{
+              tryNext();
+            };
+
+          document.head.appendChild(
+            script
+          );
+        }
+
+        tryNext();
 
       }
     );
 
-  return (
-    window.__selloraSupabasePromise
-  );
-
+  return cloudPromise;
 }
 
-async function initSupabase(){
+async function initCloud(){
 
   if(
     supabaseClient &&
     supabaseUser
   ){
-
     return true;
-
   }
 
   try{
 
     await loadSupabase();
 
-    supabaseClient =
+    supabaseClient=
       window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
       );
 
-    const session =
+    const session=
       await supabaseClient
         .auth
         .getSession();
 
     if(
-      session.data &&
-      session.data.session
+      session.data?.session
     ){
 
-      supabaseUser =
+      supabaseUser=
         session.data.session.user;
 
-    }else{
-
-      const auth =
-        await supabaseClient
-          .auth
-          .signInAnonymously();
-
-      if(auth.error){
-
-        throw auth.error;
-
-      }
-
-      supabaseUser =
-        auth.data.user;
-
+      return true;
     }
+
+    const auth=
+      await supabaseClient
+        .auth
+        .signInAnonymously();
+
+    if(auth.error){
+      throw auth.error;
+    }
+
+    supabaseUser=
+      auth.data.user;
 
     return true;
 
   }catch(error){
 
     console.warn(
-      "Supabase:",
+      "Cloud init failed:",
       error
     );
 
     return false;
-
   }
-
 }
 
-/* =========================
-   CLOUD SETTINGS
-========================= */
+/* ======================================================
+   CLOUD SETUP
+====================================================== */
 
 function openCloudSetup(){
 
-  el("cloudUrl").value =
+  $("cloudUrl").value=
     SUPABASE_URL;
 
-  el("cloudKey").value =
+  $("cloudKey").value=
     SUPABASE_KEY;
 
   openModal(
     "cloudModal"
   );
-
 }
 
-window.openCloudSetup =
+window.openCloudSetup=
   openCloudSetup;
 
 async function saveCloudConfig(){
 
-  const url =
-    el("cloudUrl")
+  const url=
+    $("cloudUrl")
       .value
       .trim();
 
-  const key =
-    el("cloudKey")
+  const key=
+    $("cloudKey")
       .value
       .trim();
 
-  if(
-    !url ||
-    !key
-  ){
+  if(!url || !key){
 
     toast(
-      "Enter URL and publishable key."
+      "Enter Project URL and Publishable Key."
     );
 
     return;
-
   }
 
   localStorage.setItem(
@@ -4341,768 +3714,247 @@ async function saveCloudConfig(){
   );
 
   toast(
-    "Connecting shared marketplace..."
+    "Connecting..."
   );
+
+  supabaseClient=null;
+  supabaseUser=null;
+  cloudPromise=null;
 
   await refreshCloudProducts();
 
 }
 
-window.saveCloudConfig =
+window.saveCloudConfig=
   saveCloudConfig;
 
-/* =========================
-   MARKETPLACE
-========================= */
+/* ======================================================
+   CLOUD PRODUCT SYNC
+====================================================== */
 
-function seedDemoProducts(){
+async function refreshCloudProducts(){
 
-  const current =
-    getLocalProducts();
+  const ready=
+    await initCloud();
 
-  const demos = [
-
-    {
-      id:
-        "demo-1",
-
-      title:
-        "Creator Growth Playbook",
-
-      description:
-        "A practical guide for creators.",
-
-      category:
-        "guides",
-
-      price:
-        0,
-
-      creator:
-        "Sellora Studio",
-
-      type:
-        "digital",
-
-      demo:
-        true
-    },
-
-    {
-      id:
-        "demo-2",
-
-      title:
-        "Digital Product Handbook",
-
-      description:
-        "Learn how to plan, create and publish digital products.",
-
-      category:
-        "ebooks",
-
-      price:
-        0,
-
-      creator:
-        "Sellora Studio",
-
-      type:
-        "ebook",
-
-      demo:
-        true
-    },
-
-    {
-      id:
-        "demo-3",
-
-      title:
-        "Launch Week Template Kit",
-
-      description:
-        "Useful launch planning templates.",
-
-      category:
-        "templates",
-
-      price:
-        0,
-
-      creator:
-        "Sellora Studio",
-
-      type:
-        "digital",
-
-      demo:
-        true
-    }
-
-  ];
-
-  const ids =
-    new Set(
-      current.map(
-        x=>x.id
-      )
-    );
-
-  demos.forEach(
-    item=>{
-
-      if(
-        !ids.has(
-          item.id
-        )
-      ){
-
-        current.push(
-          item
-        );
-
-      }
-
-    }
-  );
-
-  saveLocalProducts(
-    current
-  );
-
-}
-
-function renderMarketplace(){
-
-  const grid =
-    el("productGrid");
-
-  const empty =
-    el("emptyProducts");
-
-  if(!grid){
-
-    return;
-
+  if(!ready){
+    return false;
   }
 
-  const search =
-    (
-      el("marketSearch")
-        ?.value ||
-      ""
-    )
-    .trim()
-    .toLowerCase();
+  try{
 
-  const category =
-    el("marketCategory")
-      ?.value ||
-    "all";
-
-  const products =
-    getLocalProducts();
-
-  const filtered =
-    products.filter(
-      p=>{
-
-        const hay =
-          (
-            p.title+
-            " "+
-            p.description+
-            " "+
-            p.creator+
-            " "+
-            p.category
-          )
-          .toLowerCase();
-
-        const searchMatch =
-          !search ||
-          hay.includes(
-            search
-          );
-
-        const categoryMatch =
-          category ===
-            "all" ||
-          String(
-            p.category
-          )
-          .toLowerCase() ===
-            category;
-
-        return (
-          searchMatch &&
-          categoryMatch
-        );
-
-      }
-    );
-
-  grid.innerHTML =
-    "";
-
-  if(
-    !filtered.length
-  ){
-
-    empty.style.display =
-      "block";
-
-    return;
-
-  }
-
-  empty.style.display =
-    "none";
-
-  filtered.forEach(
-    product=>{
-
-      grid.appendChild(
-        productCard(
-          product
-        )
-      );
-
-    }
-  );
-
-}
-
-window.renderMarketplace =
-  renderMarketplace;
-
-function productCard(
-  product
-){
-
-  const card =
-    document.createElement(
-      "article"
-    );
-
-  card.className =
-    "product";
-
-  const free =
-    Number(
-      product.price || 0
-    ) <= 0;
-
-  const ebook =
-    product.type ===
-      "ebook" ||
-    String(
-      product.category
-    ).toLowerCase() ===
-      "ebooks";
-
-  const cover =
-    product.coverData ||
-    product.cover_url ||
-    "";
-
-  card.innerHTML = `
-
-    <div class="product-cover">
-
-      ${
-        cover
-          ? `
-            <img
-              src="${escapeAttr(cover)}"
-              alt=""
-            >
-          `
-          : `
-            <span>
-              SELLORA
-            </span>
-          `
-      }
-
-    </div>
-
-    <div class="product-body">
-
-      <div class="meta">
-
-        <span class="badge">
-          ${escapeHtml(
-            product.category ||
-            "Digital"
-          )}
-        </span>
-
-        <span class="price">
-
-          ${
-            free
-              ? "FREE"
-              :
-                "₹"+
-                Number(
-                  product.price
-                ).toLocaleString(
-                  "en-IN"
-                )
+    const result=
+      await supabaseClient
+        .from("products")
+        .select("*")
+        .order(
+          "created_at",
+          {
+            ascending:false
           }
-
-        </span>
-
-      </div>
-
-      <h3>
-        ${escapeHtml(
-          product.title
-        )}
-      </h3>
-
-      <p>
-        ${escapeHtml(
-          product.description ||
-          "Digital product from a Sellora creator."
-        )}
-      </p>
-
-      <div
-        style="
-        color:var(--muted);
-        font-size:11px">
-        By ${escapeHtml(
-          product.creator ||
-          "Sellora Creator"
-        )}
-      </div>
-
-      <div class="product-actions">
-
-        ${
-          ebook
-            ? `
-              <button
-                class="btn btn-primary"
-                onclick="openProductEbook('${escapeAttr(product.id)}')">
-                📖 Open Ebook
-              </button>
-            `
-            : `
-              <button
-                class="btn btn-outline"
-                onclick="getProduct('${escapeAttr(product.id)}')">
-                ${free ? "⬇ Get Free" : "⬇ Get Product"}
-              </button>
-            `
-        }
-
-        ${
-          free
-            ? ""
-            : `
-              <button
-                class="btn btn-primary"
-                onclick="buyProduct('${escapeAttr(product.id)}')">
-                Buy ₹${Number(
-                  product.price
-                ).toLocaleString(
-                  "en-IN"
-                )}
-              </button>
-            `
-        }
-
-      </div>
-
-    </div>
-
-  `;
-
-  return card;
-
-}
-
-function getProduct(id){
-
-  const product =
-    getLocalProducts()
-      .find(
-        p =>
-          String(p.id) ===
-          String(id)
-      );
-
-  if(!product){
-
-    toast(
-      "Product not found."
-    );
-
-    return;
-
-  }
-
-  if(
-    product.type ===
-      "ebook"
-  ){
-
-    openProductEbook(
-      id
-    );
-
-    return;
-
-  }
-
-  if(
-    product.fileUrl ||
-    product.file_url
-  ){
-
-    const url =
-      product.fileUrl ||
-      product.file_url;
-
-    const a =
-      document.createElement(
-        "a"
-      );
-
-    a.href =
-      url;
-
-    a.download =
-      product.fileName ||
-      product.file_name ||
-      "sellora-product";
-
-    a.target =
-      "_blank";
-
-    document.body.appendChild(
-      a
-    );
-
-    a.click();
-
-    a.remove();
-
-    toast(
-      "Download started."
-    );
-
-    return;
-
-  }
-
-  if(product.fileData){
-
-    const a =
-      document.createElement(
-        "a"
-      );
-
-    a.href =
-      product.fileData;
-
-    a.download =
-      product.fileName ||
-      "sellora-product";
-
-    document.body.appendChild(
-      a
-    );
-
-    a.click();
-
-    a.remove();
-
-    toast(
-      "Download started."
-    );
-
-    return;
-
-  }
-
-  toast(
-    "This product does not have a file yet."
-  );
-
-}
-
-window.getProduct =
-  getProduct;
-
-/* =========================
-   BUY + UPI
-========================= */
-
-function buyProduct(id){
-
-  const product =
-    getLocalProducts()
-      .find(
-        p =>
-          String(p.id) ===
-          String(id)
-      );
-
-  if(!product){
-
-    toast(
-      "Product not found."
-    );
-
-    return;
-
-  }
-
-  const amount =
-    Number(
-      product.price || 0
-    );
-
-  if(amount<=0){
-
-    getProduct(id);
-
-    return;
-
-  }
-
-  const upi =
-    String(
-      product.upiId ||
-      product.upi_id ||
-      ""
-    ).trim();
-
-  if(!upi){
-
-    toast(
-      "Seller UPI ID is missing."
-    );
-
-    return;
-
-  }
-
-  el("buyTitle")
-    .textContent =
-      product.title;
-
-  el("buyDescription")
-    .textContent =
-      product.description ||
-      "";
-
-  el("buyAmount")
-    .textContent =
-      "₹"+
-      amount.toLocaleString(
-        "en-IN"
-      );
-
-  el("buyUpi")
-    .textContent =
-      upi;
-
-  el("upiOpenButton")
-    .onclick =
-      ()=>{
-
-        const uri =
-          "upi://pay"+
-          "?pa="+
-          encodeURIComponent(
-            upi
-          )+
-          "&pn="+
-          encodeURIComponent(
-            product.creator ||
-            "Sellora Creator"
-          )+
-          "&am="+
-          encodeURIComponent(
-            amount.toFixed(
-              2
-            )
-          )+
-          "&cu=INR"+
-          "&tn="+
-          encodeURIComponent(
-            "Sellora - "+
-            product.title
-          );
-
-        window.location.href =
-          uri;
-
-      };
-
-  el("upiCopyButton")
-    .onclick =
-      async()=>{
-        try{
-
-          await navigator
-            .clipboard
-            .writeText(
-              upi
-            );
-
-          toast(
-            "UPI ID copied."
-          );
-
-        }catch{
-
-          toast(
-            "UPI: "+upi
-          );
-
-        }
-      };
-
-  el("paymentDoneButton")
-    .onclick =
-      ()=>{
-
-        closeModal(
-          "buyModal"
         );
 
-        getProduct(
-          id
+    if(result.error){
+      throw result.error;
+    }
+
+    const cloudRows=
+      result.data||
+      [];
+
+    const demos=
+      localProducts()
+        .filter(
+          p=>p.demo
         );
 
-      };
+    const cloudProducts=
+      cloudRows.map(row=>({
 
-  openModal(
-    "buyModal"
-  );
+        id:String(
+          row.id
+        ),
 
+        title:
+          row.title,
+
+        description:
+          row.description||
+          "",
+
+        category:
+          row.category||
+          "other",
+
+        price:
+          Number(
+            row.price||
+            0
+          ),
+
+        creator:
+          row.creator||
+          "Sellora Creator",
+
+        creator_id:
+          row.creator_id,
+
+        file_url:
+          row.file_url||
+          "",
+
+        file_name:
+          row.file_name||
+          "",
+
+        cover_url:
+          row.cover_url||
+          "",
+
+        upi_id:
+          row.upi_id||
+          "",
+
+        type:
+          row.type||
+          "digital",
+
+        pages:
+          row.pages||
+          null,
+
+        created_at:
+          row.created_at
+
+      }));
+
+    saveLocalProducts(
+      [
+        ...demos,
+        ...cloudProducts
+      ]
+    );
+
+    renderMarketplace();
+    renderMyProducts();
+
+    return true;
+
+  }catch(error){
+
+    console.error(
+      "Cloud product fetch failed:",
+      error
+    );
+
+    return false;
+  }
 }
 
-window.buyProduct =
-  buyProduct;
+window.refreshCloudProducts=
+  refreshCloudProducts;
 
-/* =========================
-   PUBLISH
-========================= */
+/* ======================================================
+   PUBLISH PRODUCT
+====================================================== */
 
-async function publishProduct(
-  event
-){
+async function publishProduct(event){
 
   event.preventDefault();
 
-  const profile =
-    getProfile();
+  const profile=
+    currentProfile();
 
   if(!profile){
 
     openSignup();
 
     toast(
-      "Create a Sellora account first."
+      "Create an account first."
     );
 
     return;
-
   }
 
-  const file =
-    el("productFile")
-      .files[0];
-
-  const cover =
-    el("productCover")
-      .files[0];
-
-  const title =
-    el("productTitle")
+  const title=
+    $("productTitle")
       .value
       .trim();
 
-  const description =
-    el("productDescription")
-      .value
-      .trim();
-
-  const category =
-    el("productCategory")
+  const category=
+    $("productCategory")
       .value;
 
-  const price =
+  const price=
     Math.max(
       0,
       Number(
-        el("productPrice")
-          .value ||
+        $("productPrice")
+          .value||
         0
       )
     );
 
-  const upiId =
-    el("productUpi")
+  const description=
+    $("productDescription")
       .value
       .trim();
 
-  if(!file){
+  const file=
+    $("productFile")
+      .files[0];
 
-    toast(
-      "Choose a product file."
-    );
+  const cover=
+    $("productCover")
+      .files[0];
 
-    return;
+  const upi=
+    $("productUpi")
+      .value
+      .trim();
 
-  }
-
-  if(!title || !description){
+  if(
+    !title||
+    !description||
+    !file
+  ){
 
     toast(
       "Fill all required fields."
     );
 
     return;
-
   }
 
   if(
-    price > 0 &&
-    !upiId
+    price>0 &&
+    !upi
   ){
 
     toast(
-      "Add a UPI ID for a paid product or set ₹0 for FREE."
+      "Enter UPI ID for a paid product, or use ₹0."
     );
 
     return;
-
   }
 
-  const cloudReady =
-    await initSupabase();
+  /* CLOUD PUBLISH */
+
+  const cloudReady=
+    await initCloud();
 
   if(cloudReady){
 
     try{
 
-      const safeName =
+      const safeName=
         file.name
           .replace(
             /[^a-zA-Z0-9._-]/g,
             "-"
           );
 
-      const path =
+      const path=
         "products/"+
         supabaseUser.id+
         "/"+
@@ -5110,7 +3962,7 @@ async function publishProduct(
         "-"+
         safeName;
 
-      const upload =
+      const upload=
         await supabaseClient
           .storage
           .from(
@@ -5122,18 +3974,16 @@ async function publishProduct(
             {
               upsert:false,
               contentType:
-                file.type ||
+                file.type||
                 "application/octet-stream"
             }
           );
 
       if(upload.error){
-
         throw upload.error;
-
       }
 
-      const fileUrl =
+      const fileUrl=
         supabaseClient
           .storage
           .from(
@@ -5145,27 +3995,26 @@ async function publishProduct(
           .data
           .publicUrl;
 
-      let coverUrl =
-        "";
+      let coverUrl="";
 
       if(cover){
 
-        const coverName =
+        const coverSafe=
           cover.name
             .replace(
               /[^a-zA-Z0-9._-]/g,
               "-"
             );
 
-        const coverPath =
+        const coverPath=
           "covers/"+
           supabaseUser.id+
           "/"+
           Date.now()+
           "-"+
-          coverName;
+          coverSafe;
 
-        const coverUpload =
+        const coverUpload=
           await supabaseClient
             .storage
             .from(
@@ -5177,7 +4026,7 @@ async function publishProduct(
               {
                 upsert:false,
                 contentType:
-                  cover.type ||
+                  cover.type||
                   "image/png"
               }
             );
@@ -5185,12 +4034,10 @@ async function publishProduct(
         if(
           coverUpload.error
         ){
-
           throw coverUpload.error;
-
         }
 
-        coverUrl =
+        coverUrl=
           supabaseClient
             .storage
             .from(
@@ -5200,19 +4047,16 @@ async function publishProduct(
               coverPath
             )
             .data
-            .publicUrl ||
-          "";
-
+            .publicUrl;
       }
 
-      const record = {
+      const record={
 
         id:
           crypto.randomUUID
-          ? crypto.randomUUID()
-          :
-            "p-"+
-            Date.now(),
+            ? crypto.randomUUID()
+            :
+              "product-"+Date.now(),
 
         title,
 
@@ -5221,9 +4065,6 @@ async function publishProduct(
         category,
 
         price,
-
-        upi_id:
-          upiId,
 
         creator:
           profile.name,
@@ -5240,36 +4081,28 @@ async function publishProduct(
         cover_url:
           coverUrl,
 
+        upi_id:
+          upi,
+
         type:
-          category ===
-            "ebooks"
+          category==="ebooks"
             ? "ebook"
             : "digital"
 
       };
 
-      const inserted =
+      const insert=
         await supabaseClient
-          .from(
-            "products"
-          )
-          .insert(
-            record
-          )
-          .select()
-          .single();
+          .from("products")
+          .insert(record);
 
-      if(
-        inserted.error
-      ){
-
-        throw inserted.error;
-
+      if(insert.error){
+        throw insert.error;
       }
 
-      e.target?.reset?.();
-
       await refreshCloudProducts();
+
+      event.target.reset();
 
       toast(
         "Published! Other Sellora users can now see it."
@@ -5280,15 +4113,15 @@ async function publishProduct(
     }catch(error){
 
       console.error(
+        "Publish error:",
         error
       );
 
       toast(
-        "Shared publishing failed. Check Supabase setup."
+        "Shared publish failed. Check Supabase setup and Storage policies."
       );
 
       return;
-
     }
 
   }
@@ -5297,28 +4130,24 @@ async function publishProduct(
 
   try{
 
-    const fileData =
-      await readFileAsDataUrl(
+    const fileData=
+      await fileToDataURL(
         file
       );
 
-    let coverData =
-      "";
+    let coverData="";
 
     if(cover){
-
-      coverData =
-        await readFileAsDataUrl(
+      coverData=
+        await fileToDataURL(
           cover
         );
-
     }
 
-    const product = {
+    const localProduct={
 
       id:
-        "local-"+
-        Date.now(),
+        "local-"+Date.now(),
 
       title,
 
@@ -5328,7 +4157,7 @@ async function publishProduct(
 
       price,
 
-      upiId,
+      upiId:upi,
 
       creator:
         profile.name,
@@ -5344,294 +4173,127 @@ async function publishProduct(
       coverData,
 
       type:
-        category ===
-          "ebooks"
+        category==="ebooks"
           ? "ebook"
-          : "digital",
-
-      createdAt:
-        new Date()
-          .toISOString()
+          : "digital"
 
     };
 
-    const all =
-      getLocalProducts();
-
-    all.unshift(
-      product
-    );
-
-    saveLocalProducts(
-      all
+    addOrReplaceLocal(
+      localProduct
     );
 
     event.target.reset();
 
     renderMarketplace();
-
     renderMyProducts();
 
     toast(
-      "Saved on this browser. Connect Supabase for shared users."
+      "Saved locally. Supabase is required for other users to see it."
     );
 
   }catch(error){
 
-    console.error(
-      error
-    );
+    console.error(error);
 
     toast(
-      "Could not read product file."
+      "Could not read the product file."
     );
-
   }
-
 }
 
-window.publishProduct =
+window.publishProduct=
   publishProduct;
 
-function readFileAsDataUrl(
-  file
-){
+function fileToDataURL(file){
 
   return new Promise(
     (resolve,reject)=>{
 
-      const reader =
+      const reader=
         new FileReader();
 
-      reader.onload =
-        ()=>{
-          resolve(
-            reader.result
-          );
-        };
+      reader.onload=
+        ()=>resolve(
+          reader.result
+        );
 
-      reader.onerror =
-        ()=>{
-          reject(
-            reader.error
-          );
-        };
+      reader.onerror=
+        ()=>reject(
+          reader.error
+        );
 
       reader.readAsDataURL(
         file
       );
-
     }
   );
-
 }
 
-/* =========================
-   CLOUD SYNC
-========================= */
-
-async function refreshCloudProducts(){
-
-  const ready =
-    await initSupabase();
-
-  if(!ready){
-
-    return false;
-
-  }
-
-  try{
-
-    const response =
-      await supabaseClient
-        .from(
-          "products"
-        )
-        .select("*")
-        .order(
-          "created_at",
-          {
-            ascending:false
-          }
-        );
-
-    if(
-      response.error
-    ){
-
-      throw response.error;
-
-    }
-
-    const rows =
-      response.data ||
-      [];
-
-    const localOnly =
-      getLocalProducts()
-        .filter(
-          p =>
-            p.demo &&
-            !rows.some(
-              r =>
-                String(r.id) ===
-                String(p.id)
-            )
-        );
-
-    const cloudProducts =
-      rows.map(
-        p=>({
-
-          id:
-            String(p.id),
-
-          title:
-            p.title,
-
-          description:
-            p.description ||
-            "",
-
-          category:
-            p.category ||
-            "other",
-
-          price:
-            Number(
-              p.price ||
-              0
-            ),
-
-          upiId:
-            p.upi_id ||
-            "",
-
-          creator:
-            p.creator ||
-            "Sellora Creator",
-
-          creator_id:
-            p.creator_id,
-
-          fileUrl:
-            p.file_url ||
-            "",
-
-          fileName:
-            p.file_name ||
-            "",
-
-          coverData:
-            p.cover_url ||
-            "",
-
-          type:
-            p.type ||
-            "digital",
-
-          createdAt:
-            p.created_at
-
-        })
-      );
-
-    saveLocalProducts(
-      [
-        ...localOnly,
-        ...cloudProducts
-      ]
-    );
-
-    renderMarketplace();
-    renderMyProducts();
-
-    return true;
-
-  }catch(error){
-
-    console.warn(
-      error
-    );
-
-    return false;
-
-  }
-
-}
-
-window.refreshCloudProducts =
-  refreshCloudProducts;
-
-/* =========================
+/* ======================================================
    MY PRODUCTS
-========================= */
+====================================================== */
 
 function renderMyProducts(){
 
-  const box =
-    el("myProducts");
+  const box=
+    $("myProducts");
 
-  const profile =
-    getProfile();
+  const profile=
+    currentProfile();
 
   if(!box){
-
     return;
-
   }
 
   if(!profile){
 
-    return;
+    box.innerHTML=
+      `<div class="empty" style="display:block">
+        Create an account to publish products.
+      </div>`;
 
+    return;
   }
 
-  const mine =
-    getLocalProducts()
+  const mine=
+    localProducts()
       .filter(
-        p =>
+        p=>
           !p.demo &&
           (
-            p.creator ===
-            profile.name ||
-            p.creator_id ===
-            profile.id
+            p.creator_id===
+            profile.id||
+            p.creator===
+            profile.name
           )
       );
 
-  el("statProducts")
-    .textContent =
-      mine.length;
+  $("statProducts").textContent=
+    mine.length;
 
-  el("statPublished")
-    .textContent =
-      mine.length;
+  $("statPublished").textContent=
+    mine.length;
 
-  el("statSales")
-    .textContent =
-      Number(
-        localStorage.getItem(
-          STORAGE.sales
-        ) ||
-        0
-      );
+  $("statSales").textContent=
+    Number(
+      localStorage.getItem(
+        STORAGE.sales
+      )||
+      0
+    );
 
   if(!mine.length){
 
-    box.innerHTML =
-      `
-        <div class="empty">
-          No published products yet.
-        </div>
-      `;
+    box.innerHTML=
+      `<div class="empty" style="display:block">
+        No products published yet.
+      </div>`;
 
     return;
-
   }
 
-  box.innerHTML =
+  box.innerHTML=
     mine.map(
       p=>`
 
@@ -5639,33 +4301,34 @@ function renderMyProducts(){
 
         <div>
 
-          <b>
+          <strong>
             ${escapeHtml(
               p.title
             )}
-          </b>
+          </strong>
 
           <small>
-            ${
-              escapeHtml(
-                p.category ||
-                "digital"
-              )
-            }
-            ·
+
             ${
               Number(
-                p.price ||
+                p.price||
                 0
-              ) > 0
-                ? "₹"+
-                  Number(
-                    p.price
-                  ).toLocaleString(
-                    "en-IN"
-                  )
-                : "FREE"
+              )>0
+                ?"₹"+
+                 Number(
+                   p.price
+                 ).toLocaleString(
+                   "en-IN"
+                 )
+                :"FREE"
             }
+
+            ·
+            ${escapeHtml(
+              p.category||
+              "digital"
+            )}
+
           </small>
 
         </div>
@@ -5683,20 +4346,18 @@ function renderMyProducts(){
       `
     )
     .join("");
-
 }
 
-window.renderMyProducts =
+window.renderMyProducts=
   renderMyProducts;
-
-/* =========================
-   DELETE
-========================= */
 
 async function deleteProduct(id){
 
-  const ready =
-    await initSupabase();
+  const profile=
+    currentProfile();
+
+  const ready=
+    await initCloud();
 
   if(
     ready &&
@@ -5722,16 +4383,14 @@ async function deleteProduct(id){
       console.warn(
         error
       );
-
     }
-
   }
 
-  const remaining =
-    getLocalProducts()
+  const remaining=
+    localProducts()
       .filter(
-        p =>
-          String(p.id) !==
+        p=>
+          String(p.id)!==
           String(id)
       );
 
@@ -5745,15 +4404,14 @@ async function deleteProduct(id){
   toast(
     "Product deleted."
   );
-
 }
 
-window.deleteProduct =
+window.deleteProduct=
   deleteProduct;
 
-/* =========================
-   EBOOK
-========================= */
+/* ======================================================
+   EBOOK GENERATOR
+====================================================== */
 
 function build50Pages(
   title,
@@ -5762,17 +4420,17 @@ function build50Pages(
   category
 ){
 
-  const chapters = [
+  const chapters=[
 
     "Introduction",
-    "Understanding Your Goal",
-    "Defining Your Audience",
-    "Finding the Problem",
-    "Designing the Solution",
-    "Validating the Idea",
-    "Building Your Brand",
-    "Creating Your Offer",
-    "Building Your Website",
+    "Understanding the Goal",
+    "Define Your Audience",
+    "Find the Problem",
+    "Design the Solution",
+    "Validate the Idea",
+    "Build Your Brand",
+    "Create Your Offer",
+    "Build Your Website",
     "Content Strategy",
     "Social Media Strategy",
     "Email Marketing",
@@ -5791,14 +4449,14 @@ function build50Pages(
     "Professional Design",
     "Cover Design",
     "Table of Contents",
-    "Useful Examples",
+    "Examples",
     "Action Steps",
     "Exercises",
     "Checklists",
     "Launch Preparation",
     "Finding First Customers",
     "Marketplace Strategy",
-    "Writing Product Descriptions",
+    "Product Description",
     "Product Covers",
     "Creator Storefront",
     "Free Product Strategy",
@@ -5817,7 +4475,7 @@ function build50Pages(
 
   ];
 
-  const pages = [];
+  const pages=[];
 
   for(
     let i=0;
@@ -5825,177 +4483,119 @@ function build50Pages(
     i++
   ){
 
-    const chapter =
-      chapters[i] ||
-      "Creator Chapter "+(
-        i+1
-      );
+    const chapter=
+      chapters[i];
 
-    const body =
-
+    const body=
 `This page is part of "${title}".
 
-Your chosen goal:
+Main goal:
 ${goal}
 
 Category:
 ${category}
 
-Content direction:
+Creator direction:
 ${content}
 
-${chapter}
+LESSON
 
-The most useful digital products begin with a clear audience and a specific outcome. Instead of trying to solve every possible problem, choose one meaningful problem and explain a simple path toward a useful result.
+${chapter} is an important part of turning knowledge into a useful digital product. Start with a clear outcome, organize the information logically and make every concept practical enough for the reader to apply.
 
-A professional creator should organize information into clear sections, examples, exercises and practical action steps. The objective of this ebook is not just to provide information; it is to help the reader turn information into action.
+A strong creator does not try to solve every problem at once. Focus on one audience, one important problem and one useful outcome. This creates clarity in the product and makes the message easier to communicate.
 
-Practical guidance:
+EXAMPLE
 
-1. Define the result you want.
-2. Identify the audience that needs it.
-3. Write the problem in a clear sentence.
-4. Build the smallest useful solution.
-5. Collect feedback from real users.
-6. Improve the product based on evidence.
-7. Keep a record of what works.
+Imagine a creator who knows a valuable skill. The creator can identify a specific audience, understand its biggest challenge, package the knowledge into an ebook, publish it through Sellora, collect feedback and improve later editions. This creates a repeatable process instead of depending on random ideas.
 
-Example:
+PRACTICAL ACTIONS
 
-Imagine a creator who knows how to teach a valuable skill. The creator can identify a specific audience, understand its biggest problem, turn that knowledge into a structured ebook, publish it on Sellora, gather feedback and improve future versions. This creates a repeatable creator system instead of relying on random ideas.
+1. Write one measurable objective.
+2. Define the audience that benefits from it.
+3. Write the primary problem in one sentence.
+4. Describe the outcome the reader should achieve.
+5. Choose one action to complete today.
+6. Record the result.
+7. Improve the next version.
 
-Action steps:
+CHECKLIST
 
-□ Write one measurable objective.
-□ Define the audience.
-□ Write the customer's main problem.
-□ Describe the desired outcome.
-□ Select one action to complete today.
-□ Review the result.
-□ Improve the next version.
+□ The goal is clear.
+□ The audience is specific.
+□ The problem is meaningful.
+□ The solution is useful.
+□ The next action is measurable.
+□ Feedback can be collected.
 
-Reflection:
+REFLECTION
 
-What is the most important idea from this page, and how can you apply it to your own project?
+What is the single most important idea from this page, and how will you apply it to your own project?
 
-Creator note:
+CREATOR NOTE
 
-Useful knowledge becomes more valuable when it is organized, communicated clearly, packaged professionally and applied consistently.
+Information becomes more valuable when it is organized clearly, communicated professionally and turned into action.
 
-Janmashtami Bumper Offer:
+JANMASHTAMI BUMPER OFFER
 
-Use Sellora to turn your knowledge into digital products, ebooks, guides and creator resources.`;
+Use Sellora to create ebooks, guides, templates and digital products.`;
 
     pages.push({
-
-      number:
-        i+1,
-
-      title:
-        chapter,
-
+      number:i+1,
+      title:chapter,
       body
-
     });
-
   }
 
   return pages;
-
 }
 
 function openEbookCreator(){
 
-  const profile =
-    getProfile();
+  const profile=
+    currentProfile();
 
   if(profile){
 
-    el("ebookTitle").value =
-      el("ebookTitle").value ||
-      (
-        profile.name+
-        "'s Sellora Ebook"
-      );
-
+    $("ebookTitle").value=
+      $("ebookTitle").value||
+      profile.name+
+      "'s Sellora Ebook";
   }
 
   openModal(
     "ebookCreatorModal"
   );
-
 }
 
-window.openEbookCreator =
+window.openEbookCreator=
   openEbookCreator;
 
-function startEbook(
-  event,
-  mode
-){
+function startEbook(event){
 
   event.preventDefault();
 
-  let title =
-    "";
+  const title=
+    $("ebookTitle")
+      .value
+      .trim();
 
-  let goal =
-    "";
+  const goal=
+    $("ebookGoal")
+      .value
+      .trim();
 
-  let content =
-    "";
+  const content=
+    $("ebookContent")
+      .value
+      .trim();
 
-  let category =
-    "";
-
-  if(
-    mode ===
-      "trial"
-  ){
-
-    title =
-      el("trialTopic")
-        .value
-        .trim();
-
-    goal =
-      el("trialGoal")
-        .value
-        .trim();
-
-    content =
-      goal;
-
-    category =
-      el("trialCategory")
-        .value;
-
-  }else{
-
-    title =
-      el("ebookTitle")
-        .value
-        .trim();
-
-    goal =
-      el("ebookGoal")
-        .value
-        .trim();
-
-    content =
-      el("ebookContent")
-        .value
-        .trim();
-
-    category =
-      el("ebookCategory")
-        .value;
-
-  }
+  const category=
+    $("ebookCategory")
+      .value;
 
   if(
-    !title ||
-    !goal ||
+    !title||
+    !goal||
     !content
   ){
 
@@ -6004,13 +4604,10 @@ function startEbook(
     );
 
     return;
-
   }
 
-  currentEbook = {
-
+  currentEbook={
     title,
-
     pages:
       build50Pages(
         title,
@@ -6018,29 +4615,22 @@ function startEbook(
         content,
         category
       ),
-
-    page:
-      1
-
+    page:1
   };
 
   closeModal(
-    mode ===
-      "trial"
-        ? "trialModal"
-        : "ebookCreatorModal"
+    "ebookCreatorModal"
   );
 
   startCountdown();
-
 }
 
-window.startEbook =
+window.startEbook=
   startEbook;
 
-/* =========================
+/* ======================================================
    COUNTDOWN
-========================= */
+====================================================== */
 
 function startCountdown(){
 
@@ -6048,48 +4638,23 @@ function startCountdown(){
     "countdownModal"
   );
 
-  let seconds =
-    5;
-
-  const number =
-    el("countNumber");
-
-  const progress =
-    el("countProgress");
-
-  const message =
-    el("countMessage");
+  let seconds=5;
 
   function tick(){
 
-    number.textContent =
-      String(
-        seconds
-      );
+    $("countNumber").textContent=
+      String(seconds);
 
-    progress.style.width =
-      (
-        (5-seconds)/5*100
-      )+
+    $("countProgress").style.width=
+      ((5-seconds)/5*100)+
       "%";
 
-    if(
-      seconds > 0
-    ){
+    $("countMessage").textContent=
+      seconds>0
+        ?"Creating your 50-page ebook..."
+        :"Opening your ebook...";
 
-      message.textContent =
-        "Creating your 50-page ebook...";
-
-    }else{
-
-      message.textContent =
-        "Opening your ebook...";
-
-    }
-
-    if(
-      seconds <= 0
-    ){
+    if(seconds<=0){
 
       setTimeout(
         ()=>{
@@ -6098,13 +4663,11 @@ function startCountdown(){
           );
 
           openGeneratedEbook();
-
         },
-        350
+        300
       );
 
       return;
-
     }
 
     seconds--;
@@ -6113,43 +4676,48 @@ function startCountdown(){
       tick,
       1000
     );
-
   }
 
   tick();
-
 }
 
-/* =========================
-   OPEN EBOOK
-========================= */
+/* ======================================================
+   EBOOK VIEWER
+====================================================== */
 
 function openGeneratedEbook(){
 
-  el("ebookViewerTitle")
-    .textContent =
-      currentEbook.title;
+  if(
+    !currentEbook.pages ||
+    currentEbook.pages.length!==50
+  ){
 
-  currentEbook.page =
-    1;
+    toast(
+      "Could not generate the ebook."
+    );
+
+    return;
+  }
+
+  currentEbook.page=1;
+
+  $("ebookViewerTitle").textContent=
+    currentEbook.title;
 
   renderEbookPage();
 
   openModal(
     "ebookModal"
   );
-
 }
 
-function openProductEbook(
-  id
-){
+function openProductEbook(id){
 
-  const product =
-    getLocalProducts()
+  const product=
+    localProducts()
       .find(
-        p =>
-          String(p.id) ===
+        p=>
+          String(p.id)===
           String(id)
       );
 
@@ -6160,60 +4728,50 @@ function openProductEbook(
     );
 
     return;
-
   }
 
-  currentEbook = {
+  const pages=
+    Array.isArray(
+      product.pages
+    ) &&
+    product.pages.length===50
+      ? product.pages
+      : build50Pages(
+          product.title,
+          product.description||
+            "Digital business guide",
+          product.description||
+            "Creator economy",
+          product.category||
+            "ebooks"
+        );
 
+  currentEbook={
     title:
       product.title,
 
-    pages:
-      Array.isArray(
-        product.pages
-      ) &&
-      product.pages.length ===
-        50
-        ? product.pages
-        :
-        build50Pages(
-          product.title,
-          product.description ||
-            "Digital product education",
-          product.description ||
-            "Creator economy",
-          product.category ||
-            "Ebooks"
-        ),
+    pages,
 
-    page:
-      1
-
+    page:1
   };
 
   openGeneratedEbook();
-
 }
 
-window.openProductEbook =
+window.openProductEbook=
   openProductEbook;
-
-/* =========================
-   PAGE FLIP
-========================= */
 
 function renderEbookPage(){
 
-  const index =
-    currentEbook.page -
-    1;
+  const index=
+    currentEbook.page-1;
 
-  const front =
+  const front=
     currentEbook.pages[
       index
     ];
 
-  const back =
+  const back=
     currentEbook.pages[
       Math.min(
         currentEbook.pages.length-1,
@@ -6221,58 +4779,44 @@ function renderEbookPage(){
       )
     ];
 
-  if(!front){
+  if(!front) return;
 
-    return;
+  $("frontPageNum").textContent=
+    "PAGE "+
+    front.number+
+    " OF 50";
 
-  }
+  $("frontPageTitle").textContent=
+    front.title;
 
-  el("frontPageNumber")
-    .textContent =
-      "PAGE "+
-      front.number+
-      " OF 50";
+  $("frontPageBody").textContent=
+    front.body;
 
-  el("frontPageTitle")
-    .textContent =
-      front.title;
+  $("backPageNum").textContent=
+    "PAGE "+
+    back.number+
+    " OF 50";
 
-  el("frontPageBody")
-    .textContent =
-      front.body;
+  $("backPageTitle").textContent=
+    back.title;
 
-  el("backPageNumber")
-    .textContent =
-      "PAGE "+
-      back.number+
-      " OF 50";
+  $("backPageBody").textContent=
+    back.body;
 
-  el("backPageTitle")
-    .textContent =
-      back.title;
+  $("pageCounter").textContent=
+    currentEbook.page+
+    " / 50";
 
-  el("backPageBody")
-    .textContent =
-      back.body;
-
-  el("pageCounter")
-    .textContent =
-      currentEbook.page+
-      " / 50";
-
-  el("ebookBook")
-    .classList.remove(
-      "flip-next",
-      "flip-prev"
-    );
-
+  $("book").classList.remove(
+    "flip-next",
+    "flip-prev"
+  );
 }
 
 function nextPage(){
 
   if(
-    currentEbook.page >=
-    50
+    currentEbook.page>=50
   ){
 
     toast(
@@ -6280,11 +4824,10 @@ function nextPage(){
     );
 
     return;
-
   }
 
-  const book =
-    el("ebookBook");
+  const book=
+    $("book");
 
   book.classList.remove(
     "flip-prev"
@@ -6298,25 +4841,20 @@ function nextPage(){
 
   setTimeout(
     ()=>{
-
       currentEbook.page++;
-
       renderEbookPage();
-
     },
     330
   );
-
 }
 
-window.nextPage =
+window.nextPage=
   nextPage;
 
 function prevPage(){
 
   if(
-    currentEbook.page <=
-    1
+    currentEbook.page<=1
   ){
 
     toast(
@@ -6324,11 +4862,10 @@ function prevPage(){
     );
 
     return;
-
   }
 
-  const book =
-    el("ebookBook");
+  const book=
+    $("book");
 
   book.classList.remove(
     "flip-next"
@@ -6342,32 +4879,25 @@ function prevPage(){
 
   setTimeout(
     ()=>{
-
       currentEbook.page--;
-
       renderEbookPage();
-
     },
     330
   );
-
 }
 
-window.prevPage =
+window.prevPage=
   prevPage;
 
-/* =========================
+/* ======================================================
    EBOOK HTML EXPORT
-========================= */
+====================================================== */
 
-function makeEbookHTML(){
+function ebookHTML(){
 
   return `
-
 <!doctype html>
-
-<html>
-
+<html lang="en">
 <head>
 
 <meta charset="utf-8">
@@ -6391,15 +4921,14 @@ ${escapeHtml(
 
 body{
   margin:0;
-  background:#fff;
   color:#171717;
+  background:#fff;
   font-family:Arial,sans-serif;
 }
 
 .page{
   width:210mm;
   height:297mm;
-
   min-height:297mm;
   max-height:297mm;
 
@@ -6407,84 +4936,63 @@ body{
 
   position:relative;
 
-  background:#fffef8;
+  background:#fffef9;
 
-  page-break-after:always;
   break-after:page;
+  page-break-after:always;
 
   overflow:hidden;
 }
 
 .page:last-child{
-  page-break-after:auto;
   break-after:auto;
+  page-break-after:auto;
 }
 
 .top{
   color:#92700d;
-
   font-size:9pt;
-
   font-weight:900;
-
   letter-spacing:.12em;
 }
 
 .num{
   margin-top:3mm;
-
   color:#777;
-
   font-size:9pt;
-
   font-weight:900;
 }
 
 h1{
   margin:8mm 0 5mm;
-
   font-size:27pt;
-
   line-height:1.08;
 }
 
 .body{
   white-space:pre-wrap;
-
   font-size:11pt;
-
   line-height:1.72;
 }
 
 .callout{
   margin-top:8mm;
-
   padding:4mm;
-
   border:1px solid #e6cc6d;
-
   border-radius:9px;
-
-  background:#fff7d1;
-
-  color:#5a4500;
-
+  background:#fff6cf;
+  color:#5b4600;
   font-weight:800;
 }
 
 .footer{
   position:absolute;
-
   left:16mm;
   right:16mm;
   bottom:8mm;
-
-  border-top:1px solid #e5dfc8;
-
+  border-top:1px solid #e5dfc7;
   padding-top:3mm;
-
   color:#777;
-
   font-size:8pt;
 }
 
@@ -6497,98 +5005,82 @@ h1{
 ${currentEbook.pages.map(
   page=>`
 
-<section class="page">
+  <section class="page">
 
-  <div class="top">
-    SELLORA · JANMASHTAMI BUMPER OFFER
-  </div>
+    <div class="top">
+      SELLORA · JANMASHTAMI BUMPER OFFER
+    </div>
 
-  <div class="num">
-    PAGE ${page.number} OF 50
-  </div>
+    <div class="num">
+      PAGE ${page.number} OF 50
+    </div>
 
-  <h1>
-    ${escapeHtml(
-      page.title
-    )}
-  </h1>
+    <h1>
+      ${escapeHtml(
+        page.title
+      )}
+    </h1>
 
-  <div class="body">
-    ${escapeHtml(
-      page.body
-    )}
-  </div>
+    <div class="body">
+      ${escapeHtml(
+        page.body
+      )}
+    </div>
 
-  <div class="callout">
-    🦚 JANMASHTAMI BUMPER OFFER · CREATE · PUBLISH · GROW
-  </div>
+    <div class="callout">
+      🦚 JANMASHTAMI BUMPER OFFER
+    </div>
 
-  <div class="footer">
-    SELLORA · Sell your knowledge. Build your digital business.
-  </div>
+    <div class="footer">
+      SELLORA · Sell Your Knowledge. Build Your Digital Business.
+    </div>
 
-</section>
+  </section>
 
-`).join("")}
+`
+).join("")}
 
 </body>
-
 </html>
-
 `;
-
 }
 
-/* =========================
-   DOWNLOAD HTML
-========================= */
+function downloadEbookHTML(){
 
-function downloadEbookHtml(){
-
-  const html =
-    makeEbookHTML();
-
-  const blob =
+  const blob=
     new Blob(
-      [html],
+      [ebookHTML()],
       {
         type:
           "text/html;charset=utf-8"
       }
     );
 
-  const url =
+  const url=
     URL.createObjectURL(
       blob
     );
 
-  const a =
+  const a=
     document.createElement(
       "a"
     );
 
-  a.href =
-    url;
+  a.href=url;
 
-  a.download =
-    (
-      currentEbook.title
-        .replace(
-          /[^a-z0-9]+/gi,
-          "-"
-        )
-        .replace(
-          /^-+|-+$/g,
-          ""
-        )
-      ||
-      "Sellora-Ebook"
-    )+
-    "-50-pages.html";
+  a.download=
+    currentEbook.title
+      .replace(
+        /[^a-z0-9]+/gi,
+        "-"
+      )
+      .replace(
+        /^-+|-+$/g,
+        ""
+      )+
+      "-sellora.html";
 
-  document.body.appendChild(
-    a
-  );
+  document.body.appendChild(a);
 
   a.click();
 
@@ -6596,9 +5088,7 @@ function downloadEbookHtml(){
 
   setTimeout(
     ()=>{
-      URL.revokeObjectURL(
-        url
-      );
+      URL.revokeObjectURL(url);
     },
     3000
   );
@@ -6606,35 +5096,30 @@ function downloadEbookHtml(){
   toast(
     "Ebook download started."
   );
-
 }
 
-window.downloadEbookHtml =
-  downloadEbookHtml;
+window.downloadEbookHTML=
+  downloadEbookHTML;
 
-/* =========================
-   PDF
-========================= */
+/* ======================================================
+   PDF / PRINT
+====================================================== */
 
-function downloadEbookPdf(){
+function downloadEbookPDF(){
 
   printEbook();
 
 }
 
-window.downloadEbookPdf =
-  downloadEbookPdf;
-
-/* =========================
-   PRINT
-========================= */
+window.downloadEbookPDF=
+  downloadEbookPDF;
 
 function printEbook(){
 
-  const stage =
-    el("printStage");
+  const stage=
+    $("printStage");
 
-  stage.innerHTML =
+  stage.innerHTML=
     currentEbook.pages
       .map(
         page=>`
@@ -6666,7 +5151,7 @@ function printEbook(){
           </div>
 
           <div class="print-footer">
-            SELLORA · Sell your knowledge. Build your digital business.
+            SELLORA · Sell Your Knowledge. Build Your Digital Business.
           </div>
 
         </section>
@@ -6683,12 +5168,11 @@ function printEbook(){
     ()=>{
       window.print();
     },
-    400
+    350
   );
-
 }
 
-window.printEbook =
+window.printEbook=
   printEbook;
 
 window.addEventListener(
@@ -6700,212 +5184,109 @@ window.addEventListener(
   }
 );
 
-/* =========================
+/* ======================================================
    SWIPE
-========================= */
+====================================================== */
 
-let swipeStartX =
-  0;
+let touchStartX=0;
 
-el("flipStage")
-  ?.addEventListener(
-    "touchstart",
-    event=>{
-
-      if(
-        event.touches &&
-        event.touches[0]
-      ){
-
-        swipeStartX =
-          event.touches[0]
-            .clientX;
-
-      }
-
-    },
-    {
-      passive:true
-    }
-  );
-
-el("flipStage")
-  ?.addEventListener(
-    "touchend",
-    event=>{
-
-      if(
-        !event.changedTouches ||
-        !event.changedTouches[0]
-      ){
-
-        return;
-
-      }
-
-      const endX =
-        event.changedTouches[0]
-          .clientX;
-
-      const difference =
-        endX -
-        swipeStartX;
-
-      if(
-        Math.abs(
-          difference
-        ) < 45
-      ){
-
-        return;
-
-      }
-
-      if(
-        difference < 0
-      ){
-
-        nextPage();
-
-      }else{
-
-        prevPage();
-
-      }
-
-    },
-    {
-      passive:true
-    }
-  );
-
-/* =========================
-   KEYBOARD
-========================= */
-
-document.addEventListener(
-  "keydown",
+$("ebookStage")?.addEventListener(
+  "touchstart",
   event=>{
 
     if(
-      el("ebookModal")
-        ?.classList.contains(
-          "show"
-        )
+      event.touches &&
+      event.touches[0]
     ){
-
-      if(
-        event.key ===
-        "ArrowRight"
-      ){
-
-        nextPage();
-
-      }
-
-      if(
-        event.key ===
-        "ArrowLeft"
-      ){
-
-        prevPage();
-
-      }
-
+      touchStartX=
+        event.touches[0].clientX;
     }
-
-    if(
-      event.key ===
-      "Escape"
-    ){
-
-      document
-        .querySelectorAll(
-          ".modal.show"
-        )
-        .forEach(
-          modal=>{
-            modal.classList.remove(
-              "show"
-            );
-          }
-        );
-
-    }
-
+  },
+  {
+    passive:true
   }
 );
 
-/* =========================
-   MODAL BACKDROP
-========================= */
-
-document.addEventListener(
-  "click",
+$("ebookStage")?.addEventListener(
+  "touchend",
   event=>{
 
-    document
-      .querySelectorAll(
-        ".modal.show"
-      )
-      .forEach(
-        modal=>{
+    if(
+      !event.changedTouches ||
+      !event.changedTouches[0]
+    ){
+      return;
+    }
 
-          if(
-            event.target ===
-            modal
-          ){
+    const endX=
+      event.changedTouches[0]
+        .clientX;
 
-            modal.classList.remove(
-              "show"
-            );
+    const diff=
+      endX-touchStartX;
 
-          }
+    if(
+      Math.abs(diff)<45
+    ){
+      return;
+    }
 
-        }
-      );
-
+    if(diff<0){
+      nextPage();
+    }else{
+      prevPage();
+    }
+  },
+  {
+    passive:true
   }
 );
 
-/* =========================
-   USER COUNT
-========================= */
+/* ======================================================
+   INIT
+====================================================== */
 
-refreshUserCount();
+async function initSellora(){
 
-seedDemoProducts();
+  refreshUserCount();
 
-updateAccountUI();
+  seedDemo();
 
-renderMarketplace();
+  updateAccountUI();
 
-/* =========================
-   INITIAL SUPABASE SYNC
-========================= */
+  renderMarketplace();
 
-(async()=>{
+  /* Try shared marketplace automatically. */
 
-  try{
+  await refreshCloudProducts();
 
-    const ok =
-      await initSupabase();
+  /* Refresh shared marketplace periodically. */
 
-    if(ok){
+  setInterval(
+    ()=>{
+      refreshCloudProducts();
+    },
+    15000
+  );
 
-      await refreshCloudProducts();
+  /* Refresh when user returns to tab. */
 
+  document.addEventListener(
+    "visibilitychange",
+    ()=>{
+      if(
+        !document.hidden
+      ){
+        refreshCloudProducts();
+      }
     }
+  );
+}
 
-  }catch(error){
-
-    console.warn(
-      error
-    );
-
-  }
-
-})();
+document.addEventListener(
+  "DOMContentLoaded",
+  initSellora
+);
 
 </script>
 
