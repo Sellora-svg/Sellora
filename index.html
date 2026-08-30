@@ -5241,11 +5241,19 @@ body::after{
     </div>
 
     <h2>
-      Generate 100-Page Ebook
+      Generate 100-Page Ebook with Sellora AI
     </h2>
 
     <form
       onsubmit="startEbook(event)">
+
+      <div class="ai-generator-panel">
+        <div class="ai-generator-orb">✦</div>
+        <div>
+          <strong>Sellora AI Writer</strong>
+          <p id="ebookAiStatus">Tell me the topic, goal and direction. I’ll structure a complete 100-page ebook for you.</p>
+        </div>
+      </div>
 
       <div class="field">
 
@@ -5393,7 +5401,7 @@ body::after{
     <p
       style="color:var(--muted)">
 
-      50 A4 pages · Flip · Download · Print
+      100 A4 pages · Flip · Save · Download · Print
 
     </p>
 
@@ -5486,7 +5494,7 @@ body::after{
         id="pageCounter"
         class="counter">
 
-        1 / 50
+        1 / 100
 
       </div>
 
@@ -5495,6 +5503,14 @@ body::after{
         onclick="nextPage()">
 
         Next →
+
+      </button>
+
+      <button
+        class="btn outline"
+        onclick="saveEbook()">
+
+        💾 Save Ebook
 
       </button>
 
@@ -5697,6 +5713,16 @@ let ebook =
     pages:[],
     page:1
   };
+
+function restoreSavedEbook(){
+  try{
+    const raw=safeStorageGet("sellora_saved_ebook_v1","");
+    if(!raw) return false;
+    const saved=JSON.parse(raw);
+    if(saved && Array.isArray(saved.pages) && saved.pages.length===100){ ebook={title:saved.title||"Saved Sellora Ebook",pages:saved.pages,page:1}; return true; }
+  }catch(e){}
+  return false;
+}
 
 /* =========================================================
    HELPERS
@@ -8163,6 +8189,9 @@ function startEbook(
 
   }
 
+  const aiStatus = $("ebookAiStatus");
+  if(aiStatus) aiStatus.textContent = "Sellora AI is structuring your topic into chapters, lessons, examples and action steps...";
+
   ebook = {
 
     title,
@@ -8510,6 +8539,21 @@ function prevPage(){
 
 window.prevPage =
   prevPage;
+
+/* =========================================================
+   SAVE GENERATED EBOOK
+========================================================= */
+function saveEbook(){
+  try{
+    const payload={title:ebook.title,pages:ebook.pages,savedAt:new Date().toISOString()};
+    const ok=safeStorageSet("sellora_saved_ebook_v1",JSON.stringify(payload));
+    if(ok){ toast("Ebook saved on this device."); }
+    else { toast("Browser storage is unavailable. Download the HTML to keep a permanent copy."); }
+  }catch(e){
+    toast("Could not save locally. Download the HTML instead.");
+  }
+}
+window.saveEbook=saveEbook;
 
 /* =========================================================
    EBOOK HTML DOWNLOAD
@@ -9127,6 +9171,8 @@ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded'
 <script>
 window.addEventListener('error', function(e){ console.warn('Sellora runtime warning:', e.error || e.message); });
 window.addEventListener('unhandledrejection', function(e){ console.warn('Sellora background warning:', e.reason); e.preventDefault(); });
+
+try{ restoreSavedEbook(); }catch(e){}
 </script>
 </body>
 </html>
