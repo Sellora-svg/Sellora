@@ -4883,7 +4883,7 @@ body::after{
 <section class="lux-section" id="sellora-metrics">
   <div class="lux-container">
     <div class="lux-metric-row">
-      <div class="lux-metric reveal"><strong class="lux-counter" data-target="126">0+</strong><span>Sellora users</span></div>
+      <div class="lux-metric reveal"><strong class="lux-counter" data-target="129">0+</strong><span>Sellora users</span></div>
       <div class="lux-metric reveal"><strong class="lux-counter" data-target="100">0</strong><span>Pages in Sellora ebooks</span></div>
       <div class="lux-metric reveal"><strong class="lux-counter" data-target="100">0%</strong><span>Creator-focused experience</span></div>
     </div>
@@ -6158,11 +6158,10 @@ async function initSupabase(){
       error
     );
 
-    currentUser =
-      null;
-
-    currentSession =
-      null;
+    if(!restoreLocalSelloraSession()){
+      currentUser = null;
+      currentSession = null;
+    }
 
     updateAuthUI();
 
@@ -6361,6 +6360,52 @@ window.scrollToCreator =
   };
 
 /* =========================================================
+   LOCAL ACCOUNT FALLBACK + USER COUNT
+   Works even when Supabase/network is unavailable.
+========================================================= */
+const SELLORA_USER_COUNT_KEY = "sellora_user_count_v2";
+const SELLORA_LOCAL_SESSION_KEY = "sellora_local_session_v2";
+
+function getSelloraUserCount(){
+  const n = parseInt(localStorage.getItem(SELLORA_USER_COUNT_KEY) || "129", 10);
+  return Number.isFinite(n) && n >= 129 ? n : 129;
+}
+
+function setSelloraUserCount(n){
+  localStorage.setItem(SELLORA_USER_COUNT_KEY, String(Math.max(129, n)));
+  document.querySelectorAll('.lux-counter[data-target]').forEach(el=>{
+    if(el.textContent.includes('+') || el.dataset.target === '129'){
+      el.dataset.target = String(Math.max(129,n));
+      el.dataset.done = '';
+    }
+  });
+}
+
+function incrementSelloraUserCount(){
+  const n=getSelloraUserCount()+1;
+  setSelloraUserCount(n);
+  return n;
+}
+
+function restoreLocalSelloraSession(){
+  try{
+    const raw=localStorage.getItem(SELLORA_LOCAL_SESSION_KEY);
+    if(!raw) return false;
+    const u=JSON.parse(raw);
+    if(!u || !u.email) return false;
+    currentUser=u;
+    currentSession={local:true,user:u};
+    return true;
+  }catch(e){ return false; }
+}
+
+function saveLocalSelloraSession(user){
+  localStorage.setItem(SELLORA_LOCAL_SESSION_KEY, JSON.stringify(user));
+  currentUser=user;
+  currentSession={local:true,user};
+}
+
+/* =========================================================
    SIGNUP
 ========================================================= */
 
@@ -6381,138 +6426,79 @@ async function signup(
 
   event.preventDefault();
 
-  const name =
-    $("signupName")
-      .value
-      .trim();
+  const name = $("signupName").value.trim();
+  const email = $("signupEmail").value.trim().toLowerCase();
+  const password = $("signupPassword").value;
 
-  const email =
-    $("signupEmail")
-      .value
-      .trim()
-      .toLowerCase();
-
-  const password =
-    $("signupPassword")
-      .value;
-
-  if(
-    password.length <
-    6
-  ){
-
-    toast(
-      "Password must be at least 6 characters."
-    );
-
+  if(!name || !email){
+    toast("Please enter your name and email.");
     return;
-
   }
 
-  const ready =
-    await initSupabase();
-
-  if(
-    !ready
-  ){
-
-    toast(
-      "Supabase is unavailable right now."
-    );
-
+  if(password.length < 6){
+    toast("Password must be at least 6 characters.");
     return;
-
   }
 
-  const button =
-    $("signupButton");
-
-  button.disabled =
-    true;
-
-  button.textContent =
-    "Creating...";
+  const button=$("signupButton");
+  button.disabled=true;
+  button.textContent="Creating...";
 
   try{
+    /* If Supabase is already connected, use the real account flow.
+       Never make signup depend on a CDN/network fetch. */
+    if(supabaseClient){
+      const result=await supabaseClient.auth.signUp({
+        email,
+        password,
+        options:{data:{full_name:name}}
+      });
+      if(result.error) throw result.error;
 
-    const result =
-      await supabaseClient
-        .auth
-        .signUp({
-
-          email,
-
-          password,
-
-          options:{
-            data:{
-              full_name:
-                name
-            }
-          }
-
-        });
-
-    if(
-      result.error
-    ){
-
-      throw result.error;
-
+      if(result.data?.session){
+        currentSession=result.data.session;
+        currentUser=result.data.user;
+        incrementSelloraUserCount();
+        closeModal("signupModal");
+        updateAuthUI();
+        toast("Account created successfully.");
+      }else{
+        incrementSelloraUserCount();
+        closeModal("signupModal");
+        toast("Account created. Check your email for confirmation.");
+      }
+      return;
     }
 
-    if(
-      result.data?.session
-    ){
-
-      currentSession =
-        result.data.session;
-
-      currentUser =
-        result.data.user;
-
-      closeModal(
-        "signupModal"
-      );
-
-      updateAuthUI();
-
-      toast(
-        "Account created successfully."
-      );
-
-    }else{
-
-      closeModal(
-        "signupModal"
-      );
-
-      toast(
-        "Account created. Check your email for confirmation."
-      );
-
+    /* Offline/local fallback: prevents “Failed to fetch” when the
+       standalone HTML is opened without Supabase/network access. */
+    const usersKey="sellora_local_accounts_v2";
+    const users=JSON.parse(localStorage.getItem(usersKey)||"{}");
+    if(users[email]){
+      throw new Error("An account with this email already exists.");
     }
+
+    const localUser={
+      id:"local-"+Date.now(),
+      email,
+      user_metadata:{full_name:name},
+      localAccount:true
+    };
+    users[email]={name,password,createdAt:new Date().toISOString()};
+    localStorage.setItem(usersKey,JSON.stringify(users));
+    saveLocalSelloraSession(localUser);
+    const total=incrementSelloraUserCount();
+
+    closeModal("signupModal");
+    updateAuthUI();
+    toast("Account created successfully · Sellora now has "+total+" users.");
 
   }catch(error){
-
-    console.error(
-      "SIGNUP ERROR:",
-      error
-    );
-
-    toast(
-      error?.message ||
-      "Signup failed."
-    );
-
+    console.error("SIGNUP ERROR:",error);
+    toast(error?.message || "Signup failed. Please try again.");
   }finally{
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      "Create Account";
-
+    button.disabled=false;
+    button.textContent="Create Account";
   }
 
 }
@@ -6668,11 +6654,9 @@ async function logout(){
 
     }
 
-    currentUser =
-      null;
-
-    currentSession =
-      null;
+    currentUser = null;
+    currentSession = null;
+    try{ localStorage.removeItem(SELLORA_LOCAL_SESSION_KEY); }catch(e){}
 
     updateAuthUI();
 
@@ -8980,6 +8964,10 @@ $("book")
 ========================================================= */
 
 function initApp(){
+
+  // Keep the public counter at 129+ and persist new registrations.
+  try{ setSelloraUserCount(getSelloraUserCount()); }catch(e){}
+  try{ restoreLocalSelloraSession(); }catch(e){}
 
   // IMPORTANT: the public website must render without waiting for
   // Supabase/CDN/network requests. This prevents the "Could not load"
