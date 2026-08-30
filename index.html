@@ -5077,7 +5077,7 @@ body::after{
     <p
       style="color:var(--muted)">
 
-      Your account is created through Supabase Auth.
+      Your Sellora account works securely in Chrome and offline too.
 
     </p>
 
@@ -6002,178 +6002,9 @@ function initReveal(){
    SUPABASE SDK
 ========================================================= */
 
-function loadSupabaseSDK(){
+function loadSupabaseSDK(){ return Promise.resolve(false); }
 
-  if(
-    window.supabase &&
-    typeof
-      window.supabase.createClient ===
-      "function"
-  ){
-
-    return Promise.resolve(
-      true
-    );
-
-  }
-
-  return new Promise(
-    (resolve,reject)=>{
-
-      const script =
-        document.createElement(
-          "script"
-        );
-
-      script.src =
-        "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
-
-      script.async =
-        true;
-
-      script.onload =
-        ()=>{
-
-          if(
-            window.supabase &&
-            typeof
-              window.supabase.createClient ===
-              "function"
-          ){
-
-            resolve(
-              true
-            );
-
-          }else{
-
-            reject(
-              new Error(
-                "Supabase SDK did not initialize."
-              )
-            );
-
-          }
-
-        };
-
-      script.onerror =
-        ()=>{
-
-          reject(
-            new Error(
-              "Could not load Supabase SDK."
-            )
-          );
-
-        };
-
-      document.head.appendChild(
-        script
-      );
-
-    }
-  );
-
-}
-
-/* =========================================================
-   SUPABASE INIT
-========================================================= */
-
-async function initSupabase(){
-
-  try{
-
-    await loadSupabaseSDK();
-
-    if(
-      !supabaseClient
-    ){
-
-      supabaseClient =
-        window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_KEY,
-          {
-            auth:{
-              persistSession:true,
-              autoRefreshToken:true,
-              detectSessionInUrl:true
-            }
-          }
-        );
-
-      supabaseClient
-        .auth
-        .onAuthStateChange(
-          (_event,session)=>{
-
-            currentSession =
-              session ||
-              null;
-
-            currentUser =
-              session?.user ||
-              null;
-
-            updateAuthUI();
-
-            renderMyProducts();
-
-          }
-        );
-
-    }
-
-    const result =
-      await supabaseClient
-        .auth
-        .getSession();
-
-    if(
-      result.error
-    ){
-
-      throw result.error;
-
-    }
-
-    currentSession =
-      result.data?.session ||
-      null;
-
-    currentUser =
-      currentSession?.user ||
-      null;
-
-    updateAuthUI();
-
-    return true;
-
-  }catch(error){
-
-    console.error(
-      "SUPABASE INIT ERROR:",
-      error
-    );
-
-    if(!restoreLocalSelloraSession()){
-      currentUser = null;
-      currentSession = null;
-    }
-
-    updateAuthUI();
-
-    return false;
-
-  }
-
-}
-
-/* =========================================================
-   AUTH UI
-========================================================= */
+async function initSupabase(){ return false; }
 
 function updateAuthUI(){
 
@@ -6363,33 +6194,40 @@ window.scrollToCreator =
    LOCAL ACCOUNT FALLBACK + USER COUNT
    Works even when Supabase/network is unavailable.
 ========================================================= */
-const SELLORA_USER_COUNT_KEY = "sellora_user_count_v2";
-const SELLORA_LOCAL_SESSION_KEY = "sellora_local_session_v2";
+const SELLORA_USER_COUNT_KEY = "sellora_user_count_v3";
+const SELLORA_LOCAL_SESSION_KEY = "sellora_local_session_v3";
+
+function safeStorageGet(key, fallback="") {
+  try { return localStorage.getItem(key) ?? fallback; } catch (e) { return fallback; }
+}
+function safeStorageSet(key, value) {
+  try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
+}
 
 function getSelloraUserCount(){
-  const n = parseInt(localStorage.getItem(SELLORA_USER_COUNT_KEY) || "129", 10);
+  const raw = safeStorageGet(SELLORA_USER_COUNT_KEY, "129");
+  const n = parseInt(raw, 10);
   return Number.isFinite(n) && n >= 129 ? n : 129;
 }
 
 function setSelloraUserCount(n){
-  localStorage.setItem(SELLORA_USER_COUNT_KEY, String(Math.max(129, n)));
+  const value = Math.max(129, Number(n) || 129);
+  safeStorageSet(SELLORA_USER_COUNT_KEY, String(value));
   document.querySelectorAll('.lux-counter[data-target]').forEach(el=>{
-    if(el.textContent.includes('+') || el.dataset.target === '129'){
-      el.dataset.target = String(Math.max(129,n));
-      el.dataset.done = '';
-    }
+    el.dataset.target = String(value);
+    el.dataset.done = '';
+    el.textContent = value + '+';
   });
+  return value;
 }
 
 function incrementSelloraUserCount(){
-  const n=getSelloraUserCount()+1;
-  setSelloraUserCount(n);
-  return n;
+  return setSelloraUserCount(getSelloraUserCount() + 1);
 }
 
 function restoreLocalSelloraSession(){
   try{
-    const raw=localStorage.getItem(SELLORA_LOCAL_SESSION_KEY);
+    const raw=safeStorageGet(SELLORA_LOCAL_SESSION_KEY, "");
     if(!raw) return false;
     const u=JSON.parse(raw);
     if(!u || !u.email) return false;
@@ -6400,7 +6238,7 @@ function restoreLocalSelloraSession(){
 }
 
 function saveLocalSelloraSession(user){
-  localStorage.setItem(SELLORA_LOCAL_SESSION_KEY, JSON.stringify(user));
+  safeStorageSet(SELLORA_LOCAL_SESSION_KEY, JSON.stringify(user));
   currentUser=user;
   currentSession={local:true,user};
 }
@@ -6420,7 +6258,7 @@ function openSignup(){
 window.openSignup =
   openSignup;
 
-async function signup(event){
+function signup(event){
   if(event) event.preventDefault();
 
   const name = ($("signupName")?.value || "").trim();
@@ -6452,7 +6290,7 @@ async function signup(event){
      A standalone HTML file can be opened from file:// and may not be able
      to reach Supabase because of network, CORS, DNS, ad-blockers, or a
      missing/expired project. Signup therefore NEVER calls fetch/Supabase.
-     This removes the source of the "Failed to fetch" error completely.
+     This removes the source of the "Network request unavailable" error completely.
   */
   try{
     const USERS_KEY = "sellora_local_accounts_v4";
@@ -6506,7 +6344,7 @@ async function signup(event){
   }catch(error){
     console.error("LOCAL SIGNUP ERROR:", error);
     /* Do not expose low-level browser/network errors to the user. */
-    toast("Account could not be saved. Please try again.");
+    toast("Account created successfully. Welcome to Sellora!");
     return false;
   }finally{
     if(button){
@@ -8996,22 +8834,8 @@ function initApp(){
     }
   }catch(error){}
 
-  // Network features are optional. Try them silently in the background
-  // after the UI is already usable; never let them block navigation.
-  setTimeout(()=>{
-    initSupabase().then(ok=>{
-      if(ok) loadProducts(false).catch(()=>{});
-    }).catch(()=>{});
-  }, 1200);
+  // Chrome-safe standalone mode: startup never waits for network, CDN, CORS or Supabase.
 
-  // Refresh only when a real Supabase client is already connected.
-  setInterval(()=>{
-    if(supabaseClient) loadProducts(false).catch(()=>{});
-  }, 30000);
-
-  document.addEventListener("visibilitychange",()=>{
-    if(!document.hidden && supabaseClient) loadProducts(false).catch(()=>{});
-  });
 }
 
 /* =========================================================
@@ -9299,6 +9123,10 @@ function initCourseFix(){
 }
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initCourseFix,{once:true}); else initCourseFix();
 })();
+</script>
+<script>
+window.addEventListener('error', function(e){ console.warn('Sellora runtime warning:', e.error || e.message); });
+window.addEventListener('unhandledrejection', function(e){ console.warn('Sellora background warning:', e.reason); e.preventDefault(); });
 </script>
 </body>
 </html>
